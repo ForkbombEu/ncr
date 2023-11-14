@@ -1,0 +1,17 @@
+{
+	"template": "https://github.com/dyne/starters",
+	"commit": "07c31de72996257263313c3b39590e397973b89e",
+	"checkout": null,
+	"context": {
+		"cookiecutter": {
+			"project_name": "No Code Room",
+			"project_description": "No code REST API server based on zencode natural language smart contracts",
+			"full_name": "Puria Nafisi Azizi",
+			"email": "puria@dyne.org",
+			"project_slug": "ncr",
+			"repo": "https://github.com/forkbombeu/ncr",
+			"_template": "https://github.com/dyne/starters"
+		}
+	},
+	"directory": "ts-sea"
+}
