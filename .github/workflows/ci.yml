@@ -1,0 +1,104 @@
+name: Release
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read # for checkout
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "lts/*"
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        with:
+          version: 8
+      - name: Build executable
+        run: |
+          make build
+          chmod +x ncr
+      - name: Upload artifact for ncr
+        uses: actions/upload-artifact@v3
+        with:
+          name: ncr
+          path: |
+            ncr
+      - name: Upload artifact for README
+        uses: actions/upload-artifact@v3
+        with:
+          name: readme
+          path: |
+            README.md
+
+  semantic-release:
+    permissions:
+      contents: write # to be able to publish a GitHub release
+    needs: build
+    runs-on: ubuntu-latest
+    outputs:
+      release: ${{ steps.tag_release.outputs.release }}
+      version: ${{ steps.tag_release.outputs.version }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        with:
+          version: 8
+      - name: Install deps
+        run: |
+          pnpm i
+      - name: Tag release
+        id: tag_release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          npx semantic-release >semantic-release.log
+          cat semantic-release.log
+          if [[ `git tag --points-at HEAD` == "" ]]; then
+            echo "release=False" >> $GITHUB_OUTPUT
+          else
+            echo "release=True" >> $GITHUB_OUTPUT
+            awk '/Published release/ { printf("version=v%s\n",$8) }' semantic-release.log >> $GITHUB_OUTPUT
+          fi
+          echo "Result"
+          cat $GITHUB_OUTPUT
+
+  draft-release:
+    permissions:
+      contents: write
+    needs: semantic-release
+    runs-on: ubuntu-latest
+    steps:
+      - name: download binary artifacts
+        uses: actions/download-artifact@v3
+        with:
+          path: |
+            ncr-release
+      - name: show directory structure
+        run: tree -dL 3
+      - name: relase all binary artifacts
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            ncr-release/ncr/*
+          append_body: true
+          body_path: ncr-release/readme/README.md
+          draft: false
+          prerelease: false
+          fail_on_unmatched_files: true
+          generate_release_notes: true
+          tag_name: ${{ needs.semantic-release.outputs.version }}
