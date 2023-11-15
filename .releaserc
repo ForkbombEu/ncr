@@ -3,7 +3,7 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 {
-  "repositoryUrl": "git@github.com:albertolerda/ncr.git",
+  "repositoryUrl": "git@github.com:forkbombeu/ncr.git",
   "dryRun": false,
   "plugins": [
     "@semantic-release/commit-analyzer",
