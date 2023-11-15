@@ -16,6 +16,7 @@ interface Config {
 	zencodeDirectory: string;
 	zenroomVersion: string;
 	openapiPath: string;
+	template: string;
 	logger: Logger;
 }
 
@@ -72,6 +73,11 @@ program
 		new Option('--hostname <string>', 'Provide the hostname to serve the server')
 			.env('HOSTNAME')
 			.default('0.0.0.0')
+	)
+	.addOption(
+		new Option('--template <file>', 'Provide the html template for the applets').default(
+			'./applet_template.html'
+		)
 	)
 	.addOption(new Option('-D, --debug', 'debug').env('DEBUG').default(false).argParser(Boolean))
 	.version(data.version, '-v, --version')

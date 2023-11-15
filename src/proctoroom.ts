@@ -1,8 +1,12 @@
-<!doctype html>
+import { config } from './cli.js';
+import { readFileSync } from 'fs';
+
+const fileName = config.template;
+const proctoroom = `<!doctype html>
 <html lang="en" class="text-xs md:text-lg">
 	<head>
 		<meta charset="utf-8" />
-		<title>noˑcodeˑroom &mdash; ${title}</title>
+		<title>noˑcodeˑroom &mdash; \${title}</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<script src="https://cdn.jsdelivr.net/npm/@json-editor/json-editor@latest/dist/jsoneditor.min.js"></script>
 		<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
@@ -65,7 +69,7 @@
 				>
 					noˑcodeˑroom
 				</span>
-				&mdash; ${title}
+				&mdash; \${title}
 			</h1>
 			<div hx-ext="response-targets">
 				<form id="params">
@@ -93,7 +97,7 @@
 		<section>
 			<details class="text-slate-600">
 				<summary>contract</summary>
-				<pre id="contract" class="overflow-auto max-h-[30rem] text-sm mb-4">${contract}</pre>
+				<pre id="contract" class="overflow-auto max-h-[30rem] text-sm mb-4">\${contract}</pre>
 			</details>
 		</section>
 		<footer>
@@ -158,7 +162,7 @@
 			</div>
 		</footer>
 		<script>
-			const contract = `${contract}`;
+			const contract = \`\${contract}\`;
 			const highlight = (json) => {
 				json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 				return json.replace(
@@ -182,7 +186,7 @@
 			};
 
 			const editor = new JSONEditor(document.getElementById('form'), {
-				schema: ${schema},
+				schema: \${schema},
 				compact: true,
 				disable_collapse: true,
 				disable_edit_json: true,
@@ -261,4 +265,14 @@
 			}
 		</style>
 	</body>
-</html>
+</html>`;
+
+const getTemplate = () => {
+	try {
+		return readFileSync(fileName);
+	} catch {
+		return proctoroom;
+	}
+};
+
+export const template = getTemplate();

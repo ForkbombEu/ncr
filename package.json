@@ -25,8 +25,7 @@
 	"pkg": {
 		"assets": [
 			"dist/*.node",
-			"dist/**/*.flf",
-			"./node_modules/figlet/**/*"
+			"dist/*.html"
 		],
 		"targets": [
 			"latest-linux-x64"

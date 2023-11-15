@@ -21,7 +21,10 @@ export default {
 		nodeResolve({ preferBuiltins: true }),
 		commonjs({ ignoreDynamicRequires: true }),
 		copy({
-			targets: [{ src: src, dest: 'dist/' }]
+			targets: [
+				{ src: src, dest: 'dist/' },
+				{ src: './src/openapi.html', dest: 'dist/' }
+			]
 		})
 	]
 };

@@ -6,7 +6,6 @@ import { wallet } from '@slangroom/wallet';
 //@ts-ignore
 import { http } from '@slangroom/http';
 import _ from 'lodash';
-import fs from 'node:fs';
 import {
 	App,
 	TemplatedApp,
@@ -15,12 +14,18 @@ import {
 	us_socket_local_port
 } from 'uWebSockets.js';
 import { Directory } from './directory.js';
-import { definition, generateAppletPath, generatePath, generateRawPath } from './openapi.js';
+import {
+	definition,
+	generateAppletPath,
+	generatePath,
+	generateRawPath,
+	openapiTemplate
+} from './openapi.js';
 import { getSchema, handleArrayBuffer } from './utils.js';
+import { template as proctoroom } from './proctoroom.js';
 
 const L = config.logger;
 const Dir = Directory.getInstance();
-const proctoroom = Buffer.from(fs.readFileSync('./src/proctoroom.html')).toString();
 Dir.ready(async () => {
 	let listen_socket: us_listen_socket;
 
@@ -33,10 +38,7 @@ Dir.ready(async () => {
 				.end(JSON.stringify(files));
 		})
 		.get(config.openapiPath, (res, req) => {
-			res
-				.writeStatus('200 OK')
-				.writeHeader('Content-Type', 'text/html')
-				.end(fs.readFileSync('./src/openapi.html'));
+			res.writeStatus('200 OK').writeHeader('Content-Type', 'text/html').end(openapiTemplate);
 		})
 		.get('/oas.json', (res, req) => {
 			Dir.files.map(async ({ path, contract }) => {
