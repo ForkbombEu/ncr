@@ -4,14 +4,10 @@
 		<meta charset="utf-8" />
 		<title>noˑcodeˑroom &mdash; ${title}</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<script
-			src="https://unpkg.com/htmx.org@1.9.6"
-			integrity="sha384-FhXw7b6AlE/jyjlZH5iHa/tTe9EpJ1Y55RjcgPbjeWMskSxZt1v9qkxLJWNJaGni"
-			crossorigin="anonymous"
-		></script>
-		<script src="https://unpkg.com/htmx.org/dist/ext/response-targets.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/@json-editor/json-editor@latest/dist/jsoneditor.min.js"></script>
 		<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+		<script src="https://cdn.jsdelivr.net/npm/cash-dom/dist/cash.min.js"></script>
+		<script type="module" src="https://cdn.jsdelivr.net/npm/@slangroom/browser"></script>
 		<script>
 			tailwind.config = {
 				theme: {
@@ -72,24 +68,17 @@
 				&mdash; ${title}
 			</h1>
 			<div hx-ext="response-targets">
-				<form
-					hx-post="${endpoint}"
-					hx-vals="js:{...editor.getValue()}"
-					hx-boost="true"
-					hx-headers='{"Content-Type":"application/json"}'
-					hx-target="#response"
-					hx-target-5xx="#error"
-				>
+				<form id="params">
 					<div id="form"></div>
 					<div class="flex pl-2 pt-2 my-4">
-						<button type="submit" class="bg-black text-white font-bold w-full lg:w-fit">
+						<button class="bg-black text-white font-bold w-full lg:w-fit" id="execute">
 							<span
 								class="block -translate-x-2 -translate-y-2 border-2 border-black bg-red-500 text-xl p-2 hover:-translate-y-3 active:translate-x-0 active:translate-y-0 transition-all"
 							>
 								Press this
 							</span>
 						</button>
-						<div class="ml-4 h-8 w-10 animate-bounce htmx-indicator">
+						<div class="ml-4 h-8 w-10 animate-bounce htmx-indicator hidden">
 							<div class="mx-auto h-8 w-8 animate-pulse rounded-full bg-gray-300"></div>
 							<span class="absolute flex h-6 w-6 animate-spin">
 								<span class="h-4 w-4 rounded-full bg-gray-300"></span>
@@ -103,9 +92,8 @@
 		</main>
 		<section>
 			<details class="text-slate-600">
-				<summary hx-get="${endpoint}/raw" hx-ext="toggle" hx-target="#contract">contract</summary>
-
-				<pre id="contract" class="overflow-auto max-h-[30rem] text-sm mb-4"></pre>
+				<summary>contract</summary>
+				<pre id="contract" class="overflow-auto max-h-[30rem] text-sm mb-4">${contract}</pre>
 			</details>
 		</section>
 		<footer>
@@ -170,48 +158,57 @@
 			</div>
 		</footer>
 		<script>
+			const contract = `${contract}`;
 			const highlight = (json) => {
-			  json = json
-			    .replace(/&/g, "&amp;")
-			    .replace(/</g, "&lt;")
-			    .replace(/>/g, "&gt;");
-			  return json.replace(
-			    /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,
-			    function (match) {
-			      var cls = "number";
-			      if (/^"/.test(match)) {
-			        if (/:$/.test(match)) {
-			          cls = "key";
-			        } else {
-			          cls = "string";
-			        }
-			      } else if (/true|false/.test(match)) {
-			        cls = "boolean";
-			      } else if (/null/.test(match)) {
-			        cls = "null";
-			      }
-			      return '<span class="' + cls + '">' + match + "</span>";
-			    }
-			  );
+				json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+				return json.replace(
+					/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,
+					function (match) {
+						var cls = 'number';
+						if (/^"/.test(match)) {
+							if (/:$/.test(match)) {
+								cls = 'key';
+							} else {
+								cls = 'string';
+							}
+						} else if (/true|false/.test(match)) {
+							cls = 'boolean';
+						} else if (/null/.test(match)) {
+							cls = 'null';
+						}
+						return '<span class="' + cls + '">' + match + '</span>';
+					}
+				);
 			};
 
-			 const editor = new JSONEditor(document.getElementById("form"), {
-			   schema: ${schema},
-			   compact: true,
-			   disable_collapse: true,
-			   disable_edit_json: true,
-			   disable_properties: true,
-			   use_name_attributes: false
-			 });
+			const editor = new JSONEditor(document.getElementById('form'), {
+				schema: ${schema},
+				compact: true,
+				disable_collapse: true,
+				disable_edit_json: true,
+				disable_properties: true,
+				required_by_default: true,
+				show_errors: 'interaction',
+				use_name_attributes: false
+			});
 
-			document.addEventListener("htmx:beforeRequest", function (evt) {
-			  console.log("mauai",evt);
-			  throw new Error()
-			})
-			document.addEventListener("htmx:afterSwap", function (evt) {
-			  document.getElementById("response").innerHTML = highlight(
-			    JSON.stringify(JSON.parse(evt.detail.xhr.response), null, 3)
-			  );
+			$(document).ready(() => {
+				$('#execute').on('click', async (e) => {
+					$(".htmx-indicator").show()
+					e.preventDefault();
+					$('#error').html("");
+					$('#response').html("");
+					try {
+						const { result, logs } = await slangroom.execute(contract, {
+							data: editor.getValue()
+						});
+						$('#response').html(highlight(JSON.stringify(result, null, 3)));
+						$('#error').html("");
+					} catch (e) {
+						$('#error').html(e);
+					}
+					$(".htmx-indicator").hide()
+				});
 			});
 		</script>
 		<style>

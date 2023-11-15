@@ -86,15 +86,23 @@ const generateRoutes = (app: TemplatedApp) => {
 				try {
 					res
 						.onData(async (d) => {
-							const data = handleArrayBuffer(d);
-							const { result } = await s.execute(contract, { keys, data, conf });
-							res
-								.writeStatus('200 OK')
-								.writeHeader('Content-Type', 'application/json')
-								.end(JSON.stringify(result));
+							try {
+								const data = handleArrayBuffer(d);
+								const { result, logs } = await s.execute(contract, { keys, data, conf });
+								res
+									.writeStatus('200 OK')
+									.writeHeader('Content-Type', 'application/json')
+									.end(JSON.stringify(result));
+							} catch (e) {
+								L.error(e);
+								res
+									.writeStatus('500')
+									.writeHeader('Content-Type', 'application/json')
+									.end(e.message);
+							}
 						})
 						.onAborted(() => {
-							res.writeStatus('500').end('Internal server error');
+							res.writeStatus('500').writeHeader('Content-Type', 'application/json').end(logs);
 						});
 				} catch (e) {
 					L.error(e);
@@ -130,6 +138,7 @@ const generateRoutes = (app: TemplatedApp) => {
 
 		app.get(path + '/app', async (res, req) => {
 			const result = _.template(proctoroom)({
+				contract: contract,
 				schema: JSON.stringify(schema),
 				title: path || 'Welcome 🥳 to ',
 				description: contract,
