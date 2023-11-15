@@ -1,0 +1,14 @@
+# Copyright 2017-2018 Dyne.org foundation
+# SPDX-FileCopyrightText: 2017-2021 Dyne.org foundation
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+{
+  "repositoryUrl": "git@github.com:albertolerda/ncr.git",
+  "dryRun": false,
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/changelog",
+  ],
+  "branches": ["main"]
+}

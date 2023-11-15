@@ -21,7 +21,12 @@ clean: ## 🧹 Clean the project
 	@echo "🧹 Brooming"
 	@rm -fr dist && rm -f ncr
 
-build: clean ## 📦 Build the binary
+.PHONY: setup
+setup: ## ⬇️  Install deps
+	@echo "⬇️  Install deps"
+	@pnpm i
+
+build: setup clean ## 📦 Build the binary
 	@echo "📦 Building"
 	@pnpm sea
 
