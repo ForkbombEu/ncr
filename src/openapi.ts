@@ -1,6 +1,7 @@
 import { OpenAPIV3_1 } from 'openapi-types';
 import { Type } from '@sinclair/typebox';
 import { getSchema } from './utils.js';
+import { Endpoints } from './types.js';
 
 export const generateRawPath = () => {
 	return {
@@ -30,8 +31,9 @@ export const generateAppletPath = () => {
 	};
 };
 
-export const generatePath = async (contract: string, keys: JSON) => {
-	const schema = await getSchema(contract, keys);
+export const generatePath = async (endpoints: Endpoints) => {
+	const { contract } = endpoints;
+	const schema = await getSchema(endpoints);
 	const getParams = schema.required?.map((n: string) => {
 		return {
 			name: n,

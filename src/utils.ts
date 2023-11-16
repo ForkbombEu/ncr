@@ -8,6 +8,7 @@ import _ from 'lodash';
 
 export const getSchema = async (endpoints: Endpoints) => {
 	const { contract, keys } = endpoints;
+	// TODO: validate json schema
 	if (endpoints.schema) return endpoints.schema;
 
 	const codec: Codec = await introspect(contract);
