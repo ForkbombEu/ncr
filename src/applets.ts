@@ -269,7 +269,7 @@ const proctoroom = `<!doctype html>
 
 const getTemplate = () => {
 	try {
-		return readFileSync(fileName);
+		return readFileSync(fileName, 'utf-8');
 	} catch {
 		return proctoroom;
 	}

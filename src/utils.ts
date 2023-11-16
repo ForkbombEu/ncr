@@ -1,6 +1,6 @@
 import { introspect } from 'zenroom';
 import { TypeCompiler } from '@sinclair/typebox/compiler';
-import { Codec, JSONObject } from './types';
+import { Codec } from './types';
 
 export const getSchema = async (content: string, keys?: JSON) => {
 	const codec: Codec = await introspect(content);
@@ -39,7 +39,7 @@ export const handleArrayBuffer = (message: ArrayBuffer | string) => {
 	return JSON.parse(message);
 };
 
-export const validate = (schema: any, data) => {
+export const validate = (schema: any, data: JSON) => {
 	const C = TypeCompiler.Compile(schema);
 	const isValid = C.Check(data);
 	if (isValid) {
