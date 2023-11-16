@@ -1,4 +1,4 @@
-import { Logger } from 'pino';
+import type { Logger } from 'pino';
 
 export interface Config {
 	port: number;
@@ -10,17 +10,10 @@ export interface Config {
 	logger: Logger;
 }
 
-type JSONValue = string | number | boolean | null | JSONValue[] | { [key: string]: JSONValue };
-
-export interface JSONObject {
-	[k: string]: JSONValue;
-}
-interface JSONArray extends Array<JSONValue> {}
-
 export interface Endpoints {
 	path: string;
 	contract: string;
-	keys: JSONObject;
+	keys: JSON;
 	conf: string;
 }
 
