@@ -18,11 +18,13 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "lts/*"
+          node-version: 'lts/*'
       - uses: pnpm/action-setup@v2
         name: Install pnpm
         with:
           version: 8
+      - name: 🧪 Run tests
+        run: pnpm test
       - name: Build executable
         run: |
           make build

@@ -1,12 +1,10 @@
 import { Command, Option, type OptionValues } from 'commander';
-// import figlet from "figlet";
-// import gradient from "gradient-string";
 import { statSync } from 'node:fs';
 import pino, { type Logger } from 'pino';
 import 'dotenv/config';
 import { Config } from './types';
 
-const program = new Command();
+export const program = new Command();
 const L = pino();
 const bads = ['⛔', '💩', '🥶', '💣'];
 const bad = bads[Math.floor(Math.random() * bads.length)];
@@ -21,10 +19,6 @@ const data = {
 program
 	.name(data.name)
 	.description(data.description)
-	// .addHelpText(
-	//    "beforeAll",
-	//    gradient.instagram(figlet.textSync(data.name, { font: "Elite" }))
-	// )
 	.addOption(
 		new Option('-z, --zencode-directory <directory>', 'specify the zencode contracts directory')
 			.env('ZENCODE_DIR')
@@ -45,7 +39,7 @@ program
 		)
 			.env('PORT')
 			.default(0)
-			.argParser(parseInt)
+			.argParser((c) => parseInt(c))
 	)
 	.addOption(
 		new Option(
@@ -76,7 +70,11 @@ program
 		'after',
 		`
 Examples:
-  $ restroom -z contracts -p 3000`
+  # Serve zencode files on the current directory over a random port
+  $ ncr
+
+  # Serve all zencode files on ./contracts over 3000 port
+  $ ncr -z contracts -p 3000`
 	)
 	.parse();
 

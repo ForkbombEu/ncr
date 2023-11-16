@@ -2,7 +2,7 @@ import { introspect } from 'zenroom';
 import { TypeCompiler } from '@sinclair/typebox/compiler';
 import { Codec, JSONObject } from './types';
 
-export const getSchema = async (content: string, keys?: JSONObject) => {
+export const getSchema = async (content: string, keys?: JSON) => {
 	const codec: Codec = await introspect(content);
 
 	if (keys) {
