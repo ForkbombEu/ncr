@@ -1,16 +1,12 @@
-import LiveDirectory from 'live-directory';
 import { introspect } from 'zenroom';
 import { TypeCompiler } from '@sinclair/typebox/compiler';
+import { Codec, JSONObject } from './types';
 
-export const content = (Z: LiveDirectory, p: string, ext: string): string => {
-	return Buffer.from(Z.get(p + '.' + ext)?.content || '').toString();
-};
-
-export const getSchema = async (content: string, exclude?: string[]) => {
+export const getSchema = async (content: string, keys?: JSONObject) => {
 	const codec: Codec = await introspect(content);
 
-	if (exclude) {
-		for (const k of exclude) delete codec[k];
+	if (keys) {
+		for (const k of Object.keys(keys)) delete codec[k];
 	}
 	const schema: any = {
 		type: 'object',
@@ -35,16 +31,6 @@ export const getSchema = async (content: string, exclude?: string[]) => {
 	return schema;
 };
 
-interface CodecAttr {
-	encoding: 'string' | 'number';
-	name: string;
-	zentype: 'n' | 'y';
-}
-
-interface Codec {
-	[key: string]: CodecAttr;
-}
-
 export const handleArrayBuffer = (message: ArrayBuffer | string) => {
 	if (message instanceof ArrayBuffer) {
 		const decoder = new TextDecoder();
@@ -53,7 +39,7 @@ export const handleArrayBuffer = (message: ArrayBuffer | string) => {
 	return JSON.parse(message);
 };
 
-export const validate = (schema: TObject, data) => {
+export const validate = (schema: any, data) => {
 	const C = TypeCompiler.Compile(schema);
 	const isValid = C.Check(data);
 	if (isValid) {

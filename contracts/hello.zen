@@ -1,6 +1,6 @@
 Given I have a 'string' named 'name'
 Given I have a 'string' named 'uno'
 Given I have a 'string' named 'due'
-Given I have a 'string' named  'four'
+Given I have a 'string'   named  'four'
 Then print the string 'mimmo' 
 Then print the data

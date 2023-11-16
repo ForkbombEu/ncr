@@ -14,7 +14,7 @@ ifneq ($(OS),Windows_NT)
 endif
 
 
-help: ## 🛟  Show this help message
+help: ## 🛟 Show this help message
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-7s\033[0m %s\n", $$1, $$2}'
 
 clean: ## 🧹 Clean the project
@@ -22,7 +22,7 @@ clean: ## 🧹 Clean the project
 	@rm -fr dist && rm -f ncr
 
 .PHONY: setup
-setup: ## ⬇️  Install deps
+setup: ## ⬇️ Install deps
 	@echo "⬇️  Install deps"
 	@pnpm i
 
@@ -30,6 +30,6 @@ build: setup clean ## 📦 Build the binary
 	@echo "📦 Building"
 	@pnpm sea
 
-dev: ## ⚙️ Run the project in development mode
+up: ## 🚀 Run the project in development mode
 	@pnpm dev $@
 
