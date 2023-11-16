@@ -1,13 +1,14 @@
 import { introspect } from 'zenroom';
 import { Type } from '@sinclair/typebox';
 import { TypeCompiler, ValueErrorIterator } from '@sinclair/typebox/compiler';
-import { Codec } from './types';
+import { Codec, Endpoints } from './types';
 import _ from 'lodash';
 
 //
 
-export const getSchema = async (content: string, keys?: JSON) => {
-	const codec: Codec = await introspect(content);
+export const getSchema = async (endpoints: Endpoints) => {
+	const { contract, keys } = endpoints;
+	const codec: Codec = await introspect(contract);
 	if (keys) {
 		for (const k of Object.keys(keys)) delete codec[k];
 	}

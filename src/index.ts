@@ -79,8 +79,9 @@ Dir.ready(async () => {
 });
 
 const generateRoutes = (app: TemplatedApp) => {
-	Dir.files.map(async ({ path, contract, keys, conf }) => {
-		const schema = await getSchema(contract, keys);
+	Dir.files.map(async (endpoints) => {
+		const { contract, path, keys, conf } = endpoints;
+		const schema = await getSchema(endpoints);
 		const s = new Slangroom([http, wallet]);
 
 		app.post(path, (res, req) => {
