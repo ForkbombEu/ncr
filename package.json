@@ -41,6 +41,7 @@
 		"@slangroom/ethereum": "^1.8.0",
 		"@slangroom/http": "^1.8.0",
 		"@slangroom/wallet": "^1.8.0",
+		"ajv": "^8.12.0",
 		"commander": "^11.1.0",
 		"dotenv": "^16.3.1",
 		"live-directory": "^3.0.3",
