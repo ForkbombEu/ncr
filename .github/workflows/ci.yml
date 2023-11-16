@@ -25,7 +25,9 @@ jobs:
         with:
           version: 8
       - name: 🧪 Run tests
-        run: pnpm test
+        run: |
+          pnpm i
+          pnpm test
       - name: Build executable
         run: |
           make build
