@@ -32,7 +32,7 @@ export const generateAppletPath = () => {
 
 export const generatePath = async (contract: string, keys: JSON) => {
 	const schema = await getSchema(contract, keys);
-	const getParams = schema.required.map((n: string) => {
+	const getParams = schema.required?.map((n: string) => {
 		return {
 			name: n,
 			in: 'query',
