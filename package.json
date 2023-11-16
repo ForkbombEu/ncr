@@ -19,9 +19,6 @@
 		"debug": "nodemon --inspect -e ts -w ./src -x pnpm run watch",
 		"test": "jest"
 	},
-	"engines": {
-		"node": ">=20.0.0 <22.0.0"
-	},
 	"bin": {
 		"ncr": "dist/index.cjs"
 	},
