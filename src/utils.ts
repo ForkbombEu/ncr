@@ -1,6 +1,6 @@
 import { introspect } from 'zenroom';
 import { Type } from '@sinclair/typebox';
-import { TypeCompiler, ValueError, ValueErrorIterator } from '@sinclair/typebox/compiler';
+import { TypeCompiler, ValueErrorIterator } from '@sinclair/typebox/compiler';
 import { Codec } from './types';
 import _ from 'lodash';
 
