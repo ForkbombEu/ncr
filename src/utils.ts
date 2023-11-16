@@ -1,13 +1,18 @@
 import { introspect } from 'zenroom';
 import { Type } from '@sinclair/typebox';
 import { TypeCompiler, ValueErrorIterator } from '@sinclair/typebox/compiler';
-import { Codec } from './types';
+import { Codec, Endpoints } from './types';
 import _ from 'lodash';
+import Ajv from 'ajv';
 
 //
 
-export const getSchema = async (content: string, keys?: JSON) => {
-	const codec: Codec = await introspect(content);
+export const getSchema = async (endpoints: Endpoints) => {
+	const { contract, keys } = endpoints;
+	// TODO: validate json schema
+	if (endpoints.schema) return endpoints.schema;
+
+	const codec: Codec = await introspect(contract);
 	if (keys) {
 		for (const k of Object.keys(keys)) delete codec[k];
 	}
@@ -24,14 +29,20 @@ export const getSchema = async (content: string, keys?: JSON) => {
 };
 
 export const validateData = (schema: any, data: JSON | Record<string, unknown>) => {
-	const C = TypeCompiler.Compile(schema);
-	if (C.Check(data)) {
-		return data;
-	} else {
-		throw new Error(`Invalid data provided:
-${JSON.stringify(formatTypeboxErrors(C.Errors(data)), null, 2)}
-`);
-	}
+	const ajv = new Ajv.default();
+	const validate = ajv.compile(schema);
+	const valid = validate(data);
+	if (!valid) throw new Error(JSON.stringify(validate.errors));
+	return data;
+	// console.log(ajv);
+	// const C = TypeCompiler.Compile(schema);
+	// 	if (C.Check(data)) {
+	// 		return data;
+	// 	} else {
+	// 		throw new Error(`Invalid data provided:
+	// ${JSON.stringify(formatTypeboxErrors(C.Errors(data)), null, 2)}
+	// `);
+	// 	}
 };
 
 export function formatTypeboxErrors(typeboxErrors: ValueErrorIterator): Record<string, string[]> {

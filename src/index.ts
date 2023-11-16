@@ -41,9 +41,10 @@ Dir.ready(async () => {
 			res.writeStatus('200 OK').writeHeader('Content-Type', 'text/html').end(openapiTemplate);
 		})
 		.get('/oas.json', (res, req) => {
-			Dir.files.map(async ({ path, contract, keys }) => {
+			Dir.files.map(async (endpoints) => {
+				const { path } = endpoints;
 				if (definition.paths) {
-					definition.paths[path] = await generatePath(contract, keys);
+					definition.paths[path] = await generatePath(endpoints);
 					definition.paths[path + '/raw'] = generateRawPath();
 					definition.paths[path + '/app'] = generateAppletPath();
 				}
@@ -79,8 +80,9 @@ Dir.ready(async () => {
 });
 
 const generateRoutes = (app: TemplatedApp) => {
-	Dir.files.map(async ({ path, contract, keys, conf }) => {
-		const schema = await getSchema(contract, keys);
+	Dir.files.map(async (endpoints) => {
+		const { contract, path, keys, conf } = endpoints;
+		const schema = await getSchema(endpoints);
 		const s = new Slangroom([http, wallet]);
 
 		app.post(path, (res, req) => {

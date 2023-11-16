@@ -15,6 +15,7 @@ export interface Endpoints {
 	contract: string;
 	keys: JSON;
 	conf: string;
+	schema?: JSON | undefined;
 }
 
 interface CodecAttr {

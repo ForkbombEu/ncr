@@ -6,17 +6,20 @@ settings:
 
 dependencies:
   '@slangroom/core':
-    specifier: ^1.8.0
-    version: 1.8.0(zenroom@4.2.1)
+    specifier: ^1.9.6
+    version: 1.9.6(zenroom@4.2.2)
   '@slangroom/ethereum':
-    specifier: ^1.8.0
-    version: 1.8.0(typescript@5.2.2)(zenroom@4.2.1)
+    specifier: ^1.9.6
+    version: 1.9.6(typescript@5.2.2)(zenroom@4.2.2)
   '@slangroom/http':
-    specifier: ^1.8.0
-    version: 1.8.0(zenroom@4.2.1)
+    specifier: ^1.9.6
+    version: 1.9.6(zenroom@4.2.2)
   '@slangroom/wallet':
-    specifier: ^1.8.0
-    version: 1.8.0(zenroom@4.2.1)
+    specifier: ^1.9.6
+    version: 1.9.6(zenroom@4.2.2)
+  ajv:
+    specifier: ^8.12.0
+    version: 8.12.0
   commander:
     specifier: ^11.1.0
     version: 11.1.0
@@ -30,28 +33,28 @@ dependencies:
     specifier: ^4.17.21
     version: 4.17.21
   pino:
-    specifier: ^8.16.1
-    version: 8.16.1
+    specifier: ^8.16.2
+    version: 8.16.2
   uWebSockets.js:
     specifier: github:uNetworking/uWebSockets.js#semver:^20
     version: github.com/uNetworking/uWebSockets.js/fca27c05066342b01951782248640c8013b37196
   zenroom:
-    specifier: ^4.2.1
-    version: 4.2.1
+    specifier: ^4.2.2
+    version: 4.2.2
 
 devDependencies:
   '@rollup/plugin-commonjs':
     specifier: ^25.0.7
-    version: 25.0.7(rollup@4.4.0)
+    version: 25.0.7(rollup@4.4.1)
   '@rollup/plugin-json':
     specifier: ^6.0.1
-    version: 6.0.1(rollup@4.4.0)
+    version: 6.0.1(rollup@4.4.1)
   '@rollup/plugin-node-resolve':
     specifier: ^15.2.3
-    version: 15.2.3(rollup@4.4.0)
+    version: 15.2.3(rollup@4.4.1)
   '@rollup/plugin-typescript':
     specifier: ^11.1.5
-    version: 11.1.5(rollup@4.4.0)(typescript@5.2.2)
+    version: 11.1.5(rollup@4.4.1)(typescript@5.2.2)
   '@semantic-release/changelog':
     specifier: ^6.0.3
     version: 6.0.3(semantic-release@22.0.7)
@@ -62,8 +65,8 @@ devDependencies:
     specifier: ^12.1.0
     version: 12.1.0(semantic-release@22.0.7)
   '@sinclair/typebox':
-    specifier: ^0.31.23
-    version: 0.31.23
+    specifier: ^0.31.25
+    version: 0.31.25
   '@swc/core':
     specifier: ^1.3.96
     version: 1.3.96(@swc/helpers@0.5.3)
@@ -98,8 +101,8 @@ devDependencies:
     specifier: ^0.14.0
     version: 0.14.0
   rollup:
-    specifier: ^4.4.0
-    version: 4.4.0
+    specifier: ^4.4.1
+    version: 4.4.1
   rollup-plugin-copy:
     specifier: ^3.5.0
     version: 3.5.0
@@ -959,7 +962,7 @@ packages:
       config-chain: 1.1.13
     dev: true
 
-  /@rollup/plugin-commonjs@25.0.7(rollup@4.4.0):
+  /@rollup/plugin-commonjs@25.0.7(rollup@4.4.1):
     resolution: {integrity: sha512-nEvcR+LRjEjsaSsc4x3XZfCCvZIaSMenZu/OiwOKGN2UhQpAYI7ru7czFvyWbErlpoGjnSX3D5Ch5FcMA3kRWQ==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -968,16 +971,16 @@ packages:
       rollup:
         optional: true
     dependencies:
-      '@rollup/pluginutils': 5.0.5(rollup@4.4.0)
+      '@rollup/pluginutils': 5.0.5(rollup@4.4.1)
       commondir: 1.0.1
       estree-walker: 2.0.2
       glob: 8.1.0
       is-reference: 1.2.1
       magic-string: 0.30.5
-      rollup: 4.4.0
+      rollup: 4.4.1
     dev: true
 
-  /@rollup/plugin-json@6.0.1(rollup@4.4.0):
+  /@rollup/plugin-json@6.0.1(rollup@4.4.1):
     resolution: {integrity: sha512-RgVfl5hWMkxN1h/uZj8FVESvPuBJ/uf6ly6GTj0GONnkfoBN5KC0MSz+PN2OLDgYXMhtG0mWpTrkiOjoxAIevw==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -986,11 +989,11 @@ packages:
       rollup:
         optional: true
     dependencies:
-      '@rollup/pluginutils': 5.0.5(rollup@4.4.0)
-      rollup: 4.4.0
+      '@rollup/pluginutils': 5.0.5(rollup@4.4.1)
+      rollup: 4.4.1
     dev: true
 
-  /@rollup/plugin-node-resolve@15.2.3(rollup@4.4.0):
+  /@rollup/plugin-node-resolve@15.2.3(rollup@4.4.1):
     resolution: {integrity: sha512-j/lym8nf5E21LwBT4Df1VD6hRO2L2iwUeUmP7litikRsVp1H6NWx20NEp0Y7su+7XGc476GnXXc4kFeZNGmaSQ==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -999,16 +1002,16 @@ packages:
       rollup:
         optional: true
     dependencies:
-      '@rollup/pluginutils': 5.0.5(rollup@4.4.0)
+      '@rollup/pluginutils': 5.0.5(rollup@4.4.1)
       '@types/resolve': 1.20.2
       deepmerge: 4.3.1
       is-builtin-module: 3.2.1
       is-module: 1.0.0
       resolve: 1.22.8
-      rollup: 4.4.0
+      rollup: 4.4.1
     dev: true
 
-  /@rollup/plugin-typescript@11.1.5(rollup@4.4.0)(typescript@5.2.2):
+  /@rollup/plugin-typescript@11.1.5(rollup@4.4.1)(typescript@5.2.2):
     resolution: {integrity: sha512-rnMHrGBB0IUEv69Q8/JGRD/n4/n6b3nfpufUu26axhUcboUzv/twfZU8fIBbTOphRAe0v8EyxzeDpKXqGHfyDA==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -1021,13 +1024,13 @@ packages:
       tslib:
         optional: true
     dependencies:
-      '@rollup/pluginutils': 5.0.5(rollup@4.4.0)
+      '@rollup/pluginutils': 5.0.5(rollup@4.4.1)
       resolve: 1.22.8
-      rollup: 4.4.0
+      rollup: 4.4.1
       typescript: 5.2.2
     dev: true
 
-  /@rollup/pluginutils@5.0.5(rollup@4.4.0):
+  /@rollup/pluginutils@5.0.5(rollup@4.4.1):
     resolution: {integrity: sha512-6aEYR910NyP73oHiJglti74iRyOwgFU4x3meH/H8OJx6Ry0j6cOVZ5X/wTvub7G7Ao6qaHBEaNsV3GLJkSsF+Q==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -1039,99 +1042,99 @@ packages:
       '@types/estree': 1.0.5
       estree-walker: 2.0.2
       picomatch: 2.3.1
-      rollup: 4.4.0
+      rollup: 4.4.1
     dev: true
 
-  /@rollup/rollup-android-arm-eabi@4.4.0:
-    resolution: {integrity: sha512-AD30wtT58hZZsXIeiksytR6Gm2gofUxn5KqrDBdyzekgxXB9bXN9dqWIEcPfYo9lA9MVRm0lC42LuYGsscRxiA==}
+  /@rollup/rollup-android-arm-eabi@4.4.1:
+    resolution: {integrity: sha512-Ss4suS/sd+6xLRu+MLCkED2mUrAyqHmmvZB+zpzZ9Znn9S8wCkTQCJaQ8P8aHofnvG5L16u9MVnJjCqioPErwQ==}
     cpu: [arm]
     os: [android]
     requiresBuild: true
     dev: true
     optional: true
 
-  /@rollup/rollup-android-arm64@4.4.0:
-    resolution: {integrity: sha512-PlqvhzFxy5FRTB3wLSsGgPhiakv9jrgfu8tjSojLJFP0CdhfZSRDOFvQ2emWLUEBOSCnjpL63XSuFVMwg59ZtA==}
+  /@rollup/rollup-android-arm64@4.4.1:
+    resolution: {integrity: sha512-sRSkGTvGsARwWd7TzC8LKRf8FiPn7257vd/edzmvG4RIr9x68KBN0/Ek48CkuUJ5Pj/Dp9vKWv6PEupjKWjTYA==}
     cpu: [arm64]
     os: [android]
     requiresBuild: true
     dev: true
     optional: true
 
-  /@rollup/rollup-darwin-arm64@4.4.0:
-    resolution: {integrity: sha512-BYmhn1Hebmkmdyn5mBFy7HptowyjtMALyTpywNSNZYigWwyv4L8WQVr0XvOQE7eE6WoKrupSVxtIcGZW8MgZUA==}
+  /@rollup/rollup-darwin-arm64@4.4.1:
+    resolution: {integrity: sha512-nz0AiGrrXyaWpsmBXUGOBiRDU0wyfSXbFuF98pPvIO8O6auQsPG6riWsfQqmCCC5FNd8zKQ4JhgugRNAkBJ8mQ==}
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
     dev: true
     optional: true
 
-  /@rollup/rollup-darwin-x64@4.4.0:
-    resolution: {integrity: sha512-7GXsMiX/giTDBMs/gL3rePLBRC6gV7DT7JQ0lNqoNDe5hm+Gm4NEWky9fwEmer64fIUbOsTiLUsyQ5fDXUbXPA==}
+  /@rollup/rollup-darwin-x64@4.4.1:
+    resolution: {integrity: sha512-Ogqvf4/Ve/faMaiPRvzsJEqajbqs00LO+8vtrPBVvLgdw4wBg6ZDXdkDAZO+4MLnrc8mhGV6VJAzYScZdPLtJg==}
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
     dev: true
     optional: true
 
-  /@rollup/rollup-linux-arm-gnueabihf@4.4.0:
-    resolution: {integrity: sha512-kavnkaV50Gu6vESlOAwUad92wYY9mUrcaPmhzOQZKlNFnzWAUYyD/uhHmWvY7Z2chtwhWlng0LvCRBF5QiPO7w==}
+  /@rollup/rollup-linux-arm-gnueabihf@4.4.1:
+    resolution: {integrity: sha512-9zc2tqlr6HfO+hx9+wktUlWTRdje7Ub15iJqKcqg5uJZ+iKqmd2CMxlgPpXi7+bU7bjfDIuvCvnGk7wewFEhCg==}
     cpu: [arm]
     os: [linux]
     requiresBuild: true
     dev: true
     optional: true
 
-  /@rollup/rollup-linux-arm64-gnu@4.4.0:
-    resolution: {integrity: sha512-2hBHEtCjnBTeuLvDAlHRCqsuFQSyAhTQs9vbZEVBTV8ap35pDI1ukPbIVFFCWNvL/KE7xRor5YZFvfyGCfvLnA==}
+  /@rollup/rollup-linux-arm64-gnu@4.4.1:
+    resolution: {integrity: sha512-phLb1fN3rq2o1j1v+nKxXUTSJnAhzhU0hLrl7Qzb0fLpwkGMHDem+o6d+ZI8+/BlTXfMU4kVWGvy6g9k/B8L6Q==}
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
     dev: true
     optional: true
 
-  /@rollup/rollup-linux-arm64-musl@4.4.0:
-    resolution: {integrity: sha512-u7zy0Ygzl7O5Gvr9TSNSQj+DBzvMJC7rXfyQNgZ13KwkhgJ8z0z+gt2AO4RPd01rZioMQ2/TA24XGGg4xqhd0Q==}
+  /@rollup/rollup-linux-arm64-musl@4.4.1:
+    resolution: {integrity: sha512-M2sDtw4tf57VPSjbTAN/lz1doWUqO2CbQuX3L9K6GWIR5uw9j+ROKCvvUNBY8WUbMxwaoc8mH9HmmBKsLht7+w==}
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
     dev: true
     optional: true
 
-  /@rollup/rollup-linux-x64-gnu@4.4.0:
-    resolution: {integrity: sha512-VvpAdh5SgewmWo8sa5QPYG8aSKH9hU2Kr5+3of0GzBI/8n8PBqhLyvF0DbO+zDW8j5IM8NDebv82MpHrZaD0Cw==}
+  /@rollup/rollup-linux-x64-gnu@4.4.1:
+    resolution: {integrity: sha512-mHIlRLX+hx+30cD6c4BaBOsSqdnCE4ok7/KDvjHYAHoSuveoMMxIisZFvcLhUnyZcPBXDGZTuBoalcuh43UfQQ==}
     cpu: [x64]
     os: [linux]
     requiresBuild: true
     dev: true
     optional: true
 
-  /@rollup/rollup-linux-x64-musl@4.4.0:
-    resolution: {integrity: sha512-3g6jaXxXVFaDnFoMn2+E3ludGcXFfEr6lDn+S1lh9Qe0JcL9sPt1wGh0g2cKIlb6OakNOFopZqJ5Yub9F7gQlA==}
+  /@rollup/rollup-linux-x64-musl@4.4.1:
+    resolution: {integrity: sha512-tB+RZuDi3zxFx7vDrjTNGVLu2KNyzYv+UY8jz7e4TMEoAj7iEt8Qk6xVu6mo3pgjnsHj6jnq3uuRsHp97DLwOA==}
     cpu: [x64]
     os: [linux]
     requiresBuild: true
     dev: true
     optional: true
 
-  /@rollup/rollup-win32-arm64-msvc@4.4.0:
-    resolution: {integrity: sha512-jnoDRkg5Ve6Y1qx2m1+ehouOLQ4ddc15/iQSfFjcDUL6bqLdJJ5c4CKfUy/C6W1oCU4la+hMkveE9GG7ECN7dg==}
+  /@rollup/rollup-win32-arm64-msvc@4.4.1:
+    resolution: {integrity: sha512-Hdn39PzOQowK/HZzYpCuZdJC91PE6EaGbTe2VCA9oq2u18evkisQfws0Smh9QQGNNRa/T7MOuGNQoLeXhhE3PQ==}
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
     dev: true
     optional: true
 
-  /@rollup/rollup-win32-ia32-msvc@4.4.0:
-    resolution: {integrity: sha512-SoLQmJanozFow8o50ul2a3R+J7nk4pEhrp83PzTSXs5OzOmIZbPSp5kihtQ3f6ypo4MCbmh0V8Ev0bJIEp4Azw==}
+  /@rollup/rollup-win32-ia32-msvc@4.4.1:
+    resolution: {integrity: sha512-tLpKb1Elm9fM8c5w3nl4N1eLTP4bCqTYw9tqUBxX8/hsxqHO3dxc2qPbZ9PNkdK4tg4iLEYn0pOUnVByRd2CbA==}
     cpu: [ia32]
     os: [win32]
     requiresBuild: true
     dev: true
     optional: true
 
-  /@rollup/rollup-win32-x64-msvc@4.4.0:
-    resolution: {integrity: sha512-Zaz6itfQ5sQF5Cia49YDW1ZTr+YfIKzTSb9npLyvQn346n7ulRDOv2J7GnL0zcOJ3cqW7HzG/ZisyO6fH43J9g==}
+  /@rollup/rollup-win32-x64-msvc@4.4.1:
+    resolution: {integrity: sha512-eAhItDX9yQtZVM3yvXS/VR3qPqcnXvnLyx1pLXl4JzyNMBNO3KC986t/iAg2zcMzpAp9JSvxB5VZGnBiNoA98w==}
     cpu: [x64]
     os: [win32]
     requiresBuild: true
@@ -1272,8 +1275,8 @@ packages:
     resolution: {integrity: sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==}
     dev: true
 
-  /@sinclair/typebox@0.31.23:
-    resolution: {integrity: sha512-ZzrzE8yCrWWU4mcBstBgdlBMjB8My3ESY9nZ/v996GptIJb4+MU1p7s1Qxrc2xvZeOiDDnAheLLmdHjPgZV79g==}
+  /@sinclair/typebox@0.31.25:
+    resolution: {integrity: sha512-tc075wfx6qCftSuNHq7kPNVTNhb5qBDf7B+c7pBdLkzxGsXdsqeinlRZQuGzrSowSh7nxEKvZKRUdbRGqy0GCA==}
     dev: true
 
   /@sindresorhus/is@3.1.2:
@@ -1298,31 +1301,31 @@ packages:
       '@sinonjs/commons': 3.0.0
     dev: true
 
-  /@slangroom/core@1.8.0(zenroom@4.2.1):
-    resolution: {integrity: sha512-337gVALE2Pi/ArFqr7YU3Reho5LAizwcEa7+uEejnyPxvMbjX+LErFjie/jm3cIRyxLX6E4Kt6rOGoMN/0VbHA==}
+  /@slangroom/core@1.9.6(zenroom@4.2.2):
+    resolution: {integrity: sha512-dMoN3/7EcYWTBjYne0QP0g0Q6wXcJ9tHzROPxgFHG2OwDgMXB3qw198Kx98MzQZ3PuViXODCnQNxecK3LGvqlQ==}
     dependencies:
-      '@slangroom/deps': 1.8.0(zenroom@4.2.1)
-      '@slangroom/ignored': 1.8.0(zenroom@4.2.1)
-      '@slangroom/shared': 1.8.0(zenroom@4.2.1)
+      '@slangroom/deps': 1.9.5(zenroom@4.2.2)
+      '@slangroom/ignored': 1.9.6(zenroom@4.2.2)
+      '@slangroom/shared': 1.9.6(zenroom@4.2.2)
     transitivePeerDependencies:
       - zenroom
     dev: false
 
-  /@slangroom/deps@1.8.0(zenroom@4.2.1):
-    resolution: {integrity: sha512-Cil0fZpIaP6KP+dggzUJ5PRwsi1/rKHVHQ1P9Z+WG/RQIqmTFu/yost57vr0PwoS6SAVNQjEuPD80dv2CQUDsw==}
+  /@slangroom/deps@1.9.5(zenroom@4.2.2):
+    resolution: {integrity: sha512-QSO8pSKnZhqZg2IZ00SzwqH2BHtjD96KAFCfIsaD/OeFBuKCsst5NM0Ty+hYLXfKptJmRyzJrTtd2WlQh16Q8g==}
     peerDependencies:
       zenroom: ^4.0.0
     dependencies:
       chevrotain: 10.5.0
-      zenroom: 4.2.1
+      zenroom: 4.2.2
     dev: false
 
-  /@slangroom/ethereum@1.8.0(typescript@5.2.2)(zenroom@4.2.1):
-    resolution: {integrity: sha512-tptJE5gYWtsNnagYcwbgGTgYOtjrB7d/YR/9aF30cX6kdfCjsdrZGof4S72WclFAigDKzNlum3A68im4TZFrYQ==}
+  /@slangroom/ethereum@1.9.6(typescript@5.2.2)(zenroom@4.2.2):
+    resolution: {integrity: sha512-A2oyLIEq4kHXuEniCfU7cac2xVk9QbffPrCKMkbrSLBzjtiXdF5bvgx+bsIoTryArHMlkGzF+Rpya1/tMX7Y2A==}
     dependencies:
-      '@slangroom/core': 1.8.0(zenroom@4.2.1)
-      '@slangroom/shared': 1.8.0(zenroom@4.2.1)
-      axios: 1.6.1
+      '@slangroom/core': 1.9.6(zenroom@4.2.2)
+      '@slangroom/shared': 1.9.6(zenroom@4.2.2)
+      axios: 1.6.2
       web3: 4.2.2(typescript@5.2.2)
       web3-validator: 2.0.3
     transitivePeerDependencies:
@@ -1335,43 +1338,43 @@ packages:
       - zod
     dev: false
 
-  /@slangroom/http@1.8.0(zenroom@4.2.1):
-    resolution: {integrity: sha512-ek0lvEIYVdvZU3LAshdqbPKt4u9R0co65jfcQJ/mp5lNXP71z3OsyuCni/G7jR+1Azttfz6BOaCMPHgu+GeKlQ==}
+  /@slangroom/http@1.9.6(zenroom@4.2.2):
+    resolution: {integrity: sha512-cTq5LbVk09Oyrqx8d+jniqE7oQLOKZQj5htdICNmMoPyEQqZRv+vkSeJwFsFQl/vIqSnpUzrUtLGXbqrk/MuQA==}
     dependencies:
-      '@slangroom/core': 1.8.0(zenroom@4.2.1)
-      '@slangroom/shared': 1.8.0(zenroom@4.2.1)
-      axios: 1.6.1
+      '@slangroom/core': 1.9.6(zenroom@4.2.2)
+      '@slangroom/shared': 1.9.6(zenroom@4.2.2)
+      axios: 1.6.2
     transitivePeerDependencies:
       - debug
       - zenroom
     dev: false
 
-  /@slangroom/ignored@1.8.0(zenroom@4.2.1):
-    resolution: {integrity: sha512-Os65MaEQBkS45ZewkpdnMw37jj26sUp3fZuOnreySRr+dSjgkQ4Z5CIKq8f+tJh7gmie2c0Br2dSHWL6P/k6cw==}
+  /@slangroom/ignored@1.9.6(zenroom@4.2.2):
+    resolution: {integrity: sha512-w6xdfXDkWeYbzn1V1TEoEPfhNRvL2yL7DPhFeYkcD60+pukCg1fMAkaJ6K7JZBd67b8tCkAwWcpdgnXWAtZpFg==}
     dependencies:
-      '@slangroom/deps': 1.8.0(zenroom@4.2.1)
-      '@slangroom/shared': 1.8.0(zenroom@4.2.1)
+      '@slangroom/deps': 1.9.5(zenroom@4.2.2)
+      '@slangroom/shared': 1.9.6(zenroom@4.2.2)
     transitivePeerDependencies:
       - zenroom
     dev: false
 
-  /@slangroom/shared@1.8.0(zenroom@4.2.1):
-    resolution: {integrity: sha512-tXtOBV1eohvdSyIQhP4ePONrMoDv0zxYIX1oxig6VflI0//cWc18UOPzLow8OeDmMrezK6+q7Q+ZVswfCgCpCA==}
+  /@slangroom/shared@1.9.6(zenroom@4.2.2):
+    resolution: {integrity: sha512-yBMBQw0o6pIUUw+m7DRjt/2/tObmXOqyaMcHyfo/O940R2qhFV9Ut4JZLW7mVedw6P3vntRIRKTEQr5Nk459jQ==}
     dependencies:
-      '@slangroom/deps': 1.8.0(zenroom@4.2.1)
+      '@slangroom/deps': 1.9.5(zenroom@4.2.2)
     transitivePeerDependencies:
       - zenroom
     dev: false
 
-  /@slangroom/wallet@1.8.0(zenroom@4.2.1):
-    resolution: {integrity: sha512-M7j8FcwVx1I8cv/U/JKcDVdqrDz7X+FeQMOTB6M23I4ZAoHZq6lYK1wjfJCVbXXLXjEcZrK7ZCBxzI2kVi2nmw==}
+  /@slangroom/wallet@1.9.6(zenroom@4.2.2):
+    resolution: {integrity: sha512-R8833M3ei1UF//jAZQ/UmY92t0blMHXvRBxp42o2mznc7sfA4gf+SNLsC98OZvsYQcCBah/pnNhv5QQ07yWc/Q==}
     dependencies:
       '@meeco/sd-jwt': 0.0.3
       '@meeco/sd-jwt-vc': 0.0.4
-      '@slangroom/core': 1.8.0(zenroom@4.2.1)
-      '@slangroom/shared': 1.8.0(zenroom@4.2.1)
+      '@slangroom/core': 1.9.6(zenroom@4.2.2)
+      '@slangroom/shared': 1.9.6(zenroom@4.2.2)
       bs58: 5.0.0
-      jose: 5.1.0
+      jose: 5.1.1
     transitivePeerDependencies:
       - zenroom
     dev: false
@@ -1722,6 +1725,15 @@ packages:
       indent-string: 5.0.0
     dev: true
 
+  /ajv@8.12.0:
+    resolution: {integrity: sha512-sRu1kpcO9yLtYxBKvqfTeh9KzZEwO3STyX1HT+4CaDzC6HpTGYhIhPIzj9XuKU7KYDwnaeh5hcOwjy1QuJzBPA==}
+    dependencies:
+      fast-deep-equal: 3.1.3
+      json-schema-traverse: 1.0.0
+      require-from-string: 2.0.2
+      uri-js: 4.4.1
+    dev: false
+
   /ansi-escapes@4.3.2:
     resolution: {integrity: sha512-gKXj5ALrKWQLsYG9jlTRmR/xKluxHV+Z9QEwNIgCfM1/uwPMCuzVVnh5mwTd+OuBZcwSIMbqssNWRm1lE51QaQ==}
     engines: {node: '>=8'}
@@ -1817,8 +1829,8 @@ packages:
     engines: {node: '>= 0.4'}
     dev: false
 
-  /axios@1.6.1:
-    resolution: {integrity: sha512-vfBmhDpKafglh0EldBEbVuoe7DyAavGSLWhuSm5ZSEKQnHhBf0xAAwybbNH1IkrJNGnS/VG4I5yxig1pCEXE4g==}
+  /axios@1.6.2:
+    resolution: {integrity: sha512-7i24Ri4pmDRfJTR7LDBhsOTtcm+9kjX5WiY1X3wIisx6G9So3pfMkEiU7emUBe46oceVImccTEM3k6C5dbVW8A==}
     dependencies:
       follow-redirects: 1.15.3
       form-data: 4.0.0
@@ -2577,6 +2589,10 @@ packages:
       jest-message-util: 29.7.0
       jest-util: 29.7.0
     dev: true
+
+  /fast-deep-equal@3.1.3:
+    resolution: {integrity: sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==}
+    dev: false
 
   /fast-glob@3.3.2:
     resolution: {integrity: sha512-oX2ruAFQwf/Orj8m737Y5adxDQO0LAB7/S5MnxCdTNDd4p6BsyIVsv9JQsATbTSq8KHRpLwIHbVlUNatxd+1Ow==}
@@ -3706,8 +3722,8 @@ packages:
       - ts-node
     dev: true
 
-  /jose@5.1.0:
-    resolution: {integrity: sha512-H+RVqxA6apaJ0rcQYupKYhos7uosAiF42gUcWZiwhICWMphDULFj/CRr1R0tV/JCv9DEeJaSyYYpc9luHHNT4g==}
+  /jose@5.1.1:
+    resolution: {integrity: sha512-bfB+lNxowY49LfrBO0ITUn93JbUhxUN8I11K6oI5hJu/G6PO6fEUddVLjqdD0cQ9SXIHWXuWh7eJYwZF7Z0N/g==}
     dev: false
 
   /js-tokens@4.0.0:
@@ -3747,6 +3763,10 @@ packages:
     resolution: {integrity: sha512-iZbGHafX/59r39gPwVPRBGw0QQKnA7tte5pSMrhWOW7swGsVvVTjmfyAV9pNqk8YGT7tRCdxRu8uzcgZwoDooA==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
     dev: true
+
+  /json-schema-traverse@1.0.0:
+    resolution: {integrity: sha512-NM8/P9n3XjXhIZn1lLhkFaACTOURQXjWhV4BA/RnOv8xvgqtqpAX9IO4mRQxSx1Rlo4tqzeqb0sOlruaOy3dug==}
+    dev: false
 
   /json-stringify-safe@5.0.1:
     resolution: {integrity: sha512-ZClg6AaYvamvYEE82d3Iyd3vSSIjQ+odgjaTzRuO3s7toCdFKczob2i0zCh7JE8kWn17yvAWhUVxvqGwUalsRA==}
@@ -4396,8 +4416,8 @@ packages:
     resolution: {integrity: sha512-cHjPPsE+vhj/tnhCy/wiMh3M3z3h/j15zHQX+S9GkTBgqJuTuJzYJ4gUyACLhDaJ7kk9ba9iRDmbH2tJU03OiA==}
     dev: false
 
-  /pino@8.16.1:
-    resolution: {integrity: sha512-3bKsVhBmgPjGV9pyn4fO/8RtoVDR8ssW1ev819FsRXlRNgW8gR/9Kx+gCK4UPWd4JjrRDLWpzd/pb1AyWm3MGA==}
+  /pino@8.16.2:
+    resolution: {integrity: sha512-2advCDGVEvkKu9TTVSa/kWW7Z3htI/sBKEZpqiHk6ive0i/7f5b1rsU8jn0aimxqfnSz5bj/nOYkwhBUn5xxvg==}
     hasBin: true
     dependencies:
       atomic-sleep: 1.0.0
@@ -4557,6 +4577,11 @@ packages:
       once: 1.4.0
     dev: true
 
+  /punycode@2.3.1:
+    resolution: {integrity: sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==}
+    engines: {node: '>=6'}
+    dev: false
+
   /pure-rand@6.0.4:
     resolution: {integrity: sha512-LA0Y9kxMYv47GIPJy6MI84fqTd2HmYZI83W/kM/SkKfDlajnZYfmXFTxkbY+xSBPkLJxltMa9hIkmdc29eguMA==}
     dev: true
@@ -4672,6 +4697,11 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
+  /require-from-string@2.0.2:
+    resolution: {integrity: sha512-Xf0nWe6RseziFMu+Ap9biiUbmplq6S9/p+7w7YXP/JBHhrUDDUhwa+vANyubuqfZWTveU//DYVGsDG7RKL/vEw==}
+    engines: {node: '>=0.10.0'}
+    dev: false
+
   /resolve-cwd@3.0.0:
     resolution: {integrity: sha512-OrZaX2Mb+rJCpH/6CpSqt9xFVpN++x01XnN2ie9g6P5/3xelLAkXWVADpdz1IHD/KFfEXyE6V0U01OQ3UO2rEg==}
     engines: {node: '>=8'}
@@ -4719,23 +4749,23 @@ packages:
       is-plain-object: 3.0.1
     dev: true
 
-  /rollup@4.4.0:
-    resolution: {integrity: sha512-3L67ubCc1Qm49wUodsQ72FM6JmJ9M37d63rGPjxbcKrzNJrwFipl+lDNHeWd6BId09S6Tb9KiBgYKbWhIuqVyg==}
+  /rollup@4.4.1:
+    resolution: {integrity: sha512-idZzrUpWSblPJX66i+GzrpjKE3vbYrlWirUHteoAbjKReZwa0cohAErOYA5efoMmNCdvG9yrJS+w9Kl6csaH4w==}
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
     hasBin: true
     optionalDependencies:
-      '@rollup/rollup-android-arm-eabi': 4.4.0
-      '@rollup/rollup-android-arm64': 4.4.0
-      '@rollup/rollup-darwin-arm64': 4.4.0
-      '@rollup/rollup-darwin-x64': 4.4.0
-      '@rollup/rollup-linux-arm-gnueabihf': 4.4.0
-      '@rollup/rollup-linux-arm64-gnu': 4.4.0
-      '@rollup/rollup-linux-arm64-musl': 4.4.0
-      '@rollup/rollup-linux-x64-gnu': 4.4.0
-      '@rollup/rollup-linux-x64-musl': 4.4.0
-      '@rollup/rollup-win32-arm64-msvc': 4.4.0
-      '@rollup/rollup-win32-ia32-msvc': 4.4.0
-      '@rollup/rollup-win32-x64-msvc': 4.4.0
+      '@rollup/rollup-android-arm-eabi': 4.4.1
+      '@rollup/rollup-android-arm64': 4.4.1
+      '@rollup/rollup-darwin-arm64': 4.4.1
+      '@rollup/rollup-darwin-x64': 4.4.1
+      '@rollup/rollup-linux-arm-gnueabihf': 4.4.1
+      '@rollup/rollup-linux-arm64-gnu': 4.4.1
+      '@rollup/rollup-linux-arm64-musl': 4.4.1
+      '@rollup/rollup-linux-x64-gnu': 4.4.1
+      '@rollup/rollup-linux-x64-musl': 4.4.1
+      '@rollup/rollup-win32-arm64-msvc': 4.4.1
+      '@rollup/rollup-win32-ia32-msvc': 4.4.1
+      '@rollup/rollup-win32-x64-msvc': 4.4.1
       fsevents: 2.3.3
     dev: true
 
@@ -5344,6 +5374,12 @@ packages:
       picocolors: 1.0.0
     dev: true
 
+  /uri-js@4.4.1:
+    resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
+    dependencies:
+      punycode: 2.3.1
+    dev: false
+
   /url-join@5.0.0:
     resolution: {integrity: sha512-n2huDr9h9yzd6exQVnH/jU5mr+Pfx08LRXXZhkLLetAMESRj+anQsTAh940iMrIetKAmry9coFuZQ2jY8/p3WA==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
@@ -5772,8 +5808,8 @@ packages:
       yargs-parser: 21.1.1
     dev: true
 
-  /yarn@1.22.19:
-    resolution: {integrity: sha512-/0V5q0WbslqnwP91tirOvldvYISzaqhClxzyUKXYxs07yUILIs5jx/k6CFe8bvKSkds5w+eiOqta39Wk3WxdcQ==}
+  /yarn@1.22.21:
+    resolution: {integrity: sha512-ynXaJsADJ9JiZ84zU25XkPGOvVMmZ5b7tmTSpKURYwgELdjucAOydqIOrOfTxVYcNXe91xvLZwcRh68SR3liCg==}
     engines: {node: '>=4.0.0'}
     hasBin: true
     requiresBuild: true
@@ -5789,10 +5825,10 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /zenroom@4.2.1:
-    resolution: {integrity: sha512-P7ls3m1o/PWE3l2Ug4lLANfMchsqn+byyiG404SdmzXe7yANVs6PRup6OF8pn/EVq/9NSufvw1ZkOmdqCMfE6w==}
+  /zenroom@4.2.2:
+    resolution: {integrity: sha512-kkoNHRWX1GB3ZO/1k34nBL2e7NH9WXDkm5gUuUJlD2U5VDiDIi9uxrsPGK36XhHBvk5vkK0qSaiF9nES0PKNlA==}
     dependencies:
-      yarn: 1.22.19
+      yarn: 1.22.21
     dev: false
 
   /zod@3.22.4:
