@@ -1,0 +1,29 @@
+{
+	"type": "object",
+	"properties": {
+		"object": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"type": "string"
+				},
+				"age": {
+					"type": "integer"
+				}
+			},
+			"required": ["name", "age"]
+		},
+		"fields": {
+			"type": "array",
+			"items": [
+				{
+					"type": "string"
+				},
+				{
+					"type": "string"
+				}
+			]
+		}
+	},
+	"required": ["object", "fields"]
+}
