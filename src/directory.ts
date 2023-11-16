@@ -45,7 +45,8 @@ export class Directory {
 						`Rule unknown ignore\nRule check version ${config.zenroomVersion}\n` +
 						Buffer.from(c.content).toString('utf-8'),
 					keys: this.getKeys(path),
-					conf: this.getContent(path + '.conf') || ''
+					conf: this.getContent(path + '.conf') || '',
+					schema: this.getJSON(path, 'schema')
 				});
 			}
 		});
@@ -58,6 +59,16 @@ export class Directory {
 			if (k) return JSON.parse(k);
 		} catch (_e) {
 			throw new Error(`${path}.keys malformed JSON`);
+		}
+	}
+
+	private getJSON(path: string, type: 'schema' | 'keys') {
+		try {
+			const k = this.getContent(`${path}.${type}.json`);
+			if (!k) return undefined;
+			else return JSON.parse(k);
+		} catch (_e) {
+			throw new Error(`${path}.${type}.json: malformed JSON`);
 		}
 	}
 
