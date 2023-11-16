@@ -8,6 +8,8 @@ import _ from 'lodash';
 
 export const getSchema = async (endpoints: Endpoints) => {
 	const { contract, keys } = endpoints;
+	if (endpoints.schema) return endpoints.schema;
+
 	const codec: Codec = await introspect(contract);
 	if (keys) {
 		for (const k of Object.keys(keys)) delete codec[k];
