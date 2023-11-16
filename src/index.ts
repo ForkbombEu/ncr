@@ -22,7 +22,7 @@ import {
 	generateRawPath,
 	openapiTemplate
 } from './openapi.js';
-import { getSchema, handleArrayBuffer } from './utils.js';
+import { getSchema, handleArrayBuffer, validateData } from './utils.js';
 
 const L = config.logger;
 const Dir = Directory.getInstance();
@@ -90,6 +90,7 @@ const generateRoutes = (app: TemplatedApp) => {
 						.onData(async (d) => {
 							try {
 								const data = handleArrayBuffer(d);
+								validateData(schema, data);
 								const { result, logs } = await s.execute(contract, { keys, data, conf });
 								res
 									.writeStatus('200 OK')
@@ -115,17 +116,15 @@ const generateRoutes = (app: TemplatedApp) => {
 
 		app.get(path, async (res, req) => {
 			try {
-				const data: any = {};
+				const data: Record<string, unknown> = {};
 				const q = req.getQuery();
 				if (q) {
-					req
-						.getQuery()
-						.split('&')
-						.map((r) => {
-							const [k, v] = r.split('=');
-							data[k] = v;
-						});
+					q.split('&').map((r) => {
+						const [k, v] = r.split('=');
+						data[k] = v;
+					});
 				}
+				validateData(schema, data);
 				const { result } = await s.execute(contract, { keys, conf, data });
 				res
 					.writeStatus('200 OK')

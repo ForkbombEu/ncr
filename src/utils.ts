@@ -1,35 +1,46 @@
 import { introspect } from 'zenroom';
-import { TypeCompiler } from '@sinclair/typebox/compiler';
+import { Type } from '@sinclair/typebox';
+import { TypeCompiler, ValueError, ValueErrorIterator } from '@sinclair/typebox/compiler';
 import { Codec } from './types';
+import _ from 'lodash';
+
+//
 
 export const getSchema = async (content: string, keys?: JSON) => {
 	const codec: Codec = await introspect(content);
-
 	if (keys) {
 		for (const k of Object.keys(keys)) delete codec[k];
 	}
-	const schema: any = {
-		type: 'object',
-		properties: {},
-		required: [],
-		additionalProperties: false
+	const encodingToType = {
+		string: Type.String(),
+		number: Type.Number()
 	};
-
-	Object.values(codec).map((a) => {
-		switch (a.encoding) {
-			case 'string':
-				schema.properties[a.name] = { type: 'string' };
-				schema.required.push(a.name);
-				break;
-			case 'number':
-				schema.properties[a.name] = { type: 'number' };
-				schema.required.push(a.name);
-			default:
-				break;
-		}
-	});
+	const schema = Type.Object(
+		Object.fromEntries(
+			Object.values(codec).map(({ name, encoding }) => [name, encodingToType[encoding]])
+		)
+	);
 	return schema;
 };
+
+export const validateData = (schema: any, data: JSON | Record<string, unknown>) => {
+	const C = TypeCompiler.Compile(schema);
+	if (C.Check(data)) {
+		return data;
+	} else {
+		throw new Error(`Invalid data provided:
+${JSON.stringify(formatTypeboxErrors(C.Errors(data)), null, 2)}
+`);
+	}
+};
+
+export function formatTypeboxErrors(typeboxErrors: ValueErrorIterator): Record<string, string[]> {
+	const errors = [...typeboxErrors];
+	const groups = _.groupBy(errors, (error) => error.path);
+	return _.mapValues(groups, (group) => group.map((error) => error.message));
+}
+
+//
 
 export const handleArrayBuffer = (message: ArrayBuffer | string) => {
 	if (message instanceof ArrayBuffer) {
@@ -37,15 +48,4 @@ export const handleArrayBuffer = (message: ArrayBuffer | string) => {
 		return JSON.parse(decoder.decode(message));
 	}
 	return JSON.parse(message);
-};
-
-export const validate = (schema: any, data: JSON) => {
-	const C = TypeCompiler.Compile(schema);
-	const isValid = C.Check(data);
-	if (isValid) {
-		return data;
-	}
-	throw new Error(
-		JSON.stringify([...C.Errors(data)].map(({ path, message }) => ({ path, message })))
-	);
 };
