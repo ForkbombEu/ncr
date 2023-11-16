@@ -203,10 +203,18 @@ const proctoroom = `<!doctype html>
 					$('#error').html("");
 					$('#response').html("");
 					try {
-						const { result, logs } = await slangroom.execute(contract, {
-							data: editor.getValue()
+						const data = editor.getValue();
+						const response = fetch("\${endpoint}", {
+							method: "POST",
+							headers: {"Content-Type": "application/json"},
+							body: JSON.stringify(
+								data
+							)
+						}).then(async (result) => {
+							const o = await result.json()
+							$('#response').html(highlight(JSON.stringify(o, null, 3)));
+							console.log(JSON.stringify(result, null, 4));
 						});
-						$('#response').html(highlight(JSON.stringify(result, null, 3)));
 						$('#error').html("");
 					} catch (e) {
 						$('#error').html(e);
