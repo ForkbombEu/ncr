@@ -13,6 +13,7 @@ import {
 	us_listen_socket_close,
 	us_socket_local_port
 } from 'uWebSockets.js';
+import { template as proctoroom } from './applets .js';
 import { Directory } from './directory.js';
 import {
 	definition,
@@ -22,7 +23,6 @@ import {
 	openapiTemplate
 } from './openapi.js';
 import { getSchema, handleArrayBuffer } from './utils.js';
-import { template as proctoroom } from './proctoroom.js';
 
 const L = config.logger;
 const Dir = Directory.getInstance();
@@ -41,9 +41,9 @@ Dir.ready(async () => {
 			res.writeStatus('200 OK').writeHeader('Content-Type', 'text/html').end(openapiTemplate);
 		})
 		.get('/oas.json', (res, req) => {
-			Dir.files.map(async ({ path, contract }) => {
+			Dir.files.map(async ({ path, contract, keys }) => {
 				if (definition.paths) {
-					definition.paths[path] = await generatePath(contract);
+					definition.paths[path] = await generatePath(contract, keys);
 					definition.paths[path + '/raw'] = generateRawPath();
 					definition.paths[path + '/app'] = generateAppletPath();
 				}
@@ -80,7 +80,7 @@ Dir.ready(async () => {
 
 const generateRoutes = (app: TemplatedApp) => {
 	Dir.files.map(async ({ path, contract, keys, conf }) => {
-		const schema = await getSchema(contract);
+		const schema = await getSchema(contract, keys);
 		const s = new Slangroom([http, wallet]);
 
 		app.post(path, (res, req) => {
@@ -116,13 +116,16 @@ const generateRoutes = (app: TemplatedApp) => {
 		app.get(path, async (res, req) => {
 			try {
 				const data: any = {};
-				req
-					.getQuery()
-					.split('&')
-					.map((r) => {
-						const [k, v] = r.split('=');
-						data[k] = v;
-					});
+				const q = req.getQuery();
+				if (q) {
+					req
+						.getQuery()
+						.split('&')
+						.map((r) => {
+							const [k, v] = r.split('=');
+							data[k] = v;
+						});
+				}
 				const { result } = await s.execute(contract, { keys, conf, data });
 				res
 					.writeStatus('200 OK')

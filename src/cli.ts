@@ -4,21 +4,12 @@ import { Command, Option, type OptionValues } from 'commander';
 import { statSync } from 'node:fs';
 import pino, { type Logger } from 'pino';
 import 'dotenv/config';
+import { Config } from './types';
 
 const program = new Command();
 const L = pino();
 const bads = ['⛔', '💩', '🥶', '💣'];
 const bad = bads[Math.floor(Math.random() * bads.length)];
-
-interface Config {
-	port: number;
-	hostname: string;
-	zencodeDirectory: string;
-	zenroomVersion: string;
-	openapiPath: string;
-	template: string;
-	logger: Logger;
-}
 
 const data = {
 	name: 'NoCodeRoom',
@@ -85,7 +76,7 @@ program
 		'after',
 		`
 Examples:
-  $ restroom -z contratcs -p 3000`
+  $ restroom -z contracts -p 3000`
 	)
 	.parse();
 
