@@ -13,7 +13,7 @@ import {
 	us_listen_socket_close,
 	us_socket_local_port
 } from 'uWebSockets.js';
-import { template as proctoroom } from './applets .js';
+import { template as proctoroom } from './applets.js';
 import { Directory } from './directory.js';
 import {
 	definition,
