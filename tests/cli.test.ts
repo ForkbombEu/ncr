@@ -6,7 +6,7 @@ const res = {
 	openapiPath: '/docs',
 	port: 0,
 	template: './applet_template.html',
-	zencodeDirectory: '/home/puria/src/github.com/forkbombeu/ncr/contracts',
+	zencodeDirectory: './',
 	zenroomVersion: '4.2.1'
 };
 
