@@ -1,16 +1,18 @@
 import LiveDirectory from 'live-directory';
 import { config } from './cli.js';
 import { Endpoints } from './types.js';
+import { validateJSONSchema } from './utils.js';
 
 export class Directory {
 	private static instance: Directory;
 	private liveDirectory: LiveDirectory;
+
 	private constructor() {
 		this.liveDirectory = new LiveDirectory(config.zencodeDirectory, {
 			static: false,
 			filter: {
 				keep: {
-					extensions: ['zen', 'schema', 'conf', 'json']
+					extensions: ['zen', 'conf', 'json']
 				},
 				ignore: {
 					// extensions: ['keys']
@@ -18,6 +20,7 @@ export class Directory {
 			}
 		});
 	}
+
 	private getContent(name: string) {
 		return this.liveDirectory.get(name)?.content.toString('utf-8');
 	}
@@ -26,7 +29,6 @@ export class Directory {
 		if (!Directory.instance) {
 			Directory.instance = new Directory();
 		}
-
 		return Directory.instance;
 	}
 
@@ -44,21 +46,32 @@ export class Directory {
 					contract:
 						`Rule unknown ignore\nRule check version ${config.zenroomVersion}\n` +
 						Buffer.from(c.content).toString('utf-8'),
-					keys: this.getKeys(path),
+					keys: this.getJSON(path, 'keys'),
 					conf: this.getContent(path + '.conf') || '',
-					schema: this.getJSON(path, 'schema')
+					schema: this.getJSONSchema(path)
 				});
 			}
 		});
 		return result;
 	}
 
-	private getKeys(path: string) {
+	private getJSON(path: string, type: 'schema' | 'keys') {
 		try {
-			const k = this.getContent(path + '.keys.json');
-			if (k) return JSON.parse(k);
+			const k = this.getContent(`${path}.${type}.json`);
+			if (!k) return undefined;
+			else return JSON.parse(k);
 		} catch (_e) {
-			throw new Error(`${path}.keys malformed JSON`);
+			throw new Error(`${path}.${type}.json: malformed JSON`);
+		}
+	}
+
+	private getJSONSchema(path: string) {
+		try {
+			const schema = this.getJSON(path, 'schema');
+			validateJSONSchema(schema);
+			return schema;
+		} catch (e) {
+			throw e;
 		}
 	}
 
