@@ -27,7 +27,7 @@ export const getSchema = async (endpoints: Endpoints) => {
 };
 
 export const validateData = (
-	schema: ReturnType<typeof getSchema>,
+	schema: Awaited<ReturnType<typeof getSchema>>,
 	data: JSON | Record<string, unknown>
 ) => {
 	const ajv = new Ajv();
