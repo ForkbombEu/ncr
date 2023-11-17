@@ -13,7 +13,7 @@ export interface Config {
 export interface Endpoints {
 	path: string;
 	contract: string;
-	keys: JSON;
+	keys?: JSON | undefined;
 	conf: string;
 	schema?: JSON | undefined;
 }

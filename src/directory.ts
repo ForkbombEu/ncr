@@ -46,22 +46,13 @@ export class Directory {
 					contract:
 						`Rule unknown ignore\nRule check version ${config.zenroomVersion}\n` +
 						Buffer.from(c.content).toString('utf-8'),
-					keys: this.getKeys(path),
+					keys: this.getJSON(path, 'keys'),
 					conf: this.getContent(path + '.conf') || '',
 					schema: this.getJSONSchema(path)
 				});
 			}
 		});
 		return result;
-	}
-
-	private getKeys(path: string) {
-		try {
-			const k = this.getContent(path + '.keys.json');
-			if (k) return JSON.parse(k);
-		} catch (_e) {
-			throw new Error(`${path}.keys malformed JSON`);
-		}
 	}
 
 	private getJSON(path: string, type: 'schema' | 'keys') {
