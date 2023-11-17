@@ -11,7 +11,7 @@ export class Directory {
 			static: false,
 			filter: {
 				keep: {
-					extensions: ['zen', 'schema', 'conf', 'json']
+					extensions: ['zen', 'conf', 'json']
 				},
 				ignore: {
 					// extensions: ['keys']
