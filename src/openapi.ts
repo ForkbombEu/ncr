@@ -3,7 +3,7 @@ import { Type } from '@sinclair/typebox';
 import { getSchema } from './utils.js';
 import { Endpoints } from './types.js';
 
-export const generateRawPath = () => {
+export function generateRawPath(): OpenAPIV3_1.PathItemObject {
 	return {
 		get: {
 			tags: ['📜 Raw contracts'],
@@ -15,9 +15,9 @@ export const generateRawPath = () => {
 			}
 		}
 	};
-};
+}
 
-export const generateAppletPath = () => {
+export function generateAppletPath(): OpenAPIV3_1.PathItemObject {
 	return {
 		get: {
 			tags: ['📱 Generated applets'],
@@ -29,9 +29,9 @@ export const generateAppletPath = () => {
 			}
 		}
 	};
-};
+}
 
-export const generatePath = async (endpoints: Endpoints) => {
+export async function generatePath(endpoints: Endpoints): Promise<OpenAPIV3_1.PathItemObject> {
 	const { contract } = endpoints;
 	const schema = await getSchema(endpoints);
 	const getParams = schema.required?.map((n: string) => {
@@ -94,7 +94,7 @@ export const generatePath = async (endpoints: Endpoints) => {
 			}
 		}
 	};
-};
+}
 
 export const definition: Partial<OpenAPIV3_1.Document> = {
 	openapi: '3.1.0',
