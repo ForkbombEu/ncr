@@ -1,6 +1,6 @@
 import { introspect } from 'zenroom';
 import { Type } from '@sinclair/typebox';
-import { TypeCompiler, ValueErrorIterator } from '@sinclair/typebox/compiler';
+import { ValueErrorIterator } from '@sinclair/typebox/compiler';
 import { Codec, Endpoints } from './types';
 import _ from 'lodash';
 import Ajv from 'ajv';
@@ -29,7 +29,7 @@ export const getSchema = async (endpoints: Endpoints) => {
 };
 
 export const validateData = (schema: any, data: JSON | Record<string, unknown>) => {
-	const ajv = new Ajv.default();
+	const ajv = new Ajv();
 	const validate = ajv.compile(schema);
 	const valid = validate(data);
 	if (!valid) throw new Error(JSON.stringify(validate.errors));
