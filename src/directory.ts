@@ -1,6 +1,7 @@
 import LiveDirectory from 'live-directory';
 import { config } from './cli.js';
 import { Endpoints } from './types.js';
+import { validateJSONSchema } from './utils.js';
 
 export class Directory {
 	private static instance: Directory;
@@ -47,7 +48,7 @@ export class Directory {
 						Buffer.from(c.content).toString('utf-8'),
 					keys: this.getKeys(path),
 					conf: this.getContent(path + '.conf') || '',
-					schema: this.getJSON(path, 'schema')
+					schema: this.getJSONSchema(path)
 				});
 			}
 		});
@@ -70,6 +71,16 @@ export class Directory {
 			else return JSON.parse(k);
 		} catch (_e) {
 			throw new Error(`${path}.${type}.json: malformed JSON`);
+		}
+	}
+
+	private getJSONSchema(path: string) {
+		try {
+			const schema = this.getJSON(path, 'schema');
+			validateJSONSchema(schema);
+			return schema;
+		} catch (e) {
+			throw e;
 		}
 	}
 

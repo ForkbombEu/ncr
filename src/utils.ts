@@ -60,3 +60,14 @@ export const handleArrayBuffer = (message: ArrayBuffer | string) => {
 	}
 	return JSON.parse(message);
 };
+
+//
+
+export function validateJSONSchema(schema: JSON): void {
+	try {
+		const ajv = new Ajv();
+		ajv.compile(schema);
+	} catch (e) {
+		throw e;
+	}
+}
