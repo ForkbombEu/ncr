@@ -5,6 +5,7 @@ import { Endpoints } from './types.js';
 export class Directory {
 	private static instance: Directory;
 	private liveDirectory: LiveDirectory;
+
 	private constructor() {
 		this.liveDirectory = new LiveDirectory(config.zencodeDirectory, {
 			static: false,
@@ -18,6 +19,7 @@ export class Directory {
 			}
 		});
 	}
+
 	private getContent(name: string) {
 		return this.liveDirectory.get(name)?.content.toString('utf-8');
 	}
@@ -26,7 +28,6 @@ export class Directory {
 		if (!Directory.instance) {
 			Directory.instance = new Directory();
 		}
-
 		return Directory.instance;
 	}
 
