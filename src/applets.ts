@@ -12,6 +12,8 @@ const proctoroom = `<!doctype html>
 		<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
 		<script src="https://cdn.jsdelivr.net/npm/cash-dom/dist/cash.min.js"></script>
 		<script type="module" src="https://cdn.jsdelivr.net/npm/@slangroom/browser"></script>
+		<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+		
 		<script>
 			tailwind.config = {
 				theme: {
@@ -193,7 +195,9 @@ const proctoroom = `<!doctype html>
 				disable_properties: true,
 				required_by_default: true,
 				show_errors: 'interaction',
-				use_name_attributes: false
+				use_name_attributes: false,
+				theme: 'tailwind',
+				iconlib: 'spectre'
 			});
 
 			$(document).ready(() => {
