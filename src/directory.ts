@@ -75,6 +75,16 @@ export class Directory {
 		}
 	}
 
+	private getJSON(path: string, type: 'schema' | 'keys') {
+		try {
+			const k = this.getContent(`${path}.${type}.json`);
+			if (!k) return undefined;
+			else return JSON.parse(k);
+		} catch (_e) {
+			throw new Error(`${path}.${type}.json: malformed JSON`);
+		}
+	}
+
 	public ready(cb: (...args: any[]) => void) {
 		this.liveDirectory.once('ready', cb);
 	}
