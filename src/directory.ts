@@ -68,20 +68,11 @@ export class Directory {
 	private getJSONSchema(path: string) {
 		try {
 			const schema = this.getJSON(path, 'schema');
+			if (!schema) return undefined;
 			validateJSONSchema(schema);
 			return schema;
 		} catch (e) {
 			throw e;
-		}
-	}
-
-	private getJSON(path: string, type: 'schema' | 'keys') {
-		try {
-			const k = this.getContent(`${path}.${type}.json`);
-			if (!k) return undefined;
-			else return JSON.parse(k);
-		} catch (_e) {
-			throw new Error(`${path}.${type}.json: malformed JSON`);
 		}
 	}
 

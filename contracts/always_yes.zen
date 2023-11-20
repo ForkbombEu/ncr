@@ -1,0 +1,5 @@
+Given nothing
+
+When I write the string 'yes' in 'result'
+
+Then print 'result'
