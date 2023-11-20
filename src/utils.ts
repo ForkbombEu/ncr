@@ -1,15 +1,13 @@
 import { introspect } from 'zenroom';
 import { Type } from '@sinclair/typebox';
-import { ValueErrorIterator } from '@sinclair/typebox/compiler';
 import { Codec, Endpoints } from './types';
 import _ from 'lodash';
-import Ajv from 'ajv';
+import Ajv, { type ValidateFunction } from 'ajv';
 
 //
 
 export const getSchema = async (endpoints: Endpoints) => {
 	const { contract, keys } = endpoints;
-	// TODO: validate json schema
 	if (endpoints.schema) return endpoints.schema;
 
 	const codec: Codec = await introspect(contract);
@@ -28,27 +26,20 @@ export const getSchema = async (endpoints: Endpoints) => {
 	return schema;
 };
 
-export const validateData = (schema: any, data: JSON | Record<string, unknown>) => {
+export const validateData = (
+	schema: Awaited<ReturnType<typeof getSchema>>,
+	data: JSON | Record<string, unknown>
+) => {
 	const ajv = new Ajv();
 	const validate = ajv.compile(schema);
-	const valid = validate(data);
-	if (!valid) throw new Error(JSON.stringify(validate.errors));
+	if (!validate(data))
+		throw new Error(`Invalid data provided:\n${formatAjvErrors(validate.errors)}`);
 	return data;
-	// console.log(ajv);
-	// const C = TypeCompiler.Compile(schema);
-	// 	if (C.Check(data)) {
-	// 		return data;
-	// 	} else {
-	// 		throw new Error(`Invalid data provided:
-	// ${JSON.stringify(formatTypeboxErrors(C.Errors(data)), null, 2)}
-	// `);
-	// 	}
 };
 
-export function formatTypeboxErrors(typeboxErrors: ValueErrorIterator): Record<string, string[]> {
-	const errors = [...typeboxErrors];
-	const groups = _.groupBy(errors, (error) => error.path);
-	return _.mapValues(groups, (group) => group.map((error) => error.message));
+export function formatAjvErrors(ajvErrors: ValidateFunction['errors']): string {
+	if (!ajvErrors) return '';
+	return JSON.stringify(ajvErrors, null, 2);
 }
 
 //

@@ -55,6 +55,7 @@ Dir.ready(async () => {
 				.writeHeader('Content-Type', 'application/json')
 				.end(JSON.stringify(definition));
 		});
+
 	generateRoutes(app);
 
 	app.listen(config.port, (socket) => {
