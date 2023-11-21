@@ -1,39 +1,65 @@
 import { introspect } from 'zenroom';
 import { Type } from '@sinclair/typebox';
-import { Codec, Endpoints } from './types';
+import { Codec, Endpoints, JSONSchema } from './types';
 import _ from 'lodash';
 import Ajv, { type ValidateFunction } from 'ajv';
+import { config } from './cli.js';
+
+const L = config.logger;
 
 //
 
-export const getSchema = async (endpoints: Endpoints) => {
-  try {
-    const { contract, keys } = endpoints;
-    if (endpoints.schema) return endpoints.schema;
-    const codec: Codec = await introspect(contract);
+export async function getSchema(endpoints: Endpoints): Promise<JSONSchema | undefined> {
+	const { contract, keys } = endpoints;
+	try {
+		const schema = endpoints.schema ?? (await getSchemaFromIntrospection(contract));
+		if (!keys) return schema;
+		else if (schema) return removeKeysFromSchema(schema, keys);
+	} catch (e) {
+		console.error(e);
+	}
+}
 
-    if (keys) {
-      for (const k of Object.keys(keys)) delete codec[k];
-    }
-    const encodingToType = {
-      string: Type.String(),
-      number: Type.Number()
-    };
-    const schema = Type.Object(
-      Object.fromEntries(
-        Object.values(codec).map(({ name, encoding }) => [name, encodingToType[encoding]])
-      )
-    );
-    return schema;
-  } catch (e) {
-    console.error(e)
-  }
-};
+export async function getSchemaFromIntrospection(
+	contract: string
+): Promise<JSONSchema | undefined> {
+	try {
+		const codec: Codec = await introspect(contract);
+		const encodingToType = {
+			string: Type.String(),
+			number: Type.Number()
+		};
+		const schema = Type.Object(
+			Object.fromEntries(
+				Object.values(codec).map(({ name, encoding }) => [name, encodingToType[encoding]])
+			)
+		);
+		return schema;
+	} catch (e) {
+		L.error(e);
+	}
+}
 
-export const validateData = (
-	schema: Awaited<ReturnType<typeof getSchema>>,
-	data: JSON | Record<string, unknown>
-) => {
+export function removeKeysFromSchema(schema: JSONSchema, keys: JSON): JSONSchema {
+	let { properties, required } = _.cloneDeep(schema);
+
+	Object.keys(keys).forEach((k) => {
+		if (Object.keys(properties).includes(k)) {
+			properties = _.omit(properties, k);
+		}
+		if (required && required.includes(k)) {
+			required = _.without(required, k);
+		}
+	});
+
+	return {
+		type: 'object',
+		properties,
+		required
+	};
+}
+
+export const validateData = (schema: JSONSchema, data: JSON | Record<string, unknown>) => {
 	const ajv = new Ajv({
 		strict: false
 	});
