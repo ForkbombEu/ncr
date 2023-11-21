@@ -1,7 +1,7 @@
 import { OpenAPIV3_1 } from 'openapi-types';
 import { Type } from '@sinclair/typebox';
 import { getSchema } from './utils.js';
-import { Endpoints } from './types.js';
+import { Endpoints, JSONSchema } from './types.js';
 
 export function generateRawPath(): OpenAPIV3_1.PathItemObject {
 	return {
@@ -31,9 +31,7 @@ export function generateAppletPath(): OpenAPIV3_1.PathItemObject {
 	};
 }
 
-export async function generatePath(endpoints: Endpoints): Promise<OpenAPIV3_1.PathItemObject> {
-	const { contract } = endpoints;
-	const schema = await getSchema(endpoints);
+export function generatePath(contract: string, schema: JSONSchema): OpenAPIV3_1.PathItemObject {
 	const getParams = schema.required?.map((n: string) => {
 		return {
 			name: n,
@@ -50,9 +48,7 @@ export async function generatePath(endpoints: Endpoints): Promise<OpenAPIV3_1.Pa
 			tags: ['📑 Endpoints'],
 			requestBody: {
 				content: {
-					'application/json': {
-						schema: schema
-					}
+					'application/json': { schema }
 				}
 			},
 			responses: {

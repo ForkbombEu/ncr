@@ -44,7 +44,8 @@ Dir.ready(async () => {
 			Dir.files.map(async (endpoints) => {
 				const { path } = endpoints;
 				if (definition.paths) {
-					definition.paths[path] = await generatePath(endpoints);
+					const schema = await getSchema(endpoints);
+					if (schema) definition.paths[path] = generatePath(endpoints.contract, schema);
 					definition.paths[path + '/raw'] = generateRawPath();
 					definition.paths[path + '/app'] = generateAppletPath();
 				}
@@ -81,9 +82,15 @@ Dir.ready(async () => {
 });
 
 const generateRoutes = (app: TemplatedApp) => {
-	Dir.files.map(async (endpoints) => {
+	Dir.files.forEach(async (endpoints) => {
 		const { contract, path, keys, conf } = endpoints;
+
 		const schema = await getSchema(endpoints);
+		if (!schema) {
+			L.error(`Invalid schema`);
+			return;
+		}
+
 		const s = new Slangroom([http, wallet]);
 
 		app.post(path, (res, req) => {

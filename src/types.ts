@@ -1,5 +1,15 @@
 import { Logger } from 'pino';
 
+interface IndexableJSON {
+	[key: string]: unknown | IndexableJSON;
+}
+
+export type JSONSchema = {
+	type: 'object';
+	properties: IndexableJSON;
+	required?: Array<string>;
+};
+
 export interface Config {
 	port: number;
 	hostname: string;
@@ -15,7 +25,7 @@ export interface Endpoints {
 	contract: string;
 	keys?: JSON | undefined;
 	conf: string;
-	schema?: JSON | undefined;
+	schema?: JSONSchema | undefined;
 }
 
 interface CodecAttr {
