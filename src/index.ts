@@ -15,6 +15,7 @@ import {
 } from 'uWebSockets.js';
 import { template as proctoroom } from './applets.js';
 import { Directory } from './directory.js';
+import { PublicDirectory } from './publicDirectory.js';
 import {
 	definition,
 	generateAppletPath,
@@ -26,58 +27,64 @@ import { getSchema, handleArrayBuffer, validateData } from './utils.js';
 
 const L = config.logger;
 const Dir = Directory.getInstance();
-Dir.ready(async () => {
-	let listen_socket: us_listen_socket;
+const PublicDir = PublicDirectory.getInstance();
 
-	const app = App()
-		.get('/', (res, req) => {
-			const files = Dir.paths.map((f) => `http://${req.getHeader('host')}${f}`);
-			res
-				.writeStatus('200 OK')
-				.writeHeader('Content-Type', 'application/json')
-				.end(JSON.stringify(files));
-		})
-		.get(config.openapiPath, (res, req) => {
-			res.writeStatus('200 OK').writeHeader('Content-Type', 'text/html').end(openapiTemplate);
-		})
-		.get('/oas.json', (res, req) => {
-			Dir.files.map(async (endpoints) => {
-				const { path } = endpoints;
-				if (definition.paths) {
-					const schema = await getSchema(endpoints);
-					if (schema) definition.paths[path] = generatePath(endpoints.contract, schema);
-					definition.paths[path + '/raw'] = generateRawPath();
-					definition.paths[path + '/app'] = generateAppletPath();
-				}
+PublicDir.ready(async () => {
+	Dir.ready(async () => {
+		let listen_socket: us_listen_socket;
+
+		const app = App()
+			.get('/', (res, req) => {
+				const files = Dir.paths.map((f) => `http://${req.getHeader('host')}${f}`);
+				res
+					.writeStatus('200 OK')
+					.writeHeader('Content-Type', 'application/json')
+					.end(JSON.stringify(files));
+			})
+			.get(config.openapiPath, (res, req) => {
+				res.writeStatus('200 OK').writeHeader('Content-Type', 'text/html').end(openapiTemplate);
+			})
+			.get('/oas.json', (res, req) => {
+				Dir.files.map(async (endpoints) => {
+					const { path } = endpoints;
+					if (definition.paths) {
+						const schema = await getSchema(endpoints);
+						if (schema) definition.paths[path] = generatePath(endpoints.contract, schema);
+						definition.paths[path + '/raw'] = generateRawPath();
+						definition.paths[path + '/app'] = generateAppletPath();
+					}
+				});
+
+				res
+					.writeStatus('200 OK')
+					.writeHeader('Content-Type', 'application/json')
+					.end(JSON.stringify(definition));
 			});
 
-			res
-				.writeStatus('200 OK')
-				.writeHeader('Content-Type', 'application/json')
-				.end(JSON.stringify(definition));
+		generateRoutes(app);
+		generatePublicFilesRoutes(app);
+
+		app.listen(config.port, (socket) => {
+			const port = us_socket_local_port(socket);
+			listen_socket = socket;
+			L.info(`Swagger UI is running on http://${config.hostname}:${port}/docs`);
 		});
 
-	generateRoutes(app);
-
-	app.listen(config.port, (socket) => {
-		const port = us_socket_local_port(socket);
-		listen_socket = socket;
-		L.info(`Swagger UI is running on http://${config.hostname}:${port}/docs`);
-	});
-
-	Dir.onChange(async () => {
-		try {
-			const port = us_socket_local_port(listen_socket);
-			us_listen_socket_close(listen_socket);
-			const app = App();
-			generateRoutes(app);
-			app.listen(port, (socket) => {
-				listen_socket = socket;
-				L.info(`Swagger UI is running on http://${config.hostname}:${port}/docs`);
-			});
-		} catch (error) {
-			L.error(error);
-		}
+		Dir.onChange(async () => {
+			try {
+				const port = us_socket_local_port(listen_socket);
+				us_listen_socket_close(listen_socket);
+				const app = App();
+				generateRoutes(app);
+				generatePublicFilesRoutes(app);
+				app.listen(port, (socket) => {
+					listen_socket = socket;
+					L.info(`Swagger UI is running on http://${config.hostname}:${port}/docs`);
+				});
+			} catch (error) {
+				L.error(error);
+			}
+		});
 	});
 });
 
@@ -163,5 +170,16 @@ const generateRoutes = (app: TemplatedApp) => {
 		});
 
 		L.info(`📜 ${path}`);
+	});
+};
+
+const generatePublicFilesRoutes = (app: TemplatedApp) => {
+	PublicDir.files.forEach((f) => {
+		const fileName = f.path.split('/').at(-1);
+		const routePath = `/${fileName}`;
+
+		app.get(routePath, async (res, req) => {
+			res.writeStatus('200 OK').writeHeader('Content-Type', 'text/html').end('ciao');
+		});
 	});
 };
