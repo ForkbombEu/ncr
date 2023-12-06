@@ -18,6 +18,7 @@ export interface Config {
 	openapiPath: string;
 	template: string;
 	logger: Logger;
+	publicDirectory: string | undefined;
 }
 
 export interface Endpoints {

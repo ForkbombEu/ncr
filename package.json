@@ -46,6 +46,7 @@
 		"dotenv": "^16.3.1",
 		"live-directory": "^3.0.3",
 		"lodash": "^4.17.21",
+		"mime": "^4.0.0",
 		"pino": "^8.16.2",
 		"uWebSockets.js": "github:uNetworking/uWebSockets.js#semver:^20",
 		"zenroom": "^4.2.2"

@@ -23,9 +23,13 @@ import {
 	openapiTemplate
 } from './openapi.js';
 import { getSchema, handleArrayBuffer, validateData } from './utils.js';
+import mime from 'mime';
+import path from 'path';
+import fs from 'fs';
 
 const L = config.logger;
 const Dir = Directory.getInstance();
+
 Dir.ready(async () => {
 	let listen_socket: us_listen_socket;
 
@@ -59,6 +63,20 @@ Dir.ready(async () => {
 
 	generateRoutes(app);
 
+	const { publicDirectory } = config;
+	if (publicDirectory) {
+		app.get('/*', (res, req) => {
+			let file = path.join(publicDirectory, req.getUrl());
+			if (fs.existsSync(file)) {
+				const contentType = mime.getType(file) || 'application/octet-stream';
+				res.writeHeader('Content-Type', contentType);
+				res.end(fs.readFileSync(file));
+			} else {
+				res.writeStatus('404 Not Found').end('Not found');
+			}
+		});
+	}
+
 	app.listen(config.port, (socket) => {
 		const port = us_socket_local_port(socket);
 		listen_socket = socket;
@@ -71,6 +89,7 @@ Dir.ready(async () => {
 			us_listen_socket_close(listen_socket);
 			const app = App();
 			generateRoutes(app);
+			// generatePublicFilesRoutes(app);
 			app.listen(port, (socket) => {
 				listen_socket = socket;
 				L.info(`Swagger UI is running on http://${config.hostname}:${port}/docs`);

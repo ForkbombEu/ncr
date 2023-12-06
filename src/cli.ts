@@ -33,6 +33,18 @@ program
 			})
 	)
 	.addOption(
+		new Option('--public-directory <directory>', 'specify the static files directory')
+			.env('PUBLIC_DIR')
+			.argParser((d) => {
+				try {
+					if (statSync(d).isDirectory()) return d;
+				} catch (e) {
+					L.error(`${bad} ${d} is not a valid directory`);
+					process.exit(0);
+				}
+			})
+	)
+	.addOption(
 		new Option(
 			'-p, --port <number>',
 			'specify port number; if unspecified restroom will listen to a random free port'
