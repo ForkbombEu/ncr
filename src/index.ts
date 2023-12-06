@@ -15,7 +15,6 @@ import {
 } from 'uWebSockets.js';
 import { template as proctoroom } from './applets.js';
 import { Directory } from './directory.js';
-import { PublicDirectory } from './publicDirectory.js';
 import {
 	definition,
 	generateAppletPath,
