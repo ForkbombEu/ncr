@@ -63,16 +63,19 @@ Dir.ready(async () => {
 
 	generateRoutes(app);
 
-	app.get('/*', (res, req) => {
-		let file = path.join('public', req.getUrl());
-		if (fs.existsSync(file)) {
-			const contentType = mime.getType(file) || 'application/octet-stream';
-			res.writeHeader('Content-Type', contentType);
-			res.end(fs.readFileSync(file));
-		} else {
-			res.writeStatus('404 Not Found').end('Not found');
-		}
-	});
+	const { publicDirectory } = config;
+	if (publicDirectory) {
+		app.get('/*', (res, req) => {
+			let file = path.join(publicDirectory, req.getUrl());
+			if (fs.existsSync(file)) {
+				const contentType = mime.getType(file) || 'application/octet-stream';
+				res.writeHeader('Content-Type', contentType);
+				res.end(fs.readFileSync(file));
+			} else {
+				res.writeStatus('404 Not Found').end('Not found');
+			}
+		});
+	}
 
 	app.listen(config.port, (socket) => {
 		const port = us_socket_local_port(socket);
