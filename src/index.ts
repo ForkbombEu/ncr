@@ -25,67 +25,76 @@ import {
 } from './openapi.js';
 import { getSchema, handleArrayBuffer, validateData } from './utils.js';
 import mime from 'mime';
+import path from 'path';
+import fs from 'fs';
 
 const L = config.logger;
 const Dir = Directory.getInstance();
-const PublicDir = PublicDirectory.getInstance();
 
-PublicDir.ready(async () => {
-	Dir.ready(async () => {
-		let listen_socket: us_listen_socket;
+Dir.ready(async () => {
+	let listen_socket: us_listen_socket;
 
-		const app = App()
-			.get('/', (res, req) => {
-				const files = Dir.paths.map((f) => `http://${req.getHeader('host')}${f}`);
-				res
-					.writeStatus('200 OK')
-					.writeHeader('Content-Type', 'application/json')
-					.end(JSON.stringify(files));
-			})
-			.get(config.openapiPath, (res, req) => {
-				res.writeStatus('200 OK').writeHeader('Content-Type', 'text/html').end(openapiTemplate);
-			})
-			.get('/oas.json', (res, req) => {
-				Dir.files.map(async (endpoints) => {
-					const { path } = endpoints;
-					if (definition.paths) {
-						const schema = await getSchema(endpoints);
-						if (schema) definition.paths[path] = generatePath(endpoints.contract, schema);
-						definition.paths[path + '/raw'] = generateRawPath();
-						definition.paths[path + '/app'] = generateAppletPath();
-					}
-				});
-
-				res
-					.writeStatus('200 OK')
-					.writeHeader('Content-Type', 'application/json')
-					.end(JSON.stringify(definition));
+	const app = App()
+		.get('/', (res, req) => {
+			const files = Dir.paths.map((f) => `http://${req.getHeader('host')}${f}`);
+			res
+				.writeStatus('200 OK')
+				.writeHeader('Content-Type', 'application/json')
+				.end(JSON.stringify(files));
+		})
+		.get(config.openapiPath, (res, req) => {
+			res.writeStatus('200 OK').writeHeader('Content-Type', 'text/html').end(openapiTemplate);
+		})
+		.get('/oas.json', (res, req) => {
+			Dir.files.map(async (endpoints) => {
+				const { path } = endpoints;
+				if (definition.paths) {
+					const schema = await getSchema(endpoints);
+					if (schema) definition.paths[path] = generatePath(endpoints.contract, schema);
+					definition.paths[path + '/raw'] = generateRawPath();
+					definition.paths[path + '/app'] = generateAppletPath();
+				}
 			});
 
-		generateRoutes(app);
-		generatePublicFilesRoutes(app);
-
-		app.listen(config.port, (socket) => {
-			const port = us_socket_local_port(socket);
-			listen_socket = socket;
-			L.info(`Swagger UI is running on http://${config.hostname}:${port}/docs`);
+			res
+				.writeStatus('200 OK')
+				.writeHeader('Content-Type', 'application/json')
+				.end(JSON.stringify(definition));
 		});
 
-		Dir.onChange(async () => {
-			try {
-				const port = us_socket_local_port(listen_socket);
-				us_listen_socket_close(listen_socket);
-				const app = App();
-				generateRoutes(app);
-				generatePublicFilesRoutes(app);
-				app.listen(port, (socket) => {
-					listen_socket = socket;
-					L.info(`Swagger UI is running on http://${config.hostname}:${port}/docs`);
-				});
-			} catch (error) {
-				L.error(error);
-			}
-		});
+	generateRoutes(app);
+
+	app.get('/*', (res, req) => {
+		let file = path.join('public', req.getUrl());
+		if (fs.existsSync(file)) {
+			const contentType = mime.getType(file) || 'application/octet-stream';
+			res.writeHeader('Content-Type', contentType);
+			res.end(fs.readFileSync(file));
+		} else {
+			res.writeStatus('404 Not Found').end('Not found');
+		}
+	});
+
+	app.listen(config.port, (socket) => {
+		const port = us_socket_local_port(socket);
+		listen_socket = socket;
+		L.info(`Swagger UI is running on http://${config.hostname}:${port}/docs`);
+	});
+
+	Dir.onChange(async () => {
+		try {
+			const port = us_socket_local_port(listen_socket);
+			us_listen_socket_close(listen_socket);
+			const app = App();
+			generateRoutes(app);
+			// generatePublicFilesRoutes(app);
+			app.listen(port, (socket) => {
+				listen_socket = socket;
+				L.info(`Swagger UI is running on http://${config.hostname}:${port}/docs`);
+			});
+		} catch (error) {
+			L.error(error);
+		}
 	});
 });
 
@@ -171,17 +180,5 @@ const generateRoutes = (app: TemplatedApp) => {
 		});
 
 		L.info(`📜 ${path}`);
-	});
-};
-
-const generatePublicFilesRoutes = (app: TemplatedApp) => {
-	PublicDir.files.forEach((f) => {
-		console.log(f);
-		const fileName = f.path.split('/').at(-1)!;
-		const routePath = `/${encodeURIComponent(fileName)}`;
-		const contentType = mime.getType(fileName) || 'application/octet-stream';
-		app.get(routePath, async (res, req) => {
-			res.writeStatus('200 OK').writeHeader('Content-Type', contentType).end(f.content);
-		});
 	});
 };
