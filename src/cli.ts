@@ -46,6 +46,12 @@ program
 	)
 	.addOption(
 		new Option(
+			'--static-files-path <string>',
+			'specify the path under which static files will be served'
+		).default('/', 'root url')
+	)
+	.addOption(
+		new Option(
 			'-p, --port <number>',
 			'specify port number; if unspecified restroom will listen to a random free port'
 		)
