@@ -19,7 +19,6 @@ export interface Config {
 	template: string;
 	logger: Logger;
 	publicDirectory: string | undefined;
-	staticFilesPath: string;
 }
 
 export interface Endpoints {
