@@ -96,12 +96,14 @@ const generateRoutes = (app: TemplatedApp) => {
 		app.post(path, (res, req) => {
 			res.cork(() => {
 				try {
+					let abortLogs: any;
 					res
 						.onData(async (d) => {
 							try {
 								const data = handleArrayBuffer(d);
 								validateData(schema, data);
 								const { result, logs } = await s.execute(contract, { keys, data, conf });
+								abortLogs = logs;
 								res
 									.writeStatus('200 OK')
 									.writeHeader('Content-Type', 'application/json')
@@ -115,7 +117,7 @@ const generateRoutes = (app: TemplatedApp) => {
 							}
 						})
 						.onAborted(() => {
-							res.writeStatus('500').writeHeader('Content-Type', 'application/json').end(logs);
+							res.writeStatus('500').writeHeader('Content-Type', 'application/json').end(abortLogs);
 						});
 				} catch (e) {
 					L.error(e);
