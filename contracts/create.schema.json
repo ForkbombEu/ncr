@@ -15,14 +15,9 @@
 		},
 		"fields": {
 			"type": "array",
-			"items": [
-				{
-					"type": "string"
-				},
-				{
-					"type": "string"
-				}
-			]
+			"items": {
+				"type": "string"
+			}
 		}
 	},
 	"required": ["object", "fields"]

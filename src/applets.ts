@@ -197,7 +197,10 @@ const proctoroom = `<!doctype html>
 				show_errors: 'interaction',
 				use_name_attributes: false,
 				theme: 'tailwind',
-				iconlib: 'spectre'
+				iconlib: 'spectre',
+				disable_array_delete_all_rows: true,
+				disable_array_delete_last_row: true,
+				disable_array_reorder: true
 			});
 
 			$(document).ready(() => {
@@ -274,6 +277,39 @@ const proctoroom = `<!doctype html>
 			}
 			.key {
 				color: red;
+			}
+
+			.form-group > input, .form-group > select {
+				border-radius: 0
+			}
+			
+			.json-editor-btntype-add, .json-editor-btntype-delete {
+				border-radius: 0 !important;
+				box-shadow: none !important;
+				transition: transform 0.3s ease !important;
+			}
+
+			div[data-theme="tailwind"] div[data-schematype]:not([data-schematype="object"]):hover {
+				background-color: rgb(230, 230, 230) !important;
+			}
+
+			.json-editor-btntype-add:hover, .json-editor-btntype-delete:hover {
+				transform: translateY(-2px);
+			}
+
+			.json-editor-btntype-add {
+				background-color: black !important;
+			}
+
+			.json-editor-btntype-delete {
+				background-color: rgb(239, 68, 68) !important;
+				color: white !important;
+				padding-left: 3px !important;
+				padding-right: 3px !important;
+			}
+
+			.json-editor-btntype-deletelast, .json-editor-btntype-deleteall {
+				display: none !important 
 			}
 		</style>
 	</body>
