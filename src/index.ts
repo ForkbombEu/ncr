@@ -24,6 +24,7 @@ import {
 	openapiTemplate
 } from './openapi.js';
 import { getSchema, handleArrayBuffer, validateData } from './utils.js';
+import mime from 'mime';
 
 const L = config.logger;
 const Dir = Directory.getInstance();
@@ -175,11 +176,12 @@ const generateRoutes = (app: TemplatedApp) => {
 
 const generatePublicFilesRoutes = (app: TemplatedApp) => {
 	PublicDir.files.forEach((f) => {
-		const fileName = f.path.split('/').at(-1);
-		const routePath = `/${fileName}`;
-
+		console.log(f);
+		const fileName = f.path.split('/').at(-1)!;
+		const routePath = `/${encodeURIComponent(fileName)}`;
+		const contentType = mime.getType(fileName) || 'application/octet-stream';
 		app.get(routePath, async (res, req) => {
-			res.writeStatus('200 OK').writeHeader('Content-Type', 'text/html').end('ciao');
+			res.writeStatus('200 OK').writeHeader('Content-Type', contentType).end(f.content);
 		});
 	});
 };
