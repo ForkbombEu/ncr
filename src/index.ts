@@ -115,54 +115,60 @@ const generateRoutes = (app: TemplatedApp) => {
 		app.post(path, (res, req) => {
 			res.cork(() => {
 				try {
-					res
-						.onData(async (d) => {
-							try {
-								const data = handleArrayBuffer(d);
-								validateData(schema, data);
-								const { result, logs } = await s.execute(contract, { keys, data, conf });
-								res
-									.writeStatus('200 OK')
-									.writeHeader('Content-Type', 'application/json')
-									.end(JSON.stringify(result));
-							} catch (e) {
-								L.error(e);
-								res
-									.writeStatus('500')
-									.writeHeader('Content-Type', 'application/json')
-									.end(e.message);
-							}
-						})
-						.onAborted(() => {
-							res.writeStatus('500').writeHeader('Content-Type', 'application/json').end(logs);
-						});
+					res.onData(async (d) => {
+						try {
+							const data = handleArrayBuffer(d);
+							validateData(schema, data);
+
+							const { result, logs } = await s.execute(contract, { keys, data, conf });
+
+							res
+								.writeStatus('200 OK')
+								.writeHeader('Content-Type', 'application/json')
+								.end(JSON.stringify(result));
+						} catch (e) {
+							L.error(e);
+							res.writeStatus('500').writeHeader('Content-Type', 'application/json').end(e.message);
+						}
+					});
 				} catch (e) {
 					L.error(e);
 					res.writeStatus('500').writeHeader('Content-Type', 'application/json').end(e.message);
 				}
 			});
+
+			res.onAborted(() => {
+				res.writeStatus('500').writeHeader('Content-Type', 'application/json').end('Aborted');
+			});
 		});
 
 		app.get(path, async (res, req) => {
-			try {
-				const data: Record<string, unknown> = {};
-				const q = req.getQuery();
-				if (q) {
-					q.split('&').map((r) => {
-						const [k, v] = r.split('=');
-						data[k] = v;
-					});
+			res.cork(async () => {
+				try {
+					const data: Record<string, unknown> = {};
+					const q = req.getQuery();
+					if (q) {
+						q.split('&').map((r) => {
+							const [k, v] = r.split('=');
+							data[k] = v;
+						});
+					}
+					validateData(schema, data);
+
+					const { result, logs } = await s.execute(contract, { keys, conf, data });
+					res
+						.writeStatus('200 OK')
+						.writeHeader('Content-Type', 'application/json')
+						.end(JSON.stringify(result));
+				} catch (e) {
+					L.error(e);
+					res.writeStatus('500').writeHeader('Content-Type', 'application/json').end(e.message);
 				}
-				validateData(schema, data);
-				const { result } = await s.execute(contract, { keys, conf, data });
-				res
-					.writeStatus('200 OK')
-					.writeHeader('Content-Type', 'application/json')
-					.end(JSON.stringify(result));
-			} catch (e) {
-				L.error(e);
-				res.writeStatus('500').writeHeader('Content-Type', 'application/json').end(e.message);
-			}
+			});
+
+			res.onAborted(() => {
+				res.writeStatus('500').writeHeader('Content-Type', 'application/json').end('Aborted');
+			});
 		});
 
 		app.get(path + '/raw', (res, req) => {
