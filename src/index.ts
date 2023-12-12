@@ -120,6 +120,13 @@ const generateRoutes = (app: TemplatedApp) => {
 							const data = handleArrayBuffer(d);
 							validateData(schema, data);
 
+							res.onAborted(() => {
+								res
+									.writeStatus('500')
+									.writeHeader('Content-Type', 'application/json')
+									.end('Aborted');
+							});
+
 							const { result, logs } = await s.execute(contract, { keys, data, conf });
 
 							res
@@ -136,10 +143,6 @@ const generateRoutes = (app: TemplatedApp) => {
 					res.writeStatus('500').writeHeader('Content-Type', 'application/json').end(e.message);
 				}
 			});
-
-			res.onAborted(() => {
-				res.writeStatus('500').writeHeader('Content-Type', 'application/json').end('Aborted');
-			});
 		});
 
 		app.get(path, async (res, req) => {
@@ -155,6 +158,10 @@ const generateRoutes = (app: TemplatedApp) => {
 					}
 					validateData(schema, data);
 
+					res.onAborted(() => {
+						res.writeStatus('500').writeHeader('Content-Type', 'application/json').end('Aborted');
+					});
+
 					const { result, logs } = await s.execute(contract, { keys, conf, data });
 					res
 						.writeStatus('200 OK')
@@ -164,10 +171,6 @@ const generateRoutes = (app: TemplatedApp) => {
 					L.error(e);
 					res.writeStatus('500').writeHeader('Content-Type', 'application/json').end(e.message);
 				}
-			});
-
-			res.onAborted(() => {
-				res.writeStatus('500').writeHeader('Content-Type', 'application/json').end('Aborted');
 			});
 		});
 
