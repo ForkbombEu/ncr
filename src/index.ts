@@ -113,6 +113,14 @@ const generateRoutes = (app: TemplatedApp) => {
 		const s = new Slangroom([http, wallet]);
 
 		app.post(path, (res, req) => {
+			/**
+			 * Code may break on `slangroom.execute`
+			 * so it's important to attach the `onAborted` handler before everything else
+			 */
+			res.onAborted(() => {
+				res.writeStatus('500').writeHeader('Content-Type', 'application/json').end('Aborted');
+			});
+
 			res.cork(() => {
 				try {
 					res.onData(async (d) => {
@@ -120,14 +128,7 @@ const generateRoutes = (app: TemplatedApp) => {
 							const data = handleArrayBuffer(d);
 							validateData(schema, data);
 
-							res.onAborted(() => {
-								res
-									.writeStatus('500')
-									.writeHeader('Content-Type', 'application/json')
-									.end('Aborted');
-							});
-
-							const { result, logs } = await s.execute(contract, { keys, data, conf });
+							const { result } = await s.execute(contract, { keys, data, conf });
 
 							res
 								.writeStatus('200 OK')
@@ -146,6 +147,14 @@ const generateRoutes = (app: TemplatedApp) => {
 		});
 
 		app.get(path, async (res, req) => {
+			/**
+			 * Code may break on `slangroom.execute`
+			 * so it's important to attach the `onAborted` handler before everything else
+			 */
+			res.onAborted(() => {
+				res.writeStatus('500').writeHeader('Content-Type', 'application/json').end('Aborted');
+			});
+
 			res.cork(async () => {
 				try {
 					const data: Record<string, unknown> = {};
@@ -158,11 +167,8 @@ const generateRoutes = (app: TemplatedApp) => {
 					}
 					validateData(schema, data);
 
-					res.onAborted(() => {
-						res.writeStatus('500').writeHeader('Content-Type', 'application/json').end('Aborted');
-					});
+					const { result } = await s.execute(contract, { keys, conf, data });
 
-					const { result, logs } = await s.execute(contract, { keys, conf, data });
 					res
 						.writeStatus('200 OK')
 						.writeHeader('Content-Type', 'application/json')
