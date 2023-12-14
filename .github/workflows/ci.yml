@@ -109,3 +109,9 @@ jobs:
           fail_on_unmatched_files: true
           generate_release_notes: true
           tag_name: ${{ needs.semantic-release.outputs.version }}
+
+  publish_docker_image:
+    needs: semantic-release
+    if: github.ref == 'refs/heads/main'
+    uses: interfacerproject/workflows/.github/workflows/publish-ghcr.yml@main
+    secrets: inherit
