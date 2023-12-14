@@ -112,6 +112,19 @@ const generateRoutes = (app: TemplatedApp) => {
 
 		const s = new Slangroom([http, wallet]);
 
+		app.options(path, (res) => {
+			res.cork(() => {
+				res.onAborted(() => {
+					res.writeStatus('500').end('Aborted');
+				});
+
+				res
+					.writeHeader("Access-Control-Allow-Origin", "*")
+					.writeStatus('200 OK')
+					.end()
+			});
+		})
+
 		app.post(path, (res, req) => {
 			/**
 			 * Code may break on `slangroom.execute`
@@ -121,29 +134,30 @@ const generateRoutes = (app: TemplatedApp) => {
 				res.writeStatus('500').writeHeader('Content-Type', 'application/json').end('Aborted');
 			});
 
-			res.cork(() => {
-				try {
-					res.onData(async (d) => {
-						try {
-							const data = handleArrayBuffer(d);
-							validateData(schema, data);
+			try {
+				res.onData(async (d) => {
+					try {
+						const data = handleArrayBuffer(d);
+						validateData(schema, data);
 
-							const { result } = await s.execute(contract, { keys, data, conf });
+						const { result } = await s.execute(contract, { keys, data, conf });
 
+						res.cork(() => {
 							res
 								.writeStatus('200 OK')
 								.writeHeader('Content-Type', 'application/json')
+								.writeHeader("Access-Control-Allow-Origin", "*")
 								.end(JSON.stringify(result));
-						} catch (e) {
-							L.error(e);
-							res.writeStatus('500').writeHeader('Content-Type', 'application/json').end(e.message);
-						}
-					});
-				} catch (e) {
-					L.error(e);
-					res.writeStatus('500').writeHeader('Content-Type', 'application/json').end(e.message);
-				}
-			});
+						});
+					} catch (e) {
+						L.error(e);
+						res.writeStatus('500').writeHeader('Content-Type', 'application/json').end(e.message);
+					}
+				});
+			} catch (e) {
+				L.error(e);
+				res.writeStatus('500').writeHeader('Content-Type', 'application/json').end(e.message);
+			}
 		});
 
 		app.get(path, async (res, req) => {
@@ -155,29 +169,30 @@ const generateRoutes = (app: TemplatedApp) => {
 				res.writeStatus('500').writeHeader('Content-Type', 'application/json').end('Aborted');
 			});
 
-			res.cork(async () => {
-				try {
-					const data: Record<string, unknown> = {};
-					const q = req.getQuery();
-					if (q) {
-						q.split('&').map((r) => {
-							const [k, v] = r.split('=');
-							data[k] = v;
-						});
-					}
-					validateData(schema, data);
+			try {
+				const data: Record<string, unknown> = {};
+				const q = req.getQuery();
+				if (q) {
+					q.split('&').map((r) => {
+						const [k, v] = r.split('=');
+						data[k] = v;
+					});
+				}
+				validateData(schema, data);
 
-					const { result } = await s.execute(contract, { keys, conf, data });
+				const { result } = await s.execute(contract, { keys, conf, data });
 
+				res.cork(async () => {
 					res
 						.writeStatus('200 OK')
 						.writeHeader('Content-Type', 'application/json')
+						.writeHeader("Access-Control-Allow-Origin", "*")
 						.end(JSON.stringify(result));
-				} catch (e) {
-					L.error(e);
-					res.writeStatus('500').writeHeader('Content-Type', 'application/json').end(e.message);
-				}
-			});
+				});
+			} catch (e) {
+				L.error(e);
+				res.writeStatus('500').writeHeader('Content-Type', 'application/json').end(e.message);
+			}
 		});
 
 		app.get(path + '/raw', (res, req) => {
