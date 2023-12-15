@@ -27,8 +27,16 @@ import mime from 'mime';
 import path from 'path';
 import fs from 'fs';
 
+import promClient from 'prom-client'
+
 const L = config.logger;
 const Dir = Directory.getInstance();
+
+const promRegister = new promClient.Registry()
+promRegister.setDefaultLabels({
+	app: 'ncr'
+})
+promClient.collectDefaultMetrics({ register: promRegister })
 
 Dir.ready(async () => {
 	let listen_socket: us_listen_socket;
@@ -59,7 +67,49 @@ Dir.ready(async () => {
 				.writeStatus('200 OK')
 				.writeHeader('Content-Type', 'application/json')
 				.end(JSON.stringify(definition));
-		});
+		})
+		.get('/metrics', (res, req) => {
+			promRegister.metrics().then(metrics =>
+				res
+					.writeStatus('200 OK')
+					.writeHeader('Content-Type', promRegister.contentType)
+					.end(metrics));
+		})
+		.get('/health', async (res, _) => {
+			res.onAborted(() => {
+				res.writeStatus('500').writeHeader('Content-Type', 'application/json').end('Aborted');
+			});
+			const s = new Slangroom([http, wallet]);
+			const contract = `
+Rule unknown ignore
+Given I connect to 'hi_endpoint' and do get and output into 'hi_result'
+and debug
+Given I have a 'string' named 'result' in 'hi result'
+Then print the 'result'
+`
+			const keys =
+{
+    "hi_endpoint": `http://localhost:${config.port}/sayhi`
+}
+			try {
+				const { result } = await s.execute(contract, {keys});
+				res.cork(() => {
+					res
+						.writeStatus('200 OK')
+						.writeHeader('Content-Type', 'application/json')
+						.end(JSON.stringify(result));
+				});
+			} catch (e) {
+				L.error(e);
+				res.cork(() => res.writeStatus('500').writeHeader('Content-Type', 'application/json').end(e.message));
+			}
+		})
+		.get('/sayhi', (res, _) => {
+			res
+				.writeStatus('200 OK')
+				.writeHeader('Content-Type', 'text/plain')
+				.end("Hi");
+		})
 
 	generateRoutes(app);
 

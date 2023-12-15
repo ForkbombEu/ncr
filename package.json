@@ -48,6 +48,7 @@
 		"lodash": "^4.17.21",
 		"mime": "^4.0.0",
 		"pino": "^8.17.1",
+		"prom-client": "^15.0.0",
 		"uWebSockets.js": "github:uNetworking/uWebSockets.js#semver:^20",
 		"zenroom": "latest"
 	},
