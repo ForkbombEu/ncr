@@ -26,21 +26,35 @@ import { getSchema, handleArrayBuffer, validateData } from './utils.js';
 import mime from 'mime';
 import path from 'path';
 import fs from 'fs';
+import dotenv from 'dotenv';
+dotenv.config()
 
-import promClient from 'prom-client'
 
 const L = config.logger;
 const Dir = Directory.getInstance();
 
-const promRegister = new promClient.Registry()
-promRegister.setDefaultLabels({
-	app: 'ncr'
-})
-promClient.collectDefaultMetrics({ register: promRegister })
 
-Dir.ready(async () => {
-	let listen_socket: us_listen_socket;
+const PROM = process.env.PROM == 'true';
 
+const setupProm = async (app: TemplatedApp) => {
+	const promClient = await import('prom-client');
+	const promRegister = new promClient.Registry()
+	promRegister.setDefaultLabels({
+		app: 'ncr'
+	})
+	promClient.collectDefaultMetrics({ register: promRegister })
+
+	app.get('/metrics', (res, req) => {
+		promRegister.metrics().then(metrics =>
+			res
+				.writeStatus('200 OK')
+				.writeHeader('Content-Type', promRegister.contentType)
+				.end(metrics));
+	})
+}
+
+
+const ncrApp = async () => {
 	const app = App()
 		.get('/', (res, req) => {
 			const files = Dir.paths.map((f) => `http://${req.getHeader('host')}${f}`);
@@ -67,13 +81,6 @@ Dir.ready(async () => {
 				.writeStatus('200 OK')
 				.writeHeader('Content-Type', 'application/json')
 				.end(JSON.stringify(definition));
-		})
-		.get('/metrics', (res, req) => {
-			promRegister.metrics().then(metrics =>
-				res
-					.writeStatus('200 OK')
-					.writeHeader('Content-Type', promRegister.contentType)
-					.end(metrics));
 		})
 		.get('/health', async (res, _) => {
 			res.onAborted(() => {
@@ -110,6 +117,17 @@ Then print the 'result'
 				.writeHeader('Content-Type', 'text/plain')
 				.end("Hi");
 		})
+	
+	if(PROM) {
+		await setupProm(app);
+	}
+	return app;
+}
+
+Dir.ready(async () => {
+	let listen_socket: us_listen_socket;
+
+	const app = await ncrApp();
 
 	generateRoutes(app);
 
@@ -137,7 +155,7 @@ Then print the 'result'
 		try {
 			const port = us_socket_local_port(listen_socket);
 			us_listen_socket_close(listen_socket);
-			const app = App();
+			const app = await ncrApp();
 			generateRoutes(app);
 			// generatePublicFilesRoutes(app);
 			app.listen(port, (socket) => {
