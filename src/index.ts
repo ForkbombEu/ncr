@@ -37,20 +37,35 @@ const Dir = Directory.getInstance();
 const PROM = process.env.PROM == 'true';
 
 const setupProm = async (app: TemplatedApp) => {
-	const promClient = await import('prom-client');
-	const promRegister = new promClient.Registry()
-	promRegister.setDefaultLabels({
+	const client = await import('prom-client');
+	const register = new client.Registry()
+	register.setDefaultLabels({
 		app: 'ncr'
 	})
-	promClient.collectDefaultMetrics({ register: promRegister })
+	client.collectDefaultMetrics({ register })
+
+	const co2lib = await import('@tgwf/co2');
+	const swd = new co2lib.co2({ model: "swd" })
+
+
+	const co2_emission = new client.Gauge({
+		name: 'co2_emission',
+		help: 'Emissions for 1GB',
+		collect() {
+			const emissions = swd.perByte(1000000000)
+			this.set(emissions);
+		},
+	});
+
+	register.registerMetric(co2_emission);
 
 	app.get('/metrics', (res, req) => {
-		promRegister.metrics().then(metrics =>
+		register.metrics().then(metrics =>
 			res
 				.writeStatus('200 OK')
-				.writeHeader('Content-Type', promRegister.contentType)
+				.writeHeader('Content-Type', register.contentType)
 				.end(metrics));
-	})
+	});
 }
 
 
