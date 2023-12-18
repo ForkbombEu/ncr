@@ -41,6 +41,7 @@
 		"@slangroom/ethereum": "^1.10.1",
 		"@slangroom/http": "^1.10.1",
 		"@slangroom/wallet": "^1.11.0",
+		"@tgwf/co2": "^0.13.10",
 		"ajv": "^8.12.0",
 		"commander": "^11.1.0",
 		"dotenv": "^16.3.1",
