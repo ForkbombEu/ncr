@@ -13,7 +13,8 @@ export default {
 	input: 'src/index.ts',
 	output: {
 		file: 'dist/index.cjs',
-		format: 'cjs'
+		format: 'cjs',
+		inlineDynamicImports: true,
 	},
 	plugins: [
 		json(),
