@@ -6,7 +6,8 @@ on:
   pull_request:
 
 permissions:
-  contents: read # for checkout
+  contents: read
+  packages: write
 
 jobs:
   build:
@@ -113,5 +114,5 @@ jobs:
   publish_docker_image:
     needs: semantic-release
     if: github.ref == 'refs/heads/main'
-    uses: interfacerproject/workflows/.github/workflows/publish-ghcr.yml@main
+    uses: ForkbombEu/workflows/.github/workflows/publish-ghcr.yml@main
     secrets: inherit
