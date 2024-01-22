@@ -31,7 +31,21 @@ export async function getSchemaFromIntrospection(
 		};
 		const schema = Type.Object(
 			Object.fromEntries(
-				Object.values(codec).map(({ name, encoding }) => [name, encodingToType[encoding]])
+				Object.values(codec).map(({ name, zentype, encoding }) => {
+					let t;
+					switch (zentype) {
+						case "d":
+							t = Type.Record(Type.String(), encodingToType[encoding]);
+							break;
+						case "a":
+							t = Type.Array(encodingToType[encoding]);
+							break;
+						default:
+							t = encodingToType[encoding];
+							break;
+					}
+				return [name, t];
+				})
 			)
 		);
 		return schema;
