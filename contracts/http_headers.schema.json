@@ -1,0 +1,9 @@
+{
+        "type": "object",
+        "properties": {
+                "http_headers": {
+                        "type": "object"
+                }
+        },
+        "required": ["http_headers"]
+}

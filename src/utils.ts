@@ -1,6 +1,6 @@
 import { introspect } from 'zenroom';
 import { Type } from '@sinclair/typebox';
-import { Codec, Endpoints, JSONSchema } from './types';
+import { Codec, Endpoints, JSONSchema, Metadata } from './types';
 import _ from 'lodash';
 import Ajv, { type ValidateFunction } from 'ajv';
 import { config } from './cli.js';
@@ -93,4 +93,17 @@ export function validateJSONSchema(schema: JSON): void {
 	} catch (e) {
 		throw e;
 	}
+}
+
+/*
+ * The JSON in input and Metadata use a different convention:
+ * - JSON is snake case
+ * - Metadata is camel case
+ * The reason is that Metadata uses the convention of javascript,
+ * while the input JSON the one from zenroom
+ */
+export const newMetadata = (configRaw: JSON): Metadata => {
+	return {
+		httpHeaders: configRaw['http_headers'] || false,
+	};
 }
