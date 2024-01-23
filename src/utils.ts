@@ -27,7 +27,7 @@ export async function getSchemaFromIntrospection(
 		const codec: Codec = await introspect(contract);
 		const encodingToType = {
 			string: Type.String(),
-			number: Type.Number()
+			float: Type.Number()
 		};
 		const schema = Type.Object(
 			Object.fromEntries(
