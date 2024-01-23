@@ -30,9 +30,9 @@ export interface Endpoints {
 }
 
 interface CodecAttr {
-	encoding: 'string' | 'number';
+	encoding: 'string' | 'float';
 	name: string;
-	zentype: 'n' | 'y';
+	zentype: 'd' | 'a' | 'e';
 }
 
 export interface Codec {
