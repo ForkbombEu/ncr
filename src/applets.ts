@@ -194,7 +194,7 @@ const proctoroom = `
 				schema: JSON.parse(schema),
 				compact: true,
 				disable_collapse: true,
-				disable_edit_json: true,
+				disable_edit_json: false,
 				disable_properties: true,
 				required_by_default: true,
 				show_errors: 'interaction',
@@ -255,9 +255,7 @@ const proctoroom = `
 				outline-width: 8px;
 				outline-style: solid;
 			}
-			.je-header {
-				display: none;
-			}
+			.je-header {}
 			.je-object__container {
 				border: none;
 			}
