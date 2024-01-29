@@ -27,6 +27,7 @@ export interface Endpoints {
 	keys?: JSON | undefined;
 	conf: string;
 	schema?: JSONSchema | undefined;
+	metadata: Metadata;
 }
 
 interface CodecAttr {
@@ -37,4 +38,8 @@ interface CodecAttr {
 
 export interface Codec {
 	[key: string]: CodecAttr;
+}
+
+export interface Metadata {
+	httpHeaders: boolean;
 }

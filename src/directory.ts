@@ -1,7 +1,7 @@
 import LiveDirectory from 'live-directory';
 import { config } from './cli.js';
 import { Endpoints } from './types.js';
-import { validateJSONSchema } from './utils.js';
+import { validateJSONSchema, newMetadata } from './utils.js';
 
 export class Directory {
 	private static instance: Directory;
@@ -48,14 +48,15 @@ export class Directory {
 						Buffer.from(c.content).toString('utf-8'),
 					keys: this.getJSON(path, 'keys'),
 					conf: this.getContent(path + '.conf') || '',
-					schema: this.getJSONSchema(path)
+					schema: this.getJSONSchema(path),
+					metadata: newMetadata(this.getJSON(path, 'metadata') || {})
 				});
 			}
 		});
 		return result;
 	}
 
-	private getJSON(path: string, type: 'schema' | 'keys') {
+	private getJSON(path: string, type: 'schema' | 'keys' | 'metadata') {
 		try {
 			const k = this.getContent(`${path}.${type}.json`);
 			if (!k) return undefined;

@@ -9,6 +9,8 @@ import _ from 'lodash';
 import {
 	App,
 	TemplatedApp,
+	HttpRequest,
+	HttpResponse,
 	us_listen_socket,
 	us_listen_socket_close,
 	us_socket_local_port
@@ -183,9 +185,10 @@ Dir.ready(async () => {
 	});
 });
 
+
 const generateRoutes = (app: TemplatedApp) => {
 	Dir.files.forEach(async (endpoints) => {
-		const { contract, path, keys, conf } = endpoints;
+		const { contract, path, keys, conf, metadata } = endpoints;
 
 		const schema = await getSchema(endpoints);
 		if (!schema) {
@@ -195,6 +198,30 @@ const generateRoutes = (app: TemplatedApp) => {
 
 		const s = new Slangroom([http, wallet]);
 
+		const execZencodeAndReply = async (res: HttpResponse, req: HttpRequest, data: JSON) => {
+			if(metadata.httpHeaders) {
+				if(data['http_headers'] !== undefined) {
+					throw new Error("Name clash on input key http_headers")
+				}
+				const httpHeaders = {}
+				req.forEach((k,v) => {
+					httpHeaders[k] = v;
+				})
+				data['http_headers'] = httpHeaders;
+			}
+
+			validateData(schema, data);
+
+			const { result } = await s.execute(contract, { keys, data, conf });
+
+			res.cork(() => {
+				res
+					.writeStatus('200 OK')
+					.writeHeader('Content-Type', 'application/json')
+					.writeHeader("Access-Control-Allow-Origin", "*")
+					.end(JSON.stringify(result));
+			});
+		}
 		app.options(path, (res) => {
 			res.cork(() => {
 				res.onAborted(() => {
@@ -221,17 +248,7 @@ const generateRoutes = (app: TemplatedApp) => {
 				res.onData(async (d) => {
 					try {
 						const data = handleArrayBuffer(d);
-						validateData(schema, data);
-
-						const { result } = await s.execute(contract, { keys, data, conf });
-
-						res.cork(() => {
-							res
-								.writeStatus('200 OK')
-								.writeHeader('Content-Type', 'application/json')
-								.writeHeader("Access-Control-Allow-Origin", "*")
-								.end(JSON.stringify(result));
-						});
+						execZencodeAndReply(res, req, data)
 					} catch (e) {
 						L.error(e);
 						res.writeStatus('500').writeHeader('Content-Type', 'application/json').end(e.message);
@@ -261,17 +278,7 @@ const generateRoutes = (app: TemplatedApp) => {
 						data[k] = v;
 					});
 				}
-				validateData(schema, data);
-
-				const { result } = await s.execute(contract, { keys, conf, data });
-
-				res.cork(async () => {
-					res
-						.writeStatus('200 OK')
-						.writeHeader('Content-Type', 'application/json')
-						.writeHeader("Access-Control-Allow-Origin", "*")
-						.end(JSON.stringify(result));
-				});
+				execZencodeAndReply(res, req, data)
 			} catch (e) {
 				L.error(e);
 				res.writeStatus('500').writeHeader('Content-Type', 'application/json').end(e.message);
