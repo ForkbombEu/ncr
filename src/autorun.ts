@@ -3,7 +3,12 @@ import fs from 'fs-extra';
 import { Type as T, Static } from '@sinclair/typebox';
 import { Value } from '@sinclair/typebox/value';
 import _ from 'lodash';
-import { readFileContent, readJsonObject, updateJsonObjectFile } from './fileUtils.js';
+import {
+	formatContract,
+	readFileContent,
+	readJsonObject,
+	updateJsonObjectFile
+} from './fileUtils.js';
 
 //@ts-ignore
 import { Slangroom } from '@slangroom/core';
@@ -125,10 +130,6 @@ async function loadContractData(contractPath: string): Promise<ContractData | un
 async function readContract(path: string): Promise<string | undefined> {
 	const contract = await readFileContent(path);
 	return contract ? formatContract(contract) : undefined;
-}
-
-function formatContract(baseContract: string): string {
-	return `Rule unknown ignore\nRule check version ${config.zenroomVersion}\n${baseContract}`;
 }
 
 function isZencodeFile(filePath: string): boolean {

@@ -2,6 +2,7 @@ import LiveDirectory from 'live-directory';
 import { config } from './cli.js';
 import { Endpoints } from './types.js';
 import { validateJSONSchema, newMetadata } from './utils.js';
+import { formatContract } from './fileUtils.js';
 
 export class Directory {
 	private static instance: Directory;
@@ -43,9 +44,7 @@ export class Directory {
 			if (ext === 'zen') {
 				result.push({
 					path: path,
-					contract:
-						`Rule unknown ignore\nRule check version ${config.zenroomVersion}\n` +
-						Buffer.from(c.content).toString('utf-8'),
+					contract: formatContract(Buffer.from(c.content).toString('utf-8')),
 					keys: this.getJSON(path, 'keys'),
 					conf: this.getContent(path + '.conf') || '',
 					schema: this.getJSONSchema(path),
