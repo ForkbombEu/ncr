@@ -85,6 +85,7 @@ export interface ContractData {
 	contract: string;
 	keys?: Record<string, unknown> | undefined;
 	data?: Record<string, unknown> | undefined;
+	metadata?: Record<string, unknown> | undefined;
 	conf?: string | undefined;
 }
 
@@ -101,6 +102,9 @@ async function loadContractData(contractPath: string): Promise<ContractData | un
 		const dataPath = join(directoryPath, `${contractName}.data.json`);
 		const data = await readJson(dataPath);
 
+		const metadataPath = join(directoryPath, `${contractName}.metadata.json`);
+		const metadata = await readJson(metadataPath);
+
 		const confPath = join(directoryPath, `${contractName}.conf`);
 		const conf = await readFileContent(confPath);
 
@@ -109,7 +113,8 @@ async function loadContractData(contractPath: string): Promise<ContractData | un
 			contract,
 			keys,
 			conf,
-			data
+			data,
+			metadata
 		};
 	} catch (e) {
 		L.error(e);
