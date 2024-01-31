@@ -14,14 +14,14 @@ import { http } from '@slangroom/http';
 /* Main */
 
 export async function autorunContracts() {
-	await autorunContractsRecurring();
-	await autorunContractsOnce();
+	await autorunInstallContracts();
+	await autorunStartupContracts();
 }
 
 /* Constants */
 
-const AUTORUN_RECURRING_PATH = join(config.zencodeDirectory, '.autorun');
-const AUTORUN_ONCE_PATH = join(AUTORUN_RECURRING_PATH, 'once');
+const AUTORUN_STARTUP_PATH = join(config.zencodeDirectory, '.autorun');
+const AUTORUN_INSTALL_PATH = join(AUTORUN_STARTUP_PATH, 'once');
 
 const NO_RUN_PREFIX = '_@done';
 
@@ -29,14 +29,14 @@ const L = config.logger;
 
 /* */
 
-export async function autorunContractsRecurring() {
-	const contracts = await loadContractsData(AUTORUN_RECURRING_PATH);
+export async function autorunStartupContracts() {
+	const contracts = await loadContractsData(AUTORUN_STARTUP_PATH);
 	const contractsPromises = contracts.map((c) => runContractData(c));
 	await Promise.all(contractsPromises);
 }
 
-export async function autorunContractsOnce() {
-	const contracts = await loadContractsData(AUTORUN_ONCE_PATH);
+export async function autorunInstallContracts() {
+	const contracts = await loadContractsData(AUTORUN_INSTALL_PATH);
 	const contractsToRun = contracts.filter((c) => !c.path.includes(NO_RUN_PREFIX));
 	const contractsPromises = contractsToRun.map((c) => runContractData(c));
 	await Promise.all(contractsPromises);
