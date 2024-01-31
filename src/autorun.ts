@@ -3,7 +3,7 @@ import fs from 'fs-extra';
 import { Type as T, Static } from '@sinclair/typebox';
 import { Value } from '@sinclair/typebox/value';
 import _ from 'lodash';
-import { readFileContent, readJsonObject, updateJsonObjectFile } from './filesystemUtils.js';
+import { readFileContent, readJsonObject, updateJsonObjectFile } from './fileUtils.js';
 
 //@ts-ignore
 import { Slangroom } from '@slangroom/core';
