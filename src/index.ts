@@ -1,10 +1,5 @@
 import { config } from './cli.js';
-//@ts-ignore
-import { Slangroom } from '@slangroom/core';
-//@ts-ignore
-import { wallet } from '@slangroom/wallet';
-//@ts-ignore
-import { http } from '@slangroom/http';
+import { Slangroom } from './slangroom.js';
 import _ from 'lodash';
 import {
 	App,
@@ -100,7 +95,7 @@ const ncrApp = async () => {
 			res.onAborted(() => {
 				res.writeStatus('500').writeHeader('Content-Type', 'application/json').end('Aborted');
 			});
-			const s = new Slangroom([http, wallet]);
+			const s = Slangroom.getInstance();
 			const contract = `
 Rule unknown ignore
 Given I connect to 'hi_endpoint' and do get and output into 'hi_result'
@@ -192,7 +187,7 @@ const generateRoutes = (app: TemplatedApp) => {
 			return;
 		}
 
-		const s = new Slangroom([http, wallet]);
+		const s = Slangroom.getInstance();
 
 		const execZencodeAndReply = async (res: HttpResponse, req: HttpRequest, data: JSON) => {
 			if (metadata.httpHeaders) {

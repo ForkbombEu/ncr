@@ -1,3 +1,4 @@
 {
-	"autorun": "install"
+    "autorun": "install",
+    "executed": true
 }
