@@ -1,5 +1,5 @@
 import { config } from './cli.js';
-import { Slangroom } from './slangroom.js';
+import { SlangroomManager } from './slangroom.js';
 import _ from 'lodash';
 import {
 	App,
@@ -95,7 +95,7 @@ const ncrApp = async () => {
 			res.onAborted(() => {
 				res.writeStatus('500').writeHeader('Content-Type', 'application/json').end('Aborted');
 			});
-			const s = Slangroom.getInstance();
+			const s = SlangroomManager.getInstance();
 			const contract = `
 Rule unknown ignore
 Given I connect to 'hi_endpoint' and do get and output into 'hi_result'
@@ -187,7 +187,7 @@ const generateRoutes = (app: TemplatedApp) => {
 			return;
 		}
 
-		const s = Slangroom.getInstance();
+		const s = SlangroomManager.getInstance();
 
 		const execZencodeAndReply = async (res: HttpResponse, req: HttpRequest, data: JSON) => {
 			if (metadata.httpHeaders) {

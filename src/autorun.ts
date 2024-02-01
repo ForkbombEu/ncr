@@ -9,7 +9,7 @@ import {
 	readJsonObject,
 	updateJsonObjectFile
 } from './fileUtils.js';
-import { Slangroom } from './slangroom.js';
+import { SlangroomManager } from './slangroom.js';
 
 import { config } from './cli.js';
 const L = config.logger;
@@ -56,7 +56,7 @@ async function loadContractsData(directoryPath: string): Promise<ContractData[]>
 
 async function runContractData({ contract, keys, conf, data, path }: ContractData) {
 	try {
-		const s = Slangroom.getInstance();
+		const s = SlangroomManager.getInstance();
 		const { result } = await s.execute(contract, { keys, data, conf });
 		L.info('Run contract');
 		L.info(path);
