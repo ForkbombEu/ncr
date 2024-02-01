@@ -1,10 +1,5 @@
 import { config } from './cli.js';
-//@ts-ignore
-import { Slangroom } from '@slangroom/core';
-//@ts-ignore
-import { wallet } from '@slangroom/wallet';
-//@ts-ignore
-import { http } from '@slangroom/http';
+import { SlangroomManager } from './slangroom.js';
 import _ from 'lodash';
 import {
 	App,
@@ -29,47 +24,44 @@ import mime from 'mime';
 import path from 'path';
 import fs from 'fs';
 import dotenv from 'dotenv';
-dotenv.config()
-
+import { autorunContracts } from './autorun.js';
+dotenv.config();
 
 const L = config.logger;
 const Dir = Directory.getInstance();
-
 
 const PROM = process.env.PROM == 'true';
 
 const setupProm = async (app: TemplatedApp) => {
 	const client = await import('prom-client');
-	const register = new client.Registry()
+	const register = new client.Registry();
 	register.setDefaultLabels({
 		app: 'ncr'
-	})
-	client.collectDefaultMetrics({ register })
+	});
+	client.collectDefaultMetrics({ register });
 
 	const co2lib = await import('@tgwf/co2');
-	const swd = new co2lib.co2({ model: "swd" })
-
+	const swd = new co2lib.co2({ model: 'swd' });
 
 	const co2_emission = new client.Gauge({
 		name: 'co2_emission',
 		help: 'Emissions for 1GB',
 		collect() {
-			const emissions = swd.perByte(1000000000)
+			const emissions = swd.perByte(1000000000);
 			this.set(emissions);
-		},
+		}
 	});
 
 	register.registerMetric(co2_emission);
 
 	app.get('/metrics', (res, req) => {
-		register.metrics().then(metrics =>
-			res
-				.writeStatus('200 OK')
-				.writeHeader('Content-Type', register.contentType)
-				.end(metrics));
+		register
+			.metrics()
+			.then((metrics) =>
+				res.writeStatus('200 OK').writeHeader('Content-Type', register.contentType).end(metrics)
+			);
 	});
-}
-
+};
 
 const ncrApp = async () => {
 	const app = App()
@@ -103,20 +95,19 @@ const ncrApp = async () => {
 			res.onAborted(() => {
 				res.writeStatus('500').writeHeader('Content-Type', 'application/json').end('Aborted');
 			});
-			const s = new Slangroom([http, wallet]);
+			const s = SlangroomManager.getInstance();
 			const contract = `
 Rule unknown ignore
 Given I connect to 'hi_endpoint' and do get and output into 'hi_result'
 and debug
 Given I have a 'string' named 'result' in 'hi result'
 Then print the 'result'
-`
-			const keys =
-{
-    "hi_endpoint": `http://localhost:${config.port}/sayhi`
-}
+`;
+			const keys = {
+				hi_endpoint: `http://localhost:${config.port}/sayhi`
+			};
 			try {
-				const { result } = await s.execute(contract, {keys});
+				const { result } = await s.execute(contract, { keys });
 				res.cork(() => {
 					res
 						.writeStatus('200 OK')
@@ -125,26 +116,27 @@ Then print the 'result'
 				});
 			} catch (e) {
 				L.error(e);
-				res.cork(() => res.writeStatus('500').writeHeader('Content-Type', 'application/json').end(e.message));
+				res.cork(() =>
+					res.writeStatus('500').writeHeader('Content-Type', 'application/json').end(e.message)
+				);
 			}
 		})
 		.get('/sayhi', (res, _) => {
-			res
-				.writeStatus('200 OK')
-				.writeHeader('Content-Type', 'text/plain')
-				.end("Hi");
-		})
-	
-	if(PROM) {
+			res.writeStatus('200 OK').writeHeader('Content-Type', 'text/plain').end('Hi');
+		});
+
+	if (PROM) {
 		await setupProm(app);
 	}
 	return app;
-}
+};
 
 Dir.ready(async () => {
 	let listen_socket: us_listen_socket;
 
 	const app = await ncrApp();
+
+	await autorunContracts();
 
 	generateRoutes(app);
 
@@ -185,7 +177,6 @@ Dir.ready(async () => {
 	});
 });
 
-
 const generateRoutes = (app: TemplatedApp) => {
 	Dir.files.forEach(async (endpoints) => {
 		const { contract, path, keys, conf, metadata } = endpoints;
@@ -196,17 +187,17 @@ const generateRoutes = (app: TemplatedApp) => {
 			return;
 		}
 
-		const s = new Slangroom([http, wallet]);
+		const s = SlangroomManager.getInstance();
 
 		const execZencodeAndReply = async (res: HttpResponse, req: HttpRequest, data: JSON) => {
-			if(metadata.httpHeaders) {
-				if(data['http_headers'] !== undefined) {
-					throw new Error("Name clash on input key http_headers")
+			if (metadata.httpHeaders) {
+				if (data['http_headers'] !== undefined) {
+					throw new Error('Name clash on input key http_headers');
 				}
-				const httpHeaders = {}
-				req.forEach((k,v) => {
+				const httpHeaders = {};
+				req.forEach((k, v) => {
 					httpHeaders[k] = v;
-				})
+				});
 				data['http_headers'] = httpHeaders;
 			}
 
@@ -218,22 +209,19 @@ const generateRoutes = (app: TemplatedApp) => {
 				res
 					.writeStatus('200 OK')
 					.writeHeader('Content-Type', 'application/json')
-					.writeHeader("Access-Control-Allow-Origin", "*")
+					.writeHeader('Access-Control-Allow-Origin', '*')
 					.end(JSON.stringify(result));
 			});
-		}
+		};
 		app.options(path, (res) => {
 			res.cork(() => {
 				res.onAborted(() => {
 					res.writeStatus('500').end('Aborted');
 				});
 
-				res
-					.writeHeader("Access-Control-Allow-Origin", "*")
-					.writeStatus('200 OK')
-					.end()
+				res.writeHeader('Access-Control-Allow-Origin', '*').writeStatus('200 OK').end();
 			});
-		})
+		});
 
 		app.post(path, (res, req) => {
 			/**
@@ -248,7 +236,7 @@ const generateRoutes = (app: TemplatedApp) => {
 				res.onData(async (d) => {
 					try {
 						const data = handleArrayBuffer(d);
-						execZencodeAndReply(res, req, data)
+						execZencodeAndReply(res, req, data);
 					} catch (e) {
 						L.error(e);
 						res.writeStatus('500').writeHeader('Content-Type', 'application/json').end(e.message);
@@ -278,7 +266,7 @@ const generateRoutes = (app: TemplatedApp) => {
 						data[k] = v;
 					});
 				}
-				execZencodeAndReply(res, req, data)
+				execZencodeAndReply(res, req, data);
 			} catch (e) {
 				L.error(e);
 				res.writeStatus('500').writeHeader('Content-Type', 'application/json').end(e.message);
