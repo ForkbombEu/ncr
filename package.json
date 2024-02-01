@@ -14,6 +14,7 @@
 		"b": "pnpm rollup -c",
 		"p": "pkg .",
 		"sea": "pnpm b && pnpm p",
+		"dev": "nodemon -e ts -w ./src -x pnpm run watch -z ./contracts -p 3000",
 		"watch": "node --loader ts-node/esm src/index.ts",
 		"debug": "nodemon --inspect -e ts -w ./src -x pnpm run watch",
 		"test": "jest"
