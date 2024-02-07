@@ -7,7 +7,7 @@ const res = {
 	port: 0,
 	template: './applet_template.html',
 	zencodeDirectory: './',
-	zenroomVersion: '4.2.2'
+	zenroomVersion: '4.12.0'
 };
 
 describe('some test command', () => {
