@@ -59,7 +59,7 @@ program
 			'specify the version of ZENROOM to interpret the contracts'
 		)
 			.env('ZENROOM_VERSION')
-			.default('4.2.2')
+			.default('4.12.0')
 	)
 	.addOption(
 		new Option('--openapi-path <string>', 'specify where to mount the swagger docs')
