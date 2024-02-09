@@ -163,7 +163,7 @@ export const openapiTemplate = `
 		<script src="https://unpkg.com/swagger-ui-dist@latest/swagger-ui-bundle.js" crossorigin></script>
 		<script>
 			window.onload = async () => {
-        await fetch('/oas.json');
+				await fetch('/oas.json');
 				window.ui = SwaggerUIBundle({
 					url: '/oas.json',
 					dom_id: '#swagger-ui'
