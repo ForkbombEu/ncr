@@ -1,6 +1,6 @@
-import { Command, Option, type OptionValues } from 'commander';
+import { Command, Option } from 'commander';
 import { statSync } from 'node:fs';
-import pino, { type Logger } from 'pino';
+import pino from 'pino';
 import 'dotenv/config';
 import { Config } from './types';
 

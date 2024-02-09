@@ -25,6 +25,7 @@ import path from 'path';
 import fs from 'fs';
 import dotenv from 'dotenv';
 import { autorunContracts } from './autorun.js';
+
 dotenv.config();
 
 const L = config.logger;
@@ -54,7 +55,7 @@ const setupProm = async (app: TemplatedApp) => {
 
 	register.registerMetric(co2_emission);
 
-	app.get('/metrics', (res, req) => {
+	app.get('/metrics', (res) => {
 		register
 			.metrics()
 			.then((metrics) =>
@@ -72,10 +73,10 @@ const ncrApp = async () => {
 				.writeHeader('Content-Type', 'application/json')
 				.end(JSON.stringify(files));
 		})
-		.get(config.openapiPath, (res, req) => {
+		.get(config.openapiPath, (res) => {
 			res.writeStatus('200 OK').writeHeader('Content-Type', 'text/html').end(openapiTemplate);
 		})
-		.get('/oas.json', (res, req) => {
+		.get('/oas.json', (res) => {
 			Dir.files.map(async (endpoints) => {
 				const { path } = endpoints;
 				if (definition.paths) {
@@ -91,7 +92,7 @@ const ncrApp = async () => {
 				.writeHeader('Content-Type', 'application/json')
 				.end(JSON.stringify(definition));
 		})
-		.get('/health', async (res, _) => {
+		.get('/health', async (res) => {
 			res.onAborted(() => {
 				res.writeStatus('500').writeHeader('Content-Type', 'application/json').end('Aborted');
 			});
@@ -104,7 +105,7 @@ Given I have a 'string' named 'result' in 'hi result'
 Then print the 'result'
 `;
 			const keys = {
-				hi_endpoint: `http://localhost:${config.port}/sayhi`
+				hi_endpoint: `http://${config.hostname}:${config.port}/sayhi`
 			};
 			try {
 				const { result } = await s.execute(contract, { keys });
@@ -117,11 +118,14 @@ Then print the 'result'
 			} catch (e) {
 				L.error(e);
 				res.cork(() =>
-					res.writeStatus('500').writeHeader('Content-Type', 'application/json').end(e.message)
+					res
+						.writeStatus('500')
+						.writeHeader('Content-Type', 'application/json')
+						.end(e instanceof Error ? e.message : 'Unknonw error 123')
 				);
 			}
 		})
-		.get('/sayhi', (res, _) => {
+		.get('/sayhi', (res) => {
 			res.writeStatus('200 OK').writeHeader('Content-Type', 'text/plain').end('Hi');
 		});
 
@@ -191,14 +195,14 @@ const generateRoutes = (app: TemplatedApp) => {
 
 		const execZencodeAndReply = async (res: HttpResponse, req: HttpRequest, data: JSON) => {
 			if (metadata.httpHeaders) {
-				if (data['http_headers'] !== undefined) {
+				if (Object.hasOwn(data, 'http_headers')) {
 					throw new Error('Name clash on input key http_headers');
 				}
-				const httpHeaders = {};
+				const httpHeaders: { [key: string]: string } = {};
 				req.forEach((k, v) => {
 					httpHeaders[k] = v;
 				});
-				data['http_headers'] = httpHeaders;
+				Object.assign(data, { http_headers: httpHeaders });
 			}
 
 			validateData(schema, data);
@@ -239,12 +243,18 @@ const generateRoutes = (app: TemplatedApp) => {
 						execZencodeAndReply(res, req, data);
 					} catch (e) {
 						L.error(e);
-						res.writeStatus('500').writeHeader('Content-Type', 'application/json').end(e.message);
+						res
+							.writeStatus('500')
+							.writeHeader('Content-Type', 'application/json')
+							.end(e instanceof Error ? e.message : 'Unknonw error 243');
 					}
 				});
 			} catch (e) {
 				L.error(e);
-				res.writeStatus('500').writeHeader('Content-Type', 'application/json').end(e.message);
+				res
+					.writeStatus('500')
+					.writeHeader('Content-Type', 'application/json')
+					.end(e instanceof Error ? e.message : 'Unknonw error 248');
 			}
 		});
 
@@ -258,26 +268,29 @@ const generateRoutes = (app: TemplatedApp) => {
 			});
 
 			try {
-				const data: Record<string, unknown> = {};
+				const data = <JSON>{};
 				const q = req.getQuery();
 				if (q) {
 					q.split('&').map((r) => {
 						const [k, v] = r.split('=');
-						data[k] = v;
+						Object.assign(data, { [k]: v });
 					});
 				}
 				execZencodeAndReply(res, req, data);
 			} catch (e) {
 				L.error(e);
-				res.writeStatus('500').writeHeader('Content-Type', 'application/json').end(e.message);
+				res
+					.writeStatus('500')
+					.writeHeader('Content-Type', 'application/json')
+					.end(e instanceof Error ? e.message : 'Unknonw error 273');
 			}
 		});
 
-		app.get(path + '/raw', (res, req) => {
+		app.get(path + '/raw', (res) => {
 			res.writeStatus('200 OK').writeHeader('Content-Type', 'text/plain').end(contract);
 		});
 
-		app.get(path + '/app', async (res, req) => {
+		app.get(path + '/app', async (res) => {
 			const result = _.template(proctoroom)({
 				contract: contract,
 				schema: JSON.stringify(schema),

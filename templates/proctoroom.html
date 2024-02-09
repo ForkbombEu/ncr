@@ -210,11 +210,15 @@
 							method: 'POST',
 							headers: { 'Content-Type': 'application/json' },
 							body: JSON.stringify(data)
-						}).then(async (result) => {
-							const o = await result.json();
-							$('#response').html(highlight(JSON.stringify(o, null, 3)));
-							console.log(JSON.stringify(result, null, 4));
-						});
+						})
+							.then(async (result) => {
+								const o = await result.json();
+								$('#response').html(highlight(JSON.stringify(o, null, 3)));
+								console.log(JSON.stringify(result, null, 4));
+							})
+							.catch((e) => {
+								$('#error').html(e);
+							});
 						$('#error').html('');
 					} catch (e) {
 						$('#error').html(e);
