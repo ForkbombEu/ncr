@@ -140,7 +140,7 @@ export const openapiTemplate = `
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="description" content="SwaggerUI" />
 		<title>noˑcodeˑroom documentation</title>
-		<link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@5.9.4/swagger-ui.css" />
+		<link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@latest/swagger-ui.css" />
 		<style>
 			.swagger-ui h1:before {
 				content: '# ';
@@ -160,9 +160,10 @@ export const openapiTemplate = `
 	</head>
 	<body>
 		<div id="swagger-ui"></div>
-		<script src="https://unpkg.com/swagger-ui-dist@5.9.4/swagger-ui-bundle.js" crossorigin></script>
+		<script src="https://unpkg.com/swagger-ui-dist@latest/swagger-ui-bundle.js" crossorigin></script>
 		<script>
-			window.onload = () => {
+			window.onload = async () => {
+				await fetch('/oas.json');
 				window.ui = SwaggerUIBundle({
 					url: '/oas.json',
 					dom_id: '#swagger-ui'
