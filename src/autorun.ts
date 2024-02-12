@@ -40,11 +40,16 @@ export async function autorunInstallContracts() {
 /* Definitions */
 
 async function getContractPathsInDirectory(directoryPath: string): Promise<string[]> {
-	const directory = await fs.readdir(directoryPath);
-	return Array.from(directory.entries())
-		.map((entry) => entry[1])
-		.filter((name) => isZencodeFile(name))
-		.map((name) => join(directoryPath, name));
+	try {
+		const directory = await fs.readdir(directoryPath);
+		return Array.from(directory.entries())
+			.map((entry) => entry[1])
+			.filter((name) => isZencodeFile(name))
+			.map((name) => join(directoryPath, name));
+	} catch (e) {
+		L.error(e);
+		return [];
+	}
 }
 
 async function loadContractsData(directoryPath: string): Promise<ContractData[]> {
