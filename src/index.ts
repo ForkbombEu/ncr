@@ -190,28 +190,38 @@ const generateRoutes = (app: TemplatedApp) => {
 		const s = SlangroomManager.getInstance();
 
 		const execZencodeAndReply = async (res: HttpResponse, req: HttpRequest, data: JSON) => {
-			if (metadata.httpHeaders) {
-				if (data['http_headers'] !== undefined) {
-					throw new Error('Name clash on input key http_headers');
-				}
-				const httpHeaders = {};
-				req.forEach((k, v) => {
-					httpHeaders[k] = v;
-				});
-				data['http_headers'] = httpHeaders;
-			}
-
-			validateData(schema, data);
-
-			const { result } = await s.execute(contract, { keys, data, conf });
-
-			res.cork(() => {
-				res
-					.writeStatus('200 OK')
-					.writeHeader('Content-Type', 'application/json')
-					.writeHeader('Access-Control-Allow-Origin', '*')
-					.end(JSON.stringify(result));
+			res.onAborted(() => {
+				res.writeStatus('500').writeHeader('Content-Type', 'application/json').end('Aborted');
 			});
+			try {
+				if (metadata.httpHeaders) {
+					if (data['http_headers'] !== undefined) {
+						throw new Error('Name clash on input key http_headers');
+					}
+					const httpHeaders = {};
+					req.forEach((k, v) => {
+						httpHeaders[k] = v;
+					});
+					data['http_headers'] = httpHeaders;
+				}
+
+				validateData(schema, data);
+
+				const { result } = await s.execute(contract, { keys, data, conf });
+
+				res.cork(() => {
+					res
+						.writeStatus('200 OK')
+						.writeHeader('Content-Type', 'application/json')
+						.writeHeader('Access-Control-Allow-Origin', '*')
+						.end(JSON.stringify(result));
+				});
+			} catch (e) {
+				L.error(e);
+				res.cork(() =>
+					res.writeStatus('500').writeHeader('Content-Type', 'application/json').end(e.message)
+				);
+			}
 		};
 		app.options(path, (res) => {
 			res.cork(() => {
