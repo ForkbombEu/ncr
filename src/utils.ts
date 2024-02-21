@@ -34,17 +34,17 @@ export async function getSchemaFromIntrospection(
 				Object.values(codec).map(({ name, zentype, encoding }) => {
 					let t;
 					switch (zentype) {
-						case "d":
+						case 'd':
 							t = Type.Record(Type.String(), encodingToType[encoding]);
 							break;
-						case "a":
+						case 'a':
 							t = Type.Array(encodingToType[encoding]);
 							break;
 						default:
 							t = encodingToType[encoding];
 							break;
 					}
-				return [name, t];
+					return [name, t];
 				})
 			)
 		);
@@ -75,7 +75,8 @@ export function removeKeysFromSchema(schema: JSONSchema, keys: JSON): JSONSchema
 
 export const validateData = (schema: JSONSchema, data: JSON | Record<string, unknown>) => {
 	const ajv = new Ajv({
-		strict: false
+		strict: false,
+		meta: false
 	});
 	const validate = ajv.compile(schema);
 	if (!validate(data))
@@ -118,6 +119,6 @@ export function validateJSONSchema(schema: JSON): void {
  */
 export const newMetadata = (configRaw: JSON): Metadata => {
 	return {
-		httpHeaders: configRaw['http_headers'] || false,
+		httpHeaders: configRaw['http_headers'] || false
 	};
-}
+};
