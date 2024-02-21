@@ -26,6 +26,9 @@ dependencies:
   ajv:
     specifier: ^8.12.0
     version: 8.12.0
+  ajv-formats:
+    specifier: ^2.1.1
+    version: 2.1.1(ajv@8.12.0)
   commander:
     specifier: ^11.1.0
     version: 11.1.0
@@ -1939,6 +1942,17 @@ packages:
       clean-stack: 5.2.0
       indent-string: 5.0.0
     dev: true
+
+  /ajv-formats@2.1.1(ajv@8.12.0):
+    resolution: {integrity: sha512-Wx0Kx52hxE7C18hkMEggYlEifqWZtYaRgouJor+WMdPnQyEK13vgEWyVNup7SoeeoLMsr4kf5h6dOW11I15MUA==}
+    peerDependencies:
+      ajv: ^8.0.0
+    peerDependenciesMeta:
+      ajv:
+        optional: true
+    dependencies:
+      ajv: 8.12.0
+    dev: false
 
   /ajv@6.12.6:
     resolution: {integrity: sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g==}
