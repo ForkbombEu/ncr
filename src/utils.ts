@@ -4,6 +4,7 @@ import { Codec, Endpoints, JSONSchema, Metadata } from './types';
 import _ from 'lodash';
 import Ajv, { type ValidateFunction } from 'ajv';
 import { config } from './cli.js';
+import addFormats from 'ajv-formats';
 
 const L = config.logger;
 
@@ -74,10 +75,7 @@ export function removeKeysFromSchema(schema: JSONSchema, keys: JSON): JSONSchema
 }
 
 export const validateData = (schema: JSONSchema, data: JSON | Record<string, unknown>) => {
-	const ajv = new Ajv({
-		strict: false,
-		meta: false
-	});
+	const ajv = createAjv();
 	const validate = ajv.compile(schema);
 	if (!validate(data))
 		throw new Error(`Invalid data provided:\n${formatAjvErrors(validate.errors)}`);
@@ -103,7 +101,7 @@ export const handleArrayBuffer = (message: ArrayBuffer | string) => {
 
 export function validateJSONSchema(schema: JSON): void {
 	try {
-		const ajv = new Ajv({ strict: false });
+		const ajv = createAjv();
 		ajv.compile(schema);
 	} catch (e) {
 		throw e;
@@ -122,3 +120,9 @@ export const newMetadata = (configRaw: JSON): Metadata => {
 		httpHeaders: configRaw['http_headers'] || false
 	};
 };
+
+function createAjv(): Ajv {
+	const ajv = new Ajv({ strict: false, validateSchema: false });
+	addFormats.default(ajv);
+	return ajv;
+}
