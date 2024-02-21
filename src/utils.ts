@@ -78,7 +78,7 @@ export const validateData = (schema: JSONSchema, data: JSON | Record<string, unk
 	const ajv = createAjv();
 	const validate = ajv.compile(schema);
 	if (!validate(data))
-		throw new Error(`Invalid data provided:\n${formatAjvErrors(validate.errors)}`);
+		throw new Error(formatAjvErrors(validate.errors));
 	return data;
 };
 
