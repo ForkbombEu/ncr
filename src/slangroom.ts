@@ -5,10 +5,16 @@ import { Slangroom } from '@slangroom/core';
 import { wallet } from '@slangroom/wallet';
 //@ts-ignore
 import { http } from '@slangroom/http';
+//@ts-ignore
+import { fs } from '@slangroom/fs';
+//@ts-ignore
+import { zencode } from '@slangroom/zencode';
+//@ts-ignore
+import { git } from '@slangroom/git';
 
 //
 
-const SLANGROOM_PLUGINS = [wallet, http];
+const SLANGROOM_PLUGINS = [zencode, fs, wallet, http, git];
 
 export class SlangroomManager {
 	private static instance: SlangroomType;
