@@ -11,10 +11,12 @@ import { fs } from '@slangroom/fs';
 import { zencode } from '@slangroom/zencode';
 //@ts-ignore
 import { git } from '@slangroom/git';
+//@ts-ignore
+import { oauth } from '@slangroom/oauth';
 
 //
 
-const SLANGROOM_PLUGINS = [zencode, fs, wallet, http, git];
+const SLANGROOM_PLUGINS = [zencode, fs, wallet, http, git, oauth];
 
 export class SlangroomManager {
 	private static instance: SlangroomType;
