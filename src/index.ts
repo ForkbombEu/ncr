@@ -243,18 +243,36 @@ const generateRoutes = (app: TemplatedApp) => {
 			});
 
 			try {
-				res.onData(async (d) => {
-					try {
-						const data = handleArrayBuffer(d);
-						execZencodeAndReply(res, req, data);
-					} catch (e) {
-						L.error(e);
-						res.writeStatus('500').writeHeader('Content-Type', 'application/json').end(e.message);
+				let buffer: Buffer
+				res.onData((d, isLast) => {
+					let chunk = Buffer.from(d)
+					if (isLast) {
+						let data;
+						if (buffer) {
+							try {
+								data = JSON.parse(Buffer.concat([buffer, chunk]));
+							} catch (e) {
+								L.error(e)
+								res.writeStatus('500').writeHeader('Content-Type', 'application/json').end(e.message);
+							}
+							execZencodeAndReply(res, req, data);
+						} else {
+							try {
+								data = JSON.parse(chunk)
+							} catch (e) {
+								L.error(e)
+								res.writeStatus('500').writeHeader('Content-Type', 'application/json').end(e.message);
+							}
+							execZencodeAndReply(res, req, data);
+						}
+					} else {
+						if (buffer) {
+							buffer = Buffer.concat([buffer, chunk])
+						} else {
+							buffer = Buffer.concat([chunk])
+						}
 					}
-				});
-			} catch (e) {
-				L.error(e);
-				res.writeStatus('500').writeHeader('Content-Type', 'application/json').end(e.message);
+				})
 			}
 		});
 
