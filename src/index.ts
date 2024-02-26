@@ -189,7 +189,11 @@ const generateRoutes = (app: TemplatedApp) => {
 
 		const s = SlangroomManager.getInstance();
 
-		const execZencodeAndReply = async (res: HttpResponse, req: HttpRequest, data: JSON) => {
+		const execZencodeAndReply = async (
+			res: HttpResponse,
+			req: HttpRequest,
+			data: JSON | Record<string, unknown>
+		) => {
 			res.onAborted(() => {
 				res.writeStatus('500').writeHeader('Content-Type', 'application/json').end('Aborted');
 			});
@@ -219,7 +223,10 @@ const generateRoutes = (app: TemplatedApp) => {
 			} catch (e) {
 				L.error(e);
 				res.cork(() =>
-					res.writeStatus('500').writeHeader('Content-Type', 'application/json').end(e.message)
+					res
+						.writeStatus('500')
+						.writeHeader('Content-Type', 'application/json')
+						.end((e as Error).message)
 				);
 			}
 		};
@@ -242,38 +249,37 @@ const generateRoutes = (app: TemplatedApp) => {
 				res.writeStatus('500').writeHeader('Content-Type', 'application/json').end('Aborted');
 			});
 
-			try {
-				let buffer: Buffer
-				res.onData((d, isLast) => {
-					let chunk = Buffer.from(d)
+			let buffer: Buffer;
+			res.onData((d, isLast) => {
+				try {
+					let chunk = Buffer.from(d);
 					if (isLast) {
 						let data;
-						if (buffer) {
-							try {
-								data = JSON.parse(Buffer.concat([buffer, chunk]));
-							} catch (e) {
-								L.error(e)
-								res.writeStatus('500').writeHeader('Content-Type', 'application/json').end(e.message);
-							}
-							execZencodeAndReply(res, req, data);
-						} else {
-							try {
-								data = JSON.parse(chunk)
-							} catch (e) {
-								L.error(e)
-								res.writeStatus('500').writeHeader('Content-Type', 'application/json').end(e.message);
-							}
-							execZencodeAndReply(res, req, data);
+						try {
+							data = JSON.parse(buffer ? Buffer.concat([buffer, chunk]) : chunk);
+						} catch (e) {
+							L.error(e);
+							res
+								.writeStatus('500')
+								.writeHeader('Content-Type', 'application/json')
+								.end((e as Error).message);
 						}
+						execZencodeAndReply(res, req, data);
 					} else {
 						if (buffer) {
-							buffer = Buffer.concat([buffer, chunk])
+							buffer = Buffer.concat([buffer, chunk]);
 						} else {
-							buffer = Buffer.concat([chunk])
+							buffer = Buffer.concat([chunk]);
 						}
 					}
-				})
-			}
+				} catch (e) {
+					L.error(e);
+					res
+						.writeStatus('500')
+						.writeHeader('Content-Type', 'application/json')
+						.end((e as Error).message);
+				}
+			});
 		});
 
 		app.get(path, async (res, req) => {
@@ -297,7 +303,10 @@ const generateRoutes = (app: TemplatedApp) => {
 				execZencodeAndReply(res, req, data);
 			} catch (e) {
 				L.error(e);
-				res.writeStatus('500').writeHeader('Content-Type', 'application/json').end(e.message);
+				res
+					.writeStatus('500')
+					.writeHeader('Content-Type', 'application/json')
+					.end((e as Error).message);
 			}
 		});
 
