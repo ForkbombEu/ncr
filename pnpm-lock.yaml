@@ -21,7 +21,7 @@ dependencies:
     specifier: ^1.14.1
     version: 1.14.1(zenroom@4.12.2)
   '@slangroom/oauth':
-    specifier: ^1.14.1
+    specifier: ^1.16.0
     version: 1.16.0(zenroom@4.12.2)
   '@slangroom/wallet':
     specifier: ^1.14.1

@@ -43,7 +43,7 @@
 		"@slangroom/fs": "^1.14.1",
 		"@slangroom/git": "^1.14.1",
 		"@slangroom/http": "^1.14.1",
-		"@slangroom/oauth": "^1.14.1",
+		"@slangroom/oauth": "^1.16.0",
 		"@slangroom/wallet": "^1.14.1",
 		"@slangroom/zencode": "^1.18.0",
 		"@tgwf/co2": "^0.14.3",
