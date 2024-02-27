@@ -1,0 +1,4 @@
+Given I send path 'json' and read file content and output into 'json_content'
+Given I have a 'string dictionary' named 'json_content'
+
+Then print data
