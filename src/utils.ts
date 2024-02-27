@@ -1,10 +1,10 @@
-import { introspect } from 'zenroom';
 import { Type } from '@sinclair/typebox';
-import { Codec, Endpoints, JSONSchema, Metadata } from './types';
-import _ from 'lodash';
 import Ajv, { type ValidateFunction } from 'ajv';
-import { config } from './cli.js';
 import addFormats from 'ajv-formats';
+import _ from 'lodash';
+import { introspect } from 'zenroom';
+import { config } from './cli.js';
+import { Codec, Endpoints, JSONSchema, Metadata } from './types';
 
 const L = config.logger;
 
@@ -76,9 +76,13 @@ export function removeKeysFromSchema(schema: JSONSchema, keys: JSON): JSONSchema
 
 export const validateData = (schema: JSONSchema, data: JSON | Record<string, unknown>) => {
 	const ajv = createAjv();
+	try {
 	const validate = ajv.compile(schema);
-	if (!validate(data))
-		throw new Error(formatAjvErrors(validate.errors));
+		if (!validate(data)) throw new Error(formatAjvErrors(validate.errors));
+	} catch (e) {
+		console.log("🌵");
+		throw e;
+	}
 	return data;
 };
 

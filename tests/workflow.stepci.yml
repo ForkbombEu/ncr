@@ -1,4 +1,4 @@
-version: "1.1"
+version: '1.1'
 name: Status Check
 env:
   host: localhost:3000
@@ -12,7 +12,7 @@ tests:
           check:
             status: 200
             json:
-              output: 
+              output:
                 - hello
 
   notfound:
@@ -73,16 +73,16 @@ tests:
             Content-Type: application/json
           json: {}
           check:
-            status: 500
+            status: 422
             sha256: 7fbee1934646ca0ea2a64dbec1dfbfcf1e23d8c8016bda6914a120fad55b1721
             json:
               - eq:
-                - instancePath: ""
-                  schemaPath: "#/required"
-                  keyword: required
-                  params:
-                    missingProperty: love
-                  message: must have required property 'love'
+                  - instancePath: ''
+                    schemaPath: '#/required'
+                    keyword: required
+                    params:
+                      missingProperty: love
+                    message: must have required property 'love'
 
       - name: introspection invalid data
         http:
@@ -93,16 +93,16 @@ tests:
           json:
             bad: 1
           check:
-            status: 500
+            status: 422
             sha256: 7fbee1934646ca0ea2a64dbec1dfbfcf1e23d8c8016bda6914a120fad55b1721
             json:
               - eq:
-                - instancePath: ""
-                  schemaPath: "#/required"
-                  keyword: required
-                  params:
-                    missingProperty: love
-                  message: must have required property 'love'
+                  - instancePath: ''
+                    schemaPath: '#/required'
+                    keyword: required
+                    params:
+                      missingProperty: love
+                    message: must have required property 'love'
 
       - name: introspection valid data
         http:
@@ -115,7 +115,7 @@ tests:
           check:
             status: 200
             json:
-                love: puria
+              love: puria
 
   json-schemas:
     steps:
@@ -126,10 +126,10 @@ tests:
           headers:
             Content-Type: application/json
           json:
-            love: 
+            love:
               puria: 'puria'
           check:
-            status: 500
+            status: 422 
 
       - name: json-schema valid but wrong data
         http:
@@ -140,16 +140,15 @@ tests:
           json:
             love: 'puria'
           check:
-            status: 500
+            status: 422
             json:
               - eq:
-                - instancePath: ""
-                  schemaPath: "#/required"
-                  keyword: required
-                  params:
-                    missingProperty: male
-                  message: must have required property 'male'
-
+                  - instancePath: ''
+                    schemaPath: '#/required'
+                    keyword: required
+                    params:
+                      missingProperty: male
+                    message: must have required property 'male'
 
       - name: json-schema valid data
         http:
@@ -164,24 +163,24 @@ tests:
             status: 500
             json:
               - eq:
-                - "ZENROOM JSON LOG START"
-                - " .  Release version: v4.12.1"
-                - " .  Build commit hash: 0fc4b90c"
-                - " .  Memory manager: mimalloc"
-                - " .  ECDH curve is SECP256K1"
-                - " .  ECP curve is BLS381"
-                - " .  Rule unknown ignore"
-                - "[W] Zencode written for an older version: 4.12.0"
-                - " .  Rule check version 4.12.0"
-                - 'J64 HEAP: eyJDQUNIRSI6W10sIkNPREVDIjpbXSwiR0lWRU5fZGF0YSI6eyJtYWxlIjoicHVyaWEiLCJzb2xlIjoicHVyaWEifSwiVEhFTiI6W10sIldIRU4iOltdfQ=='
-                - 'J64 TRACE: WyIrMyAgR2l2ZW4gSSBoYXZlIGEgJ3N0cmluZyBkaWN0aW9uYXJ5JyBuYW1lZCAnbG92ZSciLCJbIV0gRXJyb3IgYXQgWmVuY29kZSBsaW5lIDMiLCJbIV0gL3plbmNvZGVfZ2l2ZW4ubHVhOjMzODogQ2Fubm90IGZpbmQgJ2xvdmUnIGFueXdoZXJlIChudWxsIHZhbHVlPykiXQ=='
-                - "[!] Zencode runtime error"
-                - "[!] /zencode.lua:646: Zencode line 3: Given I have a 'string dictionary' named
-                  'love'"
-                - "[!] Execution aborted with errors."
-                - "[*] Zenroom teardown."
-                - " .  Memory used: 399 KB"
-                - "ZENROOM JSON LOG END"
+                  - 'ZENROOM JSON LOG START'
+                  - ' .  Release version: v4.12.1'
+                  - ' .  Build commit hash: 0fc4b90c'
+                  - ' .  Memory manager: mimalloc'
+                  - ' .  ECDH curve is SECP256K1'
+                  - ' .  ECP curve is BLS381'
+                  - ' .  Rule unknown ignore'
+                  - '[W] Zencode written for an older version: 4.12.0'
+                  - ' .  Rule check version 4.12.0'
+                  - 'J64 HEAP: eyJDQUNIRSI6W10sIkNPREVDIjpbXSwiR0lWRU5fZGF0YSI6eyJtYWxlIjoicHVyaWEiLCJzb2xlIjoicHVyaWEifSwiVEhFTiI6W10sIldIRU4iOltdfQ=='
+                  - 'J64 TRACE: WyIrMyAgR2l2ZW4gSSBoYXZlIGEgJ3N0cmluZyBkaWN0aW9uYXJ5JyBuYW1lZCAnbG92ZSciLCJbIV0gRXJyb3IgYXQgWmVuY29kZSBsaW5lIDMiLCJbIV0gL3plbmNvZGVfZ2l2ZW4ubHVhOjMzODogQ2Fubm90IGZpbmQgJ2xvdmUnIGFueXdoZXJlIChudWxsIHZhbHVlPykiXQ=='
+                  - '[!] Zencode runtime error'
+                  - "[!] /zencode.lua:646: Zencode line 3: Given I have a 'string dictionary' named
+                    'love'"
+                  - '[!] Execution aborted with errors.'
+                  - '[*] Zenroom teardown.'
+                  - ' .  Memory used: 399 KB'
+                  - 'ZENROOM JSON LOG END'
 
   slangroom_fs:
     steps:
@@ -192,7 +191,7 @@ tests:
           headers:
             Content-Type: application/json
           json:
-            love: 
+            love:
               puria: 'puria'
           check:
             status: 500
