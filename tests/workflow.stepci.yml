@@ -1,0 +1,209 @@
+version: "1.1"
+name: Status Check
+env:
+  host: localhost:3000
+tests:
+  hello:
+    steps:
+      - name: GET request
+        http:
+          url: http://${{env.host}}/hello
+          method: GET
+          check:
+            status: 200
+            json:
+              output: 
+                - hello
+
+  notfound:
+    steps:
+      - name: GET request
+        http:
+          url: http://${{env.host}}/notfound
+          method: GET
+          check:
+            status: 404
+            body: <h1>File Not Found</h1><hr><i>uWebSockets/20 Server</i>
+
+  broken:
+    steps:
+      - name: GET request
+        http:
+          url: http://${{env.host}}
+          method: GET
+          check:
+            status: /^20/
+      - name: GET /broken
+        http:
+          url: http://${{env.host}}/broken
+          method: GET
+          check:
+            status: 500
+            sha256: 39cc1a02466e04790a69cc902bf13095b3058cb6b4d77937adf38e85a19cfe16
+
+      - name: POST /broken no body
+        http:
+          url: http://${{env.host}}/broken
+          method: POST
+          headers:
+            Content-Type: application/json
+          json: {}
+          check:
+            status: 500
+            sha256: 39cc1a02466e04790a69cc902bf13095b3058cb6b4d77937adf38e85a19cfe16
+
+      - name: POST /broken no body
+        http:
+          url: http://${{env.host}}/broken
+          method: POST
+          headers:
+            Content-Type: application/json
+          json:
+          check:
+            status: 500
+            body: Unexpected end of JSON input
+
+  introspection-schema-validation:
+    steps:
+      - name: introspection no data
+        http:
+          url: http://${{env.host}}/valid-schema
+          method: POST
+          headers:
+            Content-Type: application/json
+          json: {}
+          check:
+            status: 500
+            sha256: 7fbee1934646ca0ea2a64dbec1dfbfcf1e23d8c8016bda6914a120fad55b1721
+            json:
+              - eq:
+                - instancePath: ""
+                  schemaPath: "#/required"
+                  keyword: required
+                  params:
+                    missingProperty: love
+                  message: must have required property 'love'
+
+      - name: introspection invalid data
+        http:
+          url: http://${{env.host}}/valid-schema
+          method: POST
+          headers:
+            Content-Type: application/json
+          json:
+            bad: 1
+          check:
+            status: 500
+            sha256: 7fbee1934646ca0ea2a64dbec1dfbfcf1e23d8c8016bda6914a120fad55b1721
+            json:
+              - eq:
+                - instancePath: ""
+                  schemaPath: "#/required"
+                  keyword: required
+                  params:
+                    missingProperty: love
+                  message: must have required property 'love'
+
+      - name: introspection valid data
+        http:
+          url: http://${{env.host}}/valid-schema
+          method: POST
+          headers:
+            Content-Type: application/json
+          json:
+            love: 'puria'
+          check:
+            status: 200
+            json:
+                love: puria
+
+  json-schemas:
+    steps:
+      - name: json-schema invalid data
+        http:
+          url: http://${{env.host}}/brokenschema
+          method: POST
+          headers:
+            Content-Type: application/json
+          json:
+            love: 
+              puria: 'puria'
+          check:
+            status: 500
+
+      - name: json-schema valid but wrong data
+        http:
+          url: http://${{env.host}}/brokenschema
+          method: POST
+          headers:
+            Content-Type: application/json
+          json:
+            love: 'puria'
+          check:
+            status: 500
+            json:
+              - eq:
+                - instancePath: ""
+                  schemaPath: "#/required"
+                  keyword: required
+                  params:
+                    missingProperty: male
+                  message: must have required property 'male'
+
+
+      - name: json-schema valid data
+        http:
+          url: http://${{env.host}}/brokenschema
+          method: POST
+          headers:
+            Content-Type: application/json
+          json:
+            male: 'puria'
+            sole: 'puria'
+          check:
+            status: 500
+            json:
+              - eq:
+                - "ZENROOM JSON LOG START"
+                - " .  Release version: v4.12.1"
+                - " .  Build commit hash: 0fc4b90c"
+                - " .  Memory manager: mimalloc"
+                - " .  ECDH curve is SECP256K1"
+                - " .  ECP curve is BLS381"
+                - " .  Rule unknown ignore"
+                - "[W] Zencode written for an older version: 4.12.0"
+                - " .  Rule check version 4.12.0"
+                - 'J64 HEAP: eyJDQUNIRSI6W10sIkNPREVDIjpbXSwiR0lWRU5fZGF0YSI6eyJtYWxlIjoicHVyaWEiLCJzb2xlIjoicHVyaWEifSwiVEhFTiI6W10sIldIRU4iOltdfQ=='
+                - 'J64 TRACE: WyIrMyAgR2l2ZW4gSSBoYXZlIGEgJ3N0cmluZyBkaWN0aW9uYXJ5JyBuYW1lZCAnbG92ZSciLCJbIV0gRXJyb3IgYXQgWmVuY29kZSBsaW5lIDMiLCJbIV0gL3plbmNvZGVfZ2l2ZW4ubHVhOjMzODogQ2Fubm90IGZpbmQgJ2xvdmUnIGFueXdoZXJlIChudWxsIHZhbHVlPykiXQ=='
+                - "[!] Zencode runtime error"
+                - "[!] /zencode.lua:646: Zencode line 3: Given I have a 'string dictionary' named
+                  'love'"
+                - "[!] Execution aborted with errors."
+                - "[*] Zenroom teardown."
+                - " .  Memory used: 399 KB"
+                - "ZENROOM JSON LOG END"
+
+  slangroom_fs:
+    steps:
+      - name: slangroom invalid data
+        http:
+          url: http://${{env.host}}/chain
+          method: POST
+          headers:
+            Content-Type: application/json
+          json:
+            love: 
+              puria: 'puria'
+          check:
+            status: 500
+
+      - name: slangroom valid but ENV VAR not set
+        http:
+          url: http://${{env.host}}/chain
+          method: POST
+          headers:
+            Content-Type: application/json
+          json: {}
+          check:
+            status: 500
+            body: $FILES_DIR must be provided
