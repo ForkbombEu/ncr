@@ -1,6 +1,6 @@
 {
 	"name": "ncr",
-	"version": "0.0.0",
+	"version": "1.15.0",
 	"description": "No code REST API server based on zencode natural language smart contracts",
 	"repository": "https://github.com/forkbombeu/ncr",
 	"author": {
@@ -68,6 +68,7 @@
 		"@rollup/plugin-typescript": "^11.1.6",
 		"@semantic-release/changelog": "^6.0.3",
 		"@semantic-release/commit-analyzer": "^11.1.0",
+		"@semantic-release/git": "^10.0.1",
 		"@semantic-release/release-notes-generator": "^12.1.0",
 		"@sinclair/typebox": "^0.32.14",
 		"@swc/core": "^1.4.2",

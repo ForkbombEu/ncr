@@ -3,7 +3,7 @@
  * https://jestjs.io/docs/configuration
  */
 
-import type {Config} from 'jest';
+import type { Config } from 'jest';
 
 const config: Config = {
   // All imported modules in your tests should be mocked automatically
@@ -67,7 +67,13 @@ const config: Config = {
   // globalTeardown: undefined,
 
   // A set of global variables that need to be available in all test environments
-  // globals: {},
+  // globals: {
+  //   'ts-jest': {
+  //     tsconfig: {
+  //       rootDir: '.'
+  //     }
+  //   },
+  // },
 
   // The maximum amount of workers used to run your tests. Can be specified as % or a number. E.g. maxWorkers: 10% will use 10% of your CPU amount + 1 as the maximum worker number. maxWorkers: 2 will use a maximum of 2 workers.
   // maxWorkers: "50%",
@@ -173,7 +179,14 @@ const config: Config = {
 
   // This option allows use of a custom test runner
   // testRunner: "jest-circus/runner",
-
+  transform: {
+    '^.+\\.tsx?$': [
+      'ts-jest',
+      {
+        isolatedModules: true,
+      },
+    ],
+  },
   // A map from regular expressions to paths to transformers
   // transform: undefined,
 
