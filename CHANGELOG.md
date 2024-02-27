@@ -1,3 +1,11 @@
+## [1.15.1](https://github.com/forkbombeu/ncr/compare/v1.15.0...v1.15.1) (2024-02-27)
+
+
+### Bug Fixes
+
+* tests with new zenroom version up ([706106f](https://github.com/forkbombeu/ncr/commit/706106fb57bb8485a3e2ef3869ff54da574f6afd))
+* update deps @slangroom/zencode ([#63](https://github.com/forkbombeu/ncr/issues/63)) ([4329a84](https://github.com/forkbombeu/ncr/commit/4329a84c4ec47473b9c159662d91938fc6bca9a3))
+
 # [1.15.0](https://github.com/forkbombeu/ncr/compare/v1.14.2...v1.15.0) (2024-02-27)
 
 
