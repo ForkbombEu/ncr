@@ -18,7 +18,7 @@
 		"watch": "node --loader ts-node/esm src/index.ts",
 		"test": "jest",
 		"start": "node --loader ts-node/esm src/index.ts -z ./tests/fixtures -p 3000",
-		"e2e": "start-server-and-test http-get://0.0.0.0:3000 'stepci run ./tests/workflow.stepci.yml'"
+		"e2e": "start-server-and-test http-get://0.0.0.0:3000 'pnpm stepci run ./tests/workflow.stepci.yml'"
 	},
 	"engines": {
 		"node": ">=20.0.0 <22.0.0"
@@ -70,7 +70,6 @@
 		"@semantic-release/commit-analyzer": "^11.1.0",
 		"@semantic-release/release-notes-generator": "^12.1.0",
 		"@sinclair/typebox": "^0.32.14",
-		"@stepci/runner": "^2.0.2",
 		"@swc/core": "^1.4.2",
 		"@swc/helpers": "^0.5.6",
 		"@types/fs-extra": "^11.0.4",
@@ -89,6 +88,7 @@
 		"rollup-plugin-string": "^3.0.0",
 		"semantic-release": "^23.0.2",
 		"start-server-and-test": "^2.0.3",
+		"stepci": "^2.8.0",
 		"ts-jest": "^29.1.2",
 		"ts-node": "^10.9.2",
 		"typescript": "^5.3.3"
