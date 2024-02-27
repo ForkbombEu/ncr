@@ -1,16 +1,20 @@
-import { config } from './cli.js';
-import { SlangroomManager } from './slangroom.js';
+import dotenv from 'dotenv';
+import fs from 'fs';
 import _ from 'lodash';
+import mime from 'mime';
+import path from 'path';
 import {
 	App,
-	TemplatedApp,
 	HttpRequest,
 	HttpResponse,
+	TemplatedApp,
 	us_listen_socket,
 	us_listen_socket_close,
 	us_socket_local_port
 } from 'uWebSockets.js';
 import { template as proctoroom } from './applets.js';
+import { autorunContracts } from './autorun.js';
+import { config } from './cli.js';
 import { Directory } from './directory.js';
 import {
 	definition,
@@ -19,12 +23,8 @@ import {
 	generateRawPath,
 	openapiTemplate
 } from './openapi.js';
+import { SlangroomManager } from './slangroom.js';
 import { getSchema, handleArrayBuffer, validateData } from './utils.js';
-import mime from 'mime';
-import path from 'path';
-import fs from 'fs';
-import dotenv from 'dotenv';
-import { autorunContracts } from './autorun.js';
 dotenv.config();
 
 const L = config.logger;
@@ -86,10 +86,12 @@ const ncrApp = async () => {
 				}
 			});
 
-			res
-				.writeStatus('200 OK')
-				.writeHeader('Content-Type', 'application/json')
-				.end(JSON.stringify(definition));
+			res.cork(() => {
+				res
+					.writeStatus('200 OK')
+					.writeHeader('Content-Type', 'application/json')
+					.end(JSON.stringify(definition));
+			})
 		})
 		.get('/health', async (res, _) => {
 			res.onAborted(() => {
@@ -117,7 +119,7 @@ Then print the 'result'
 			} catch (e) {
 				L.error(e);
 				res.cork(() =>
-					res.writeStatus('500').writeHeader('Content-Type', 'application/json').end(e.message)
+					res.writeStatus('500').writeHeader('Content-Type', 'application/json').end((e as Error).message)
 				);
 			}
 		})
@@ -191,30 +193,59 @@ const generateRoutes = (app: TemplatedApp) => {
 
 		const execZencodeAndReply = async (res: HttpResponse, req: HttpRequest, data: JSON) => {
 			res.onAborted(() => {
-				res.writeStatus('500').writeHeader('Content-Type', 'application/json').end('Aborted');
+				res.cork(() =>
+					res.writeStatus('500').writeHeader('Content-Type', 'application/json').end('Aborted'));
+				return;
 			});
 			try {
 				if (metadata.httpHeaders) {
-					if (data['http_headers'] !== undefined) {
-						throw new Error('Name clash on input key http_headers');
+					try {
+
+						if (data['http_headers'] !== undefined) {
+							throw new Error('Name clash on input key http_headers');
+						}
+						const httpHeaders = {};
+						req.forEach((k, v) => {
+							httpHeaders[k] = v;
+						});
+						data['http_headers'] = httpHeaders;
+					} catch (e) {
+						L.error(e);
+						res.writeStatus('422 UNPROCESSABLE ENTITY')
+							.writeHeader('Content-Type', 'application/json')
+							.end((e as Error).message);
+						return;
 					}
-					const httpHeaders = {};
-					req.forEach((k, v) => {
-						httpHeaders[k] = v;
-					});
-					data['http_headers'] = httpHeaders;
 				}
 
-				validateData(schema, data);
+				try {
+					validateData(schema, data);
+				} catch (e) {
+					L.error(e);
+					res.writeStatus('422 UNPROCESSABLE ENTITY')
+						.writeHeader('Content-Type', 'application/json')
+						.end((e as Error).message);
+					return;
+				}
 
-				const { result } = await s.execute(contract, { keys, data, conf });
+				let slangroomResult: string;
+
+				try {
+					const { result } = await s.execute(contract, { keys, data, conf });
+					slangroomResult = JSON.stringify(result);
+				} catch (e) {
+					L.error(e);
+					res.writeStatus('500').writeHeader('Content-Type', 'application/json').end((e as Error).message);
+					return;
+				}
 
 				res.cork(() => {
 					res
 						.writeStatus('200 OK')
 						.writeHeader('Content-Type', 'application/json')
 						.writeHeader('Access-Control-Allow-Origin', '*')
-						.end(JSON.stringify(result));
+						.end(slangroomResult);
+					return;
 				});
 			} catch (e) {
 				L.error(e);
@@ -250,6 +281,7 @@ const generateRoutes = (app: TemplatedApp) => {
 					} catch (e) {
 						L.error(e);
 						res.writeStatus('500').writeHeader('Content-Type', 'application/json').end(e.message);
+						return;
 					}
 				});
 			} catch (e) {

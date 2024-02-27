@@ -121,6 +121,9 @@ devDependencies:
   '@types/node':
     specifier: ^20.11.20
     version: 20.11.20
+  '@types/tgwf__co2':
+    specifier: ^0.14.1
+    version: 0.14.1
   jest:
     specifier: ^29.7.0
     version: 29.7.0(@types/node@20.11.20)(ts-node@10.9.2)
@@ -2109,6 +2112,10 @@ packages:
 
   /@types/stack-utils@2.0.3:
     resolution: {integrity: sha512-9aEbYZ3TbYMznPdcdr3SmIrLXwC/AKZXQeCf9Pgao5CKb8CyHuEX5jzWPTkvregvhRJHcpRO6BFoGW9ycaOkYw==}
+    dev: true
+
+  /@types/tgwf__co2@0.14.1:
+    resolution: {integrity: sha512-q+j3WgYeg+bOZhS5iAKHxFvqOsXi00f001YGHsW6Tr2LacSw7Zkr+3+Gpj8pZyC/YJ6QiZqSlM0I/BFhfXUELw==}
     dev: true
 
   /@types/ws@8.5.3:
