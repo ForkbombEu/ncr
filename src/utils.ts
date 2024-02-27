@@ -1,10 +1,10 @@
-import { introspect } from 'zenroom';
 import { Type } from '@sinclair/typebox';
-import { Codec, Endpoints, JSONSchema, Metadata } from './types';
-import _ from 'lodash';
 import Ajv, { type ValidateFunction } from 'ajv';
-import { config } from './cli.js';
 import addFormats from 'ajv-formats';
+import _ from 'lodash';
+import { introspect } from 'zenroom';
+import { config } from './cli.js';
+import { Codec, Endpoints, JSONSchema, Metadata } from './types';
 
 const L = config.logger;
 
@@ -12,47 +12,41 @@ const L = config.logger;
 
 export async function getSchema(endpoints: Endpoints): Promise<JSONSchema | undefined> {
 	const { contract, keys } = endpoints;
-	try {
-		const schema = endpoints.schema ?? (await getSchemaFromIntrospection(contract));
-		if (!keys) return schema;
-		else if (schema) return removeKeysFromSchema(schema, keys);
-	} catch (e) {
-		console.error(e);
-	}
+	const schema = endpoints.schema ?? (await getSchemaFromIntrospection(contract));
+
+	if (!keys) return schema;
+	else if (schema) return removeKeysFromSchema(schema, keys);
 }
 
 export async function getSchemaFromIntrospection(
 	contract: string
 ): Promise<JSONSchema | undefined> {
-	try {
-		const codec: Codec = await introspect(contract);
-		const encodingToType = {
-			string: Type.String(),
-			float: Type.Number()
-		};
-		const schema = Type.Object(
-			Object.fromEntries(
-				Object.values(codec).map(({ name, zentype, encoding }) => {
-					let t;
-					switch (zentype) {
-						case 'd':
-							t = Type.Record(Type.String(), encodingToType[encoding]);
-							break;
-						case 'a':
-							t = Type.Array(encodingToType[encoding]);
-							break;
-						default:
-							t = encodingToType[encoding];
-							break;
-					}
-					return [name, t];
-				})
-			)
-		);
-		return schema;
-	} catch (e) {
-		L.error(e);
-	}
+	const codec: Codec = await introspect(contract);
+	if (_.isEqual(codec, { CACHE: [], CODEC: [], GIVEN_data: [], THEN: [], WHEN: [] })) return undefined;
+	const encodingToType = {
+		string: Type.String(),
+		float: Type.Number()
+	};
+	const schema = Type.Object(
+		Object.fromEntries(
+			Object.values(codec).map(({ name, zentype, encoding }) => {
+				let t;
+				switch (zentype) {
+					case 'd':
+						t = Type.Record(Type.String(), encodingToType[encoding]);
+						break;
+					case 'a':
+						t = Type.Array(encodingToType[encoding]);
+						break;
+					default:
+						t = encodingToType[encoding];
+						break;
+				}
+				return [name, t];
+			})
+		)
+	);
+	return schema;
 }
 
 export function removeKeysFromSchema(schema: JSONSchema, keys: JSON): JSONSchema {
@@ -77,8 +71,7 @@ export function removeKeysFromSchema(schema: JSONSchema, keys: JSON): JSONSchema
 export const validateData = (schema: JSONSchema, data: JSON | Record<string, unknown>) => {
 	const ajv = createAjv();
 	const validate = ajv.compile(schema);
-	if (!validate(data))
-		throw new Error(formatAjvErrors(validate.errors));
+	if (!validate(data)) throw new Error(formatAjvErrors(validate.errors));
 	return data;
 };
 
@@ -100,12 +93,8 @@ export const handleArrayBuffer = (message: ArrayBuffer | string) => {
 //
 
 export function validateJSONSchema(schema: JSON): void {
-	try {
-		const ajv = createAjv();
-		ajv.compile(schema);
-	} catch (e) {
-		throw e;
-	}
+	const ajv = createAjv();
+	ajv.compile(schema);
 }
 
 /*

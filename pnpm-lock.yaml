@@ -7,34 +7,34 @@ settings:
 dependencies:
   '@slangroom/core':
     specifier: ^1.14.1
-    version: 1.14.1(zenroom@4.12.1)
+    version: 1.14.1(zenroom@4.12.2)
   '@slangroom/ethereum':
     specifier: ^1.14.1
-    version: 1.14.1(typescript@5.3.3)(zenroom@4.12.1)
+    version: 1.14.1(typescript@5.3.3)(zenroom@4.12.2)
   '@slangroom/fs':
     specifier: ^1.14.1
-    version: 1.14.1(zenroom@4.12.1)
+    version: 1.14.1(zenroom@4.12.2)
   '@slangroom/git':
     specifier: ^1.14.1
-    version: 1.14.1(zenroom@4.12.1)
+    version: 1.14.1(zenroom@4.12.2)
   '@slangroom/http':
     specifier: ^1.14.1
-    version: 1.14.1(zenroom@4.12.1)
+    version: 1.14.1(zenroom@4.12.2)
   '@slangroom/oauth':
-    specifier: ^1.14.1
-    version: 1.16.0(zenroom@4.12.1)
+    specifier: ^1.16.0
+    version: 1.16.0(zenroom@4.12.2)
   '@slangroom/wallet':
     specifier: ^1.14.1
-    version: 1.14.1(zenroom@4.12.1)
+    version: 1.14.1(zenroom@4.12.2)
   '@slangroom/zencode':
-    specifier: ^1.14.1
-    version: 1.14.1(zenroom@4.12.1)
+    specifier: ^1.18.0
+    version: 1.18.0(zenroom@4.12.2)
   '@tgwf/co2':
     specifier: ^0.14.3
     version: 0.14.3
   '@typescript-eslint/parser':
     specifier: ^7.0.2
-    version: 7.0.2(eslint@8.56.0)(typescript@5.3.3)
+    version: 7.0.2(eslint@8.57.0)(typescript@5.3.3)
   ajv:
     specifier: ^8.12.0
     version: 8.12.0
@@ -69,8 +69,8 @@ dependencies:
     specifier: github:uNetworking/uWebSockets.js#semver:^20
     version: github.com/uNetworking/uWebSockets.js/fca27c05066342b01951782248640c8013b37196
   zenroom:
-    specifier: ^4.12.1
-    version: 4.12.1
+    specifier: ^4.12.2
+    version: 4.12.2
 
 devDependencies:
   '@rollup/plugin-commonjs':
@@ -118,12 +118,21 @@ devDependencies:
   '@types/lodash':
     specifier: ^4.14.202
     version: 4.14.202
+  '@types/lodash.isequal':
+    specifier: ^4.5.8
+    version: 4.5.8
   '@types/node':
     specifier: ^20.11.20
     version: 20.11.20
+  '@types/tgwf__co2':
+    specifier: ^0.14.1
+    version: 0.14.1
   jest:
     specifier: ^29.7.0
     version: 29.7.0(@types/node@20.11.20)(ts-node@10.9.2)
+  lodash.isequal:
+    specifier: ^4.5.0
+    version: 4.5.0
   nodemon:
     specifier: ^3.1.0
     version: 3.1.0
@@ -636,13 +645,13 @@ packages:
       '@jridgewell/trace-mapping': 0.3.9
     dev: true
 
-  /@eslint-community/eslint-utils@4.4.0(eslint@8.56.0):
+  /@eslint-community/eslint-utils@4.4.0(eslint@8.57.0):
     resolution: {integrity: sha512-1/sA4dwrzBAyeUoQ6oxahHKmrZvsnLCg4RfxW3ZFGGmQkSNQPFNLV9CUEFQP1x9EYXHTo5p6xdhZM1Ne9p/AfA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: ^6.0.0 || ^7.0.0 || >=8.0.0
     dependencies:
-      eslint: 8.56.0
+      eslint: 8.57.0
       eslint-visitor-keys: 3.4.3
     dev: false
 
@@ -668,8 +677,8 @@ packages:
       - supports-color
     dev: false
 
-  /@eslint/js@8.56.0:
-    resolution: {integrity: sha512-gMsVel9D7f2HLkBma9VbtzZRehRogVRfbr++f06nL2vnCGCNlzOD+/MUov/F4p8myyAHspEhVobgjpX64q5m6A==}
+  /@eslint/js@8.57.0:
+    resolution: {integrity: sha512-Ys+3g2TaW7gADOJzPt83SJtCDhMjndcDMFVQ/Tj9iA1BfJzFKD9mAUXT3OenpuPHbI6P/myECxRJrofUsDx/5g==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: false
 
@@ -1631,30 +1640,30 @@ packages:
       '@sinonjs/commons': 3.0.0
     dev: true
 
-  /@slangroom/core@1.14.1(zenroom@4.12.1):
+  /@slangroom/core@1.14.1(zenroom@4.12.2):
     resolution: {integrity: sha512-uRogMxV8TRw+EvtSh+VS/PZQLjk8oYGY4mLen8QfKUcHrFC5XQ0X1crRr3UFmgsjPh5w+K4PwAk6g8tcRawNaw==}
     dependencies:
-      '@slangroom/deps': 1.9.5(zenroom@4.12.1)
-      '@slangroom/ignored': 1.9.6(zenroom@4.12.1)
-      '@slangroom/shared': 1.9.6(zenroom@4.12.1)
+      '@slangroom/deps': 1.9.5(zenroom@4.12.2)
+      '@slangroom/ignored': 1.9.6(zenroom@4.12.2)
+      '@slangroom/shared': 1.9.6(zenroom@4.12.2)
     transitivePeerDependencies:
       - zenroom
     dev: false
 
-  /@slangroom/deps@1.9.5(zenroom@4.12.1):
+  /@slangroom/deps@1.9.5(zenroom@4.12.2):
     resolution: {integrity: sha512-QSO8pSKnZhqZg2IZ00SzwqH2BHtjD96KAFCfIsaD/OeFBuKCsst5NM0Ty+hYLXfKptJmRyzJrTtd2WlQh16Q8g==}
     peerDependencies:
       zenroom: ^4.0.0
     dependencies:
       chevrotain: 10.5.0
-      zenroom: 4.12.1
+      zenroom: 4.12.2
     dev: false
 
-  /@slangroom/ethereum@1.14.1(typescript@5.3.3)(zenroom@4.12.1):
+  /@slangroom/ethereum@1.14.1(typescript@5.3.3)(zenroom@4.12.2):
     resolution: {integrity: sha512-UxckQlFbYa5K0grS3awtm5OAecDD6TQkDK+3Pmd/nCya0atLCikWBVBgGuO2T8wG8y34BQvQSDpf80SMlD12pQ==}
     dependencies:
-      '@slangroom/core': 1.14.1(zenroom@4.12.1)
-      '@slangroom/shared': 1.9.6(zenroom@4.12.1)
+      '@slangroom/core': 1.14.1(zenroom@4.12.2)
+      '@slangroom/shared': 1.9.6(zenroom@4.12.2)
       axios: 1.6.7(debug@4.3.4)
       web3: 4.5.0(typescript@5.3.3)
       web3-validator: 2.0.4
@@ -1668,10 +1677,10 @@ packages:
       - zod
     dev: false
 
-  /@slangroom/fs@1.14.1(zenroom@4.12.1):
+  /@slangroom/fs@1.14.1(zenroom@4.12.2):
     resolution: {integrity: sha512-UfB/9bYdsNtiLms8TeZjEvRN3fygRBthIpilumUcGerhIl6NBUUDVrPeUlPGY9g2Bnza8R41Tmbm5aLdS8rsHg==}
     dependencies:
-      '@slangroom/core': 1.14.1(zenroom@4.12.1)
+      '@slangroom/core': 1.14.1(zenroom@4.12.2)
       axios: 1.6.7(debug@4.3.4)
       extract-zip: 2.0.1
     transitivePeerDependencies:
@@ -1680,73 +1689,73 @@ packages:
       - zenroom
     dev: false
 
-  /@slangroom/git@1.14.1(zenroom@4.12.1):
+  /@slangroom/git@1.14.1(zenroom@4.12.2):
     resolution: {integrity: sha512-1wmGbcllj41gaKqcpqU3sbWMmOF9cxwnbR+LrPEPEBZCm1kq8SiLFnG/HiLUoL5FM0mAvnWD0O/xnGYi/pmIfQ==}
     dependencies:
-      '@slangroom/core': 1.14.1(zenroom@4.12.1)
+      '@slangroom/core': 1.14.1(zenroom@4.12.2)
       isomorphic-git: 1.25.6
     transitivePeerDependencies:
       - zenroom
     dev: false
 
-  /@slangroom/http@1.14.1(zenroom@4.12.1):
+  /@slangroom/http@1.14.1(zenroom@4.12.2):
     resolution: {integrity: sha512-Mn3Ub/JSp/VtxEeyO/l38AaKNGIilSmnChrlRNiP93obnyYoAYNZVWVGbJhfxAmg/xOjhXvl+usKRB4xPxIZ5w==}
     dependencies:
-      '@slangroom/core': 1.14.1(zenroom@4.12.1)
-      '@slangroom/shared': 1.9.6(zenroom@4.12.1)
+      '@slangroom/core': 1.14.1(zenroom@4.12.2)
+      '@slangroom/shared': 1.9.6(zenroom@4.12.2)
       axios: 1.6.7(debug@4.3.4)
     transitivePeerDependencies:
       - debug
       - zenroom
     dev: false
 
-  /@slangroom/ignored@1.9.6(zenroom@4.12.1):
+  /@slangroom/ignored@1.9.6(zenroom@4.12.2):
     resolution: {integrity: sha512-w6xdfXDkWeYbzn1V1TEoEPfhNRvL2yL7DPhFeYkcD60+pukCg1fMAkaJ6K7JZBd67b8tCkAwWcpdgnXWAtZpFg==}
     dependencies:
-      '@slangroom/deps': 1.9.5(zenroom@4.12.1)
-      '@slangroom/shared': 1.9.6(zenroom@4.12.1)
+      '@slangroom/deps': 1.9.5(zenroom@4.12.2)
+      '@slangroom/shared': 1.9.6(zenroom@4.12.2)
     transitivePeerDependencies:
       - zenroom
     dev: false
 
-  /@slangroom/oauth@1.16.0(zenroom@4.12.1):
+  /@slangroom/oauth@1.16.0(zenroom@4.12.2):
     resolution: {integrity: sha512-mFgFNiUqPDagtJ4wDdWs7v4sTNwJPd6835mVF5j/Kyq+v/zSmmNa+e/nhhGBm3K9POPofP88Wt4N3Kh7fry+Jw==}
     dependencies:
       '@node-oauth/oauth2-server': 5.1.0
-      '@slangroom/core': 1.14.1(zenroom@4.12.1)
-      '@slangroom/shared': 1.9.6(zenroom@4.12.1)
+      '@slangroom/core': 1.14.1(zenroom@4.12.2)
+      '@slangroom/shared': 1.9.6(zenroom@4.12.2)
       bs58: 5.0.0
       jose: 5.2.2
     transitivePeerDependencies:
       - zenroom
     dev: false
 
-  /@slangroom/shared@1.9.6(zenroom@4.12.1):
+  /@slangroom/shared@1.9.6(zenroom@4.12.2):
     resolution: {integrity: sha512-yBMBQw0o6pIUUw+m7DRjt/2/tObmXOqyaMcHyfo/O940R2qhFV9Ut4JZLW7mVedw6P3vntRIRKTEQr5Nk459jQ==}
     dependencies:
-      '@slangroom/deps': 1.9.5(zenroom@4.12.1)
+      '@slangroom/deps': 1.9.5(zenroom@4.12.2)
     transitivePeerDependencies:
       - zenroom
     dev: false
 
-  /@slangroom/wallet@1.14.1(zenroom@4.12.1):
+  /@slangroom/wallet@1.14.1(zenroom@4.12.2):
     resolution: {integrity: sha512-s0hXDiQNJ0we0++nGlxrrCQ5irGyUxdtJlRAWZtrdHV0eXoXAGrTn3sJvDwDnr93WJY2iKomk7RADdaMq5W4Hw==}
     dependencies:
       '@meeco/sd-jwt': 0.0.3
       '@meeco/sd-jwt-vc': 0.0.4
-      '@slangroom/core': 1.14.1(zenroom@4.12.1)
-      '@slangroom/shared': 1.9.6(zenroom@4.12.1)
+      '@slangroom/core': 1.14.1(zenroom@4.12.2)
+      '@slangroom/shared': 1.9.6(zenroom@4.12.2)
       bs58: 5.0.0
       jose: 5.2.2
     transitivePeerDependencies:
       - zenroom
     dev: false
 
-  /@slangroom/zencode@1.14.1(zenroom@4.12.1):
-    resolution: {integrity: sha512-RQyZXpC2qTT6pZ9Cu7dE8ZtJzhSY1ywHKK8B7ORk36atWbLY307GxWL7F06mDgQJo0h70c8EBZk4U9JbsC8HEA==}
+  /@slangroom/zencode@1.18.0(zenroom@4.12.2):
+    resolution: {integrity: sha512-9+KtigQOzHrQ4MSaOhev6auia9ANNYuSnNN4HWL6GIHIiMqtdsvWizob0VR5Gl4lfgKRzyrOd8VYxZSJzN7DCg==}
     dependencies:
-      '@slangroom/core': 1.14.1(zenroom@4.12.1)
-      '@slangroom/shared': 1.9.6(zenroom@4.12.1)
+      '@slangroom/core': 1.14.1(zenroom@4.12.2)
+      '@slangroom/shared': 1.9.6(zenroom@4.12.2)
     transitivePeerDependencies:
       - zenroom
     dev: false
@@ -2076,6 +2085,12 @@ packages:
       '@types/node': 20.11.20
     dev: true
 
+  /@types/lodash.isequal@4.5.8:
+    resolution: {integrity: sha512-uput6pg4E/tj2LGxCZo9+y27JNyB2OZuuI/T5F+ylVDYuqICLG2/ktjxx0v6GvVntAf8TvEzeQLcV0ffRirXuA==}
+    dependencies:
+      '@types/lodash': 4.14.202
+    dev: true
+
   /@types/lodash@4.14.202:
     resolution: {integrity: sha512-OvlIYQK9tNneDlS0VN54LLd5uiPCBOp7gS5Z0f1mjoJYBrtStzgmJBxONW3U6OZqdtNzZPmn9BS/7WI7BFFcFQ==}
     dev: true
@@ -2111,6 +2126,10 @@ packages:
     resolution: {integrity: sha512-9aEbYZ3TbYMznPdcdr3SmIrLXwC/AKZXQeCf9Pgao5CKb8CyHuEX5jzWPTkvregvhRJHcpRO6BFoGW9ycaOkYw==}
     dev: true
 
+  /@types/tgwf__co2@0.14.1:
+    resolution: {integrity: sha512-q+j3WgYeg+bOZhS5iAKHxFvqOsXi00f001YGHsW6Tr2LacSw7Zkr+3+Gpj8pZyC/YJ6QiZqSlM0I/BFhfXUELw==}
+    dev: true
+
   /@types/ws@8.5.3:
     resolution: {integrity: sha512-6YOoWjruKj1uLf3INHH7D3qTXwFfEsg1kf3c0uDdSBJwfa/llkwIjrAGV7j7mVgGNbzTQ3HiHKKDXl6bJPD97w==}
     dependencies:
@@ -2135,7 +2154,7 @@ packages:
     dev: false
     optional: true
 
-  /@typescript-eslint/parser@7.0.2(eslint@8.56.0)(typescript@5.3.3):
+  /@typescript-eslint/parser@7.0.2(eslint@8.57.0)(typescript@5.3.3):
     resolution: {integrity: sha512-GdwfDglCxSmU+QTS9vhz2Sop46ebNCXpPPvsByK7hu0rFGRHL+AusKQJ7SoN+LbLh6APFpQwHKmDSwN35Z700Q==}
     engines: {node: ^16.0.0 || >=18.0.0}
     peerDependencies:
@@ -2150,7 +2169,7 @@ packages:
       '@typescript-eslint/typescript-estree': 7.0.2(typescript@5.3.3)
       '@typescript-eslint/visitor-keys': 7.0.2
       debug: 4.3.4(supports-color@5.5.0)
-      eslint: 8.56.0
+      eslint: 8.57.0
       typescript: 5.3.3
     transitivePeerDependencies:
       - supports-color
@@ -3436,15 +3455,15 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: false
 
-  /eslint@8.56.0:
-    resolution: {integrity: sha512-Go19xM6T9puCOWntie1/P997aXxFsOi37JIHRWI514Hc6ZnaHGKY9xFhrU65RT6CcBEzZoGG1e6Nq+DT04ZtZQ==}
+  /eslint@8.57.0:
+    resolution: {integrity: sha512-dZ6+mexnaTIbSBZWgou51U6OmzIhYM2VcNdtiTtI7qPNZm35Akpr0f6vtw3w1Kmn5PYo+tZVfh13WrhpS6oLqQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     hasBin: true
     dependencies:
-      '@eslint-community/eslint-utils': 4.4.0(eslint@8.56.0)
+      '@eslint-community/eslint-utils': 4.4.0(eslint@8.57.0)
       '@eslint-community/regexpp': 4.10.0
       '@eslint/eslintrc': 2.1.4
-      '@eslint/js': 8.56.0
+      '@eslint/js': 8.57.0
       '@humanwhocodes/config-array': 0.11.14
       '@humanwhocodes/module-importer': 1.0.1
       '@nodelib/fs.walk': 1.2.8
@@ -5291,6 +5310,10 @@ packages:
 
   /lodash.groupby@4.6.0:
     resolution: {integrity: sha512-5dcWxm23+VAoz+awKmBaiBvzox8+RqMgFhi7UvX9DHZr2HdxHXM/Wrf8cfKpsW37RNrvtPn6hSwNqurSILbmJw==}
+    dev: true
+
+  /lodash.isequal@4.5.0:
+    resolution: {integrity: sha512-pDo3lu8Jhfjqls6GkMgpahsF9kCyayhgykjyLMNFTKWrpVdAQtYyB4muAMWozBB4ig/dtWAmsMxLEI8wuz+DYQ==}
     dev: true
 
   /lodash.isfunction@3.0.9:
@@ -7861,8 +7884,8 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
 
-  /zenroom@4.12.1:
-    resolution: {integrity: sha512-mXShM6qZumzlOI5Lme60ftVYLBT3UDKeUsvkaxqTcqkvTrleQ83+ee44vgpT5+kP6I607iVfz7+9iH40HWbumw==}
+  /zenroom@4.12.2:
+    resolution: {integrity: sha512-4L18Bvt9Ef1aYV7sUhYoYLwIe9Gx/31Gf5JOcM//iJ9xHKTTO6HAZruyQoZHQ/lGD5JXsPWtH+Ty0GrEgQ9Tfg==}
     dependencies:
       yarn: 1.22.21
     dev: false

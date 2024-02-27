@@ -3,7 +3,7 @@ import { statSync } from 'node:fs';
 import pino, { type Logger } from 'pino';
 import 'dotenv/config';
 import { Config } from './types';
-import p from '../package.json' with { type: "json" };
+import p from '../package.json' with { type: 'json' };
 
 export const program = new Command();
 const L = pino();

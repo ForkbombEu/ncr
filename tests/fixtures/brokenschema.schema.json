@@ -1,17 +1,12 @@
 {
-    "type": "object",
-    "properties": {
-      "male": {
-        "type": "string"
-      },
-      "sole": {
-        "type": "string"
-      }
-    },
-    "required": [
-      "male",
-      "sole"
-    ]
-  }
-  
-  
+	"type": "object",
+	"properties": {
+		"male": {
+			"type": "string"
+		},
+		"sole": {
+			"type": "string"
+		}
+	},
+	"required": ["male", "sole"]
+}

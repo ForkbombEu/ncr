@@ -1,11 +1,9 @@
 {
-    "type": "object",
-    "properties": {
-      "json": {
-        "type": "string"
-      }
-    },
-    "required": [
-      "json"
-    ]
-  }
+	"type": "object",
+	"properties": {
+		"json": {
+			"type": "string"
+		}
+	},
+	"required": ["json"]
+}
