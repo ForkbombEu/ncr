@@ -183,10 +183,10 @@ const generateRoutes = (app: TemplatedApp) => {
 	Dir.files.forEach(async (endpoints) => {
 		const { contract, path, keys, conf, metadata } = endpoints;
 
-		const schema = await getSchema(endpoints);
+		let schema = await getSchema(endpoints);
 		if (!schema) {
-			L.error(`Invalid schema`);
-			return;
+			L.warn(`🛟 ${path} 🚧 Please provide a valide schema`);
+			schema = { type: 'object', properties: {} };
 		}
 
 		const s = SlangroomManager.getInstance();
