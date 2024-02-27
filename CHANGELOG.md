@@ -1,3 +1,10 @@
+# [1.16.0](https://github.com/forkbombeu/ncr/compare/v1.15.1...v1.16.0) (2024-02-27)
+
+
+### Features
+
+* warn missing schema when introspect brokes ([#64](https://github.com/forkbombeu/ncr/issues/64)) ([be8cbf7](https://github.com/forkbombeu/ncr/commit/be8cbf7573f445de44501b16a36f9f74d5fa50d6))
+
 ## [1.15.1](https://github.com/forkbombeu/ncr/compare/v1.15.0...v1.15.1) (2024-02-27)
 
 
