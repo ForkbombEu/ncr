@@ -15,7 +15,19 @@ import { zencode } from '@slangroom/zencode';
 
 //
 
-const SLANGROOM_PLUGINS = [zencode, fs, wallet, http, git, oauth, shell, qrcode, JSONSchema, redis, pocketbase];
+const SLANGROOM_PLUGINS = [
+	zencode,
+	fs,
+	wallet,
+	http,
+	git,
+	oauth,
+	shell,
+	qrcode,
+	JSONSchema,
+	redis,
+	pocketbase
+];
 
 export class SlangroomManager {
 	private static instance: SlangroomType;

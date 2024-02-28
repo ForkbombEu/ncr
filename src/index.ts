@@ -93,7 +93,7 @@ const ncrApp = async () => {
 					.writeStatus('200 OK')
 					.writeHeader('Content-Type', 'application/json')
 					.end(JSON.stringify(definition));
-			})
+			});
 		})
 		.get('/health', async (res, _) => {
 			res.onAborted(() => {
@@ -121,7 +121,10 @@ Then print the 'result'
 			} catch (e) {
 				L.error(e);
 				res.cork(() =>
-					res.writeStatus('500').writeHeader('Content-Type', 'application/json').end((e as Error).message)
+					res
+						.writeStatus('500')
+						.writeHeader('Content-Type', 'application/json')
+						.end((e as Error).message)
 				);
 			}
 		})
@@ -185,11 +188,15 @@ const generateRoutes = (app: TemplatedApp) => {
 		const { contract, path, keys, conf, metadata } = endpoints;
 		const LOG = L.getSubLogger({
 			stylePrettyLogs: true,
-			prettyLogTemplate: "{{logLevelName}}\t📜 {{zencode}}.zen \t🕙 {{dateIsoStr}} \t📁 {{filePathWithLine}}\t\t",
+			prettyLogTemplate:
+				'{{logLevelName}}\t📜 {{zencode}}.zen \t🕙 {{dateIsoStr}} \t📁 {{filePathWithLine}}\t\t',
 			overwrite: {
-				addPlaceholders: (logObjMeta: IMeta, placeholderValues: Record<string, string | number>) => {
-					placeholderValues["zencode"] = path;
-				},
+				addPlaceholders: (
+					logObjMeta: IMeta,
+					placeholderValues: Record<string, string | number>
+				) => {
+					placeholderValues['zencode'] = path;
+				}
 			}
 		});
 
@@ -197,12 +204,15 @@ const generateRoutes = (app: TemplatedApp) => {
 		if (!schema) {
 			L.warn(`🛟 ${path} 🚧 Please provide a valide schema`);
 			schema = { type: 'object', properties: {} };
-      return;
 		}
 
 		const s = SlangroomManager.getInstance();
 
-		const execZencodeAndReply = async (res: HttpResponse, req: HttpRequest, data: JSON | Record<string, unknown>) => {
+		const execZencodeAndReply = async (
+			res: HttpResponse,
+			req: HttpRequest,
+			data: JSON | Record<string, unknown>
+		) => {
 			res.onAborted(() => {
 				res.aborted = true;
 				res.cork(() => res.writeStatus('400').end());
@@ -211,7 +221,6 @@ const generateRoutes = (app: TemplatedApp) => {
 			try {
 				if (metadata.httpHeaders) {
 					try {
-
 						if (data['http_headers'] !== undefined) {
 							throw new Error('Name clash on input key http_headers');
 						}
@@ -223,7 +232,8 @@ const generateRoutes = (app: TemplatedApp) => {
 					} catch (e) {
 						if (!res.aborted) {
 							LOG.fatal(e);
-							res.writeStatus('422 UNPROCESSABLE ENTITY')
+							res
+								.writeStatus('422 UNPROCESSABLE ENTITY')
 								.writeHeader('Content-Type', 'application/json')
 								.end((e as Error).message);
 						}
@@ -237,7 +247,8 @@ const generateRoutes = (app: TemplatedApp) => {
 					if (!res.aborted) {
 						LOG.fatal(JSON.parse((e as Error).message));
 						res.cork(() => {
-							res.writeStatus('422 UNPROCESSABLE ENTITY')
+							res
+								.writeStatus('422 UNPROCESSABLE ENTITY')
 								.writeHeader('Content-Type', 'application/json')
 								.end((e as Error).message);
 						});
@@ -255,11 +266,10 @@ const generateRoutes = (app: TemplatedApp) => {
 						res.cork(() => {
 							const report = reportZenroomError(e as Error, LOG, endpoints);
 							res.writeStatus('500').writeHeader('Content-Type', 'application/json').end(report);
-						})
+						});
 						return;
 					}
 				}
-
 
 				res.cork(() => {
 					res
@@ -334,7 +344,10 @@ const generateRoutes = (app: TemplatedApp) => {
 				execZencodeAndReply(res, req, data);
 			} catch (e) {
 				LOG.fatal(e);
-				res.writeStatus('500').writeHeader('Content-Type', 'application/json').end((e as Error).message);
+				res
+					.writeStatus('500')
+					.writeHeader('Content-Type', 'application/json')
+					.end((e as Error).message);
 			}
 		});
 

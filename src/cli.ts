@@ -6,10 +6,11 @@ import p from '../package.json' with { type: 'json' };
 import { Config } from './types';
 export const program = new Command();
 const L = new Logger({
-	name: p.name, type: "pretty",
-	prettyLogTemplate: "{{logLevelName}}  {{yyyy}}.{{mm}}.{{dd}} {{hh}}:{{MM}}:{{ss}}:{{ms}}\t[{{filePathWithLine}}]\t",
+	name: p.name,
+	type: 'pretty',
+	prettyLogTemplate:
+		'{{logLevelName}}  {{yyyy}}.{{mm}}.{{dd}} {{hh}}:{{MM}}:{{ss}}:{{ms}}\t[{{filePathWithLine}}]\t'
 });
-
 
 const bads = ['⛔', '💩', '🥶', '💣'];
 const bad = bads[Math.floor(Math.random() * bads.length)];
