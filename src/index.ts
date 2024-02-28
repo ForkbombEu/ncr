@@ -193,10 +193,11 @@ const generateRoutes = (app: TemplatedApp) => {
 			}
 		});
 
-		const schema = await getSchema(endpoints);
+		let schema = await getSchema(endpoints);
 		if (!schema) {
-			LOG.fatal(`Invalid schema`);
-			return;
+			L.warn(`🛟 ${path} 🚧 Please provide a valide schema`);
+			schema = { type: 'object', properties: {} };
+      return;
 		}
 
 		const s = SlangroomManager.getInstance();

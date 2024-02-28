@@ -209,3 +209,17 @@ tests:
           check:
             status: 500
             body: $FILES_DIR must be provided
+  
+  my_keyring:
+    steps:
+      - name: my_keyring invalid data
+        http:
+          url: http://${{env.host}}/my-keyring
+          method: POST
+          headers:
+            Content-Type: application/json
+          json:
+            love:
+              puria: 'puria'
+          check:
+            status: 200
