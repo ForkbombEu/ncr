@@ -49,7 +49,6 @@ const debugZen = (type: 'J64 TRACE: ' | 'J64 HEAP: ', l: Logger<ILogObj>, error:
             return;
         }
 
-        l.debug('J64 TRACE: ', decodedContent);
         const transposedContent = _.zip(Object.keys(decodedContent), Object.values(decodedContent));
         console.table(transposedContent);
     }
