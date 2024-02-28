@@ -5,7 +5,6 @@ import _ from 'lodash';
 import { introspect } from 'zenroom';
 import { config } from './cli.js';
 import { Codec, Endpoints, JSONSchema, Metadata } from './types';
-
 const L = config.logger;
 
 //
@@ -22,7 +21,8 @@ export async function getSchemaFromIntrospection(
 	contract: string
 ): Promise<JSONSchema | undefined> {
 	const codec: Codec = await introspect(contract);
-	if (_.isEqual(codec, { CACHE: [], CODEC: [], GIVEN_data: [], THEN: [], WHEN: [] })) return undefined;
+	if (_.isEqual(codec, { CACHE: [], CODEC: [], GIVEN_data: [], THEN: [], WHEN: [] }))
+		return undefined;
 	const encodingToType = {
 		string: Type.String(),
 		float: Type.Number()
@@ -70,8 +70,13 @@ export function removeKeysFromSchema(schema: JSONSchema, keys: JSON): JSONSchema
 
 export const validateData = (schema: JSONSchema, data: JSON | Record<string, unknown>) => {
 	const ajv = createAjv();
-	const validate = ajv.compile(schema);
-	if (!validate(data)) throw new Error(formatAjvErrors(validate.errors));
+	try {
+		const validate = ajv.compile(schema);
+		if (!validate(data)) throw new Error(formatAjvErrors(validate.errors));
+	} catch (e) {
+		L.error(e);
+		throw e;
+	}
 	return data;
 };
 
