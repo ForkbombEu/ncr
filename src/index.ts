@@ -26,7 +26,7 @@ import {
 	openapiTemplate
 } from './openapi.js';
 import { SlangroomManager } from './slangroom.js';
-import { getSchema, handleArrayBuffer, validateData } from './utils.js';
+import { getSchema, validateData } from './utils.js';
 dotenv.config();
 
 const L = config.logger;
@@ -282,7 +282,10 @@ const generateRoutes = (app: TemplatedApp) => {
 			} catch (e) {
 				LOG.fatal(e);
 				res.cork(() =>
-					res.writeStatus('500').writeHeader('Content-Type', 'application/json').end(e.message)
+					res
+						.writeStatus('500')
+						.writeHeader('Content-Type', 'application/json')
+						.end((e as Error).message)
 				);
 				return;
 			}
@@ -306,21 +309,31 @@ const generateRoutes = (app: TemplatedApp) => {
 				res.writeStatus('500').writeHeader('Content-Type', 'application/json').end('Aborted');
 			});
 
-			try {
-				res.onData(async (d) => {
+			let buffer: Buffer;
+			res.onData((d, isLast) => {
+				let chunk = Buffer.from(d);
+				if (isLast) {
+					let data;
 					try {
-						const data = handleArrayBuffer(d);
-						execZencodeAndReply(res, req, data);
+						data = JSON.parse(buffer ? Buffer.concat([buffer, chunk]) : chunk);
 					} catch (e) {
-						LOG.fatal(e);
-						res.writeStatus('500').writeHeader('Content-Type', 'application/json').end(e.message);
+						L.error(e);
+						res
+							.writeStatus('500')
+							.writeHeader('Content-Type', 'application/json')
+							.end((e as Error).message);
 						return;
 					}
-				});
-			} catch (e) {
-				LOG.fatal(e);
-				res.writeStatus('500').writeHeader('Content-Type', 'application/json').end(e.message);
-			}
+					execZencodeAndReply(res, req, data);
+					return;
+				} else {
+					if (buffer) {
+						buffer = Buffer.concat([buffer, chunk]);
+					} else {
+						buffer = Buffer.concat([chunk]);
+					}
+				}
+			});
 		});
 
 		app.get(path, async (res, req) => {
