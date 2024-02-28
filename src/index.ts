@@ -26,7 +26,7 @@ import {
 	openapiTemplate
 } from './openapi.js';
 import { SlangroomManager } from './slangroom.js';
-import { getSchema, handleArrayBuffer, validateData } from './utils.js';
+import { getSchema, validateData } from './utils.js';
 dotenv.config();
 
 const L = config.logger;
@@ -311,33 +311,27 @@ const generateRoutes = (app: TemplatedApp) => {
 
 			let buffer: Buffer;
 			res.onData((d, isLast) => {
-				try {
-					let chunk = Buffer.from(d);
-					if (isLast) {
-						let data;
-						try {
-							data = JSON.parse(buffer ? Buffer.concat([buffer, chunk]) : chunk);
-						} catch (e) {
-							L.error(e);
-							res
-								.writeStatus('500')
-								.writeHeader('Content-Type', 'application/json')
-								.end((e as Error).message);
-						}
-						execZencodeAndReply(res, req, data);
-					} else {
-						if (buffer) {
-							buffer = Buffer.concat([buffer, chunk]);
-						} else {
-							buffer = Buffer.concat([chunk]);
-						}
+				let chunk = Buffer.from(d);
+				if (isLast) {
+					let data;
+					try {
+						data = JSON.parse(buffer ? Buffer.concat([buffer, chunk]) : chunk);
+					} catch (e) {
+						L.error(e);
+						res
+							.writeStatus('500')
+							.writeHeader('Content-Type', 'application/json')
+							.end((e as Error).message);
+						return;
 					}
-				} catch (e) {
-					LOG.fatal(e);
-					res
-						.writeStatus('500')
-						.writeHeader('Content-Type', 'application/json')
-						.end((e as Error).message);
+					execZencodeAndReply(res, req, data);
+					return;
+				} else {
+					if (buffer) {
+						buffer = Buffer.concat([buffer, chunk]);
+					} else {
+						buffer = Buffer.concat([chunk]);
+					}
 				}
 			});
 		});
