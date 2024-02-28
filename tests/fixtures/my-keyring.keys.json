@@ -1,11 +1,11 @@
 {
-    "targetDID": "did:dyne:sandbox.test:6ANws7nX3cDcikwQC1uZy97GZhaaggqcK6ioJHt8wpJa",
-    "didServiceResolveAPIPath": "https://did.dyne.org/dids/did:dyne:sandbox.test:AVov1SYrpQDGzJdMUvKDiYVmkuCRNwMaqxa9qa2HjbGF",
-    "message": "breh, how you ddoing? Now with AUTH!",
-    "identityDID": "https://did.dyne.org/dids/",
-    "user": {
-        "keyring": {
-            "eddsa": "btdwbiYphJFS8ymYChBnmsfSn2WcAShQ4aqKaN9pB2H"
-        }
-    }
+	"targetDID": "did:dyne:sandbox.test:6ANws7nX3cDcikwQC1uZy97GZhaaggqcK6ioJHt8wpJa",
+	"didServiceResolveAPIPath": "https://did.dyne.org/dids/did:dyne:sandbox.test:AVov1SYrpQDGzJdMUvKDiYVmkuCRNwMaqxa9qa2HjbGF",
+	"message": "breh, how you ddoing? Now with AUTH!",
+	"identityDID": "https://did.dyne.org/dids/",
+	"user": {
+		"keyring": {
+			"eddsa": "btdwbiYphJFS8ymYChBnmsfSn2WcAShQ4aqKaN9pB2H"
+		}
+	}
 }
