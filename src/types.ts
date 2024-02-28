@@ -1,4 +1,4 @@
-import { Logger } from 'pino';
+import type { ILogObj, Logger } from 'tslog';
 
 interface IndexableJSON {
 	[key: string]: unknown | IndexableJSON;
@@ -17,7 +17,7 @@ export interface Config {
 	zenroomVersion: string;
 	openapiPath: string;
 	template: string;
-	logger: Logger;
+	logger: Logger<ILogObj>;
 	publicDirectory: string | undefined;
 }
 

@@ -1,22 +1,33 @@
-import { type Slangroom as SlangroomType } from '@slangroom/core/build/esm/src/slangroom';
-//@ts-ignore
+//@ts-nocheck
 import { Slangroom } from '@slangroom/core';
-//@ts-ignore
-import { wallet } from '@slangroom/wallet';
-//@ts-ignore
-import { http } from '@slangroom/http';
-//@ts-ignore
+import { type Slangroom as SlangroomType } from '@slangroom/core/build/esm/src/slangroom';
 import { fs } from '@slangroom/fs';
-//@ts-ignore
-import { zencode } from '@slangroom/zencode';
-//@ts-ignore
 import { git } from '@slangroom/git';
-//@ts-ignore
+import { http } from '@slangroom/http';
+import { JSONSchema } from '@slangroom/json-schema';
 import { oauth } from '@slangroom/oauth';
+import { pocketbase } from '@slangroom/pocketbase';
+import { qrcode } from '@slangroom/qrcode';
+import { redis } from '@slangroom/redis';
+import { shell } from '@slangroom/shell';
+import { wallet } from '@slangroom/wallet';
+import { zencode } from '@slangroom/zencode';
 
 //
 
-const SLANGROOM_PLUGINS = [zencode, fs, wallet, http, git, oauth];
+const SLANGROOM_PLUGINS = [
+	zencode,
+	fs,
+	wallet,
+	http,
+	git,
+	oauth,
+	shell,
+	qrcode,
+	JSONSchema,
+	redis,
+	pocketbase
+];
 
 export class SlangroomManager {
 	private static instance: SlangroomType;
