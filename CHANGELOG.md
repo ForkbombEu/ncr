@@ -1,3 +1,10 @@
+# [1.17.0](https://github.com/forkbombeu/ncr/compare/v1.16.0...v1.17.0) (2024-02-28)
+
+
+### Features
+
+* better reporting. Unpack zenroom trace ([#66](https://github.com/forkbombeu/ncr/issues/66)) ([a7b0cb4](https://github.com/forkbombeu/ncr/commit/a7b0cb4413a3297f7449e881ae2c9b48bc60291d))
+
 # [1.16.0](https://github.com/forkbombeu/ncr/compare/v1.15.1...v1.16.0) (2024-02-27)
 
 ### Features
