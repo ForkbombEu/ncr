@@ -52,6 +52,7 @@ tests:
             status: 500
             sha256: 39cc1a02466e04790a69cc902bf13095b3058cb6b4d77937adf38e85a19cfe16
 
+
       - name: POST /broken no body
         http:
           url: http://${{env.host}}/broken
@@ -163,9 +164,9 @@ tests:
             status: 500
             json:
               - eq:
-                  - 'ZENROOM JSON LOG START'
-                  - " .  Release version: v4.12.2"
-                  - " .  Build commit hash: 8b32ed1e"
+                  - ZENROOM JSON LOG START
+                  - " .  Release version: v4.13.0"
+                  - " .  Build commit hash: 4672b888"
                   - " .  Memory manager: mimalloc"
                   - " .  ECDH curve is SECP256K1"
                   - " .  ECP curve is BLS381"
@@ -180,7 +181,8 @@ tests:
                   - "[!] Execution aborted with errors."
                   - "[*] Zenroom teardown."
                   - " .  Memory used: 399 KB"
-                  - 'ZENROOM JSON LOG END'
+                  - ZENROOM JSON LOG END
+
 
 
   slangroom_fs:

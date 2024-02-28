@@ -5,7 +5,6 @@ import _ from 'lodash';
 import { introspect } from 'zenroom';
 import { config } from './cli.js';
 import { Codec, Endpoints, JSONSchema, Metadata } from './types';
-
 const L = config.logger;
 
 //
@@ -80,7 +79,7 @@ export const validateData = (schema: JSONSchema, data: JSON | Record<string, unk
 	const validate = ajv.compile(schema);
 		if (!validate(data)) throw new Error(formatAjvErrors(validate.errors));
 	} catch (e) {
-		console.log("🌵");
+		L.error(e);
 		throw e;
 	}
 	return data;

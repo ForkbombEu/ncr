@@ -1,12 +1,16 @@
-import { Command, Option, type OptionValues } from 'commander';
-import { statSync } from 'node:fs';
-import pino, { type Logger } from 'pino';
+import { Command, Option } from 'commander';
 import 'dotenv/config';
-import { Config } from './types';
+import { statSync } from 'node:fs';
+import { Logger } from 'tslog';
 import p from '../package.json' with { type: 'json' };
-
+import { Config } from './types';
 export const program = new Command();
-const L = pino();
+const L = new Logger({
+	name: p.name, type: "pretty",
+	prettyLogTemplate: "{{logLevelName}}  {{yyyy}}.{{mm}}.{{dd}} {{hh}}:{{MM}}:{{ss}}:{{ms}}\t[{{filePathWithLine}}]\t",
+});
+
+
 const bads = ['⛔', '💩', '🥶', '💣'];
 const bad = bads[Math.floor(Math.random() * bads.length)];
 
