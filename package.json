@@ -38,16 +38,16 @@
 		"outputPath": "./"
 	},
 	"dependencies": {
-		"@slangroom/core": "^1.14.1",
-		"@slangroom/ethereum": "^1.14.1",
-		"@slangroom/fs": "^1.14.1",
-		"@slangroom/git": "^1.14.1",
-		"@slangroom/http": "^1.14.1",
-		"@slangroom/json-schema": "^1.14.1",
-		"@slangroom/oauth": "^1.16.0",
-		"@slangroom/pocketbase": "^1.17.0",
-		"@slangroom/wallet": "^1.14.1",
-		"@slangroom/zencode": "^1.18.0",
+		"@slangroom/core": "latest",
+		"@slangroom/ethereum": "latest",
+		"@slangroom/fs": "latest",
+		"@slangroom/git": "latest",
+		"@slangroom/http": "latest",
+    "@slangroom/json-schema": "latest",
+		"@slangroom/oauth": "latest",
+    "@slangroom/pocketbase": "latest",
+		"@slangroom/wallet": "latest",
+		"@slangroom/zencode": "latest",
 		"@tgwf/co2": "^0.14.3",
 		"@typescript-eslint/parser": "^7.1.0",
 		"ajv": "^8.12.0",
@@ -60,7 +60,7 @@
 		"mime": "^4.0.1",
 		"prom-client": "^15.0.0",
 		"uWebSockets.js": "github:uNetworking/uWebSockets.js#semver:^20",
-		"zenroom": "^4.13.0"
+		"zenroom": "latest"
 	},
 	"devDependencies": {
 		"@rollup/plugin-commonjs": "^25.0.7",

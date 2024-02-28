@@ -6,34 +6,34 @@ settings:
 
 dependencies:
   '@slangroom/core':
-    specifier: ^1.14.1
+    specifier: latest
     version: 1.14.1(zenroom@4.13.0)
   '@slangroom/ethereum':
-    specifier: ^1.14.1
+    specifier: latest
     version: 1.14.1(typescript@5.3.3)(zenroom@4.13.0)
   '@slangroom/fs':
-    specifier: ^1.14.1
+    specifier: latest
     version: 1.14.1(zenroom@4.13.0)
   '@slangroom/git':
-    specifier: ^1.14.1
+    specifier: latest
     version: 1.14.1(zenroom@4.13.0)
   '@slangroom/http':
-    specifier: ^1.14.1
+    specifier: latest
     version: 1.14.1(zenroom@4.13.0)
   '@slangroom/json-schema':
-    specifier: ^1.14.1
+    specifier: latest
     version: 1.14.1(zenroom@4.13.0)
   '@slangroom/oauth':
-    specifier: ^1.16.0
+    specifier: latest
     version: 1.16.0(zenroom@4.13.0)
   '@slangroom/pocketbase':
-    specifier: ^1.17.0
+    specifier: latest
     version: 1.17.0(zenroom@4.13.0)
   '@slangroom/wallet':
-    specifier: ^1.14.1
+    specifier: latest
     version: 1.14.1(zenroom@4.13.0)
   '@slangroom/zencode':
-    specifier: ^1.18.0
+    specifier: latest
     version: 1.18.0(zenroom@4.13.0)
   '@tgwf/co2':
     specifier: ^0.14.3
@@ -72,7 +72,7 @@ dependencies:
     specifier: github:uNetworking/uWebSockets.js#semver:^20
     version: github.com/uNetworking/uWebSockets.js/fca27c05066342b01951782248640c8013b37196
   zenroom:
-    specifier: ^4.13.0
+    specifier: latest
     version: 4.13.0
 
 devDependencies:
@@ -1773,6 +1773,7 @@ packages:
       - zenroom
     dev: false
 
+
   /@slangroom/pocketbase@1.17.0(zenroom@4.13.0):
     resolution: {integrity: sha512-yYUFpHNQ8IByqNLYWDClIxwG3XLzGW6ViBhtd+daBpq+ONEdJ1/S4f1JZ9E0FhwJUekpVL+IQnN2zQrZLljndw==}
     dependencies:
@@ -1784,6 +1785,7 @@ packages:
     transitivePeerDependencies:
       - zenroom
     dev: false
+
 
   /@slangroom/qrcode@1.14.1(zenroom@4.13.0):
     resolution: {integrity: sha512-gHR8XA+dfdub8v9d8N8Gk8CQ82MVMiT36SwRC0lyhd/MMzgiCMc0jSCqGkIqNkGyXFVFmaKsllnFFOXf8KpCwg==}
@@ -5579,7 +5581,7 @@ packages:
     dev: true
 
   /media-typer@0.3.0:
-    resolution: {integrity: sha512-dq+qelQ9akHpcOl/gUVRTxVIOkAJ1wR3QAvb4RsVjS8oVoFjDGTc679wJYmUmknUF5HwMLOgb5O+a3KxfWapPQ==}
+    resolution: {integrity: sha1-hxDXrwqmJvj/+hzgAWhUUmMlV0g=}
     engines: {node: '>= 0.6'}
     dev: false
 
