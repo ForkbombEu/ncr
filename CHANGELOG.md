@@ -1,3 +1,10 @@
+## [1.18.1](https://github.com/forkbombeu/ncr/compare/v1.18.0...v1.18.1) (2024-02-28)
+
+
+### Bug Fixes
+
+* when getting data from post await until isLast is set to true ([#58](https://github.com/forkbombeu/ncr/issues/58)) ([0549669](https://github.com/forkbombeu/ncr/commit/0549669c246179b10bd91c3f9e38db47f6dfc0f6))
+
 # [1.18.0](https://github.com/forkbombeu/ncr/compare/v1.17.0...v1.18.0) (2024-02-28)
 
 
