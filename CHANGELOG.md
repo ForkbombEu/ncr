@@ -1,3 +1,10 @@
+# [1.18.0](https://github.com/forkbombeu/ncr/compare/v1.17.0...v1.18.0) (2024-02-28)
+
+
+### Features
+
+* update zenroom and slangroom deps to [@latest](https://github.com/latest) ([#65](https://github.com/forkbombeu/ncr/issues/65)) ([cf86443](https://github.com/forkbombeu/ncr/commit/cf864433b76dd32e62f46c508f5c5d932b2b41f2))
+
 # [1.17.0](https://github.com/forkbombeu/ncr/compare/v1.16.0...v1.17.0) (2024-02-28)
 
 

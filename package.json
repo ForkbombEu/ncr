@@ -1,6 +1,6 @@
 {
 	"name": "ncr",
-	"version": "1.17.0",
+	"version": "1.18.0",
 	"description": "No code REST API server based on zencode natural language smart contracts",
 	"repository": "https://github.com/forkbombeu/ncr",
 	"author": {
@@ -43,9 +43,9 @@
 		"@slangroom/fs": "latest",
 		"@slangroom/git": "latest",
 		"@slangroom/http": "latest",
-    "@slangroom/json-schema": "latest",
+		"@slangroom/json-schema": "latest",
 		"@slangroom/oauth": "latest",
-    "@slangroom/pocketbase": "latest",
+		"@slangroom/pocketbase": "latest",
 		"@slangroom/wallet": "latest",
 		"@slangroom/zencode": "latest",
 		"@tgwf/co2": "^0.14.3",
