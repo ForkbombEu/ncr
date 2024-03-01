@@ -164,8 +164,8 @@ tests:
             json:
               - eq:
                   - ZENROOM JSON LOG START
-                  - ' .  Release version: v4.13.0'
-                  - ' .  Build commit hash: 4672b888'
+                  - ' .  Release version: v4.15.0'
+                  - ' .  Build commit hash: 6dbeef9c'
                   - ' .  Memory manager: mimalloc'
                   - ' .  ECDH curve is SECP256K1'
                   - ' .  ECP curve is BLS381'
@@ -179,7 +179,7 @@ tests:
                     'love'"
                   - '[!] Execution aborted with errors.'
                   - '[*] Zenroom teardown.'
-                  - ' .  Memory used: 399 KB'
+                  - ' .  Memory used: 400 KB'
                   - ZENROOM JSON LOG END
 
   slangroom_fs:
