@@ -23,7 +23,7 @@ tests:
           method: GET
           check:
             status: 404
-            body: <h1>File Not Found</h1><hr><i>uWebSockets/20 Server</i>
+            body: <html><body><h1>File Not Found</h1><hr><i>uWebSockets/20 Server</i></body></html>
 
   broken:
     steps:
