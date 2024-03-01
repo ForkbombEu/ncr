@@ -12,6 +12,7 @@ import { redis } from '@slangroom/redis';
 import { shell } from '@slangroom/shell';
 import { wallet } from '@slangroom/wallet';
 import { zencode } from '@slangroom/zencode';
+import { timestamp } from '@slangroom/timestamp';
 
 //
 
@@ -26,7 +27,8 @@ const SLANGROOM_PLUGINS = [
 	qrcode,
 	JSONSchema,
 	redis,
-	pocketbase
+	pocketbase,
+	timestamp
 ];
 
 export class SlangroomManager {
