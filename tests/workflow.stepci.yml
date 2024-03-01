@@ -23,7 +23,7 @@ tests:
           method: GET
           check:
             status: 404
-            body: <h1>File Not Found</h1><hr><i>uWebSockets/20 Server</i>
+            body: <html><body><h1>File Not Found</h1><hr><i>uWebSockets/20 Server</i></body></html>
 
   broken:
     steps:
@@ -162,25 +162,7 @@ tests:
           check:
             status: 500
             json:
-              - eq:
-                  - ZENROOM JSON LOG START
-                  - ' .  Release version: v4.13.0'
-                  - ' .  Build commit hash: 4672b888'
-                  - ' .  Memory manager: mimalloc'
-                  - ' .  ECDH curve is SECP256K1'
-                  - ' .  ECP curve is BLS381'
-                  - ' .  Rule unknown ignore'
-                  - '[W] Zencode written for an older version: 4.12.0'
-                  - ' .  Rule check version 4.12.0'
-                  - 'J64 HEAP: eyJDQUNIRSI6W10sIkNPREVDIjpbXSwiR0lWRU5fZGF0YSI6eyJtYWxlIjoicHVyaWEiLCJzb2xlIjoicHVyaWEifSwiVEhFTiI6W10sIldIRU4iOltdfQ=='
-                  - 'J64 TRACE: WyIrMyAgR2l2ZW4gSSBoYXZlIGEgJ3N0cmluZyBkaWN0aW9uYXJ5JyBuYW1lZCAnbG92ZSciLCJbIV0gRXJyb3IgYXQgWmVuY29kZSBsaW5lIDMiLCJbIV0gL3plbmNvZGVfZ2l2ZW4ubHVhOjMzODogQ2Fubm90IGZpbmQgJ2xvdmUnIGFueXdoZXJlIChudWxsIHZhbHVlPykiXQ=='
-                  - '[!] Zencode runtime error'
-                  - "[!] /zencode.lua:646: Zencode line 3: Given I have a 'string dictionary' named
-                    'love'"
-                  - '[!] Execution aborted with errors.'
-                  - '[*] Zenroom teardown.'
-                  - ' .  Memory used: 399 KB'
-                  - ZENROOM JSON LOG END
+              - in: "[!] /zencode.lua:646: Zencode line 3: Given I have a 'string dictionary' named 'love'"
 
   slangroom_fs:
     steps:
