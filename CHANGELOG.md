@@ -1,3 +1,10 @@
+# [1.19.0](https://github.com/forkbombeu/ncr/compare/v1.18.1...v1.19.0) (2024-03-01)
+
+
+### Features
+
+* show debug data on zenroom errors ([#67](https://github.com/forkbombeu/ncr/issues/67)) ([825c403](https://github.com/forkbombeu/ncr/commit/825c4034d066c76415fb2f4f3964e1e794e074a4))
+
 ## [1.18.1](https://github.com/forkbombeu/ncr/compare/v1.18.0...v1.18.1) (2024-02-28)
 
 
