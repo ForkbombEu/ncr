@@ -1,3 +1,10 @@
+# [1.20.0](https://github.com/forkbombeu/ncr/compare/v1.19.1...v1.20.0) (2024-03-01)
+
+
+### Features
+
+* add @slangroom/timestamp plugin ([#69](https://github.com/forkbombeu/ncr/issues/69)) ([3a29a99](https://github.com/forkbombeu/ncr/commit/3a29a99084a366f1b934b8643ba099d9da5be211))
+
 ## [1.19.1](https://github.com/forkbombeu/ncr/compare/v1.19.0...v1.19.1) (2024-03-01)
 
 # [1.19.0](https://github.com/forkbombeu/ncr/compare/v1.18.1...v1.19.0) (2024-03-01)
