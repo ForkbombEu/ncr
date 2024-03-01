@@ -30,7 +30,7 @@ dependencies:
     specifier: latest
     version: 1.19.0(zenroom@4.15.0)
   '@slangroom/timestamp':
-    specifier: ^1.21.0
+    specifier: latest
     version: 1.21.0(zenroom@4.15.0)
   '@slangroom/wallet':
     specifier: latest
