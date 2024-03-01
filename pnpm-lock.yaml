@@ -29,6 +29,9 @@ dependencies:
   '@slangroom/pocketbase':
     specifier: latest
     version: 1.19.0(zenroom@4.15.0)
+  '@slangroom/timestamp':
+    specifier: latest
+    version: 1.21.0(zenroom@4.15.0)
   '@slangroom/wallet':
     specifier: latest
     version: 1.14.1(zenroom@4.15.0)
@@ -1819,6 +1822,15 @@ packages:
     transitivePeerDependencies:
       - zenroom
     dev: true
+
+  /@slangroom/timestamp@1.21.0(zenroom@4.15.0):
+    resolution: {integrity: sha512-gby9SmE5hCOPDGykIIVW2xuqhIiZr+YgLx6A2X3K1fHdzhPodtUTBcYTL/5rr4nj1k4ADK4dPh2nDLz1pk8XJQ==}
+    dependencies:
+      '@slangroom/core': 1.14.1(zenroom@4.15.0)
+      '@slangroom/shared': 1.9.6(zenroom@4.15.0)
+    transitivePeerDependencies:
+      - zenroom
+    dev: false
 
   /@slangroom/wallet@1.14.1(zenroom@4.15.0):
     resolution: {integrity: sha512-s0hXDiQNJ0we0++nGlxrrCQ5irGyUxdtJlRAWZtrdHV0eXoXAGrTn3sJvDwDnr93WJY2iKomk7RADdaMq5W4Hw==}
