@@ -10,31 +10,18 @@ import { pocketbase } from '@slangroom/pocketbase';
 import { qrcode } from '@slangroom/qrcode';
 import { redis } from '@slangroom/redis';
 import { shell } from '@slangroom/shell';
+import { timestamp } from '@slangroom/timestamp';
 import { wallet } from '@slangroom/wallet';
 import { zencode } from '@slangroom/zencode';
-import { timestamp } from '@slangroom/timestamp';
 
 //
 
-const SLANGROOM_PLUGINS = [
-	zencode,
-	fs,
-	wallet,
-	http,
-	git,
-	oauth,
-	shell,
-	qrcode,
-	JSONSchema,
-	redis,
-	pocketbase,
-	timestamp
-];
+const SLANGROOM_PLUGINS = [fs, git, http, JSONSchema, oauth, pocketbase, qrcode, redis, shell, timestamp, wallet, zencode];
 
 export class SlangroomManager {
 	private static instance: SlangroomType;
 
-	private constructor() {}
+	private constructor() { }
 
 	public static getInstance(): SlangroomType {
 		if (!SlangroomManager.instance) {
