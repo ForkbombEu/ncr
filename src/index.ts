@@ -183,6 +183,10 @@ Dir.ready(async () => {
 	});
 });
 
+const setCorsHeaders = (res: HttpResponse) => {
+	res.writeHeader('Access-Control-Allow-Origin', '*');
+}
+
 const generateRoutes = (app: TemplatedApp) => {
 	Dir.files.forEach(async (endpoints) => {
 		const { contract, path, keys, conf, metadata } = endpoints;
@@ -275,7 +279,6 @@ const generateRoutes = (app: TemplatedApp) => {
 					res
 						.writeStatus(metadata.successCode)
 						.writeHeader('Content-Type', metadata.successContentType)
-						.writeHeader('Access-Control-Allow-Origin', '*')
 						.end(slangroomResult);
 					return;
 				});
@@ -290,17 +293,16 @@ const generateRoutes = (app: TemplatedApp) => {
 			}
 		};
 		app.options(path, (res) => {
-			res.cork(() => {
-				res.onAborted(() => {
-					res.writeStatus('500').end('Aborted');
-				});
-
-				res.writeHeader('Access-Control-Allow-Origin', '*').writeStatus('200 OK').end();
+			res.onAborted(() => {
+				res.writeStatus('500').end('Aborted');
 			});
+			setCorsHeaders(res);
+			res.end();
 		});
 
 		if (!metadata.disablePost) {
 			app.post(path, (res, req) => {
+				setCorsHeaders(res);
 				/**
 				 * Code may break on `slangroom.execute`
 				 * so it's important to attach the `onAborted` handler before everything else
@@ -335,6 +337,7 @@ const generateRoutes = (app: TemplatedApp) => {
 		}
 		if (!metadata.disableGet) {
 			app.get(path, async (res, req) => {
+				setCorsHeaders(res);
 				/**
 				 * Code may break on `slangroom.execute`
 				 * so it's important to attach the `onAborted` handler before everything else
