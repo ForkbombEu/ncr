@@ -1,4 +1,5 @@
 import type { ILogObj, Logger } from 'tslog';
+import { RecognizedString } from 'uWebSockets.js';
 
 interface IndexableJSON {
 	[key: string]: unknown | IndexableJSON;
@@ -41,5 +42,20 @@ export interface Codec {
 }
 
 export interface Metadata {
+	disableGet: boolean;
+	disablePost: boolean;
+
+	contentType: RecognizedString;
 	httpHeaders: boolean;
+
+	successCode: RecognizedString;
+	successContentType: RecognizedString;
+	successDescription: RecognizedString;
+
+	errorCode: RecognizedString;
+	errorDescription: RecognizedString;
+	errorContentType: RecognizedString;
+
+	examples: {};
+	tags: Array<string>;
 }

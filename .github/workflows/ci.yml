@@ -29,7 +29,6 @@ jobs:
         run: |
           pnpm i
           pnpm test
-          pnpm e2e
       - name: Build executable
         run: |
           make build

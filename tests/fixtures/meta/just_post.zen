@@ -1,0 +1,5 @@
+Given I have a 'string' named 'name'
+Given I have a 'string' named 'description'
+Given I have a 'number' named 'age'
+
+Then print the string 'JUST POST'

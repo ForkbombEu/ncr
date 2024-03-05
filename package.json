@@ -16,7 +16,7 @@
 		"sea": "pnpm b && pnpm p",
 		"dev": "nodemon -e ts -w ./src -x pnpm run watch -z ./contracts -p 3000",
 		"watch": "node --loader ts-node/esm src/index.ts",
-		"test": "jest",
+		"test": "pnpm e2e && jest",
 		"start": "node --loader ts-node/esm src/index.ts -z ./tests/fixtures -p 3000",
 		"e2e": "start-server-and-test http-get://0.0.0.0:3000 'pnpm stepci run ./tests/workflow.stepci.yml'"
 	},
@@ -61,7 +61,7 @@
 		"mime": "^4.0.1",
 		"prom-client": "^15.0.0",
 		"uWebSockets.js": "github:uNetworking/uWebSockets.js#semver:^20",
-		"zenroom": "^4.15.1"
+		"zenroom": "^4.18.0"
 	},
 	"devDependencies": {
 		"@rollup/plugin-commonjs": "^25.0.7",
