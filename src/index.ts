@@ -79,10 +79,10 @@ const ncrApp = async () => {
 		})
 		.get('/oas.json', (res, req) => {
 			Dir.files.map(async (endpoints) => {
-				const { path } = endpoints;
+				const { path, metadata } = endpoints;
 				if (definition.paths) {
 					const schema = await getSchema(endpoints);
-					if (schema) definition.paths[path] = generatePath(endpoints.contract, schema);
+					if (schema) definition.paths[path] = generatePath(endpoints.contract, schema, metadata);
 					definition.paths[path + '/raw'] = generateRawPath();
 					definition.paths[path + '/app'] = generateAppletPath();
 				}
@@ -265,7 +265,7 @@ const generateRoutes = (app: TemplatedApp) => {
 					if (!res.aborted) {
 						res.cork(() => {
 							const report = reportZenroomError(e as Error, LOG, endpoints);
-							res.writeStatus('500').writeHeader('Content-Type', 'application/json').end(report);
+							res.writeStatus(metadata.errorCode).end(report);
 						});
 						return;
 					}
@@ -273,8 +273,8 @@ const generateRoutes = (app: TemplatedApp) => {
 
 				res.cork(() => {
 					res
-						.writeStatus('200 OK')
-						.writeHeader('Content-Type', 'application/json')
+						.writeStatus(metadata.successCode)
+						.writeHeader('Content-Type', metadata.successContentType)
 						.writeHeader('Access-Control-Allow-Origin', '*')
 						.end(slangroomResult);
 					return;
@@ -283,8 +283,7 @@ const generateRoutes = (app: TemplatedApp) => {
 				LOG.fatal(e);
 				res.cork(() =>
 					res
-						.writeStatus('500')
-						.writeHeader('Content-Type', 'application/json')
+						.writeStatus(metadata.errorCode)
 						.end((e as Error).message)
 				);
 				return;
@@ -300,69 +299,67 @@ const generateRoutes = (app: TemplatedApp) => {
 			});
 		});
 
-		app.post(path, (res, req) => {
-			/**
-			 * Code may break on `slangroom.execute`
-			 * so it's important to attach the `onAborted` handler before everything else
-			 */
-			res.onAborted(() => {
-				res.writeStatus('500').writeHeader('Content-Type', 'application/json').end('Aborted');
-			});
+		if (!metadata.disablePost) {
+			app.post(path, (res, req) => {
+				/**
+				 * Code may break on `slangroom.execute`
+				 * so it's important to attach the `onAborted` handler before everything else
+				 */
+				res.onAborted(() => {
+					res.writeStatus(metadata.errorCode ? metadata.errorCode : '500').end('Aborted');
+				});
 
-			let buffer: Buffer;
-			res.onData((d, isLast) => {
-				let chunk = Buffer.from(d);
-				if (isLast) {
-					let data;
-					try {
-						data = JSON.parse(buffer ? Buffer.concat([buffer, chunk]) : chunk);
-					} catch (e) {
-						L.error(e);
-						res
-							.writeStatus('500')
-							.writeHeader('Content-Type', 'application/json')
-							.end((e as Error).message);
+				let buffer: Buffer;
+				res.onData((d, isLast) => {
+					let chunk = Buffer.from(d);
+					if (isLast) {
+						let data;
+						try {
+							data = JSON.parse(buffer ? Buffer.concat([buffer, chunk]) : chunk);
+						} catch (e) {
+							L.error(e);
+							res.writeStatus(metadata.errorCode).end((e as Error).message);
+							return;
+						}
+						execZencodeAndReply(res, req, data);
 						return;
+					} else {
+						if (buffer) {
+							buffer = Buffer.concat([buffer, chunk]);
+						} else {
+							buffer = Buffer.concat([chunk]);
+						}
+					}
+				});
+			});
+		}
+		if (!metadata.disableGet) {
+			app.get(path, async (res, req) => {
+				/**
+				 * Code may break on `slangroom.execute`
+				 * so it's important to attach the `onAborted` handler before everything else
+				 */
+				res.onAborted(() => {
+					res.writeStatus(metadata.errorCode).end('Aborted');
+				});
+
+				try {
+					const data: Record<string, unknown> = {};
+					const q = req.getQuery();
+					if (q) {
+						q.split('&').map((r) => {
+							const [k, v] = r.split('=');
+							data[k] = v;
+						});
 					}
 					execZencodeAndReply(res, req, data);
+				} catch (e) {
+					LOG.fatal(e);
+					res.writeStatus(metadata.errorCode).end((e as Error).message);
 					return;
-				} else {
-					if (buffer) {
-						buffer = Buffer.concat([buffer, chunk]);
-					} else {
-						buffer = Buffer.concat([chunk]);
-					}
 				}
 			});
-		});
-
-		app.get(path, async (res, req) => {
-			/**
-			 * Code may break on `slangroom.execute`
-			 * so it's important to attach the `onAborted` handler before everything else
-			 */
-			res.onAborted(() => {
-				res.writeStatus('500').writeHeader('Content-Type', 'application/json').end('Aborted');
-			});
-
-			try {
-				const data: Record<string, unknown> = {};
-				const q = req.getQuery();
-				if (q) {
-					q.split('&').map((r) => {
-						const [k, v] = r.split('=');
-						data[k] = v;
-					});
-				}
-				execZencodeAndReply(res, req, data);
-			} catch (e) {
-				LOG.fatal(e);
-				res
-					.writeStatus('500')
-					.writeHeader('Content-Type', 'application/json')
-					.end((e as Error).message);
-			}
-		});
+		}
 
 		app.get(path + '/raw', (res, req) => {
 			res.writeStatus('200 OK').writeHeader('Content-Type', 'text/plain').end(contract);

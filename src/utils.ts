@@ -111,7 +111,18 @@ export function validateJSONSchema(schema: JSON): void {
  */
 export const newMetadata = (configRaw: JSON): Metadata => {
 	return {
-		httpHeaders: configRaw['http_headers'] || false
+		httpHeaders: configRaw['http_headers'] || false,
+		errorCode: configRaw['error_code'] || '500',
+		successCode: configRaw['success_code'] || '200',
+		successDescription: configRaw['success_description'] || 'The zencode execution output, splitted by newline',
+		errorDescription: configRaw['error_description'] || 'Zenroom execution error',
+		contentType: configRaw['content_type'] || 'application/json',
+		disableGet: configRaw['disable_get'] || false,
+		disablePost: configRaw['disable_post'] || false,
+		successContentType: configRaw['success_content_type'] || 'application/json',
+		errorContentType: configRaw['error_content_type'] || 'plain/text',
+		examples: configRaw['examples'] || {},
+		tags: configRaw['tags'] || ['📑 Zencodes'],
 	};
 };
 

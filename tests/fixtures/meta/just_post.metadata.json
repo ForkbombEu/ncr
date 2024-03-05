@@ -1,0 +1,29 @@
+{
+    "disable_get": true,
+    "examples": {
+        "andrea": {
+            "value": {
+                "name": "A name",
+                "description": "Somebody to love",
+                "age": 500
+            },
+            "summary": "An Andrea example"
+        },
+        "secondary": {
+            "value": {
+                "name": "Just born",
+                "description": "A baby",
+                "age": 2
+            },
+            "summary": "Baby"
+        },
+        "first": {
+            "value": {
+                "name": "A name",
+                "description": "A description",
+                "age": 20
+            },
+            "summary": "Generic"
+        }
+    }
+}
