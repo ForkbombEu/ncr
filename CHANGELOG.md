@@ -1,3 +1,10 @@
+# [1.22.0](https://github.com/forkbombeu/ncr/compare/v1.21.0...v1.22.0) (2024-03-05)
+
+
+### Features
+
+* add @slangroom/helpers plugin ([#74](https://github.com/forkbombeu/ncr/issues/74)) ([5106234](https://github.com/forkbombeu/ncr/commit/51062340cce64d1740a7738ae47e4c482383380a))
+
 # [1.21.0](https://github.com/forkbombeu/ncr/compare/v1.20.1...v1.21.0) (2024-03-05)
 
 
