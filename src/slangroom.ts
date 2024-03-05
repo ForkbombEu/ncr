@@ -3,6 +3,7 @@ import { Slangroom } from '@slangroom/core';
 import { type Slangroom as SlangroomType } from '@slangroom/core/build/esm/src/slangroom';
 import { fs } from '@slangroom/fs';
 import { git } from '@slangroom/git';
+import { helpers } from '@slangroom/helpers';
 import { http } from '@slangroom/http';
 import { JSONSchema } from '@slangroom/json-schema';
 import { oauth } from '@slangroom/oauth';
@@ -14,7 +15,7 @@ import { timestamp } from '@slangroom/timestamp';
 import { wallet } from '@slangroom/wallet';
 import { zencode } from '@slangroom/zencode';
 
-const SLANGROOM_PLUGINS = [fs, git, http, JSONSchema, oauth, pocketbase, qrcode, redis, shell, timestamp, wallet, zencode];
+const SLANGROOM_PLUGINS = [fs, git, helpers, http, JSONSchema, oauth, pocketbase, qrcode, redis, shell, timestamp, wallet, zencode];
 
 export class SlangroomManager {
 	private static instance: SlangroomType;
