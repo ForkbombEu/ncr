@@ -17,6 +17,9 @@ dependencies:
   '@slangroom/git':
     specifier: latest
     version: 1.14.1(zenroom@4.18.0)
+  '@slangroom/helpers':
+    specifier: latest
+    version: 1.22.0(zenroom@4.18.0)
   '@slangroom/http':
     specifier: latest
     version: 1.14.1(zenroom@4.18.0)
@@ -1735,6 +1738,17 @@ packages:
       - zenroom
     dev: false
 
+  /@slangroom/helpers@1.22.0(zenroom@4.18.0):
+    resolution: {integrity: sha512-zHzAJ/aq8vJ8Wv76Vx02rL4l4tTI/FozatkZejJCQKJiywbeL5hHtFNm6B1vRPCVJ6OY74NMB9zo3pwiWQlnIg==}
+    dependencies:
+      '@slangroom/core': 1.14.1(zenroom@4.18.0)
+      '@slangroom/shared': 1.9.6(zenroom@4.18.0)
+      '@types/lodash': 4.14.202
+      lodash: 4.17.21
+    transitivePeerDependencies:
+      - zenroom
+    dev: false
+
   /@slangroom/http@1.14.1(zenroom@4.18.0):
     resolution: {integrity: sha512-Mn3Ub/JSp/VtxEeyO/l38AaKNGIilSmnChrlRNiP93obnyYoAYNZVWVGbJhfxAmg/xOjhXvl+usKRB4xPxIZ5w==}
     dependencies:
@@ -2187,7 +2201,6 @@ packages:
 
   /@types/lodash@4.14.202:
     resolution: {integrity: sha512-OvlIYQK9tNneDlS0VN54LLd5uiPCBOp7gS5Z0f1mjoJYBrtStzgmJBxONW3U6OZqdtNzZPmn9BS/7WI7BFFcFQ==}
-    dev: true
 
   /@types/minimatch@5.1.2:
     resolution: {integrity: sha512-K0VQKziLUWkVKiRVrx4a40iPaxTUefQmjtkQofBkYRcoaaL/8rhwDWww9qWbrgicNOgnpIsMxyNIUM4+n6dUIA==}

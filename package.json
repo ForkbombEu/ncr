@@ -42,6 +42,7 @@
 		"@slangroom/ethereum": "latest",
 		"@slangroom/fs": "latest",
 		"@slangroom/git": "latest",
+		"@slangroom/helpers": "latest",
 		"@slangroom/http": "latest",
 		"@slangroom/json-schema": "latest",
 		"@slangroom/oauth": "^1.23.0",
