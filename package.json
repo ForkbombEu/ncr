@@ -1,6 +1,6 @@
 {
 	"name": "ncr",
-	"version": "1.20.1",
+	"version": "1.21.0",
 	"description": "No code REST API server based on zencode natural language smart contracts",
 	"repository": "https://github.com/forkbombeu/ncr",
 	"author": {

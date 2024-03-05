@@ -1,3 +1,10 @@
+# [1.21.0](https://github.com/forkbombeu/ncr/compare/v1.20.1...v1.21.0) (2024-03-05)
+
+
+### Features
+
+* error/success code examples/tags content-types ([#71](https://github.com/forkbombeu/ncr/issues/71)) ([704b961](https://github.com/forkbombeu/ncr/commit/704b961b5f94d1122a55664609ac4c1cc1eefc3a)), closes [#72](https://github.com/forkbombeu/ncr/issues/72)
+
 ## [1.20.1](https://github.com/forkbombeu/ncr/compare/v1.20.0...v1.20.1) (2024-03-05)
 
 # [1.20.0](https://github.com/forkbombeu/ncr/compare/v1.19.1...v1.20.0) (2024-03-01)
