@@ -12,8 +12,8 @@ dependencies:
     specifier: ^1.25.1
     version: 1.25.1(typescript@5.3.3)(zenroom@4.18.0)
   '@slangroom/fs':
-    specifier: ^1.26.0
-    version: 1.26.0(zenroom@4.18.0)
+    specifier: ^1.27.0
+    version: 1.27.0(zenroom@4.18.0)
   '@slangroom/git':
     specifier: ^1.25.1
     version: 1.25.1(zenroom@4.18.0)
@@ -1691,6 +1691,16 @@ packages:
     transitivePeerDependencies:
       - zenroom
 
+  /@slangroom/core@1.27.0(zenroom@4.18.0):
+    resolution: {integrity: sha512-w7Dmaj0WQ7++WwieIwwpPci4940CroHPYR7lhWp2VmjOtacovuukqSOljzN/PphCd8X5efTNEgSNC4GkqVqlww==}
+    dependencies:
+      '@slangroom/deps': 1.9.5(zenroom@4.18.0)
+      '@slangroom/ignored': 1.9.6(zenroom@4.18.0)
+      '@slangroom/shared': 1.9.6(zenroom@4.18.0)
+    transitivePeerDependencies:
+      - zenroom
+    dev: false
+
   /@slangroom/deps@1.9.5(zenroom@4.18.0):
     resolution: {integrity: sha512-QSO8pSKnZhqZg2IZ00SzwqH2BHtjD96KAFCfIsaD/OeFBuKCsst5NM0Ty+hYLXfKptJmRyzJrTtd2WlQh16Q8g==}
     peerDependencies:
@@ -1717,10 +1727,10 @@ packages:
       - zod
     dev: false
 
-  /@slangroom/fs@1.26.0(zenroom@4.18.0):
-    resolution: {integrity: sha512-c9MCwSRaVG0wOaA5S3cYiu6GZ3iOVUtNO5UiBrnjVOd2Un95xQdZfzcGB3Oed47JNo5dh2Vzkk3qsiyduzUVog==}
+  /@slangroom/fs@1.27.0(zenroom@4.18.0):
+    resolution: {integrity: sha512-f0SZzE/URqdF81R3z31Q6saLD4IWFWktsYgVVvYqvdKxGHCPuSHk3hg8Emil3BWTPoRsy8RfZfBdGRDchkuQjw==}
     dependencies:
-      '@slangroom/core': 1.25.1(zenroom@4.18.0)
+      '@slangroom/core': 1.27.0(zenroom@4.18.0)
       axios: 1.6.7(debug@4.3.4)
       extract-zip: 2.0.1
     transitivePeerDependencies:
