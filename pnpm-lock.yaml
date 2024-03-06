@@ -18,8 +18,8 @@ dependencies:
     specifier: ^1.25.1
     version: 1.25.1(zenroom@4.18.0)
   '@slangroom/helpers':
-    specifier: ^1.25.1
-    version: 1.25.1(zenroom@4.18.0)
+    specifier: ^1.27.0
+    version: 1.27.0(zenroom@4.18.0)
   '@slangroom/http':
     specifier: ^1.25.1
     version: 1.25.1(zenroom@4.18.0)
@@ -1748,10 +1748,10 @@ packages:
       - zenroom
     dev: false
 
-  /@slangroom/helpers@1.25.1(zenroom@4.18.0):
-    resolution: {integrity: sha512-cC1AkZcY0Ndq5p7l+vwQ0KvbVVgrd/HXk5VtkwwZAq/Tn9H2VDL4NuAJ7cOCdYb6Lq3Cy1a7sjCS3BfSzSLMpQ==}
+  /@slangroom/helpers@1.27.0(zenroom@4.18.0):
+    resolution: {integrity: sha512-uW+oxvIW7aUKBucyPR39xerpdwDMX/I5mhoEa0gs8xynw1iY0lPLQHp+VHHB20ynlrQMcbJwv4Uf99vN10pEZw==}
     dependencies:
-      '@slangroom/core': 1.25.1(zenroom@4.18.0)
+      '@slangroom/core': 1.27.0(zenroom@4.18.0)
       '@slangroom/shared': 1.9.6(zenroom@4.18.0)
       '@types/lodash': 4.14.202
       lodash: 4.17.21
