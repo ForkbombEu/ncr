@@ -42,6 +42,7 @@ export interface Codec {
 }
 
 export interface Metadata {
+	hidden: boolean;
 	disableGet: boolean;
 	disablePost: boolean;
 

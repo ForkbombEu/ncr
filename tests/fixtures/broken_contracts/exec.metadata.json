@@ -1,0 +1,10 @@
+{
+  "examples": {
+    "did": {
+      "value": {
+            "did_document": {"description": "sandbox_test_from_js_updated"},
+            "id": "did:dyne:sandbox.test:33ZZcaRLvdsvAKTkV8eAHZsvioZSgPcC4ReNXLup7Tj4#ethereum_address"
+      }
+    }
+  }
+}

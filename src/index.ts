@@ -186,6 +186,8 @@ Dir.ready(async () => {
 const generateRoutes = (app: TemplatedApp) => {
 	Dir.files.forEach(async (endpoints) => {
 		const { contract, path, keys, conf, metadata } = endpoints;
+		if (metadata.hidden) return;
+
 		const LOG = L.getSubLogger({
 			stylePrettyLogs: true,
 			prettyLogTemplate:
