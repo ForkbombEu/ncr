@@ -1,3 +1,10 @@
+## [1.24.1](https://github.com/forkbombeu/ncr/compare/v1.24.0...v1.24.1) (2024-03-07)
+
+
+### Bug Fixes
+
+* when file is not cached read it from file ([#82](https://github.com/forkbombeu/ncr/issues/82)) ([421bace](https://github.com/forkbombeu/ncr/commit/421baceb85f1f58a3f073f5ee2db8998b57a30a7))
+
 # [1.24.0](https://github.com/forkbombeu/ncr/compare/v1.23.1...v1.24.0) (2024-03-07)
 
 
