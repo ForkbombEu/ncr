@@ -1,3 +1,10 @@
+# [1.24.0](https://github.com/forkbombeu/ncr/compare/v1.23.1...v1.24.0) (2024-03-07)
+
+
+### Features
+
+* flag to deliberately hide .zen from openapi ([#81](https://github.com/forkbombeu/ncr/issues/81)) ([854b375](https://github.com/forkbombeu/ncr/commit/854b37572772a35b5b9f73236f39da3b11362d3f))
+
 ## [1.23.1](https://github.com/forkbombeu/ncr/compare/v1.23.0...v1.23.1) (2024-03-07)
 
 # [1.23.0](https://github.com/forkbombeu/ncr/compare/v1.22.1...v1.23.0) (2024-03-07)
