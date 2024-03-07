@@ -1,4 +1,5 @@
 import LiveDirectory from 'live-directory';
+import fs from 'fs';
 import { config } from './cli.js';
 import { Endpoints } from './types.js';
 import { validateJSONSchema, newMetadata } from './utils.js';
@@ -23,7 +24,10 @@ export class Directory {
 	}
 
 	private getContent(name: string) {
-		return this.liveDirectory.get(name)?.content.toString('utf-8');
+		const lf = this.liveDirectory.get(name);
+		if (lf == null) return lf;
+		if (lf.cached) return lf.content.toString('utf-8');
+		else return fs.readFileSync(lf.path).toString('utf-8');
 	}
 
 	public static getInstance(): Directory {
@@ -44,7 +48,7 @@ export class Directory {
 			if (ext === 'zen') {
 				result.push({
 					path: path,
-					contract: formatContract(Buffer.from(c.content).toString('utf-8')),
+					contract: formatContract(this.getContent(f)),
 					keys: this.getJSON(path, 'keys'),
 					conf: this.getContent(path + '.conf') || '',
 					schema: this.getJSONSchema(path),

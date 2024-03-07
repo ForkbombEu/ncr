@@ -80,7 +80,7 @@ const ncrApp = async () => {
 		.get('/oas.json', (res, req) => {
 			Dir.files.map(async (endpoints) => {
 				const { path, metadata } = endpoints;
-				if (definition.paths) {
+				if (definition.paths && !metadata.hidden && !metadata.hideFromOpenapi) {
 					const schema = await getSchema(endpoints);
 					if (schema) definition.paths[path] = generatePath(endpoints.contract, schema, metadata);
 					definition.paths[path + '/raw'] = generateRawPath();
@@ -190,6 +190,8 @@ const setCorsHeaders = (res: HttpResponse) => {
 const generateRoutes = (app: TemplatedApp) => {
 	Dir.files.forEach(async (endpoints) => {
 		const { contract, path, keys, conf, metadata } = endpoints;
+		if (metadata.hidden) return;
+
 		const LOG = L.getSubLogger({
 			stylePrettyLogs: true,
 			prettyLogTemplate:

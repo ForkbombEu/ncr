@@ -1,3 +1,37 @@
+## [1.24.2](https://github.com/forkbombeu/ncr/compare/v1.24.1...v1.24.2) (2024-03-07)
+
+## [1.24.1](https://github.com/forkbombeu/ncr/compare/v1.24.0...v1.24.1) (2024-03-07)
+
+
+### Bug Fixes
+
+* when file is not cached read it from file ([#82](https://github.com/forkbombeu/ncr/issues/82)) ([421bace](https://github.com/forkbombeu/ncr/commit/421baceb85f1f58a3f073f5ee2db8998b57a30a7))
+
+# [1.24.0](https://github.com/forkbombeu/ncr/compare/v1.23.1...v1.24.0) (2024-03-07)
+
+
+### Features
+
+* flag to deliberately hide .zen from openapi ([#81](https://github.com/forkbombeu/ncr/issues/81)) ([854b375](https://github.com/forkbombeu/ncr/commit/854b37572772a35b5b9f73236f39da3b11362d3f))
+
+## [1.23.1](https://github.com/forkbombeu/ncr/compare/v1.23.0...v1.23.1) (2024-03-07)
+
+# [1.23.0](https://github.com/forkbombeu/ncr/compare/v1.22.1...v1.23.0) (2024-03-07)
+
+
+### Features
+
+* hidden contracts with metadata `hidden` flag ([#80](https://github.com/forkbombeu/ncr/issues/80)) ([a9e86e3](https://github.com/forkbombeu/ncr/commit/a9e86e35b52d29d87a7ee6e95fb6c258b596fa82))
+
+## [1.22.1](https://github.com/forkbombeu/ncr/compare/v1.22.0...v1.22.1) (2024-03-06)
+
+# [1.22.0](https://github.com/forkbombeu/ncr/compare/v1.21.0...v1.22.0) (2024-03-05)
+
+
+### Features
+
+* add @slangroom/helpers plugin ([#74](https://github.com/forkbombeu/ncr/issues/74)) ([5106234](https://github.com/forkbombeu/ncr/commit/51062340cce64d1740a7738ae47e4c482383380a))
+
 # [1.21.0](https://github.com/forkbombeu/ncr/compare/v1.20.1...v1.21.0) (2024-03-05)
 
 

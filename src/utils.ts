@@ -123,6 +123,8 @@ export const newMetadata = (configRaw: JSON): Metadata => {
 		errorContentType: configRaw['error_content_type'] || 'plain/text',
 		examples: configRaw['examples'] || {},
 		tags: configRaw['tags'] || ['📑 Zencodes'],
+		hidden: configRaw['hidden'] || false,
+		hideFromOpenapi: configRaw['hide_from_openapi'] || false,
 	};
 };
 
