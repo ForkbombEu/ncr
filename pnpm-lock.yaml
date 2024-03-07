@@ -27,8 +27,8 @@ dependencies:
     specifier: ^1.27.0
     version: 1.27.0(zenroom@4.18.0)
   '@slangroom/oauth':
-    specifier: ^1.27.0
-    version: 1.27.0(zenroom@4.18.0)
+    specifier: ^1.27.1
+    version: 1.27.1(zenroom@4.18.0)
   '@slangroom/pocketbase':
     specifier: ^1.27.0
     version: 1.27.0(zenroom@4.18.0)
@@ -1778,8 +1778,8 @@ packages:
       - zenroom
     dev: false
 
-  /@slangroom/oauth@1.27.0(zenroom@4.18.0):
-    resolution: {integrity: sha512-Y+9VK7NNQF4Tru2XIWtO3DE9oMIakTAOCj3VeDWfoaEIyNtgRp9tHF323mC/XLqYkgOx30fRawoN89h2vYO10A==}
+  /@slangroom/oauth@1.27.1(zenroom@4.18.0):
+    resolution: {integrity: sha512-Og3miDxkYPQnfMXcPkDZl4gnvrhcJehnimfcPPfPEs5duKsVesNy/NDNOYnzbG5ymOmKfT0Y12tGirW9yWsnFA==}
     dependencies:
       '@node-oauth/oauth2-server': 5.1.0
       '@slangroom/core': 1.27.0(zenroom@4.18.0)
