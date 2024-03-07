@@ -1,3 +1,10 @@
+# [1.23.0](https://github.com/forkbombeu/ncr/compare/v1.22.1...v1.23.0) (2024-03-07)
+
+
+### Features
+
+* hidden contracts with metadata `hidden` flag ([#80](https://github.com/forkbombeu/ncr/issues/80)) ([a9e86e3](https://github.com/forkbombeu/ncr/commit/a9e86e35b52d29d87a7ee6e95fb6c258b596fa82))
+
 ## [1.22.1](https://github.com/forkbombeu/ncr/compare/v1.22.0...v1.22.1) (2024-03-06)
 
 # [1.22.0](https://github.com/forkbombeu/ncr/compare/v1.21.0...v1.22.0) (2024-03-05)
