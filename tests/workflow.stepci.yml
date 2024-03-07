@@ -242,3 +242,32 @@ tests:
             json:
               output:
                 - "mimmolo"
+
+      - name: HIDDEN POST
+        http:
+          url: http://${{env.host}}/meta/hidden
+          method: POST
+          json: {}
+          check:
+            status: 404
+
+      - name: HIDDEN RAW
+        http:
+          url: http://${{env.host}}/meta/hidden/raw
+          method: GET
+          check:
+            status: 404
+
+      - name: HIDDEN APP
+        http:
+          url: http://${{env.host}}/meta/hidden/app
+          method: GET
+          check:
+            status: 404
+
+      - name: HIDDEN GET
+        http:
+          url: http://${{env.host}}/meta/hidden
+          method: GET
+          check:
+            status: 404

@@ -1,0 +1,23 @@
+{
+    "type": "object",
+    "properties": {
+        "data_1": {
+            "type": "object"
+        },
+        "id": {
+            "type": "string"
+        },
+        "did_document": {
+            "type": "object",
+            "properties":  {
+                "description": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "required": [
+        "did_document",
+        "id"
+    ]
+}
