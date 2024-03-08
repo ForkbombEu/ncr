@@ -1,3 +1,10 @@
+## [1.25.3](https://github.com/forkbombeu/ncr/compare/v1.25.2...v1.25.3) (2024-03-08)
+
+
+### Bug Fixes
+
+* add cors allow rules methods + headers ([#92](https://github.com/forkbombeu/ncr/issues/92)) ([5f36f74](https://github.com/forkbombeu/ncr/commit/5f36f74e212cf9abb5b302db3fd84a4e1792e426))
+
 ## [1.25.2](https://github.com/forkbombeu/ncr/compare/v1.25.1...v1.25.2) (2024-03-08)
 
 ## [1.25.1](https://github.com/forkbombeu/ncr/compare/v1.25.0...v1.25.1) (2024-03-08)
