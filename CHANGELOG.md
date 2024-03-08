@@ -1,3 +1,10 @@
+# [1.25.0](https://github.com/forkbombeu/ncr/compare/v1.24.2...v1.25.0) (2024-03-08)
+
+
+### Features
+
+* move cors headers on options/post/get ([#73](https://github.com/forkbombeu/ncr/issues/73)) ([ae93f13](https://github.com/forkbombeu/ncr/commit/ae93f131beab22040e64f3ddc5b51192a7839cf3))
+
 ## [1.24.2](https://github.com/forkbombeu/ncr/compare/v1.24.1...v1.24.2) (2024-03-07)
 
 ## [1.24.1](https://github.com/forkbombeu/ncr/compare/v1.24.0...v1.24.1) (2024-03-07)
