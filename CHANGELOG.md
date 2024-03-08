@@ -1,3 +1,10 @@
+# [1.26.0](https://github.com/forkbombeu/ncr/compare/v1.25.4...v1.26.0) (2024-03-08)
+
+
+### Features
+
+* 💃 add authorization header in CORS ruleset ([128bf8f](https://github.com/forkbombeu/ncr/commit/128bf8fd8ba41634d8f34d2fb59a4c419465e665))
+
 ## [1.25.4](https://github.com/forkbombeu/ncr/compare/v1.25.3...v1.25.4) (2024-03-08)
 
 
