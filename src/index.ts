@@ -236,7 +236,6 @@ const generateRoutes = (app: TemplatedApp) => {
 							LOG.fatal(e);
 							res
 								.writeStatus('422 UNPROCESSABLE ENTITY')
-								.writeHeader('Access-Control-Allow-Origin', '*')
 								.writeHeader('Content-Type', 'application/json')
 								.end((e as Error).message);
 						}
@@ -253,7 +252,6 @@ const generateRoutes = (app: TemplatedApp) => {
 							// setCorsHeaders(res);
 							res
 								.writeStatus('422 UNPROCESSABLE ENTITY')
-								.writeHeader('Access-Control-Allow-Origin', '*')
 								.writeHeader('Content-Type', 'application/json')
 								.end((e as Error).message);
 						});
@@ -271,7 +269,6 @@ const generateRoutes = (app: TemplatedApp) => {
 						res.cork(() => {
 							const report = reportZenroomError(e as Error, LOG, endpoints);
 							res.writeStatus(metadata.errorCode)
-								.writeHeader('Access-Control-Allow-Origin', '*')
 								.end(report);
 						});
 						return;
@@ -281,7 +278,6 @@ const generateRoutes = (app: TemplatedApp) => {
 				res.cork(() => {
 					res
 						.writeStatus(metadata.successCode)
-						.writeHeader('Access-Control-Allow-Origin', '*')
 						.writeHeader('Content-Type', metadata.successContentType)
 						.end(slangroomResult);
 					return;
@@ -291,7 +287,6 @@ const generateRoutes = (app: TemplatedApp) => {
 				res.cork(() =>
 					res
 						.writeStatus(metadata.errorCode)
-						.writeHeader('Access-Control-Allow-Origin', '*')
 						.end((e as Error).message)
 				);
 				return;
@@ -301,10 +296,14 @@ const generateRoutes = (app: TemplatedApp) => {
 			res.onAborted(() => {
 				res.writeStatus('500')
 					.writeHeader('Access-Control-Allow-Origin', '*')
+				  .writeHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+				  .writeHeader('Access-Control-Allow-Headers', 'content-type')
 					.end('Aborted');
 			});
 			res
 				.writeHeader('Access-Control-Allow-Origin', '*')
+				.writeHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+				.writeHeader('Access-Control-Allow-Headers', 'content-type')
 				.end();
 		});
 
@@ -316,8 +315,6 @@ const generateRoutes = (app: TemplatedApp) => {
 				 */
 				res.onAborted(() => {
 					res
-
-						.writeHeader('Access-Control-Allow-Origin', '*')
 						.writeStatus(metadata.errorCode ? metadata.errorCode : '500').end('Aborted');
 				});
 
@@ -331,8 +328,6 @@ const generateRoutes = (app: TemplatedApp) => {
 						} catch (e) {
 							L.error(e);
 							res.writeStatus(metadata.errorCode)
-
-								.writeHeader('Access-Control-Allow-Origin', '*')
 								.end((e as Error).message);
 							return;
 						}
@@ -356,7 +351,6 @@ const generateRoutes = (app: TemplatedApp) => {
 				 */
 				res.onAborted(() => {
 					res
-						.writeHeader('Access-Control-Allow-Origin', '*')
 						.writeStatus(metadata.errorCode).end('Aborted');
 				});
 
@@ -373,7 +367,6 @@ const generateRoutes = (app: TemplatedApp) => {
 				} catch (e) {
 					LOG.fatal(e);
 					res
-						.writeHeader('Access-Control-Allow-Origin', '*')
 						.writeStatus(metadata.errorCode).end((e as Error).message);
 					return;
 				}
@@ -382,7 +375,6 @@ const generateRoutes = (app: TemplatedApp) => {
 
 		app.get(path + '/raw', (res, req) => {
 			res.writeStatus('200 OK')
-				.writeHeader('Access-Control-Allow-Origin', '*')
 				.writeHeader('Content-Type', 'text/plain').end(contract);
 		});
 
