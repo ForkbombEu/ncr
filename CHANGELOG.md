@@ -1,3 +1,10 @@
+## [1.25.4](https://github.com/forkbombeu/ncr/compare/v1.25.3...v1.25.4) (2024-03-08)
+
+
+### Bug Fixes
+
+* cors. add permissive rules to GET/POST ([#93](https://github.com/forkbombeu/ncr/issues/93)) ([01f266a](https://github.com/forkbombeu/ncr/commit/01f266ad81abbeaa136d28b3f6363ce154cafd86))
+
 ## [1.25.3](https://github.com/forkbombeu/ncr/compare/v1.25.2...v1.25.3) (2024-03-08)
 
 
