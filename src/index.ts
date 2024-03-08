@@ -296,8 +296,8 @@ const generateRoutes = (app: TemplatedApp) => {
 			res.onAborted(() => {
 				res.writeStatus('500')
 					.writeHeader('Access-Control-Allow-Origin', '*')
-				  .writeHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
-				  .writeHeader('Access-Control-Allow-Headers', 'content-type')
+					.writeHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+					.writeHeader('Access-Control-Allow-Headers', 'content-type')
 					.end('Aborted');
 			});
 			res
