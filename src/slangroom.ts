@@ -14,7 +14,6 @@ import { shell } from '@slangroom/shell';
 import { timestamp } from '@slangroom/timestamp';
 import { wallet } from '@slangroom/wallet';
 import { zencode } from '@slangroom/zencode';
-//
 
 const SLANGROOM_PLUGINS = [fs, git, helpers, http, JSONSchema, oauth, pocketbase, qrcode, redis, shell, timestamp, wallet, zencode];
 
