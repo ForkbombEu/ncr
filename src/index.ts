@@ -187,7 +187,7 @@ Dir.ready(async () => {
 const setCorsHeaders = (res: HttpResponse) => {
 	res.writeHeader('Access-Control-Allow-Origin', '*')
 		.writeHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
-		.writeHeader('Access-Control-Allow-Headers', 'content-type')
+		.writeHeader('Access-Control-Allow-Headers', 'content-type, authorization')
 }
 
 const generateRoutes = (app: TemplatedApp) => {
