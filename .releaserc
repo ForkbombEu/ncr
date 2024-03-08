@@ -13,7 +13,8 @@
       {
         "preset": "angular",
         "releaseRules": [
-          { "type": "build", "scope": "pnpm-lock", "release": "patch" }
+          { "type": "build", "scope": "deps", "release": "patch" },
+          { "type": "build", "scope": "deps-dev", "release": "patch" }
         ]
       }
     ],
