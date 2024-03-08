@@ -1,3 +1,10 @@
+## [1.25.1](https://github.com/forkbombeu/ncr/compare/v1.25.0...v1.25.1) (2024-03-08)
+
+
+### Bug Fixes
+
+* release on dependabot updates ([#91](https://github.com/forkbombeu/ncr/issues/91)) ([91ff261](https://github.com/forkbombeu/ncr/commit/91ff261d51c856e70de320f7e42818efe09d43ec))
+
 # [1.25.0](https://github.com/forkbombeu/ncr/compare/v1.24.2...v1.25.0) (2024-03-08)
 
 
