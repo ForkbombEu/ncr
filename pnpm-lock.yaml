@@ -42,8 +42,8 @@ dependencies:
     specifier: ^1.27.0
     version: 1.27.0(zenroom@4.18.1)
   '@tgwf/co2':
-    specifier: ^0.14.3
-    version: 0.14.3
+    specifier: ^0.14.4
+    version: 0.14.4
   '@typescript-eslint/parser':
     specifier: ^7.1.1
     version: 7.1.1(eslint@8.57.0)(typescript@5.4.2)
@@ -2057,8 +2057,8 @@ packages:
       - supports-color
     dev: true
 
-  /@tgwf/co2@0.14.3:
-    resolution: {integrity: sha512-pNXcWq3mAQP65cVFTzh50lQsfbDjGGRDnbbJT4dxMiW7CSl02wivGgXIdLIb/HN0o5TKp99zLSSl2f6y3gopDQ==}
+  /@tgwf/co2@0.14.4:
+    resolution: {integrity: sha512-837dH4n6cGt2s3ssR3Yt904WHy/MDmYZmnHCla6e73YjxIWmvLgYLXUYWzXJ2C5096jTR7yT5tNe1+Dq5bjnNw==}
     engines: {node: '>=14.0.0'}
     dev: false
 

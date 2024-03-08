@@ -50,7 +50,7 @@
 		"@slangroom/timestamp": "^1.27.0",
 		"@slangroom/wallet": "^1.27.0",
 		"@slangroom/zencode": "^1.27.0",
-		"@tgwf/co2": "^0.14.3",
+		"@tgwf/co2": "^0.14.4",
 		"@typescript-eslint/parser": "^7.1.1",
 		"ajv": "^8.12.0",
 		"ajv-formats": "^2.1.1",
