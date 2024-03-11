@@ -78,7 +78,7 @@
 		"@slangroom/qrcode": "^1.27.0",
 		"@slangroom/redis": "^1.27.0",
 		"@slangroom/shell": "^1.27.0",
-		"@swc/core": "^1.4.5",
+		"@swc/core": "^1.4.6",
 		"@swc/helpers": "^0.5.6",
 		"@types/fs-extra": "^11.0.4",
 		"@types/jest": "^29.5.12",
