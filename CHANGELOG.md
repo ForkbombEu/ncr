@@ -1,3 +1,10 @@
+## [1.26.1](https://github.com/forkbombeu/ncr/compare/v1.26.0...v1.26.1) (2024-03-11)
+
+
+### Bug Fixes
+
+* test changed line number in zenroom ([367e1fe](https://github.com/forkbombeu/ncr/commit/367e1feb08cd9cb7cb4e54969c2c31871bd3a672))
+
 # [1.26.0](https://github.com/forkbombeu/ncr/compare/v1.25.4...v1.26.0) (2024-03-08)
 
 
