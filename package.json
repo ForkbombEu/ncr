@@ -84,7 +84,7 @@
 		"@types/jest": "^29.5.12",
 		"@types/lodash": "^4.17.0",
 		"@types/lodash.isequal": "^4.5.8",
-		"@types/node": "^20.11.25",
+		"@types/node": "^20.11.26",
 		"@types/tgwf__co2": "^0.14.1",
 		"jest": "^29.7.0",
 		"lodash.isequal": "^4.5.0",
