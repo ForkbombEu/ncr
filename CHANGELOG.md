@@ -1,3 +1,5 @@
+## [1.26.4](https://github.com/forkbombeu/ncr/compare/v1.26.3...v1.26.4) (2024-03-13)
+
 ## [1.26.3](https://github.com/forkbombeu/ncr/compare/v1.26.2...v1.26.3) (2024-03-12)
 
 ## [1.26.2](https://github.com/forkbombeu/ncr/compare/v1.26.1...v1.26.2) (2024-03-12)
