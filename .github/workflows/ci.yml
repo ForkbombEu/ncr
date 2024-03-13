@@ -104,8 +104,6 @@ jobs:
         with:
           files: |
             ncr-release/ncr/*
-          append_body: true
-          body_path: ncr-release/readme/README.md
           draft: false
           prerelease: false
           fail_on_unmatched_files: true
