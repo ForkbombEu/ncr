@@ -1,3 +1,3 @@
 Given I have a 'string dictionary' named 'http_headers'
-When I verify 'Content-Type' is found in 'http_headers'
-Then print 'Content-Type' from 'http_headers'
+When I verify 'content-type' is found in 'http_headers'
+Then print 'content-type' from 'http_headers'
