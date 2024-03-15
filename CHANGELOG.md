@@ -1,3 +1,10 @@
+# [1.27.0](https://github.com/forkbombeu/ncr/compare/v1.26.7...v1.27.0) (2024-03-15)
+
+
+### Features
+
+* allow just PR on direct deps ([#110](https://github.com/forkbombeu/ncr/issues/110)) ([be13702](https://github.com/forkbombeu/ncr/commit/be1370218910f68b02c19c480b19aee4d1c7712b))
+
 ## [1.26.7](https://github.com/forkbombeu/ncr/compare/v1.26.6...v1.26.7) (2024-03-15)
 
 ## [1.26.6](https://github.com/forkbombeu/ncr/compare/v1.26.5...v1.26.6) (2024-03-14)
