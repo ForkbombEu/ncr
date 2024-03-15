@@ -1,3 +1,10 @@
+## [1.27.1](https://github.com/forkbombeu/ncr/compare/v1.27.0...v1.27.1) (2024-03-15)
+
+
+### Bug Fixes
+
+* pass correctly the headers ([#111](https://github.com/forkbombeu/ncr/issues/111)) ([59da80b](https://github.com/forkbombeu/ncr/commit/59da80b69ec172e4e0b5d8895e94a85548a2832c))
+
 # [1.27.0](https://github.com/forkbombeu/ncr/compare/v1.26.7...v1.27.0) (2024-03-15)
 
 
