@@ -271,3 +271,15 @@ tests:
           method: GET
           check:
             status: 404
+
+      - name: pass http headers
+        http:
+          url: http://${{env.host}}/meta/http_headers
+          method: POST
+          json: {}
+          headers:
+            Content-Type: application/json
+          check:
+            status: 200
+            json:
+              Content-Type: application/json
