@@ -96,7 +96,7 @@
 		"rollup": "^4.12.1",
 		"rollup-plugin-copy": "^3.5.0",
 		"rollup-plugin-string": "^3.0.0",
-		"semantic-release": "^23.0.2",
+		"semantic-release": "^23.0.3",
 		"start-server-and-test": "^2.0.3",
 		"stepci": "^2.8.0",
 		"ts-jest": "^29.1.2",
