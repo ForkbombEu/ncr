@@ -93,7 +93,7 @@
 		"pkg": "^5.8.1",
 		"prettier": "3.2.5",
 		"regenerator-runtime": "^0.14.1",
-		"rollup": "^4.12.1",
+		"rollup": "^4.13.0",
 		"rollup-plugin-copy": "^3.5.0",
 		"rollup-plugin-string": "^3.0.0",
 		"semantic-release": "^23.0.2",
