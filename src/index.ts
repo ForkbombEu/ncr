@@ -6,7 +6,6 @@ import path from 'path';
 import { IMeta } from 'tslog';
 import {
 	App,
-	HttpRequest,
 	HttpResponse,
 	TemplatedApp,
 	us_listen_socket,
@@ -183,12 +182,12 @@ Dir.ready(async () => {
 	});
 });
 
-
 const setCorsHeaders = (res: HttpResponse) => {
-	res.writeHeader('Access-Control-Allow-Origin', '*')
+	res
+		.writeHeader('Access-Control-Allow-Origin', '*')
 		.writeHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
-		.writeHeader('Access-Control-Allow-Headers', 'content-type, authorization')
-}
+		.writeHeader('Access-Control-Allow-Headers', 'content-type, authorization');
+};
 
 const generateRoutes = (app: TemplatedApp) => {
 	Dir.files.forEach(async (endpoints) => {
@@ -219,8 +218,8 @@ const generateRoutes = (app: TemplatedApp) => {
 
 		const execZencodeAndReply = async (
 			res: HttpResponse,
-			req: HttpRequest,
-			data: JSON | Record<string, unknown>
+			data: JSON | Record<string, unknown>,
+			headers: Record<string, string>
 		) => {
 			res.onAborted(() => {
 				res.aborted = true;
@@ -233,11 +232,7 @@ const generateRoutes = (app: TemplatedApp) => {
 						if (data['http_headers'] !== undefined) {
 							throw new Error('Name clash on input key http_headers');
 						}
-						const httpHeaders = {};
-						req.forEach((k, v) => {
-							httpHeaders[k] = v;
-						});
-						data['http_headers'] = httpHeaders;
+						data['http_headers'] = headers;
 					} catch (e) {
 						if (!res.aborted) {
 							LOG.fatal(e);
@@ -257,7 +252,6 @@ const generateRoutes = (app: TemplatedApp) => {
 					if (!res.aborted) {
 						LOG.fatal(JSON.parse((e as Error).message));
 						res.cork(() => {
-							// setCorsHeaders(res);
 							res
 								.writeStatus('422 UNPROCESSABLE ENTITY')
 								.writeHeader('Content-Type', 'application/json')
@@ -277,7 +271,8 @@ const generateRoutes = (app: TemplatedApp) => {
 					if (!res.aborted) {
 						res.cork(() => {
 							const report = reportZenroomError(e as Error, LOG, endpoints);
-							res.writeStatus(metadata.errorCode)
+							res
+								.writeStatus(metadata.errorCode)
 								.writeHeader('Access-Control-Allow-Origin', '*')
 								.end(report);
 						});
@@ -306,7 +301,8 @@ const generateRoutes = (app: TemplatedApp) => {
 		};
 		app.options(path, (res) => {
 			res.onAborted(() => {
-				res.writeStatus('500')
+				res
+					.writeStatus('500')
 					.writeHeader('Access-Control-Allow-Origin', '*')
 					.writeHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
 					.writeHeader('Access-Control-Allow-Headers', 'content-type')
@@ -318,13 +314,16 @@ const generateRoutes = (app: TemplatedApp) => {
 
 		if (!metadata.disablePost) {
 			app.post(path, (res, req) => {
+				let headers: Record<string, string> = {};
+				req.forEach((k, v) => {
+					headers[k] = v;
+				});
 				/**
 				 * Code may break on `slangroom.execute`
 				 * so it's important to attach the `onAborted` handler before everything else
 				 */
 				res.onAborted(() => {
-					res
-						.writeStatus(metadata.errorCode ? metadata.errorCode : '500').end('Aborted');
+					res.writeStatus(metadata.errorCode ? metadata.errorCode : '500').end('Aborted');
 				});
 
 				let buffer: Buffer;
@@ -336,12 +335,13 @@ const generateRoutes = (app: TemplatedApp) => {
 							data = JSON.parse(buffer ? Buffer.concat([buffer, chunk]) : chunk);
 						} catch (e) {
 							L.error(e);
-							res.writeStatus(metadata.errorCode)
+							res
+								.writeStatus(metadata.errorCode)
 								.writeHeader('Access-Control-Allow-Origin', '*')
 								.end((e as Error).message);
 							return;
 						}
-						execZencodeAndReply(res, req, data);
+						execZencodeAndReply(res, data, headers);
 						return;
 					} else {
 						if (buffer) {
@@ -355,13 +355,16 @@ const generateRoutes = (app: TemplatedApp) => {
 		}
 		if (!metadata.disableGet) {
 			app.get(path, async (res, req) => {
+				let headers: Record<string, string> = {};
+				req.forEach((k, v) => {
+					headers[k] = v;
+				});
 				/**
 				 * Code may break on `slangroom.execute`
 				 * so it's important to attach the `onAborted` handler before everything else
 				 */
 				res.onAborted(() => {
-					res
-						.writeStatus(metadata.errorCode).end('Aborted');
+					res.writeStatus(metadata.errorCode).end('Aborted');
 				});
 
 				try {
@@ -373,19 +376,17 @@ const generateRoutes = (app: TemplatedApp) => {
 							data[k] = v;
 						});
 					}
-					execZencodeAndReply(res, req, data);
+					execZencodeAndReply(res, data, headers);
 				} catch (e) {
 					LOG.fatal(e);
-					res
-						.writeStatus(metadata.errorCode).end((e as Error).message);
+					res.writeStatus(metadata.errorCode).end((e as Error).message);
 					return;
 				}
 			});
 		}
 
 		app.get(path + '/raw', (res, req) => {
-			res.writeStatus('200 OK')
-				.writeHeader('Content-Type', 'text/plain').end(contract);
+			res.writeStatus('200 OK').writeHeader('Content-Type', 'text/plain').end(contract);
 		});
 
 		app.get(path + '/app', async (res, req) => {
@@ -397,8 +398,7 @@ const generateRoutes = (app: TemplatedApp) => {
 				endpoint: `http://${config.hostname}:${config.port}${path}`
 			});
 
-			res
-				.writeStatus('200 OK').writeHeader('Content-Type', 'text/html').end(result);
+			res.writeStatus('200 OK').writeHeader('Content-Type', 'text/html').end(result);
 		});
 
 		L.info(`📜 ${path}`);
