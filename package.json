@@ -62,7 +62,7 @@
 		"mime": "^4.0.1",
 		"prom-client": "^15.0.0",
 		"uWebSockets.js": "github:uNetworking/uWebSockets.js#semver:^20",
-		"zenroom": "^4.23.0"
+		"zenroom": "^4.23.1"
 	},
 	"devDependencies": {
 		"@rollup/plugin-commonjs": "^25.0.7",
