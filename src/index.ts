@@ -152,7 +152,8 @@ Dir.ready(async () => {
 			let file = path.join(publicDirectory, req.getUrl());
 			if (fs.existsSync(file)) {
 				const contentType = mime.getType(file) || 'application/json';
-				res.writeHeader('Content-Type', contentType);
+				res.writeHeader('Access-Control-Allow-Origin', '*')
+					.writeHeader('Content-Type', contentType);
 				res.end(fs.readFileSync(file));
 			} else {
 				res.writeStatus('404 Not Found').end('Not found');
