@@ -1,3 +1,10 @@
+## [1.27.3](https://github.com/forkbombeu/ncr/compare/v1.27.2...v1.27.3) (2024-03-21)
+
+
+### Bug Fixes
+
+* cors error on get to publicDirectory ([#114](https://github.com/forkbombeu/ncr/issues/114)) ([c82f598](https://github.com/forkbombeu/ncr/commit/c82f5985c53624da90887542388f3302ba67447e))
+
 ## [1.27.2](https://github.com/forkbombeu/ncr/compare/v1.27.1...v1.27.2) (2024-03-18)
 
 ## [1.27.1](https://github.com/forkbombeu/ncr/compare/v1.27.0...v1.27.1) (2024-03-15)
