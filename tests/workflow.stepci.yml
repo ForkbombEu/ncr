@@ -176,7 +176,7 @@ tests:
           check:
             status: 500
             json:
-              - in: "[!] /zencode.lua:659: Zencode line 3: Given I have a 'string dictionary' named 'love'"
+              - in: "[!] /zencode.lua:658: Zencode line 3: Given I have a 'string dictionary' named 'love'"
 
   slangroom_fs:
     steps:
