@@ -36,8 +36,8 @@ dependencies:
     specifier: ^1.27.0
     version: 1.27.0(zenroom@4.23.1)
   '@slangroom/wallet':
-    specifier: ^1.27.0
-    version: 1.27.0(zenroom@4.23.1)
+    specifier: ^1.27.6
+    version: 1.27.6(zenroom@4.23.1)
   '@slangroom/zencode':
     specifier: ^1.27.0
     version: 1.27.0(zenroom@4.23.1)
@@ -1691,6 +1691,25 @@ packages:
     transitivePeerDependencies:
       - zenroom
 
+  /@slangroom/core@1.27.6(zenroom@4.23.1):
+    resolution: {integrity: sha512-vIMZqAm+Q3WQHkkZ37VpHo9hTYJ6NmiN2LqOlEbOJngY4LlzOnRmYb36m/R2/9I+xIYlfs+xeNFO7LZIKuCdLg==}
+    dependencies:
+      '@slangroom/deps': 1.27.6(zenroom@4.23.1)
+      '@slangroom/ignored': 1.27.6(zenroom@4.23.1)
+      '@slangroom/shared': 1.27.6(zenroom@4.23.1)
+    transitivePeerDependencies:
+      - zenroom
+    dev: false
+
+  /@slangroom/deps@1.27.6(zenroom@4.23.1):
+    resolution: {integrity: sha512-CWlO9dDwYE9e3fKM5yYJDfDrgwSWIgy5/MT+FR9Lr+6pPjfjg5vVo2Zf8hYmevuJYRmrErZWKFW+CUiUh2R8sA==}
+    peerDependencies:
+      zenroom: ^4.0.0
+    dependencies:
+      chevrotain: 10.5.0
+      zenroom: 4.23.1
+    dev: false
+
   /@slangroom/deps@1.9.5(zenroom@4.23.1):
     resolution: {integrity: sha512-QSO8pSKnZhqZg2IZ00SzwqH2BHtjD96KAFCfIsaD/OeFBuKCsst5NM0Ty+hYLXfKptJmRyzJrTtd2WlQh16Q8g==}
     peerDependencies:
@@ -1760,6 +1779,15 @@ packages:
       - zenroom
     dev: false
 
+  /@slangroom/ignored@1.27.6(zenroom@4.23.1):
+    resolution: {integrity: sha512-Orrp5s38udPMZvZotMiDrTEapds5Dg95L9DNAOtXAOZlYW6bdIP8TFytDSVEh+tGjCW+qPVNDb11O5P9hc8OSw==}
+    dependencies:
+      '@slangroom/deps': 1.27.6(zenroom@4.23.1)
+      '@slangroom/shared': 1.27.6(zenroom@4.23.1)
+    transitivePeerDependencies:
+      - zenroom
+    dev: false
+
   /@slangroom/ignored@1.9.6(zenroom@4.23.1):
     resolution: {integrity: sha512-w6xdfXDkWeYbzn1V1TEoEPfhNRvL2yL7DPhFeYkcD60+pukCg1fMAkaJ6K7JZBd67b8tCkAwWcpdgnXWAtZpFg==}
     dependencies:
@@ -1821,6 +1849,14 @@ packages:
       - zenroom
     dev: true
 
+  /@slangroom/shared@1.27.6(zenroom@4.23.1):
+    resolution: {integrity: sha512-rOUlt0ibmiWKFGGq2T+nlhOpwnesD2xWtfUW+SfDLGOdCjH7QlfexzPwV/pElmQJqYbisxiBKhNCtpki6OIY9Q==}
+    dependencies:
+      '@slangroom/deps': 1.27.6(zenroom@4.23.1)
+    transitivePeerDependencies:
+      - zenroom
+    dev: false
+
   /@slangroom/shared@1.9.6(zenroom@4.23.1):
     resolution: {integrity: sha512-yBMBQw0o6pIUUw+m7DRjt/2/tObmXOqyaMcHyfo/O940R2qhFV9Ut4JZLW7mVedw6P3vntRIRKTEQr5Nk459jQ==}
     dependencies:
@@ -1846,13 +1882,13 @@ packages:
       - zenroom
     dev: false
 
-  /@slangroom/wallet@1.27.0(zenroom@4.23.1):
-    resolution: {integrity: sha512-DwdhBs3KcdG9LwayP/LmkjPj1MvZL/FSiTR7KIyCMWAeBF3vuJGY/sSfV1NBa7R/DVZzBsQSVvIsT3q0XKN9gg==}
+  /@slangroom/wallet@1.27.6(zenroom@4.23.1):
+    resolution: {integrity: sha512-s/ohGOh3xREybIIo9DwQN58vpltmoSHIC9qBKuOprushBefaGicjX0qB3Hf7Enl7UxQsAPTOtPc/Sn3TqKzkTw==}
     dependencies:
       '@meeco/sd-jwt': 0.0.3
       '@meeco/sd-jwt-vc': 0.0.4
-      '@slangroom/core': 1.27.0(zenroom@4.23.1)
-      '@slangroom/shared': 1.9.6(zenroom@4.23.1)
+      '@slangroom/core': 1.27.6(zenroom@4.23.1)
+      '@slangroom/shared': 1.27.6(zenroom@4.23.1)
       bs58: 5.0.0
       jose: 5.2.2
     transitivePeerDependencies:
