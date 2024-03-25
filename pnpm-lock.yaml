@@ -15,8 +15,8 @@ dependencies:
     specifier: ^1.27.6
     version: 1.27.6(zenroom@4.23.1)
   '@slangroom/git':
-    specifier: ^1.27.0
-    version: 1.27.0(zenroom@4.23.1)
+    specifier: ^1.27.6
+    version: 1.27.6(zenroom@4.23.1)
   '@slangroom/helpers':
     specifier: ^1.27.0
     version: 1.27.0(zenroom@4.23.1)
@@ -1748,10 +1748,10 @@ packages:
       - zenroom
     dev: false
 
-  /@slangroom/git@1.27.0(zenroom@4.23.1):
-    resolution: {integrity: sha512-Z6XSMD88kOG9vqhoSNig1/6Bvs/4fjIEOqBpN9+cT1fYd5jvzKVLoEqVnEhBD5UOiLR+2HnF7dPKj14k/izTmQ==}
+  /@slangroom/git@1.27.6(zenroom@4.23.1):
+    resolution: {integrity: sha512-t7T+sQNy7FWYmla5olJ58AUxvrkgR4QiCDsqbFBLV36UdDaLxdN4VLJB9M34UHfe2nVxsEQE/GI62iyFS0JkVQ==}
     dependencies:
-      '@slangroom/core': 1.27.0(zenroom@4.23.1)
+      '@slangroom/core': 1.27.6(zenroom@4.23.1)
       isomorphic-git: 1.25.6
     transitivePeerDependencies:
       - zenroom
@@ -4177,7 +4177,7 @@ packages:
       dir-glob: 3.0.1
       fast-glob: 3.3.2
       glob: 7.2.3
-      ignore: 5.2.4
+      ignore: 5.3.1
       merge2: 1.4.1
       slash: 3.0.0
     dev: true
@@ -4189,7 +4189,7 @@ packages:
       array-union: 2.1.0
       dir-glob: 3.0.1
       fast-glob: 3.3.2
-      ignore: 5.2.4
+      ignore: 5.3.1
       merge2: 1.4.1
       slash: 3.0.0
 
@@ -4408,10 +4408,6 @@ packages:
   /ignore-by-default@1.0.1:
     resolution: {integrity: sha512-Ius2VYcGNk7T90CppJqcIkS5ooHUZyIQK+ClZfMfMNFEF9VSE73Fq+906u/CWu92x4gzZMWOwfFYckPObzdEbA==}
     dev: true
-
-  /ignore@5.2.4:
-    resolution: {integrity: sha512-MAb38BcSbH0eHNBxn7ql2NH/kX33OkB3lZ1BNdh7ENeRChHTYsTvWrMubiIAMNS2llXEEgZ1MUOBtXChP3kaFQ==}
-    engines: {node: '>= 4'}
 
   /ignore@5.3.1:
     resolution: {integrity: sha512-5Fytz/IraMjqpwfd34ke28PTVMjZjJG2MPn5t7OE4eUCUNf8BAa7b5WUS9/Qvr6mwOQS7Mk6vdsMno5he+T8Xw==}
