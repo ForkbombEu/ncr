@@ -21,8 +21,8 @@ dependencies:
     specifier: ^1.27.6
     version: 1.27.6(zenroom@4.23.1)
   '@slangroom/http':
-    specifier: ^1.27.0
-    version: 1.27.0(zenroom@4.23.1)
+    specifier: ^1.27.6
+    version: 1.27.6(zenroom@4.23.1)
   '@slangroom/json-schema':
     specifier: ^1.27.6
     version: 1.27.6(zenroom@4.23.1)
@@ -1768,11 +1768,11 @@ packages:
       - zenroom
     dev: false
 
-  /@slangroom/http@1.27.0(zenroom@4.23.1):
-    resolution: {integrity: sha512-HCWaNfvraBxdXqfg85khV+B5WNZc4+OrhFaIEO5mEE7BxpX+V5Ef223wDPJMYncIxQpOmGfN6yGJnjttqIObHg==}
+  /@slangroom/http@1.27.6(zenroom@4.23.1):
+    resolution: {integrity: sha512-vSlcw+5auKhA/LtPC7wWKj0qxbFyRXYBL92Vc9qM0B7LzhT7iuYXL5OejlROhSgTv+cBa68YII7w0doNOTCYkw==}
     dependencies:
-      '@slangroom/core': 1.27.0(zenroom@4.23.1)
-      '@slangroom/shared': 1.9.6(zenroom@4.23.1)
+      '@slangroom/core': 1.27.6(zenroom@4.23.1)
+      '@slangroom/shared': 1.27.6(zenroom@4.23.1)
       axios: 1.6.7(debug@4.3.4)
     transitivePeerDependencies:
       - debug
