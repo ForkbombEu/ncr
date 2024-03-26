@@ -113,8 +113,8 @@ devDependencies:
     specifier: ^0.32.15
     version: 0.32.15
   '@slangroom/qrcode':
-    specifier: ^1.27.0
-    version: 1.27.0(zenroom@4.23.1)
+    specifier: ^1.27.6
+    version: 1.27.6(zenroom@4.23.1)
   '@slangroom/redis':
     specifier: ^1.27.0
     version: 1.27.0(zenroom@4.23.1)
@@ -1699,7 +1699,6 @@ packages:
       '@slangroom/shared': 1.27.6(zenroom@4.23.1)
     transitivePeerDependencies:
       - zenroom
-    dev: false
 
   /@slangroom/deps@1.27.6(zenroom@4.23.1):
     resolution: {integrity: sha512-CWlO9dDwYE9e3fKM5yYJDfDrgwSWIgy5/MT+FR9Lr+6pPjfjg5vVo2Zf8hYmevuJYRmrErZWKFW+CUiUh2R8sA==}
@@ -1708,7 +1707,6 @@ packages:
     dependencies:
       chevrotain: 10.5.0
       zenroom: 4.23.1
-    dev: false
 
   /@slangroom/deps@1.9.5(zenroom@4.23.1):
     resolution: {integrity: sha512-QSO8pSKnZhqZg2IZ00SzwqH2BHtjD96KAFCfIsaD/OeFBuKCsst5NM0Ty+hYLXfKptJmRyzJrTtd2WlQh16Q8g==}
@@ -1786,7 +1784,6 @@ packages:
       '@slangroom/shared': 1.27.6(zenroom@4.23.1)
     transitivePeerDependencies:
       - zenroom
-    dev: false
 
   /@slangroom/ignored@1.9.6(zenroom@4.23.1):
     resolution: {integrity: sha512-w6xdfXDkWeYbzn1V1TEoEPfhNRvL2yL7DPhFeYkcD60+pukCg1fMAkaJ6K7JZBd67b8tCkAwWcpdgnXWAtZpFg==}
@@ -1830,10 +1827,10 @@ packages:
       - zenroom
     dev: false
 
-  /@slangroom/qrcode@1.27.0(zenroom@4.23.1):
-    resolution: {integrity: sha512-5wzF67kI+sp0WsZq1GAP9fMbTMhnmdY5xfn6MCYbmQdI74w5y6v5nAscVFxw0tm+XkFLDwaZ2bSZQUbEqpQTWQ==}
+  /@slangroom/qrcode@1.27.6(zenroom@4.23.1):
+    resolution: {integrity: sha512-rM/vg3mgGbJ6rUZp1aiEWW1PNQE2U5qlktdHhBCWdiy4g+qafI5hp1jAO0wdy6Lcf9QQYcgOVSCHqqRBhVTMpg==}
     dependencies:
-      '@slangroom/core': 1.27.0(zenroom@4.23.1)
+      '@slangroom/core': 1.27.6(zenroom@4.23.1)
       qrcode: 1.5.3
     transitivePeerDependencies:
       - zenroom
@@ -1855,7 +1852,6 @@ packages:
       '@slangroom/deps': 1.27.6(zenroom@4.23.1)
     transitivePeerDependencies:
       - zenroom
-    dev: false
 
   /@slangroom/shared@1.9.6(zenroom@4.23.1):
     resolution: {integrity: sha512-yBMBQw0o6pIUUw+m7DRjt/2/tObmXOqyaMcHyfo/O940R2qhFV9Ut4JZLW7mVedw6P3vntRIRKTEQr5Nk459jQ==}
