@@ -33,8 +33,8 @@ dependencies:
     specifier: ^1.27.0
     version: 1.27.0(zenroom@4.23.1)
   '@slangroom/timestamp':
-    specifier: ^1.27.0
-    version: 1.27.0(zenroom@4.23.1)
+    specifier: ^1.27.6
+    version: 1.27.6(zenroom@4.23.1)
   '@slangroom/wallet':
     specifier: ^1.27.6
     version: 1.27.6(zenroom@4.23.1)
@@ -1873,11 +1873,11 @@ packages:
       - zenroom
     dev: true
 
-  /@slangroom/timestamp@1.27.0(zenroom@4.23.1):
-    resolution: {integrity: sha512-Mbs4KDs9xEfy1OHRqO7Su3xDOrgfttIeSbqG5h3Zs1GP2r6zr1cw1SHMelThBC0BtZScxeYmuYSR07D8E147Cg==}
+  /@slangroom/timestamp@1.27.6(zenroom@4.23.1):
+    resolution: {integrity: sha512-ZWRFHoMptOTWu3l3gLPALwIhJvDP1xp3gTuPmzt2KTpRGamFNtS3t/gWqTc11uEsyfG4Dloy6YaBV6biObqZEA==}
     dependencies:
-      '@slangroom/core': 1.27.0(zenroom@4.23.1)
-      '@slangroom/shared': 1.9.6(zenroom@4.23.1)
+      '@slangroom/core': 1.27.6(zenroom@4.23.1)
+      '@slangroom/shared': 1.27.6(zenroom@4.23.1)
     transitivePeerDependencies:
       - zenroom
     dev: false
