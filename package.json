@@ -39,7 +39,7 @@
 	},
 	"dependencies": {
 		"@slangroom/core": "^1.27.6",
-		"@slangroom/ethereum": "^1.27.0",
+		"@slangroom/ethereum": "^1.27.6",
 		"@slangroom/fs": "^1.27.6",
 		"@slangroom/git": "^1.27.6",
 		"@slangroom/helpers": "^1.27.6",
