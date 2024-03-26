@@ -116,8 +116,8 @@ devDependencies:
     specifier: ^1.27.6
     version: 1.27.6(zenroom@4.23.1)
   '@slangroom/redis':
-    specifier: ^1.27.0
-    version: 1.27.0(zenroom@4.23.1)
+    specifier: ^1.27.6
+    version: 1.27.6(zenroom@4.23.1)
   '@slangroom/shell':
     specifier: ^1.27.0
     version: 1.27.0(zenroom@4.23.1)
@@ -1836,12 +1836,12 @@ packages:
       - zenroom
     dev: true
 
-  /@slangroom/redis@1.27.0(zenroom@4.23.1):
-    resolution: {integrity: sha512-zqLu5ebFoYsNHSHkCeq8AHLBzDubosrErcxLRHUuZjsKEVwHaIMa0QmqGbTxclnyn3gPvekfLKKLQ30pCdNZFw==}
+  /@slangroom/redis@1.27.6(zenroom@4.23.1):
+    resolution: {integrity: sha512-D/fh/FohbKenZa/UNOaRCMUl4vtcm+7yzboJrRWv6uvYn8BkhYLXKsl1b8IoUcQ/tmig7+Xapf3aycW997XnXQ==}
     dependencies:
       '@redis/client': 1.5.14
-      '@slangroom/core': 1.27.0(zenroom@4.23.1)
-      '@slangroom/shared': 1.9.6(zenroom@4.23.1)
+      '@slangroom/core': 1.27.6(zenroom@4.23.1)
+      '@slangroom/shared': 1.27.6(zenroom@4.23.1)
     transitivePeerDependencies:
       - zenroom
     dev: true
