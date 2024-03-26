@@ -47,7 +47,7 @@
 		"@slangroom/json-schema": "^1.27.6",
 		"@slangroom/oauth": "^1.27.4",
 		"@slangroom/pocketbase": "^1.27.0",
-		"@slangroom/timestamp": "^1.27.0",
+		"@slangroom/timestamp": "^1.27.6",
 		"@slangroom/wallet": "^1.27.6",
 		"@slangroom/zencode": "^1.27.6",
 		"@tgwf/co2": "^0.14.4",
