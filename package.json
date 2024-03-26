@@ -42,7 +42,7 @@
 		"@slangroom/ethereum": "^1.27.0",
 		"@slangroom/fs": "^1.27.6",
 		"@slangroom/git": "^1.27.6",
-		"@slangroom/helpers": "^1.27.0",
+		"@slangroom/helpers": "^1.27.6",
 		"@slangroom/http": "^1.27.0",
 		"@slangroom/json-schema": "^1.27.6",
 		"@slangroom/oauth": "^1.27.4",
