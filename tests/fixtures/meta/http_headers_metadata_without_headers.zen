@@ -1,0 +1,8 @@
+Given I have a 'string dictionary' named 'http_headers'
+
+When I create the 'string dictionary' named 'result'
+and I set 'msg' to 'no headers' as 'string'
+and I move 'msg' in 'result'
+
+Then print the 'result'
+and print the 'http_headers'
