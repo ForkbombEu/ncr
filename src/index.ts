@@ -220,7 +220,7 @@ const generateRoutes = (app: TemplatedApp) => {
 		const execZencodeAndReply = async (
 			res: HttpResponse,
 			data: JSON | Record<string, unknown>,
-			headers: Record<string, string>
+			headers: Record<string, Record<string, string>>
 		) => {
 			res.onAborted(() => {
 				res.aborted = true;
@@ -264,9 +264,14 @@ const generateRoutes = (app: TemplatedApp) => {
 				}
 
 				let slangroomResult: string;
-
 				try {
 					const { result } = await s.execute(contract, { keys, data, conf });
+					if (metadata.httpHeaders) {
+						if(result.http_headers !== undefined && result.http_headers.response !== undefined) {
+							headers.response = result.http_headers.response
+						}
+						delete result.http_headers;
+					}
 					slangroomResult = JSON.stringify(result);
 				} catch (e) {
 					if (!res.aborted) {
@@ -282,6 +287,11 @@ const generateRoutes = (app: TemplatedApp) => {
 				}
 
 				res.cork(() => {
+					if (metadata.httpHeaders && headers.response !== undefined) {
+						for (const [k, v] of Object.entries(headers.response)) {
+							res.writeHeader(k, v)
+						}
+					}
 					res
 						.writeStatus(metadata.successCode)
 						.writeHeader('Content-Type', metadata.successContentType)
@@ -315,9 +325,10 @@ const generateRoutes = (app: TemplatedApp) => {
 
 		if (!metadata.disablePost) {
 			app.post(path, (res, req) => {
-				let headers: Record<string, string> = {};
+				let headers: Record<string, Record<string, string>> = {};
+				headers.request = {}
 				req.forEach((k, v) => {
-					headers[k] = v;
+					headers.request[k] = v;
 				});
 				/**
 				 * Code may break on `slangroom.execute`
@@ -356,9 +367,10 @@ const generateRoutes = (app: TemplatedApp) => {
 		}
 		if (!metadata.disableGet) {
 			app.get(path, async (res, req) => {
-				let headers: Record<string, string> = {};
+				let headers: Record<string, Record<string, string>> = {};
+				headers.request = {}
 				req.forEach((k, v) => {
-					headers[k] = v;
+					headers.request[k] = v;
 				});
 				/**
 				 * Code may break on `slangroom.execute`
