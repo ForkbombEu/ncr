@@ -1,3 +1,13 @@
+Given I have a 'string dictionary' named 'request' in 'http_headers'
 Given I have a 'string dictionary' named 'http_headers'
-When I verify 'content-type' is found in 'http_headers'
-Then print 'content-type' from 'http_headers'
+When I verify 'content-type' is found in 'request'
+
+When I create the 'string dictionary' named 'headers_reponse'
+and I set 'Content-Type' to 'application/json' as 'string'
+and I move 'Content-Type' in 'headers_reponse'
+and I set 'Cache-Control' to 'no-store' as 'string'
+and I move 'Cache-Control' in 'headers_reponse'
+and I move 'headers_reponse' to 'response' in 'http_headers'
+
+Then print 'content-type' from 'request'
+and print the 'http_headers'
