@@ -1,3 +1,10 @@
+# [1.28.0](https://github.com/forkbombeu/ncr/compare/v1.27.9...v1.28.0) (2024-03-27)
+
+
+### Features
+
+* add custom http headers in response  ([#127](https://github.com/forkbombeu/ncr/issues/127)) ([1e5226c](https://github.com/forkbombeu/ncr/commit/1e5226c9e681ab044c12a14c49e5b2eb7d2638f0))
+
 ## [1.27.9](https://github.com/forkbombeu/ncr/compare/v1.27.8...v1.27.9) (2024-03-26)
 
 ## [1.27.8](https://github.com/forkbombeu/ncr/compare/v1.27.7...v1.27.8) (2024-03-26)
