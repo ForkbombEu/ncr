@@ -30,8 +30,8 @@ dependencies:
     specifier: ^1.27.6
     version: 1.27.6(zenroom@4.23.1)
   '@slangroom/pocketbase':
-    specifier: ^1.27.6
-    version: 1.27.6(zenroom@4.23.1)
+    specifier: ^1.28.0
+    version: 1.28.0(@capacitor/core@5.7.4)(zenroom@4.23.1)
   '@slangroom/timestamp':
     specifier: ^1.27.6
     version: 1.27.6(zenroom@4.23.1)
@@ -631,6 +631,20 @@ packages:
   /@bcoe/v8-coverage@0.2.3:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
     dev: true
+
+  /@capacitor/core@5.7.4:
+    resolution: {integrity: sha512-iZBgvx3o4amzKv5ttA+QHB6i7cxK+/mYpCQd1tnSdipg6ZkvfBhg1HkzhEqHk+I7MNur+QwgYDZho9+ycHRwOw==}
+    dependencies:
+      tslib: 2.6.2
+    dev: false
+
+  /@capacitor/preferences@5.0.7(@capacitor/core@5.7.4):
+    resolution: {integrity: sha512-JvfGP1m8nITWEFdBpKR9HXNeBjLKwO0q1pry7Z5lYrYmCrbyRBLWzaGZGll8py4KmGWL3F5+PZvhrpT4gPoeAQ==}
+    peerDependencies:
+      '@capacitor/core': ^5.0.0
+    dependencies:
+      '@capacitor/core': 5.7.4
+    dev: false
 
   /@chevrotain/cst-dts-gen@10.5.0:
     resolution: {integrity: sha512-lhmC/FyqQ2o7pGK4Om+hzuDrm9rhFYIJ/AXoQBeongmn870Xeb0L6oGEiuR8nohFNL5sMaQEJWCxr1oIVIVXrw==}
@@ -1790,15 +1804,17 @@ packages:
       - zenroom
     dev: false
 
-  /@slangroom/pocketbase@1.27.6(zenroom@4.23.1):
-    resolution: {integrity: sha512-CRmHwHjzIr73CkaEzJLNx58S+RfApSiPHXY6eE7JJijzRypr14yTqDuPTcCIL90+DRJkRRTREAjQSfZdOJoFkw==}
+  /@slangroom/pocketbase@1.28.0(@capacitor/core@5.7.4)(zenroom@4.23.1):
+    resolution: {integrity: sha512-sb8iMV7W/RcGBQRU9Jk+elYkmdKqdVSDecU44x5eeGoKAgObScLBh7Ln6wRLks7yBJP/lQ4Xgc815OPCd+MgYw==}
     dependencies:
+      '@capacitor/preferences': 5.0.7(@capacitor/core@5.7.4)
       '@slangroom/core': 1.27.6(zenroom@4.23.1)
       '@slangroom/shared': 1.27.6(zenroom@4.23.1)
       dotenv: 16.4.5
       pocketbase: 0.19.0
       zod: 3.22.4
     transitivePeerDependencies:
+      - '@capacitor/core'
       - zenroom
     dev: false
 
@@ -7396,7 +7412,6 @@ packages:
 
   /tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
-    dev: true
 
   /tslog@4.9.2:
     resolution: {integrity: sha512-wBM+LRJoNl34Bdu8mYEFxpvmOUedpNUwMNQB/NcuPIZKwdDde6xLHUev3bBjXQU7gdurX++X/YE7gLH8eXYsiQ==}
