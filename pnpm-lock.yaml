@@ -30,8 +30,8 @@ dependencies:
     specifier: ^1.27.6
     version: 1.27.6(zenroom@4.26.0)
   '@slangroom/pocketbase':
-    specifier: ^1.28.0
-    version: 1.28.0(@capacitor/core@5.7.4)(zenroom@4.26.0)
+    specifier: ^1.28.1
+    version: 1.28.1(@capacitor/core@5.7.4)(zenroom@4.26.0)
   '@slangroom/timestamp':
     specifier: ^1.27.6
     version: 1.27.6(zenroom@4.26.0)
@@ -1804,8 +1804,8 @@ packages:
       - zenroom
     dev: false
 
-  /@slangroom/pocketbase@1.28.0(@capacitor/core@5.7.4)(zenroom@4.26.0):
-    resolution: {integrity: sha512-sb8iMV7W/RcGBQRU9Jk+elYkmdKqdVSDecU44x5eeGoKAgObScLBh7Ln6wRLks7yBJP/lQ4Xgc815OPCd+MgYw==}
+  /@slangroom/pocketbase@1.28.1(@capacitor/core@5.7.4)(zenroom@4.26.0):
+    resolution: {integrity: sha512-rRM74ntoAq68S184Y6IvMWnx0tgQh1Yg5x8RImR+FDGsDSqT/ZVkRCoE7oDnDni6XtW1vy1EtcKqydMrb6LzHQ==}
     dependencies:
       '@capacitor/preferences': 5.0.7(@capacitor/core@5.7.4)
       '@slangroom/core': 1.27.6(zenroom@4.26.0)
