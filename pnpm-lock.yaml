@@ -12,8 +12,8 @@ dependencies:
     specifier: ^1.27.6
     version: 1.27.6(typescript@5.4.2)(zenroom@4.29.3)
   '@slangroom/fs':
-    specifier: ^1.27.6
-    version: 1.27.6(zenroom@4.29.3)
+    specifier: ^1.29.0
+    version: 1.29.0(zenroom@4.29.3)
   '@slangroom/git':
     specifier: ^1.29.0
     version: 1.29.0(zenroom@4.29.3)
@@ -1741,10 +1741,10 @@ packages:
       - zod
     dev: false
 
-  /@slangroom/fs@1.27.6(zenroom@4.29.3):
-    resolution: {integrity: sha512-zKEwTQ7GRrgwUqT9nKqQsiKojIA36dSFuWgFH6Vq706mnPUEziRAKnjhUK5CagtXCeaiFuRtDyjmMcoKTS+J3w==}
+  /@slangroom/fs@1.29.0(zenroom@4.29.3):
+    resolution: {integrity: sha512-jE/y4MWE4Jrl4DZPeyvUQ24j7AVE9R8Q3dLEOlsWLgRw3qAh1YlBd7SdSshQMkNxO49VNSaDCgW1rRze4bngyQ==}
     dependencies:
-      '@slangroom/core': 1.27.6(zenroom@4.29.3)
+      '@slangroom/core': 1.29.0(zenroom@4.29.3)
       axios: 1.6.7(debug@4.3.4)
       extract-zip: 2.0.1
     transitivePeerDependencies:
