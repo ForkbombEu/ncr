@@ -113,8 +113,8 @@ devDependencies:
     specifier: ^0.32.15
     version: 0.32.15
   '@slangroom/qrcode':
-    specifier: ^1.27.6
-    version: 1.27.6(zenroom@4.29.3)
+    specifier: ^1.29.0
+    version: 1.29.0(zenroom@4.29.3)
   '@slangroom/redis':
     specifier: ^1.28.0
     version: 1.28.0(zenroom@4.29.3)
@@ -1713,7 +1713,6 @@ packages:
       '@slangroom/shared': 1.27.6(zenroom@4.29.3)
     transitivePeerDependencies:
       - zenroom
-    dev: false
 
   /@slangroom/deps@1.27.6(zenroom@4.29.3):
     resolution: {integrity: sha512-CWlO9dDwYE9e3fKM5yYJDfDrgwSWIgy5/MT+FR9Lr+6pPjfjg5vVo2Zf8hYmevuJYRmrErZWKFW+CUiUh2R8sA==}
@@ -1799,7 +1798,6 @@ packages:
       '@slangroom/shared': 1.27.6(zenroom@4.29.3)
     transitivePeerDependencies:
       - zenroom
-    dev: false
 
   /@slangroom/json-schema@1.27.6(zenroom@4.29.3):
     resolution: {integrity: sha512-DB+H53/G1MPNE+MKrKZYIY+IM83dJ9NxL7Vo2mWumAMUN2kf0IeWPjxjPwRPD0tZdHJDG6JDrKlU1Viw1nWlgQ==}
@@ -1837,10 +1835,10 @@ packages:
       - zenroom
     dev: false
 
-  /@slangroom/qrcode@1.27.6(zenroom@4.29.3):
-    resolution: {integrity: sha512-rM/vg3mgGbJ6rUZp1aiEWW1PNQE2U5qlktdHhBCWdiy4g+qafI5hp1jAO0wdy6Lcf9QQYcgOVSCHqqRBhVTMpg==}
+  /@slangroom/qrcode@1.29.0(zenroom@4.29.3):
+    resolution: {integrity: sha512-8psNU4JGB1paOWU8i5BE4Q5T+V9EPzRBSdHvUJ0R+PSjHX2LCgdF5oRxrpzuvwfcXkkgegXDk/cgUnP+h/yveg==}
     dependencies:
-      '@slangroom/core': 1.27.6(zenroom@4.29.3)
+      '@slangroom/core': 1.29.0(zenroom@4.29.3)
       qrcode: 1.5.3
     transitivePeerDependencies:
       - zenroom
