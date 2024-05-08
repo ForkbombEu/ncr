@@ -21,8 +21,8 @@ dependencies:
     specifier: ^1.27.6
     version: 1.27.6(zenroom@4.29.3)
   '@slangroom/http':
-    specifier: ^1.28.1
-    version: 1.28.1(zenroom@4.29.3)
+    specifier: ^1.29.0
+    version: 1.29.0(zenroom@4.29.3)
   '@slangroom/json-schema':
     specifier: ^1.27.6
     version: 1.27.6(zenroom@4.29.3)
@@ -1705,6 +1705,16 @@ packages:
     transitivePeerDependencies:
       - zenroom
 
+  /@slangroom/core@1.29.0(zenroom@4.29.3):
+    resolution: {integrity: sha512-MjwOxa1hCAOLVGZf1qHyu7OFvH7rhGHb0aq2ELzUhCBwJDmCgEMWQPhYtJPVYWkuLL5/32SequAEX/mFyvTtzg==}
+    dependencies:
+      '@slangroom/deps': 1.27.6(zenroom@4.29.3)
+      '@slangroom/ignored': 1.29.0(zenroom@4.29.3)
+      '@slangroom/shared': 1.27.6(zenroom@4.29.3)
+    transitivePeerDependencies:
+      - zenroom
+    dev: false
+
   /@slangroom/deps@1.27.6(zenroom@4.29.3):
     resolution: {integrity: sha512-CWlO9dDwYE9e3fKM5yYJDfDrgwSWIgy5/MT+FR9Lr+6pPjfjg5vVo2Zf8hYmevuJYRmrErZWKFW+CUiUh2R8sA==}
     peerDependencies:
@@ -1763,10 +1773,10 @@ packages:
       - zenroom
     dev: false
 
-  /@slangroom/http@1.28.1(zenroom@4.29.3):
-    resolution: {integrity: sha512-JJEAJvnaJi1w/25IiwTnZgHn9J/Fvvhbn8wl79R8KhCLxkjE17EMuJvKzWrdHXiL76zYXizxWjvmeOKg/dDsMQ==}
+  /@slangroom/http@1.29.0(zenroom@4.29.3):
+    resolution: {integrity: sha512-ZiatptKQXBMIiWinlz+bj0XINyZrRDg901AHwxj/P9ZxdgTWGssSpABQVfRtMiBa6Fc3gi8DK6OkuS7yAiE+cA==}
     dependencies:
-      '@slangroom/core': 1.27.6(zenroom@4.29.3)
+      '@slangroom/core': 1.29.0(zenroom@4.29.3)
       '@slangroom/shared': 1.27.6(zenroom@4.29.3)
       axios: 1.6.7(debug@4.3.4)
     transitivePeerDependencies:
@@ -1781,6 +1791,15 @@ packages:
       '@slangroom/shared': 1.27.6(zenroom@4.29.3)
     transitivePeerDependencies:
       - zenroom
+
+  /@slangroom/ignored@1.29.0(zenroom@4.29.3):
+    resolution: {integrity: sha512-ZUJQ2+ptANYoVVi45KW31VF8Ib+qI8O3+lJ01P6B+gPUa1j73v8WyMsj1HssPj6b00NMveg3uICdHhFiXxPC8A==}
+    dependencies:
+      '@slangroom/deps': 1.27.6(zenroom@4.29.3)
+      '@slangroom/shared': 1.27.6(zenroom@4.29.3)
+    transitivePeerDependencies:
+      - zenroom
+    dev: false
 
   /@slangroom/json-schema@1.27.6(zenroom@4.29.3):
     resolution: {integrity: sha512-DB+H53/G1MPNE+MKrKZYIY+IM83dJ9NxL7Vo2mWumAMUN2kf0IeWPjxjPwRPD0tZdHJDG6JDrKlU1Viw1nWlgQ==}
