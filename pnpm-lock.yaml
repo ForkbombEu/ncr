@@ -36,8 +36,8 @@ dependencies:
     specifier: ^1.27.6
     version: 1.27.6(zenroom@4.29.3)
   '@slangroom/wallet':
-    specifier: ^1.27.6
-    version: 1.27.6(zenroom@4.29.3)
+    specifier: ^1.29.0
+    version: 1.29.0(zenroom@4.29.3)
   '@slangroom/zencode':
     specifier: ^1.27.6
     version: 1.27.6(zenroom@4.29.3)
@@ -1881,12 +1881,12 @@ packages:
       - zenroom
     dev: false
 
-  /@slangroom/wallet@1.27.6(zenroom@4.29.3):
-    resolution: {integrity: sha512-s/ohGOh3xREybIIo9DwQN58vpltmoSHIC9qBKuOprushBefaGicjX0qB3Hf7Enl7UxQsAPTOtPc/Sn3TqKzkTw==}
+  /@slangroom/wallet@1.29.0(zenroom@4.29.3):
+    resolution: {integrity: sha512-VZMClkG4dpMl0HhHsR1m2+mtVUJXXkYPL/ezK9ZoAW8L91xERxneFDUOG0VzkR+XG/EzU9yQrvgFLzBPPo8aSA==}
     dependencies:
       '@meeco/sd-jwt': 0.0.3
       '@meeco/sd-jwt-vc': 0.0.4
-      '@slangroom/core': 1.27.6(zenroom@4.29.3)
+      '@slangroom/core': 1.29.0(zenroom@4.29.3)
       '@slangroom/shared': 1.27.6(zenroom@4.29.3)
       bs58: 5.0.0
       jose: 5.2.2
