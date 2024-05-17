@@ -1,0 +1,13 @@
+{
+    "steps": [
+	{
+	    "id": "first",
+	    "zencode": "Given nothing\nWhen I write the string 'hello' in 'say hi'\nThen print 'say_hi'"
+	},
+	{
+	    "id": "second",
+	    "dataFromStep": "first",
+	    "zencode": "Given I have a 'string' named 'say_hi'\nThen print the data"
+	}
+    ]
+}
