@@ -44,7 +44,7 @@ export class Directory {
 	get files() {
 		const result: Endpoints[] = [];
 		this.liveDirectory.files.forEach((c, f) => {
-			const [path, ext] = f.split('.');
+			const [path, ext, json] = f.split('.');
 			if (ext === 'zen') {
 				result.push({
 					path: path,
@@ -54,12 +54,19 @@ export class Directory {
 					schema: this.getJSONSchema(path),
 					metadata: newMetadata(this.getJSON(path, 'metadata') || {})
 				});
+			} else if (ext == 'chain' && json == 'json') {
+				result.push({
+					path: path,
+					chain: this.getJSON(path, 'chain'),
+					schema: this.getJSONSchema(path),
+					metadata: newMetadata(this.getJSON(path, 'metadata') || {})
+				});
 			}
 		});
 		return result;
 	}
 
-	private getJSON(path: string, type: 'schema' | 'keys' | 'metadata') {
+	private getJSON(path: string, type: 'schema' | 'keys' | 'metadata' | 'chain') {
 		try {
 			const k = this.getContent(`${path}.${type}.json`);
 			if (!k) return undefined;

@@ -24,7 +24,8 @@ export interface Config {
 
 export interface Endpoints {
 	path: string;
-	contract: string;
+	contract?: string | undefined;
+	chain?: JSON | undefined;
 	keys?: JSON | undefined;
 	conf: string;
 	schema?: JSONSchema | undefined;
