@@ -26,6 +26,7 @@ import {
 } from './openapi.js';
 import { SlangroomManager } from './slangroom.js';
 import { getSchema, validateData } from './utils.js';
+import { readFileContent, readJsonObject } from './fileUtils.js';
 dotenv.config();
 
 const L = config.logger;
@@ -246,6 +247,19 @@ const generateRoutes = (app: TemplatedApp) => {
 						return;
 					}
 				}
+				if (metadata.precondition) {
+					const zen = await readFileContent(metadata.precondition+".slang");
+					const keys = fs.existsSync(metadata.precondition+".keys.json") ?
+						await readJsonObject(metadata.precondition+".keys.json") : null;
+					console.log(keys);
+					try {
+						await s.execute(zen, {data, keys});
+					} catch (e) {
+						LOG.fatal(e);
+						res.writeStatus('403 FORBIDDEN').end((e as Error).message)
+						return;
+					}
+				}
 
 				try {
 					validateData(schema, data);
@@ -337,7 +351,6 @@ const generateRoutes = (app: TemplatedApp) => {
 				res.onAborted(() => {
 					res.writeStatus(metadata.errorCode ? metadata.errorCode : '500').end('Aborted');
 				});
-
 				let buffer: Buffer;
 				res.onData((d, isLast) => {
 					let chunk = Buffer.from(d);
