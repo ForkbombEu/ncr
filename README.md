@@ -21,3 +21,4 @@
 | `tags` | Used to specify the tags. | `['📑 Zencodes']` |
 | `hidden` | Used to hide the endpoint. | `false` |
 | `hide_from_openapi` | Used to hide the endpoint from OpenAPI documentation. | `false` |
+| `precondition` | Used to specify a path to a slangroom contract to be used as precondition. | `false` |

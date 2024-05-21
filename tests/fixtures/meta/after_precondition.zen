@@ -1,0 +1,2 @@
+Given I have a 'string' named 'hello'
+Then print 'hello'

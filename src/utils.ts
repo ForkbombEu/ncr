@@ -125,6 +125,7 @@ export const newMetadata = (configRaw: JSON): Metadata => {
 		tags: configRaw['tags'] || ['📑 Zencodes'],
 		hidden: configRaw['hidden'] || false,
 		hideFromOpenapi: configRaw['hide_from_openapi'] || false,
+		precondition: configRaw['precondition'] || false,
 	};
 };
 

@@ -1,0 +1,4 @@
+{
+    "precondition": "tests/fixtures/meta/precondition",
+    "http_headers": true
+}
