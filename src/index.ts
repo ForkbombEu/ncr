@@ -251,7 +251,6 @@ const generateRoutes = (app: TemplatedApp) => {
 					const zen = await readFileContent(metadata.precondition+".slang");
 					const keys = fs.existsSync(metadata.precondition+".keys.json") ?
 						await readJsonObject(metadata.precondition+".keys.json") : null;
-					console.log(keys);
 					try {
 						await s.execute(zen, {data, keys});
 					} catch (e) {
