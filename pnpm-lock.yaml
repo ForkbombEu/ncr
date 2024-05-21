@@ -15,8 +15,8 @@ dependencies:
     specifier: ^1.27.6
     version: 1.27.6(zenroom@4.29.3)
   '@slangroom/git':
-    specifier: ^1.29.0
-    version: 1.29.0(zenroom@4.29.3)
+    specifier: ^1.30.0
+    version: 1.30.0(zenroom@4.29.3)
   '@slangroom/helpers':
     specifier: ^1.27.6
     version: 1.27.6(zenroom@4.29.3)
@@ -1722,7 +1722,6 @@ packages:
       '@slangroom/shared': 1.27.6(zenroom@4.29.3)
     transitivePeerDependencies:
       - zenroom
-    dev: true
 
   /@slangroom/deps@1.27.6(zenroom@4.29.3):
     resolution: {integrity: sha512-CWlO9dDwYE9e3fKM5yYJDfDrgwSWIgy5/MT+FR9Lr+6pPjfjg5vVo2Zf8hYmevuJYRmrErZWKFW+CUiUh2R8sA==}
@@ -1762,10 +1761,10 @@ packages:
       - zenroom
     dev: false
 
-  /@slangroom/git@1.29.0(zenroom@4.29.3):
-    resolution: {integrity: sha512-d7IVy/q6cAe5LWN3nkVMEOhVddSee8Juatbxk/fyD8VILZzVo31+oeCm8hWre9tQX+JbE/nHO7OP2yLfv4PhBQ==}
+  /@slangroom/git@1.30.0(zenroom@4.29.3):
+    resolution: {integrity: sha512-D3CUwTt7KoffKK0InkGW23gNUVxhnxqaz1A/DTeaJOIOxL+0J6LKCdwHsaoazdbMM9FJq6+ZbUzfH330Wjue6w==}
     dependencies:
-      '@slangroom/core': 1.29.0(zenroom@4.29.3)
+      '@slangroom/core': 1.30.0(zenroom@4.29.3)
       isomorphic-git: 1.25.6
     transitivePeerDependencies:
       - zenroom
@@ -1816,7 +1815,6 @@ packages:
       '@slangroom/shared': 1.27.6(zenroom@4.29.3)
     transitivePeerDependencies:
       - zenroom
-    dev: true
 
   /@slangroom/json-schema@1.27.6(zenroom@4.29.3):
     resolution: {integrity: sha512-DB+H53/G1MPNE+MKrKZYIY+IM83dJ9NxL7Vo2mWumAMUN2kf0IeWPjxjPwRPD0tZdHJDG6JDrKlU1Viw1nWlgQ==}
