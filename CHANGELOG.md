@@ -1,3 +1,10 @@
+# [1.29.0](https://github.com/forkbombeu/ncr/compare/v1.28.14...v1.29.0) (2024-05-21)
+
+
+### Features
+
+* add precondtion to metadata ([#160](https://github.com/forkbombeu/ncr/issues/160)) ([427a6e1](https://github.com/forkbombeu/ncr/commit/427a6e1d212abb98b2adf2b8d9815555107d34bf))
+
 ## [1.28.14](https://github.com/forkbombeu/ncr/compare/v1.28.13...v1.28.14) (2024-05-21)
 
 ## [1.28.13](https://github.com/forkbombeu/ncr/compare/v1.28.12...v1.28.13) (2024-05-21)
