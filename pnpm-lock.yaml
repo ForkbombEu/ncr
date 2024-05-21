@@ -119,8 +119,8 @@ devDependencies:
     specifier: ^1.30.0
     version: 1.30.0(zenroom@4.29.3)
   '@slangroom/shell':
-    specifier: ^1.27.6
-    version: 1.27.6(zenroom@4.29.3)
+    specifier: ^1.30.0
+    version: 1.30.0(zenroom@4.29.3)
   '@swc/core':
     specifier: ^1.4.8
     version: 1.4.8(@swc/helpers@0.5.6)
@@ -1704,6 +1704,7 @@ packages:
       '@slangroom/shared': 1.27.6(zenroom@4.29.3)
     transitivePeerDependencies:
       - zenroom
+    dev: false
 
   /@slangroom/core@1.29.0(zenroom@4.29.3):
     resolution: {integrity: sha512-MjwOxa1hCAOLVGZf1qHyu7OFvH7rhGHb0aq2ELzUhCBwJDmCgEMWQPhYtJPVYWkuLL5/32SequAEX/mFyvTtzg==}
@@ -1800,6 +1801,7 @@ packages:
       '@slangroom/shared': 1.27.6(zenroom@4.29.3)
     transitivePeerDependencies:
       - zenroom
+    dev: false
 
   /@slangroom/ignored@1.29.0(zenroom@4.29.3):
     resolution: {integrity: sha512-ZUJQ2+ptANYoVVi45KW31VF8Ib+qI8O3+lJ01P6B+gPUa1j73v8WyMsj1HssPj6b00NMveg3uICdHhFiXxPC8A==}
@@ -1880,10 +1882,10 @@ packages:
     transitivePeerDependencies:
       - zenroom
 
-  /@slangroom/shell@1.27.6(zenroom@4.29.3):
-    resolution: {integrity: sha512-TR5GLw/z1qpwXwVZW8ZZODjV7IHIIrHhFhmoPvShPgqxQ6321vJyHJsmYJC9zL2kTK+59seQtOInnRup0FKX7g==}
+  /@slangroom/shell@1.30.0(zenroom@4.29.3):
+    resolution: {integrity: sha512-J6NS4LVWRrUKICuXFwe6E1qRJ1cIOlNUckLBDYCgnAWBIhdTWgMM+tnOhVPdMvkNgT7QwQA6Ttxyy2lgofVexQ==}
     dependencies:
-      '@slangroom/core': 1.27.6(zenroom@4.29.3)
+      '@slangroom/core': 1.30.0(zenroom@4.29.3)
       execa: 8.0.1
     transitivePeerDependencies:
       - zenroom
