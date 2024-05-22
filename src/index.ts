@@ -87,7 +87,11 @@ const ncrApp = async () => {
 				const { path, metadata } = endpoints;
 				if (definition.paths && !metadata.hidden && !metadata.hideFromOpenapi) {
 					const schema = await getSchema(endpoints);
-					if (schema) definition.paths[path] = generatePath(endpoints.contract ?? JSON.stringify(endpoints.chain), schema, metadata);
+					if (schema) definition.paths[path] = generatePath(
+						endpoints.contract ?? endpoints.chain.steps.map((x) => `\n --- ${x.id} --- \n ${x.zencode ?? x.zencodeFromFile}`).join('\n'),
+						schema,
+						metadata
+					);
 					definition.paths[path + '/raw'] = generateRawPath();
 					definition.paths[path + '/app'] = generateAppletPath();
 				}
