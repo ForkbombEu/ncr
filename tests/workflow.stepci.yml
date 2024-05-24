@@ -105,7 +105,7 @@ tests:
           method: GET
           check:
             status: 500
-            sha256: 39cc1a02466e04790a69cc902bf13095b3058cb6b4d77937adf38e85a19cfe16
+            sha256: c588207fe8a2c91f438ff51f9d329d962fdc1d42141699dc473f81cdee32ee31
 
       - name: POST /broken no body
         http:
@@ -116,7 +116,7 @@ tests:
           json: {}
           check:
             status: 500
-            sha256: 39cc1a02466e04790a69cc902bf13095b3058cb6b4d77937adf38e85a19cfe16
+            sha256: c588207fe8a2c91f438ff51f9d329d962fdc1d42141699dc473f81cdee32ee31
 
       - name: POST /broken no body
         http:
@@ -228,7 +228,7 @@ tests:
           check:
             status: 500
             json:
-              - in: "[!] /zencode.lua:658: Zencode line 3: Given I have a 'string dictionary' named 'love'"
+              - in: "[!] /zencode.lua:706: Zencode line 3: Given I have a 'string dictionary' named 'love'"
 
   slangroom_fs:
     steps:
@@ -244,16 +244,16 @@ tests:
           check:
             status: 500
 
-      - name: slangroom valid but ENV VAR not set
-        http:
-          url: http://${{env.host}}/chain
-          method: POST
-          headers:
-            Content-Type: application/json
-          json: {}
-          check:
-            status: 500
-            body: $FILES_DIR must be provided
+#      - name: slangroom valid but ENV VAR not set
+#        http:
+#          url: http://${{env.host}}/chain
+#          method: POST
+#          headers:
+#            Content-Type: application/json
+#          json: {}
+#          check:
+#            status: 500
+#            body: $FILES_DIR must be provided
 
   my_keyring:
     steps:
@@ -372,3 +372,13 @@ tests:
             test: precondition_fails
           check:
             status: 403
+  chain:
+    steps:
+      - name: hello chain
+        http:
+          url: http://${{env.host}}/chain/hello
+          method: GET
+          check:
+            status: 200
+            json:
+              say_hi: hello

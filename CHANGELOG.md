@@ -1,3 +1,10 @@
+# [1.30.0](https://github.com/forkbombeu/ncr/compare/v1.29.1...v1.30.0) (2024-05-24)
+
+
+### Features
+
+* add possibility to use slangroom chains with extension .chain.json ([#163](https://github.com/forkbombeu/ncr/issues/163)) ([0b25b2c](https://github.com/forkbombeu/ncr/commit/0b25b2c7d887e572e41811e1514dbfa17bb2fbca))
+
 ## [1.29.1](https://github.com/forkbombeu/ncr/compare/v1.29.0...v1.29.1) (2024-05-22)
 
 # [1.29.0](https://github.com/forkbombeu/ncr/compare/v1.28.14...v1.29.0) (2024-05-21)

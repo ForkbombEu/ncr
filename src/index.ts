@@ -27,12 +27,17 @@ import {
 import { SlangroomManager } from './slangroom.js';
 import { getSchema, validateData } from './utils.js';
 import { readFileContent, readJsonObject } from './fileUtils.js';
+import { execute as slangroomChainExecute } from '@dyne/slangroom-chain';
 dotenv.config();
 
 const L = config.logger;
 const Dir = Directory.getInstance();
 
 const PROM = process.env.PROM == 'true';
+
+if (typeof process.env.FILES_DIR == "undefined") {
+	process.env.FILES_DIR = config.zencodeDir
+}
 
 const setupProm = async (app: TemplatedApp) => {
 	const client = await import('prom-client');
@@ -82,7 +87,11 @@ const ncrApp = async () => {
 				const { path, metadata } = endpoints;
 				if (definition.paths && !metadata.hidden && !metadata.hideFromOpenapi) {
 					const schema = await getSchema(endpoints);
-					if (schema) definition.paths[path] = generatePath(endpoints.contract, schema, metadata);
+					if (schema) definition.paths[path] = generatePath(
+						endpoints.contract ?? endpoints.chain.steps.map((x) => `\n --- ${x.id} --- \n ${x.zencode ?? x.zencodeFromFile}`).join('\n'),
+						schema,
+						metadata
+					);
 					definition.paths[path + '/raw'] = generateRawPath();
 					definition.paths[path + '/app'] = generateAppletPath();
 				}
@@ -193,7 +202,7 @@ const setCorsHeaders = (res: HttpResponse) => {
 
 const generateRoutes = (app: TemplatedApp) => {
 	Dir.files.forEach(async (endpoints) => {
-		const { contract, path, keys, conf, metadata } = endpoints;
+		const { contract, chain , path, keys, conf, metadata } = endpoints;
 		if (metadata.hidden) return;
 
 		const LOG = L.getSubLogger({
@@ -276,16 +285,13 @@ const generateRoutes = (app: TemplatedApp) => {
 					return;
 				}
 
-				let slangroomResult: string;
+				let jsonResult: Record <string, unknown>;
 				try {
-					const { result } = await s.execute(contract, { keys, data, conf });
-					if (metadata.httpHeaders) {
-						if(result.http_headers !== undefined && result.http_headers.response !== undefined) {
-							headers.response = result.http_headers.response
-						}
-						delete result.http_headers;
+					if (chain) {
+						jsonResult = JSON.parse(await slangroomChainExecute(chain));
+					} else {
+						({ result: jsonResult } = await s.execute(contract, { keys, data, conf }));
 					}
-					slangroomResult = JSON.stringify(result);
 				} catch (e) {
 					if (!res.aborted) {
 						res.cork(() => {
@@ -298,7 +304,13 @@ const generateRoutes = (app: TemplatedApp) => {
 						return;
 					}
 				}
-
+				if (metadata.httpHeaders) {
+					if(jsonResult.http_headers !== undefined && jsonResult.http_headers.response !== undefined) {
+						headers.response = jsonResult.http_headers.response
+					}
+					delete jsonResult.http_headers;
+				}
+				const slangroomResult = JSON.stringify(jsonResult);
 				res.cork(() => {
 					if (metadata.httpHeaders && headers.response !== undefined) {
 						for (const [k, v] of Object.entries(headers.response)) {
