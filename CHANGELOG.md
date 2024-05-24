@@ -1,3 +1,10 @@
+# [1.31.0](https://github.com/forkbombeu/ncr/compare/v1.30.0...v1.31.0) (2024-05-24)
+
+
+### Features
+
+* **slangroom:** add db and ethereum plugins to slangroom ([#165](https://github.com/forkbombeu/ncr/issues/165)) ([c250fb1](https://github.com/forkbombeu/ncr/commit/c250fb1b4a7c70bc7182db276339d1b510ed4ca7))
+
 # [1.30.0](https://github.com/forkbombeu/ncr/compare/v1.29.1...v1.30.0) (2024-05-24)
 
 
