@@ -10,9 +10,10 @@ const L = config.logger;
 //
 
 export async function getSchema(endpoints: Endpoints): Promise<JSONSchema | undefined> {
-	const { contract, keys } = endpoints;
-	const schema = endpoints.schema ?? (await getSchemaFromIntrospection(contract));
-
+	const { contract, chain, keys } = endpoints;
+	let schema = endpoints.schema;
+	if (typeof(chain) !== 'undefined') return schema;
+	schema = schema ?? await getSchemaFromIntrospection(contract);
 	if (!keys) return schema;
 	else if (schema) return removeKeysFromSchema(schema, keys);
 }

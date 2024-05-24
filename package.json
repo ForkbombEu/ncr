@@ -38,18 +38,19 @@
 		"outputPath": "./"
 	},
 	"dependencies": {
-		"@slangroom/core": "^1.27.6",
-		"@slangroom/ethereum": "^1.27.6",
-		"@slangroom/fs": "^1.27.6",
-		"@slangroom/git": "^1.29.0",
-		"@slangroom/helpers": "^1.27.6",
-		"@slangroom/http": "^1.29.0",
-		"@slangroom/json-schema": "^1.27.6",
+		"@dyne/slangroom-chain": "^1.5.0",
+		"@slangroom/core": "^1.30.0",
+		"@slangroom/ethereum": "^1.30.0",
+		"@slangroom/fs": "^1.30.0",
+		"@slangroom/git": "^1.30.0",
+		"@slangroom/helpers": "^1.30.0",
+		"@slangroom/http": "^1.30.0",
+		"@slangroom/json-schema": "^1.30.0",
 		"@slangroom/oauth": "^1.30.0",
 		"@slangroom/pocketbase": "^1.31.0",
-		"@slangroom/timestamp": "^1.27.6",
-		"@slangroom/wallet": "^1.29.0",
-		"@slangroom/zencode": "^1.27.6",
+		"@slangroom/timestamp": "^1.30.0",
+		"@slangroom/wallet": "^1.30.0",
+		"@slangroom/zencode": "^1.30.0",
 		"@tgwf/co2": "^0.14.4",
 		"@typescript-eslint/parser": "^7.1.1",
 		"ajv": "^8.12.0",
@@ -62,7 +63,7 @@
 		"mime": "^4.0.1",
 		"prom-client": "^15.0.0",
 		"uWebSockets.js": "github:uNetworking/uWebSockets.js#semver:^20",
-		"zenroom": "^4.29.3"
+		"zenroom": "^4.32.0"
 	},
 	"devDependencies": {
 		"@rollup/plugin-commonjs": "^25.0.7",
@@ -75,9 +76,9 @@
 		"@semantic-release/npm": "^11.0.3",
 		"@semantic-release/release-notes-generator": "^12.1.0",
 		"@sinclair/typebox": "^0.32.15",
-		"@slangroom/qrcode": "^1.29.0",
+		"@slangroom/qrcode": "^1.30.0",
 		"@slangroom/redis": "^1.30.0",
-		"@slangroom/shell": "^1.27.6",
+		"@slangroom/shell": "^1.30.0",
 		"@swc/core": "^1.4.8",
 		"@swc/helpers": "^0.5.6",
 		"@types/fs-extra": "^11.0.4",
@@ -104,5 +105,6 @@
 		"tslog": "^4.9.2",
 		"typescript": "^5.4.2",
 		"winston": "^3.12.0"
-	}
+	},
+	"packageManager": "pnpm@9.1.0+sha512.67f5879916a9293e5cf059c23853d571beaf4f753c707f40cb22bed5fb1578c6aad3b6c4107ccb3ba0b35be003eb621a16471ac836c87beb53f9d54bb4612724"
 }
