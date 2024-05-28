@@ -25,7 +25,7 @@ jobs:
     name: 🤖 Semantic release
     permissions:
       contents: write # to be able to publish a GitHub release
-    needs: tests
+    needs: test
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     outputs:
