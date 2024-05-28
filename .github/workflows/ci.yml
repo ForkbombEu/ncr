@@ -17,6 +17,8 @@ jobs:
     steps:
       - name: 🛠️ Prepare pnpm workspace
         uses: dyne/pnpm@main
+        with:
+          node-version: 20
       - name: 🧪 Run tests
         run: |
           pnpm test
@@ -34,6 +36,8 @@ jobs:
     steps:
       - name: 🛠️ Prepare pnpm workspace
         uses: dyne/pnpm@main
+        with:
+          node-version: 20
       - name: 🔖 Tag release
         id: tag_release
         env:
@@ -60,6 +64,8 @@ jobs:
     steps:
       - name: 🛠️ Prepare pnpm workspace
         uses: dyne/pnpm@main
+        with:
+          node-version: 20
       - name: 🏗️ Build executable
         run: |
           make build
