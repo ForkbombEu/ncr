@@ -1,4 +1,4 @@
-name: Release
+name: 📢 Tests, Release & Publish
 on:
   push:
     branches:
@@ -11,65 +11,30 @@ permissions:
   packages: write
 
 jobs:
-  build:
+  test:
+    name: 🧪 Pnpm test
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 'lts/*'
-      - uses: pnpm/action-setup@v2
-        name: Install pnpm
-        with:
-          version: 8
+      - name: 🛠️ Prepare pnpm workspace
+        uses: dyne/pnpm@main
       - name: 🧪 Run tests
         run: |
-          pnpm i
           pnpm test
-      - name: Build executable
-        run: |
-          make build
-          chmod +x ncr
-      - name: Upload artifact for ncr
-        uses: actions/upload-artifact@v3
-        with:
-          name: ncr
-          path: |
-            ncr
-      - name: Upload artifact for README
-        uses: actions/upload-artifact@v3
-        with:
-          name: readme
-          path: |
-            README.md
 
   semantic-release:
+    name: 🤖 Semantic release
     permissions:
       contents: write # to be able to publish a GitHub release
-    needs: build
+    needs: tests
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     outputs:
       release: ${{ steps.tag_release.outputs.release }}
       version: ${{ steps.tag_release.outputs.version }}
     steps:
-      - uses: actions/checkout@v3
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20.x
-      - uses: pnpm/action-setup@v2
-        name: Install pnpm
-        with:
-          version: 8
-      - name: Install deps
-        run: |
-          pnpm i
-      - name: Tag release
+      - name: 🛠️ Prepare pnpm workspace
+        uses: dyne/pnpm@main
+      - name: 🔖 Tag release
         id: tag_release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -86,24 +51,24 @@ jobs:
           cat $GITHUB_OUTPUT
 
   draft-release:
+    name: 📦 Pack release
     permissions:
       contents: write
     needs: semantic-release
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     steps:
-      - name: download binary artifacts
-        uses: actions/download-artifact@v3
-        with:
-          path: |
-            ncr-release
-      - name: show directory structure
-        run: tree -dL 3
-      - name: relase all binary artifacts
-        uses: softprops/action-gh-release@v1
+      - name: 🛠️ Prepare pnpm workspace
+        uses: dyne/pnpm@main
+      - name: 🏗️ Build executable
+        run: |
+          make build
+          chmod +x ncr
+      - name: 📦 Relase all binary artifacts
+        uses: softprops/action-gh-release@v2
         with:
           files: |
-            ncr-release/ncr/*
+            ncr
           draft: false
           prerelease: false
           fail_on_unmatched_files: true
@@ -111,6 +76,7 @@ jobs:
           tag_name: ${{ needs.semantic-release.outputs.version }}
 
   publish_docker_image:
+    name: 🐳 Publish Docker image
     needs: semantic-release
     if: github.ref == 'refs/heads/main'
     uses: ForkbombEu/workflows/.github/workflows/publish-ghcr.yml@main
