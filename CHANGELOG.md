@@ -1,3 +1,12 @@
+## [1.31.3](https://github.com/forkbombeu/ncr/compare/v1.31.2...v1.31.3) (2024-05-28)
+
+
+### Bug Fixes
+
+* **ci:** the released ncr has the correct version in it ([#178](https://github.com/forkbombeu/ncr/issues/178)) ([27f579b](https://github.com/forkbombeu/ncr/commit/27f579bba50bc08ae81ef9b68f91a93b6d58bf6d))
+* **ci:** typo in job name ([#179](https://github.com/forkbombeu/ncr/issues/179)) ([191edc5](https://github.com/forkbombeu/ncr/commit/191edc52fb353357969fd84539d278594e4a1838))
+* install pg-hstore, but kept it as external packege in the rollup configuration file ([#176](https://github.com/forkbombeu/ncr/issues/176)) ([a49c5b6](https://github.com/forkbombeu/ncr/commit/a49c5b675b8e9a90d77f7ddc176e669a5cbe4248))
+
 ## [1.31.2](https://github.com/forkbombeu/ncr/compare/v1.31.1...v1.31.2) (2024-05-27)
 
 ## [1.31.1](https://github.com/forkbombeu/ncr/compare/v1.31.0...v1.31.1) (2024-05-27)
