@@ -1,3 +1,10 @@
+## [1.31.4](https://github.com/forkbombeu/ncr/compare/v1.31.3...v1.31.4) (2024-05-31)
+
+
+### Bug Fixes
+
+* fail to start ncr if port already in use ([#186](https://github.com/forkbombeu/ncr/issues/186)) ([748ddab](https://github.com/forkbombeu/ncr/commit/748ddabb96f84b4034c7cea73c2290a6015410eb))
+
 ## [1.31.3](https://github.com/forkbombeu/ncr/compare/v1.31.2...v1.31.3) (2024-05-28)
 
 
