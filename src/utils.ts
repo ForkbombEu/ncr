@@ -135,3 +135,15 @@ function createAjv(): Ajv {
 	addFormats.default(ajv);
 	return ajv;
 }
+
+export const getQueryParams = (req): Record<string, unknown> => {
+	const data: Record<string, unknown> = {};
+	const q = req.getQuery();
+	if (q) {
+		q.split('&').map((r) => {
+			const [k, v] = r.split('=');
+			data[k] = v;
+		});
+	}
+	return data;
+}

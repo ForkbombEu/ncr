@@ -25,7 +25,7 @@ import {
 	openapiTemplate
 } from './openapi.js';
 import { SlangroomManager } from './slangroom.js';
-import { getSchema, validateData } from './utils.js';
+import { getSchema, validateData, getQueryParams } from './utils.js';
 import { readFileContent, readJsonObject } from './fileUtils.js';
 import { execute as slangroomChainExecute } from '@dyne/slangroom-chain';
 dotenv.config();
@@ -147,6 +147,13 @@ Then print the 'result'
 	return app;
 };
 
+const runPrecondition = async (s, preconditionPath: string, data: Record<string, any>) => {
+	const zen = fs.readFileSync(preconditionPath+".slang").toString();
+	const keys = fs.existsSync(preconditionPath+".keys.json") ?
+		JSON.parse(fs.readFileSync(preconditionPath+".keys.json")) : null;
+	await s.execute(zen, {data, keys});
+};
+
 Dir.ready(async () => {
 	let listen_socket: us_listen_socket;
 
@@ -158,10 +165,32 @@ Dir.ready(async () => {
 
 	const { publicDirectory } = config;
 	if (publicDirectory) {
-		app.get('/*', (res, req) => {
+		app.get('/*', async (res, req) => {
 			let file = path.join(publicDirectory, req.getUrl());
 			if (fs.existsSync(file)) {
-				const contentType = mime.getType(file) || 'application/json';
+				let contentType = mime.getType(file) || 'application/json';
+				if(fs.existsSync(file+'.metadata.json')) {
+					let publicMetadata
+					try {
+						publicMetadata = JSON.parse(fs.readFileSync(file+'.metadata.json'));
+					} catch (e) {
+						L.fatal(e);
+						res.writeStatus('422 UNPROCESSABLE ENTITY').end('Malformed metadata file');
+						return;
+					}
+					if(publicMetadata.contentType) contentType = publicMetadata.contentType
+					if(publicMetadata.precondition) {
+						const s = SlangroomManager.getInstance();
+						try{
+							const data: Record<string, any> = getQueryParams(req);
+							await runPrecondition(s, path.join(publicDirectory, publicMetadata.precondition), data);
+						} catch(e) {
+							L.fatal(e);
+							res.writeStatus('403 FORBIDDEN').end()
+							return;
+						}
+					}
+				}
 				res.writeHeader('Access-Control-Allow-Origin', '*')
 					.writeHeader('Content-Type', contentType);
 				res.end(fs.readFileSync(file));
@@ -257,11 +286,8 @@ const generateRoutes = (app: TemplatedApp) => {
 					}
 				}
 				if (metadata.precondition) {
-					const zen = await readFileContent(metadata.precondition+".slang");
-					const keys = fs.existsSync(metadata.precondition+".keys.json") ?
-						await readJsonObject(metadata.precondition+".keys.json") : null;
 					try {
-						await s.execute(zen, {data, keys});
+						await runPrecondition(s, metadata.precondition, data);
 					} catch (e) {
 						LOG.fatal(e);
 						res.writeStatus('403 FORBIDDEN').end((e as Error).message)
@@ -405,14 +431,7 @@ const generateRoutes = (app: TemplatedApp) => {
 				});
 
 				try {
-					const data: Record<string, unknown> = {};
-					const q = req.getQuery();
-					if (q) {
-						q.split('&').map((r) => {
-							const [k, v] = r.split('=');
-							data[k] = v;
-						});
-					}
+					const data: Record<string, unknown> = getQueryParams(req);
 					execZencodeAndReply(res, data, headers);
 				} catch (e) {
 					LOG.fatal(e);
