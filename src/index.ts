@@ -10,7 +10,8 @@ import {
 	TemplatedApp,
 	us_listen_socket,
 	us_listen_socket_close,
-	us_socket_local_port
+	us_socket_local_port,
+	LIBUS_LISTEN_EXCLUSIVE_PORT
 } from 'uWebSockets.js';
 import { template as proctoroom } from './applets.js';
 import { autorunContracts } from './autorun.js';
@@ -171,10 +172,15 @@ Dir.ready(async () => {
 		});
 	}
 
-	app.listen(config.port, (socket) => {
-		const port = us_socket_local_port(socket);
-		listen_socket = socket;
-		L.info(`Swagger UI is running on http://${config.hostname}:${port}/docs`);
+	app.listen(config.port, LIBUS_LISTEN_EXCLUSIVE_PORT, (socket) => {
+		if (socket) {
+			const port = us_socket_local_port(socket);
+			listen_socket = socket;
+			L.info(`Swagger UI is running on http://${config.hostname}:${port}/docs/sarcosi`);
+		} else {
+			L.error('Port already in use ' + config.port);
+			throw new Error('Port already in use ' + config.port);
+		}
 	});
 
 	Dir.onChange(async () => {
