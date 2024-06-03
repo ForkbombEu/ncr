@@ -176,7 +176,7 @@ Dir.ready(async () => {
 		if (socket) {
 			const port = us_socket_local_port(socket);
 			listen_socket = socket;
-			L.info(`Swagger UI is running on http://${config.hostname}:${port}/docs/sarcosi`);
+			L.info(`Swagger UI is running on http://${config.hostname}:${port}/docs`);
 		} else {
 			L.error('Port already in use ' + config.port);
 			throw new Error('Port already in use ' + config.port);
