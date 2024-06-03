@@ -1,3 +1,15 @@
+# [1.32.0](https://github.com/forkbombeu/ncr/compare/v1.31.4...v1.32.0) (2024-06-03)
+
+
+### Bug Fixes
+
+* remove debug leftover ([#187](https://github.com/forkbombeu/ncr/issues/187)) ([b70558f](https://github.com/forkbombeu/ncr/commit/b70558fae2fdbee7294d60206da051f7f0f2cbfa))
+
+
+### Features
+
+* extend precondition and contentType metadata to files in public directory ([#185](https://github.com/forkbombeu/ncr/issues/185)) ([08c63da](https://github.com/forkbombeu/ncr/commit/08c63da56d1b166625be3841e9c997358d730596))
+
 ## [1.31.4](https://github.com/forkbombeu/ncr/compare/v1.31.3...v1.31.4) (2024-05-31)
 
 
