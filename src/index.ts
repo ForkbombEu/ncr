@@ -167,6 +167,7 @@ Dir.ready(async () => {
 	const { publicDirectory } = config;
 	if (publicDirectory) {
 		app.get('/*', async (res, req) => {
+			if (req.getUrl().replace(/^\/+/g, '/').startsWith('/.')) return res.writeStatus('404 Not Found').end('Not found');
 			let file = path.join(publicDirectory, req.getUrl());
 			if (fs.existsSync(file)) {
 				let contentType = mime.getType(file) || 'application/json';
