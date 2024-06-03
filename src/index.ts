@@ -147,7 +147,8 @@ Then print the 'result'
 	return app;
 };
 
-const runPrecondition = async (s, preconditionPath: string, data: Record<string, any>) => {
+const runPrecondition = async (preconditionPath: string, data: Record<string, any>) => {
+	const s = SlangroomManager.getInstance();
 	const zen = fs.readFileSync(preconditionPath+".slang").toString();
 	const keys = fs.existsSync(preconditionPath+".keys.json") ?
 		JSON.parse(fs.readFileSync(preconditionPath+".keys.json")) : null;
@@ -180,10 +181,9 @@ Dir.ready(async () => {
 					}
 					if(publicMetadata.contentType) contentType = publicMetadata.contentType
 					if(publicMetadata.precondition) {
-						const s = SlangroomManager.getInstance();
 						try{
 							const data: Record<string, any> = getQueryParams(req);
-							await runPrecondition(s, path.join(publicDirectory, publicMetadata.precondition), data);
+							await runPrecondition(path.join(publicDirectory, publicMetadata.precondition), data);
 						} catch(e) {
 							L.fatal(e);
 							res.writeStatus('403 FORBIDDEN').end()
@@ -287,7 +287,7 @@ const generateRoutes = (app: TemplatedApp) => {
 				}
 				if (metadata.precondition) {
 					try {
-						await runPrecondition(s, metadata.precondition, data);
+						await runPrecondition(metadata.precondition, data);
 					} catch (e) {
 						LOG.fatal(e);
 						res.writeStatus('403 FORBIDDEN').end((e as Error).message)
