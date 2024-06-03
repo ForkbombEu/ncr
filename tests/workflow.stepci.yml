@@ -89,7 +89,7 @@ tests:
           method: GET
           check:
             status: 404
-            body: <html><body><h1>File Not Found</h1><hr><i>uWebSockets/20 Server</i></body></html>
+            body: Not found
 
   broken:
     steps:
@@ -382,3 +382,23 @@ tests:
             status: 200
             json:
               say_hi: hello
+
+  public_dir:
+    steps:
+      - name: public with wrong precondition
+        http:
+          url: http://${{env.host}}/hello_world?query_param=wrong_param
+          method: GET
+          check:
+            status: 403
+      - name: public with right precondition
+        http:
+          url: http://${{env.host}}/hello_world?query_param=hello
+          method: GET
+          check:
+            status: 200
+            selctors:
+              title: Benvenuto
+              body: Hello World!
+            headers:
+              Content-Type: text/html
