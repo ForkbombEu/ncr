@@ -1,3 +1,10 @@
+## [1.33.1](https://github.com/forkbombeu/ncr/compare/v1.33.0...v1.33.1) (2024-06-04)
+
+
+### Bug Fixes
+
+* version on release package should now match the github version ([#190](https://github.com/forkbombeu/ncr/issues/190)) ([57ad059](https://github.com/forkbombeu/ncr/commit/57ad05955239dd2abf6e09f25a1008c209701670))
+
 # [1.33.0](https://github.com/forkbombeu/ncr/compare/v1.32.0...v1.33.0) (2024-06-04)
 
 
