@@ -1,3 +1,10 @@
+# [1.33.0](https://github.com/forkbombeu/ncr/compare/v1.32.0...v1.33.0) (2024-06-04)
+
+
+### Features
+
+* add info on metadata in README ([34af70e](https://github.com/forkbombeu/ncr/commit/34af70eb8453365a660a6f63ff87f2062a0870c2))
+
 # [1.32.0](https://github.com/forkbombeu/ncr/compare/v1.31.4...v1.32.0) (2024-06-03)
 
 
