@@ -36,7 +36,7 @@
       }
     ],
     ["@semantic-release/exec", {
-      "prepareCmd": "make build && chmod +x ncr"
+      "prepareCmd": "make build"
     }],
     [
       "@semantic-release/github",
