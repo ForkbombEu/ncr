@@ -30,8 +30,14 @@
 To start using ncr run the following commands
 
 ```bash
-pnpm i
-pnpm start
+# download the binary
+wget https://github.com/forkbombeu/ncr/releases/latest/download/ncr -O ~/.local/bin/ncr && chmod +x ~/.local/bin/ncr
+
+# checkout this repo
+git clone https://github.com/forkbombeu/ncr
+
+# run the server with the example folder
+ncr -p 3000 -z ./ncr/tests/fixtures --public-directory ./ncr/public
 ```
 
 Opening [http://localhost:3000/docs](http://localhost:3000/docs) with your browser to see the result. You will found a list of all the available endpoints, that simply are the zencode files in the `./tests/fixtures` folder. Moreover you will have the possibility to access directly all the files under the `./public` folder, like [http://localhost:3000/file_example_MP3_700KB.mp3](http://localhost:3000/file_example_MP3_700KB.mp3).
@@ -45,6 +51,8 @@ Opening [http://localhost:3000/docs](http://localhost:3000/docs) with your brows
 Ncr comes also in a easy to use executable file. You can build it by running the following command
 
 ```bash
+git clone https://github.com/forkbombeu/ncr
+cd ncr
 pnpm i
 pnpm build
 ```
