@@ -66,6 +66,7 @@ jobs:
         uses: dyne/pnpm@main
         with:
           node-version: 20
+          fetch-depth: 0
       - name: 🏗️ Build executable
         run: |
           make build
