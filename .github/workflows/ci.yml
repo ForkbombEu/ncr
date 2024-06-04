@@ -26,7 +26,10 @@ jobs:
   semantic-release:
     name: 🤖 Semantic release
     permissions:
-      contents: write # to be able to publish a GitHub release
+      contents: write
+      issues: write
+      pull-requests: write
+      id-token: write
     needs: test
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
@@ -38,49 +41,13 @@ jobs:
         uses: dyne/pnpm@main
         with:
           node-version: 20
-      - name: 🔖 Tag release
-        id: tag_release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          npx semantic-release >semantic-release.log
-          cat semantic-release.log
-          if [[ `git tag --points-at HEAD` == "" ]]; then
-            echo "release=False" >> $GITHUB_OUTPUT
-          else
-            echo "release=True" >> $GITHUB_OUTPUT
-            awk '/Published release/ { printf("version=v%s\n",$8) }' semantic-release.log >> $GITHUB_OUTPUT
-          fi
-          echo "Result"
-          cat $GITHUB_OUTPUT
-
-  draft-release:
-    name: 📦 Pack release
-    permissions:
-      contents: write
-    needs: semantic-release
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-    steps:
-      - name: 🛠️ Prepare pnpm workspace
-        uses: dyne/pnpm@main
-        with:
-          node-version: 20
-          fetch-depth: 0
       - name: 🏗️ Build executable
         run: |
           make build
           chmod +x ncr
-      - name: 📦 Relase all binary artifacts
-        uses: softprops/action-gh-release@v2
-        with:
-          files: |
-            ncr
-          draft: false
-          prerelease: false
-          fail_on_unmatched_files: true
-          generate_release_notes: true
-          tag_name: ${{ needs.semantic-release.outputs.version }}
+      - run: pnpm semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   publish_docker_image:
     name: 🐳 Publish Docker image
