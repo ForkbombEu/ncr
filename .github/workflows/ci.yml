@@ -33,18 +33,11 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
-    outputs:
-      release: ${{ steps.tag_release.outputs.release }}
-      version: ${{ steps.tag_release.outputs.version }}
     steps:
       - name: 🛠️ Prepare pnpm workspace
         uses: dyne/pnpm@main
         with:
           node-version: 20
-      - name: 🏗️ Build executable
-        run: |
-          make build
-          chmod +x ncr
       - run: pnpm semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
