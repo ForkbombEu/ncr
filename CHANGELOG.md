@@ -1,3 +1,10 @@
+## [1.33.2](https://github.com/forkbombeu/ncr/compare/v1.33.1...v1.33.2) (2024-06-04)
+
+
+### Bug Fixes
+
+* correct release and versioning ([#192](https://github.com/forkbombeu/ncr/issues/192)) ([eaf9727](https://github.com/forkbombeu/ncr/commit/eaf97276baba13dfbf9c6db2faa9b592ab9ef624))
+
 ## [1.33.1](https://github.com/forkbombeu/ncr/compare/v1.33.0...v1.33.1) (2024-06-04)
 
 
