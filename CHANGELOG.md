@@ -3,6 +3,14 @@
 
 ### Bug Fixes
 
+* just build on the prepareCmd ([1a15997](https://github.com/forkbombeu/ncr/commit/1a1599793d71c3e21b17f3ae8ec283dcf139b213))
+* prefer the release binary over building ([#193](https://github.com/forkbombeu/ncr/issues/193)) ([bdce76c](https://github.com/forkbombeu/ncr/commit/bdce76cf340b3adc935e79f0a1264e2b6bf241e8))
+
+## [1.33.3](https://github.com/forkbombeu/ncr/compare/v1.33.2...v1.33.3) (2024-06-04)
+
+
+### Bug Fixes
+
 * prefer the release binary over building ([#193](https://github.com/forkbombeu/ncr/issues/193)) ([bdce76c](https://github.com/forkbombeu/ncr/commit/bdce76cf340b3adc935e79f0a1264e2b6bf241e8))
 
 ## [1.33.2](https://github.com/forkbombeu/ncr/compare/v1.33.1...v1.33.2) (2024-06-04)
