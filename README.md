@@ -188,6 +188,7 @@ https://dyne.org/
 <!-- TODO: where to integrate this? Move to some documentation elsewher or try to add it here? -->
 ## Metadata Attributes <!-- omit in toc -->
 
+Metadata are used in NCR as ancillary files to the _.zen_ and _.keys.json_, to better define behaviour and parameters of the API. The metadata file should have the same name as the _.zen_ it follows, with the extensoin **.metadata.json**, see an example [here](https://github.com/ForkbombEu/DIDroom_microservices/blob/main/authz_server/par.metadata.json). The metadata attributes, with the defualt values are listed below. 
 
 | Attribute | Description | Default Value |
 | --- | --- | --- |
