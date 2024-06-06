@@ -147,3 +147,17 @@ export const getQueryParams = (req): Record<string, unknown> => {
 	}
 	return data;
 }
+
+export const prettyChain = (chain: string): string => {
+	return chain.steps.map(
+		(x) => {
+			let res = `\n --- ${x.id} --- \n`
+			res = res.concat(x.onBefore ? `onBefore${x.onBefore.toString().replace(/\s\s+/g, ' ')}\n` : '')
+			res = res.concat(x.dataTransform? `dataTransform${x.dataTransform.toString().replace(/\s\s+/g, ' ')}\n` : '')
+			res = res.concat(x.keysTransform? `keysTransform${x.keysTransform.toString().replace(/\s\s+/g, ' ')}\n` : '')
+			res = res.concat(x.zencode ? `zencode:\n${x.zencode}\n` : `zencodeFromFile: ${x.zencodeFromFile}\n`)
+			res = res.concat(x.onAfter ? `onAfter${x.onAfter.toString().replace(/\s\s+/g, ' ')}\n` : '')
+			return res
+		}
+	).join('\n')
+}
