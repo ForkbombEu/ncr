@@ -381,7 +381,7 @@ tests:
           check:
             status: 200
             json:
-              say_hi: hello
+              say_hi: hello from dataTransform
 
   public_dir:
     steps:

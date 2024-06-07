@@ -26,7 +26,7 @@ import {
 	openapiTemplate
 } from './openapi.js';
 import { SlangroomManager } from './slangroom.js';
-import { getSchema, validateData, getQueryParams } from './utils.js';
+import { getSchema, validateData, getQueryParams, prettyChain } from './utils.js';
 import { readFileContent, readJsonObject } from './fileUtils.js';
 import { execute as slangroomChainExecute } from '@dyne/slangroom-chain';
 dotenv.config();
@@ -89,7 +89,7 @@ const ncrApp = async () => {
 				if (definition.paths && !metadata.hidden && !metadata.hideFromOpenapi) {
 					const schema = await getSchema(endpoints);
 					if (schema) definition.paths[path] = generatePath(
-						endpoints.contract ?? endpoints.chain.steps.map((x) => `\n --- ${x.id} --- \n ${x.zencode ?? x.zencodeFromFile}`).join('\n'),
+						endpoints.contract ?? prettyChain(endpoints.chain),
 						schema,
 						metadata
 					);

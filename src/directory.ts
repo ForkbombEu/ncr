@@ -13,14 +13,21 @@ export class Directory {
 		this.liveDirectory = new LiveDirectory(config.zencodeDirectory, {
 			static: false,
 			filter: {
-				keep: {
-					extensions: ['zen', 'conf', 'json']
+				keep: (path, stats) => {
+					return path.endsWith('.zen')
+						|| path.endsWith('.conf')
+						|| path.endsWith('.keys.json')
+						|| path.endsWith('.data.json')
+						|| path.endsWith('.schema.json')
+						|| path.endsWith('.metadata.json')
+						|| path.endsWith('.chain.js');
+					}
 				},
 				ignore: {
 					// extensions: ['keys']
 				}
 			}
-		});
+		);
 	}
 
 	private getContent(name: string) {
@@ -54,10 +61,10 @@ export class Directory {
 					schema: this.getJSONSchema(path),
 					metadata: newMetadata(this.getJSON(path, 'metadata') || {})
 				});
-			} else if (ext == 'chain' && json == 'json') {
+			} else if (ext == 'chain' && json == 'js') {
 				result.push({
 					path: path,
-					chain: this.getJSON(path, 'chain'),
+					chain: eval(this.getContent(f))(),
 					schema: this.getJSONSchema(path),
 					metadata: newMetadata(this.getJSON(path, 'metadata') || {})
 				});
