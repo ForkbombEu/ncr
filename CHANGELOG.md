@@ -1,3 +1,10 @@
+## [1.33.4](https://github.com/forkbombeu/ncr/compare/v1.33.3...v1.33.4) (2024-06-07)
+
+
+### Bug Fixes
+
+* chain are js files ([#195](https://github.com/forkbombeu/ncr/issues/195)) ([18c5a0b](https://github.com/forkbombeu/ncr/commit/18c5a0b618b5d31ff9516ccf00c8f4d48aad8864))
+
 ## [1.33.3](https://github.com/forkbombeu/ncr/compare/v1.33.2...v1.33.3) (2024-06-04)
 
 
