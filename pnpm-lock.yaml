@@ -19,7 +19,7 @@ importers:
         version: 1.32.1(pg-hstore@2.3.4)(zenroom@4.32.2)
       '@slangroom/ethereum':
         specifier: ^1.30.0
-        version: 1.32.1(typescript@5.4.5)(zenroom@4.32.2)
+        version: 1.32.1(encoding@0.1.13)(typescript@5.4.5)(zenroom@4.32.2)(zod@3.23.8)
       '@slangroom/fs':
         specifier: ^1.30.0
         version: 1.32.1(zenroom@4.32.2)
@@ -84,7 +84,7 @@ importers:
         specifier: ^15.0.0
         version: 15.1.2
       uWebSockets.js:
-        specifier: github:uNetworking/uWebSockets.js#semver:^20
+        specifier: https://github.com/uNetworking/uWebSockets.js#semver:^20
         version: https://codeload.github.com/uNetworking/uWebSockets.js/tar.gz/1977b5039938ad863d42fc4958d48c17e5a1fa06
       zenroom:
         specifier: ^4.32.0
@@ -101,28 +101,28 @@ importers:
         version: 15.2.3(rollup@4.18.0)
       '@rollup/plugin-typescript':
         specifier: ^11.1.6
-        version: 11.1.6(rollup@4.18.0)(typescript@5.4.5)
+        version: 11.1.6(rollup@4.18.0)(tslib@2.6.2)(typescript@5.4.5)
       '@semantic-release/changelog':
         specifier: ^6.0.3
-        version: 6.0.3(semantic-release@24.0.0)
+        version: 6.0.3(semantic-release@24.0.0(typescript@5.4.5))
       '@semantic-release/commit-analyzer':
         specifier: ^13.0.0
-        version: 13.0.0(semantic-release@24.0.0)
+        version: 13.0.0(semantic-release@24.0.0(typescript@5.4.5))
       '@semantic-release/exec':
         specifier: ^6.0.3
-        version: 6.0.3(semantic-release@24.0.0)
+        version: 6.0.3(semantic-release@24.0.0(typescript@5.4.5))
       '@semantic-release/git':
         specifier: ^10.0.1
-        version: 10.0.1(semantic-release@24.0.0)
+        version: 10.0.1(semantic-release@24.0.0(typescript@5.4.5))
       '@semantic-release/github':
         specifier: ^10.0.5
-        version: 10.0.5(semantic-release@24.0.0)
+        version: 10.0.5(semantic-release@24.0.0(typescript@5.4.5))
       '@semantic-release/npm':
         specifier: ^12.0.1
-        version: 12.0.1(semantic-release@24.0.0)
+        version: 12.0.1(semantic-release@24.0.0(typescript@5.4.5))
       '@semantic-release/release-notes-generator':
         specifier: ^14.0.0
-        version: 14.0.0(semantic-release@24.0.0)
+        version: 14.0.0(semantic-release@24.0.0(typescript@5.4.5))
       '@sinclair/typebox':
         specifier: ^0.32.15
         version: 0.32.31
@@ -161,7 +161,7 @@ importers:
         version: 0.14.2
       jest:
         specifier: ^29.7.0
-        version: 29.7.0(@types/node@20.14.1)(ts-node@10.9.2)
+        version: 29.7.0(@types/node@20.14.1)(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.1)(typescript@5.4.5))
       lodash.isequal:
         specifier: ^4.5.0
         version: 4.5.0
@@ -176,7 +176,7 @@ importers:
         version: 2.3.4
       pkg:
         specifier: ^5.8.1
-        version: 5.8.1
+        version: 5.8.1(encoding@0.1.13)
       prettier:
         specifier: 3.2.5
         version: 3.2.5
@@ -203,10 +203,10 @@ importers:
         version: 2.8.1(openapi-types@12.1.3)
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.4(@babel/core@7.24.6)(jest@29.7.0)(typescript@5.4.5)
+        version: 29.1.4(@babel/core@7.24.6)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.6))(jest@29.7.0(@types/node@20.14.1)(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.1)(typescript@5.4.5)))(typescript@5.4.5)
       ts-node:
         specifier: ^10.9.2
-        version: 10.9.2(@swc/core@1.5.24)(@types/node@20.14.1)(typescript@5.4.5)
+        version: 10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.1)(typescript@5.4.5)
       tslog:
         specifier: ^4.9.2
         version: 4.9.2
@@ -4181,9 +4181,6 @@ packages:
 
   sqlite3@5.1.7:
     resolution: {integrity: sha512-GGIyOiFaG+TUra3JIfkI/zGP8yZYLPQ0pl1bH+ODjiX57sPhrLU5sQJn1y9bDKZUFYkX1crlrPfSYt0BKKdkog==}
-    peerDependenciesMeta:
-      node-gyp:
-        optional: true
 
   ssri@8.0.1:
     resolution: {integrity: sha512-97qShzy1AiyxvPNIkLWoGua7xoQzzPjQ0HAH4B0rWKo7SZ6USuPcrUiAFrws0UH8RrbWmgq3LMTObhPIHbbBeQ==}
@@ -4494,7 +4491,6 @@ packages:
 
   uWebSockets.js@https://codeload.github.com/uNetworking/uWebSockets.js/tar.gz/1977b5039938ad863d42fc4958d48c17e5a1fa06:
     resolution: {tarball: https://codeload.github.com/uNetworking/uWebSockets.js/tar.gz/1977b5039938ad863d42fc4958d48c17e5a1fa06}
-    name: uWebSockets.js
     version: 20.43.0
 
   uglify-js@3.17.4:
@@ -5205,7 +5201,7 @@ snapshots:
       jest-util: 29.7.0
       slash: 3.0.0
 
-  '@jest/core@29.7.0(ts-node@10.9.2)':
+  '@jest/core@29.7.0(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.1)(typescript@5.4.5))':
     dependencies:
       '@jest/console': 29.7.0
       '@jest/reporters': 29.7.0
@@ -5219,7 +5215,7 @@ snapshots:
       exit: 0.1.2
       graceful-fs: 4.2.11
       jest-changed-files: 29.7.0
-      jest-config: 29.7.0(@types/node@20.14.1)(ts-node@10.9.2)
+      jest-config: 29.7.0(@types/node@20.14.1)(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.1)(typescript@5.4.5))
       jest-haste-map: 29.7.0
       jest-message-util: 29.7.0
       jest-regex-util: 29.6.3
@@ -5537,11 +5533,13 @@ snapshots:
       glob: 8.1.0
       is-reference: 1.2.1
       magic-string: 0.30.10
+    optionalDependencies:
       rollup: 4.18.0
 
   '@rollup/plugin-json@6.1.0(rollup@4.18.0)':
     dependencies:
       '@rollup/pluginutils': 5.1.0(rollup@4.18.0)
+    optionalDependencies:
       rollup: 4.18.0
 
   '@rollup/plugin-node-resolve@15.2.3(rollup@4.18.0)':
@@ -5552,20 +5550,24 @@ snapshots:
       is-builtin-module: 3.2.1
       is-module: 1.0.0
       resolve: 1.22.8
+    optionalDependencies:
       rollup: 4.18.0
 
-  '@rollup/plugin-typescript@11.1.6(rollup@4.18.0)(typescript@5.4.5)':
+  '@rollup/plugin-typescript@11.1.6(rollup@4.18.0)(tslib@2.6.2)(typescript@5.4.5)':
     dependencies:
       '@rollup/pluginutils': 5.1.0(rollup@4.18.0)
       resolve: 1.22.8
-      rollup: 4.18.0
       typescript: 5.4.5
+    optionalDependencies:
+      rollup: 4.18.0
+      tslib: 2.6.2
 
   '@rollup/pluginutils@5.1.0(rollup@4.18.0)':
     dependencies:
       '@types/estree': 1.0.5
       estree-walker: 2.0.2
       picomatch: 2.3.1
+    optionalDependencies:
       rollup: 4.18.0
 
   '@rollup/rollup-android-arm-eabi@4.18.0':
@@ -5631,7 +5633,7 @@ snapshots:
 
   '@sec-ant/readable-stream@0.4.1': {}
 
-  '@semantic-release/changelog@6.0.3(semantic-release@24.0.0)':
+  '@semantic-release/changelog@6.0.3(semantic-release@24.0.0(typescript@5.4.5))':
     dependencies:
       '@semantic-release/error': 3.0.0
       aggregate-error: 3.1.0
@@ -5639,7 +5641,7 @@ snapshots:
       lodash: 4.17.21
       semantic-release: 24.0.0(typescript@5.4.5)
 
-  '@semantic-release/commit-analyzer@13.0.0(semantic-release@24.0.0)':
+  '@semantic-release/commit-analyzer@13.0.0(semantic-release@24.0.0(typescript@5.4.5))':
     dependencies:
       conventional-changelog-angular: 8.0.0
       conventional-changelog-writer: 8.0.0
@@ -5657,7 +5659,7 @@ snapshots:
 
   '@semantic-release/error@4.0.0': {}
 
-  '@semantic-release/exec@6.0.3(semantic-release@24.0.0)':
+  '@semantic-release/exec@6.0.3(semantic-release@24.0.0(typescript@5.4.5))':
     dependencies:
       '@semantic-release/error': 3.0.0
       aggregate-error: 3.1.0
@@ -5669,7 +5671,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@semantic-release/git@10.0.1(semantic-release@24.0.0)':
+  '@semantic-release/git@10.0.1(semantic-release@24.0.0(typescript@5.4.5))':
     dependencies:
       '@semantic-release/error': 3.0.0
       aggregate-error: 3.1.0
@@ -5683,7 +5685,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@semantic-release/github@10.0.5(semantic-release@24.0.0)':
+  '@semantic-release/github@10.0.5(semantic-release@24.0.0(typescript@5.4.5))':
     dependencies:
       '@octokit/core': 6.1.2
       '@octokit/plugin-paginate-rest': 11.3.0(@octokit/core@6.1.2)
@@ -5705,7 +5707,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@semantic-release/npm@12.0.1(semantic-release@24.0.0)':
+  '@semantic-release/npm@12.0.1(semantic-release@24.0.0(typescript@5.4.5))':
     dependencies:
       '@semantic-release/error': 4.0.0
       aggregate-error: 5.0.0
@@ -5722,7 +5724,7 @@ snapshots:
       semver: 7.6.2
       tempy: 3.1.0
 
-  '@semantic-release/release-notes-generator@14.0.0(semantic-release@24.0.0)':
+  '@semantic-release/release-notes-generator@14.0.0(semantic-release@24.0.0(typescript@5.4.5))':
     dependencies:
       conventional-changelog-angular: 8.0.0
       conventional-changelog-writer: 8.0.0
@@ -5795,12 +5797,12 @@ snapshots:
       chevrotain: 10.5.0
       zenroom: 4.32.2
 
-  '@slangroom/ethereum@1.32.1(typescript@5.4.5)(zenroom@4.32.2)':
+  '@slangroom/ethereum@1.32.1(encoding@0.1.13)(typescript@5.4.5)(zenroom@4.32.2)(zod@3.23.8)':
     dependencies:
       '@slangroom/core': 1.32.1(zenroom@4.32.2)
       '@slangroom/shared': 1.32.1(zenroom@4.32.2)
       axios: 1.7.2(debug@4.3.4)
-      web3: 4.9.0(typescript@5.4.5)
+      web3: 4.9.0(encoding@0.1.13)(typescript@5.4.5)(zod@3.23.8)
       web3-validator: 2.0.6
     transitivePeerDependencies:
       - bufferutil
@@ -6010,7 +6012,6 @@ snapshots:
   '@swc/core@1.5.24(@swc/helpers@0.5.11)':
     dependencies:
       '@swc/counter': 0.1.3
-      '@swc/helpers': 0.5.11
       '@swc/types': 0.1.7
     optionalDependencies:
       '@swc/core-darwin-arm64': 1.5.24
@@ -6023,6 +6024,7 @@ snapshots:
       '@swc/core-win32-arm64-msvc': 1.5.24
       '@swc/core-win32-ia32-msvc': 1.5.24
       '@swc/core-win32-x64-msvc': 1.5.24
+      '@swc/helpers': 0.5.11
 
   '@swc/counter@0.1.3': {}
 
@@ -6195,6 +6197,7 @@ snapshots:
       '@typescript-eslint/visitor-keys': 7.12.0
       debug: 4.3.5(supports-color@5.5.0)
       eslint: 8.57.0
+    optionalDependencies:
       typescript: 5.4.5
     transitivePeerDependencies:
       - supports-color
@@ -6216,6 +6219,7 @@ snapshots:
       minimatch: 9.0.4
       semver: 7.6.2
       ts-api-utils: 1.3.0(typescript@5.4.5)
+    optionalDependencies:
       typescript: 5.4.5
     transitivePeerDependencies:
       - supports-color
@@ -6232,9 +6236,11 @@ snapshots:
   abbrev@1.1.1:
     optional: true
 
-  abitype@0.7.1(typescript@5.4.5):
+  abitype@0.7.1(typescript@5.4.5)(zod@3.23.8):
     dependencies:
       typescript: 5.4.5
+    optionalDependencies:
+      zod: 3.23.8
 
   acorn-jsx@5.3.2(acorn@8.11.3):
     dependencies:
@@ -6272,11 +6278,11 @@ snapshots:
       indent-string: 5.0.0
 
   ajv-draft-04@1.0.0(ajv@8.14.0):
-    dependencies:
+    optionalDependencies:
       ajv: 8.14.0
 
   ajv-formats@2.1.1(ajv@8.14.0):
-    dependencies:
+    optionalDependencies:
       ajv: 8.14.0
 
   ajv@6.12.6:
@@ -6794,17 +6800,18 @@ snapshots:
       import-fresh: 3.3.0
       js-yaml: 4.1.0
       parse-json: 5.2.0
+    optionalDependencies:
       typescript: 5.4.5
 
   crc-32@1.2.2: {}
 
-  create-jest@29.7.0(@types/node@20.14.1)(ts-node@10.9.2):
+  create-jest@29.7.0(@types/node@20.14.1)(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.1)(typescript@5.4.5)):
     dependencies:
       '@jest/types': 29.6.3
       chalk: 4.1.2
       exit: 0.1.2
       graceful-fs: 4.2.11
-      jest-config: 29.7.0(@types/node@20.14.1)(ts-node@10.9.2)
+      jest-config: 29.7.0(@types/node@20.14.1)(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.1)(typescript@5.4.5))
       jest-util: 29.7.0
       prompts: 2.4.2
     transitivePeerDependencies:
@@ -6815,9 +6822,9 @@ snapshots:
 
   create-require@1.1.1: {}
 
-  cross-fetch@4.0.0:
+  cross-fetch@4.0.0(encoding@0.1.13):
     dependencies:
-      node-fetch: 2.7.0
+      node-fetch: 2.7.0(encoding@0.1.13)
     transitivePeerDependencies:
       - encoding
 
@@ -6872,6 +6879,7 @@ snapshots:
   debug@4.3.5(supports-color@5.5.0):
     dependencies:
       ms: 2.1.2
+    optionalDependencies:
       supports-color: 5.5.0
 
   decamelize@1.2.0: {}
@@ -7370,7 +7378,7 @@ snapshots:
   fn.name@1.1.0: {}
 
   follow-redirects@1.15.6(debug@4.3.4):
-    dependencies:
+    optionalDependencies:
       debug: 4.3.4
 
   for-each@0.3.3:
@@ -8008,16 +8016,16 @@ snapshots:
       - babel-plugin-macros
       - supports-color
 
-  jest-cli@29.7.0(@types/node@20.14.1)(ts-node@10.9.2):
+  jest-cli@29.7.0(@types/node@20.14.1)(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.1)(typescript@5.4.5)):
     dependencies:
-      '@jest/core': 29.7.0(ts-node@10.9.2)
+      '@jest/core': 29.7.0(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.1)(typescript@5.4.5))
       '@jest/test-result': 29.7.0
       '@jest/types': 29.6.3
       chalk: 4.1.2
-      create-jest: 29.7.0(@types/node@20.14.1)(ts-node@10.9.2)
+      create-jest: 29.7.0(@types/node@20.14.1)(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.1)(typescript@5.4.5))
       exit: 0.1.2
       import-local: 3.1.0
-      jest-config: 29.7.0(@types/node@20.14.1)(ts-node@10.9.2)
+      jest-config: 29.7.0(@types/node@20.14.1)(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.1)(typescript@5.4.5))
       jest-util: 29.7.0
       jest-validate: 29.7.0
       yargs: 17.7.2
@@ -8027,12 +8035,11 @@ snapshots:
       - supports-color
       - ts-node
 
-  jest-config@29.7.0(@types/node@20.14.1)(ts-node@10.9.2):
+  jest-config@29.7.0(@types/node@20.14.1)(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.1)(typescript@5.4.5)):
     dependencies:
       '@babel/core': 7.24.6
       '@jest/test-sequencer': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 20.14.1
       babel-jest: 29.7.0(@babel/core@7.24.6)
       chalk: 4.1.2
       ci-info: 3.9.0
@@ -8052,7 +8059,9 @@ snapshots:
       pretty-format: 29.7.0
       slash: 3.0.0
       strip-json-comments: 3.1.1
-      ts-node: 10.9.2(@swc/core@1.5.24)(@types/node@20.14.1)(typescript@5.4.5)
+    optionalDependencies:
+      '@types/node': 20.14.1
+      ts-node: 10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.1)(typescript@5.4.5)
     transitivePeerDependencies:
       - babel-plugin-macros
       - supports-color
@@ -8134,7 +8143,7 @@ snapshots:
       jest-util: 29.7.0
 
   jest-pnp-resolver@1.2.3(jest-resolve@29.7.0):
-    dependencies:
+    optionalDependencies:
       jest-resolve: 29.7.0
 
   jest-regex-util@29.6.3: {}
@@ -8272,12 +8281,12 @@ snapshots:
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
-  jest@29.7.0(@types/node@20.14.1)(ts-node@10.9.2):
+  jest@29.7.0(@types/node@20.14.1)(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.1)(typescript@5.4.5)):
     dependencies:
-      '@jest/core': 29.7.0(ts-node@10.9.2)
+      '@jest/core': 29.7.0(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.1)(typescript@5.4.5))
       '@jest/types': 29.6.3
       import-local: 3.1.0
-      jest-cli: 29.7.0(@types/node@20.14.1)(ts-node@10.9.2)
+      jest-cli: 29.7.0(@types/node@20.14.1)(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.1)(typescript@5.4.5))
     transitivePeerDependencies:
       - '@types/node'
       - babel-plugin-macros
@@ -8656,9 +8665,11 @@ snapshots:
       emojilib: 2.4.0
       skin-tone: 2.0.0
 
-  node-fetch@2.7.0:
+  node-fetch@2.7.0(encoding@0.1.13):
     dependencies:
       whatwg-url: 5.0.0
+    optionalDependencies:
+      encoding: 0.1.13
 
   node-gyp@8.4.1:
     dependencies:
@@ -8948,12 +8959,12 @@ snapshots:
     dependencies:
       find-up: 4.1.0
 
-  pkg-fetch@3.4.2:
+  pkg-fetch@3.4.2(encoding@0.1.13):
     dependencies:
       chalk: 4.1.2
       fs-extra: 9.1.0
       https-proxy-agent: 5.0.1
-      node-fetch: 2.7.0
+      node-fetch: 2.7.0(encoding@0.1.13)
       progress: 2.0.3
       semver: 7.6.2
       tar-fs: 2.1.1
@@ -8966,7 +8977,7 @@ snapshots:
     dependencies:
       find-up: 3.0.0
 
-  pkg@5.8.1:
+  pkg@5.8.1(encoding@0.1.13):
     dependencies:
       '@babel/generator': 7.18.2
       '@babel/parser': 7.18.4
@@ -8978,7 +8989,7 @@ snapshots:
       is-core-module: 2.9.0
       minimist: 1.2.8
       multistream: 4.1.0
-      pkg-fetch: 3.4.2
+      pkg-fetch: 3.4.2(encoding@0.1.13)
       prebuild-install: 7.1.1
       resolve: 1.22.8
       stream-meter: 1.0.4
@@ -9302,11 +9313,11 @@ snapshots:
 
   semantic-release@24.0.0(typescript@5.4.5):
     dependencies:
-      '@semantic-release/commit-analyzer': 13.0.0(semantic-release@24.0.0)
+      '@semantic-release/commit-analyzer': 13.0.0(semantic-release@24.0.0(typescript@5.4.5))
       '@semantic-release/error': 4.0.0
-      '@semantic-release/github': 10.0.5(semantic-release@24.0.0)
-      '@semantic-release/npm': 12.0.1(semantic-release@24.0.0)
-      '@semantic-release/release-notes-generator': 14.0.0(semantic-release@24.0.0)
+      '@semantic-release/github': 10.0.5(semantic-release@24.0.0(typescript@5.4.5))
+      '@semantic-release/npm': 12.0.1(semantic-release@24.0.0(typescript@5.4.5))
+      '@semantic-release/release-notes-generator': 14.0.0(semantic-release@24.0.0(typescript@5.4.5))
       aggregate-error: 5.0.0
       cosmiconfig: 9.0.0(typescript@5.4.5)
       debug: 4.3.5(supports-color@5.5.0)
@@ -9358,15 +9369,16 @@ snapshots:
       moment: 2.30.1
       moment-timezone: 0.5.45
       pg-connection-string: 2.6.4
-      pg-hstore: 2.3.4
       retry-as-promised: 7.0.4
       semver: 7.6.2
       sequelize-pool: 7.1.0
-      sqlite3: 5.1.7
       toposort-class: 1.0.1
       uuid: 8.3.2
       validator: 13.12.0
       wkx: 0.5.0
+    optionalDependencies:
+      pg-hstore: 2.3.4
+      sqlite3: 5.1.7
     transitivePeerDependencies:
       - supports-color
 
@@ -9754,12 +9766,11 @@ snapshots:
     dependencies:
       typescript: 5.4.5
 
-  ts-jest@29.1.4(@babel/core@7.24.6)(jest@29.7.0)(typescript@5.4.5):
+  ts-jest@29.1.4(@babel/core@7.24.6)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.6))(jest@29.7.0(@types/node@20.14.1)(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.1)(typescript@5.4.5)))(typescript@5.4.5):
     dependencies:
-      '@babel/core': 7.24.6
       bs-logger: 0.2.6
       fast-json-stable-stringify: 2.1.0
-      jest: 29.7.0(@types/node@20.14.1)(ts-node@10.9.2)
+      jest: 29.7.0(@types/node@20.14.1)(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.1)(typescript@5.4.5))
       jest-util: 29.7.0
       json5: 2.2.3
       lodash.memoize: 4.1.2
@@ -9767,11 +9778,15 @@ snapshots:
       semver: 7.6.2
       typescript: 5.4.5
       yargs-parser: 21.1.1
+    optionalDependencies:
+      '@babel/core': 7.24.6
+      '@jest/transform': 29.7.0
+      '@jest/types': 29.6.3
+      babel-jest: 29.7.0(@babel/core@7.24.6)
 
-  ts-node@10.9.2(@swc/core@1.5.24)(@types/node@20.14.1)(typescript@5.4.5):
+  ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.1)(typescript@5.4.5):
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
-      '@swc/core': 1.5.24(@swc/helpers@0.5.11)
       '@tsconfig/node10': 1.0.11
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
@@ -9786,6 +9801,8 @@ snapshots:
       typescript: 5.4.5
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
+    optionalDependencies:
+      '@swc/core': 1.5.24(@swc/helpers@0.5.11)
 
   tslib@2.6.2: {}
 
@@ -9961,12 +9978,12 @@ snapshots:
     dependencies:
       makeerror: 1.0.12
 
-  web3-core@4.4.0:
+  web3-core@4.4.0(encoding@0.1.13):
     dependencies:
       web3-errors: 1.2.0
       web3-eth-accounts: 4.1.2
       web3-eth-iban: 4.0.7
-      web3-providers-http: 4.1.0
+      web3-providers-http: 4.1.0(encoding@0.1.13)
       web3-providers-ws: 4.0.7
       web3-types: 1.6.0
       web3-utils: 4.3.0
@@ -9982,9 +9999,9 @@ snapshots:
     dependencies:
       web3-types: 1.6.0
 
-  web3-eth-abi@4.2.2(typescript@5.4.5):
+  web3-eth-abi@4.2.2(typescript@5.4.5)(zod@3.23.8):
     dependencies:
-      abitype: 0.7.1(typescript@5.4.5)
+      abitype: 0.7.1(typescript@5.4.5)(zod@3.23.8)
       web3-errors: 1.2.0
       web3-types: 1.6.0
       web3-utils: 4.3.0
@@ -10003,12 +10020,12 @@ snapshots:
       web3-utils: 4.3.0
       web3-validator: 2.0.6
 
-  web3-eth-contract@4.5.0(typescript@5.4.5):
+  web3-eth-contract@4.5.0(encoding@0.1.13)(typescript@5.4.5)(zod@3.23.8):
     dependencies:
-      web3-core: 4.4.0
+      web3-core: 4.4.0(encoding@0.1.13)
       web3-errors: 1.2.0
-      web3-eth: 4.7.0(typescript@5.4.5)
-      web3-eth-abi: 4.2.2(typescript@5.4.5)
+      web3-eth: 4.7.0(encoding@0.1.13)(typescript@5.4.5)(zod@3.23.8)
+      web3-eth-abi: 4.2.2(typescript@5.4.5)(zod@3.23.8)
       web3-types: 1.6.0
       web3-utils: 4.3.0
       web3-validator: 2.0.6
@@ -10019,14 +10036,14 @@ snapshots:
       - utf-8-validate
       - zod
 
-  web3-eth-ens@4.3.0(typescript@5.4.5):
+  web3-eth-ens@4.3.0(encoding@0.1.13)(typescript@5.4.5)(zod@3.23.8):
     dependencies:
       '@adraffy/ens-normalize': 1.10.1
-      web3-core: 4.4.0
+      web3-core: 4.4.0(encoding@0.1.13)
       web3-errors: 1.2.0
-      web3-eth: 4.7.0(typescript@5.4.5)
-      web3-eth-contract: 4.5.0(typescript@5.4.5)
-      web3-net: 4.1.0
+      web3-eth: 4.7.0(encoding@0.1.13)(typescript@5.4.5)(zod@3.23.8)
+      web3-eth-contract: 4.5.0(encoding@0.1.13)(typescript@5.4.5)(zod@3.23.8)
+      web3-net: 4.1.0(encoding@0.1.13)
       web3-types: 1.6.0
       web3-utils: 4.3.0
       web3-validator: 2.0.6
@@ -10044,11 +10061,11 @@ snapshots:
       web3-utils: 4.3.0
       web3-validator: 2.0.6
 
-  web3-eth-personal@4.0.8(typescript@5.4.5):
+  web3-eth-personal@4.0.8(encoding@0.1.13)(typescript@5.4.5)(zod@3.23.8):
     dependencies:
-      web3-core: 4.4.0
-      web3-eth: 4.7.0(typescript@5.4.5)
-      web3-rpc-methods: 1.3.0
+      web3-core: 4.4.0(encoding@0.1.13)
+      web3-eth: 4.7.0(encoding@0.1.13)(typescript@5.4.5)(zod@3.23.8)
+      web3-rpc-methods: 1.3.0(encoding@0.1.13)
       web3-types: 1.6.0
       web3-utils: 4.3.0
       web3-validator: 2.0.6
@@ -10059,16 +10076,16 @@ snapshots:
       - utf-8-validate
       - zod
 
-  web3-eth@4.7.0(typescript@5.4.5):
+  web3-eth@4.7.0(encoding@0.1.13)(typescript@5.4.5)(zod@3.23.8):
     dependencies:
       setimmediate: 1.0.5
-      web3-core: 4.4.0
+      web3-core: 4.4.0(encoding@0.1.13)
       web3-errors: 1.2.0
-      web3-eth-abi: 4.2.2(typescript@5.4.5)
+      web3-eth-abi: 4.2.2(typescript@5.4.5)(zod@3.23.8)
       web3-eth-accounts: 4.1.2
-      web3-net: 4.1.0
+      web3-net: 4.1.0(encoding@0.1.13)
       web3-providers-ws: 4.0.7
-      web3-rpc-methods: 1.3.0
+      web3-rpc-methods: 1.3.0(encoding@0.1.13)
       web3-types: 1.6.0
       web3-utils: 4.3.0
       web3-validator: 2.0.6
@@ -10079,10 +10096,10 @@ snapshots:
       - utf-8-validate
       - zod
 
-  web3-net@4.1.0:
+  web3-net@4.1.0(encoding@0.1.13):
     dependencies:
-      web3-core: 4.4.0
-      web3-rpc-methods: 1.3.0
+      web3-core: 4.4.0(encoding@0.1.13)
+      web3-rpc-methods: 1.3.0(encoding@0.1.13)
       web3-types: 1.6.0
       web3-utils: 4.3.0
     transitivePeerDependencies:
@@ -10090,9 +10107,9 @@ snapshots:
       - encoding
       - utf-8-validate
 
-  web3-providers-http@4.1.0:
+  web3-providers-http@4.1.0(encoding@0.1.13):
     dependencies:
-      cross-fetch: 4.0.0
+      cross-fetch: 4.0.0(encoding@0.1.13)
       web3-errors: 1.2.0
       web3-types: 1.6.0
       web3-utils: 4.3.0
@@ -10118,9 +10135,9 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  web3-rpc-methods@1.3.0:
+  web3-rpc-methods@1.3.0(encoding@0.1.13):
     dependencies:
-      web3-core: 4.4.0
+      web3-core: 4.4.0(encoding@0.1.13)
       web3-types: 1.6.0
       web3-validator: 2.0.6
     transitivePeerDependencies:
@@ -10146,21 +10163,21 @@ snapshots:
       web3-types: 1.6.0
       zod: 3.23.8
 
-  web3@4.9.0(typescript@5.4.5):
+  web3@4.9.0(encoding@0.1.13)(typescript@5.4.5)(zod@3.23.8):
     dependencies:
-      web3-core: 4.4.0
+      web3-core: 4.4.0(encoding@0.1.13)
       web3-errors: 1.2.0
-      web3-eth: 4.7.0(typescript@5.4.5)
-      web3-eth-abi: 4.2.2(typescript@5.4.5)
+      web3-eth: 4.7.0(encoding@0.1.13)(typescript@5.4.5)(zod@3.23.8)
+      web3-eth-abi: 4.2.2(typescript@5.4.5)(zod@3.23.8)
       web3-eth-accounts: 4.1.2
-      web3-eth-contract: 4.5.0(typescript@5.4.5)
-      web3-eth-ens: 4.3.0(typescript@5.4.5)
+      web3-eth-contract: 4.5.0(encoding@0.1.13)(typescript@5.4.5)(zod@3.23.8)
+      web3-eth-ens: 4.3.0(encoding@0.1.13)(typescript@5.4.5)(zod@3.23.8)
       web3-eth-iban: 4.0.7
-      web3-eth-personal: 4.0.8(typescript@5.4.5)
-      web3-net: 4.1.0
-      web3-providers-http: 4.1.0
+      web3-eth-personal: 4.0.8(encoding@0.1.13)(typescript@5.4.5)(zod@3.23.8)
+      web3-net: 4.1.0(encoding@0.1.13)
+      web3-providers-http: 4.1.0(encoding@0.1.13)
       web3-providers-ws: 4.0.7
-      web3-rpc-methods: 1.3.0
+      web3-rpc-methods: 1.3.0(encoding@0.1.13)
       web3-types: 1.6.0
       web3-utils: 4.3.0
       web3-validator: 2.0.6
