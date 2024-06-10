@@ -422,3 +422,16 @@ tests:
               body: Hello World!
             headers:
               Content-Type: text/html
+      - name: unreachable file since its basename start with a dot
+        http:
+          url: http://${{env.host}}/.test.txt
+          method: GET
+          check:
+            status: 404
+      - name: reachable file since its filepath start with a dot, but not its basename
+        http:
+          url: http://${{env.host}}/.test/test.txt
+          method: GET
+          check:
+            status: 200
+            body: This should be reachable!
