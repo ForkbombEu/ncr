@@ -383,6 +383,26 @@ tests:
             json:
               say_hi: hello from dataTransform
 
+      - name: hello chain with input GET
+        http:
+          url: http://${{env.host}}/chain/hello_with_input?say_hi=bonjour
+          method: GET
+          check:
+            status: 200
+            json:
+              say_hi: bonjour
+
+      - name: hello chain with input POST
+        http:
+          url: http://${{env.host}}/chain/hello_with_input
+          method: POST
+          json:
+            say_hi: Buen día
+          check:
+            status: 200
+            json:
+              say_hi: Buen día
+
   public_dir:
     steps:
       - name: public with wrong precondition

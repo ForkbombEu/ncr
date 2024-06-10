@@ -38,7 +38,7 @@
 		"outputPath": "./"
 	},
 	"dependencies": {
-		"@dyne/slangroom-chain": "^1.5.0",
+		"@dyne/slangroom-chain": "^1.6.0",
 		"@slangroom/core": "^1.33.1",
 		"@slangroom/db": "^1.33.1",
 		"@slangroom/ethereum": "^1.33.1",
