@@ -168,6 +168,9 @@ Dir.ready(async () => {
 	const { publicDirectory } = config;
 	if (publicDirectory) {
 		app.get('/*', async (res, req) => {
+			res.onAborted(() => {
+				res.writeStatus('500').end('Aborted');
+			});
 			if (req.getUrl().replace(/^\/+/g, '/').startsWith('/.')) return res.writeStatus('404 Not Found').end('Not found');
 			let file = path.join(publicDirectory, req.getUrl());
 			if (fs.existsSync(file)) {
