@@ -1,3 +1,10 @@
+# [1.34.0](https://github.com/forkbombeu/ncr/compare/v1.33.6...v1.34.0) (2024-06-10)
+
+
+### Features
+
+* pass data in input to slangroom-chain ([#205](https://github.com/forkbombeu/ncr/issues/205)) ([9e071c0](https://github.com/forkbombeu/ncr/commit/9e071c060795685bfad31a56742de092965fb444))
+
 ## [1.33.6](https://github.com/forkbombeu/ncr/compare/v1.33.5...v1.33.6) (2024-06-10)
 
 
