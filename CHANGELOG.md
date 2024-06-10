@@ -1,3 +1,10 @@
+## [1.33.6](https://github.com/forkbombeu/ncr/compare/v1.33.5...v1.33.6) (2024-06-10)
+
+
+### Bug Fixes
+
+* add abort handler for public directory ([#203](https://github.com/forkbombeu/ncr/issues/203)) ([a7e5a08](https://github.com/forkbombeu/ncr/commit/a7e5a08a6069c939b76c1166d0aa9f74ae6555f2))
+
 ## [1.33.5](https://github.com/forkbombeu/ncr/compare/v1.33.4...v1.33.5) (2024-06-10)
 
 ## [1.33.4](https://github.com/forkbombeu/ncr/compare/v1.33.3...v1.33.4) (2024-06-07)
