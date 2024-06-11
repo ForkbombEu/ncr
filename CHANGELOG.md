@@ -1,3 +1,10 @@
+## [1.34.1](https://github.com/forkbombeu/ncr/compare/v1.34.0...v1.34.1) (2024-06-11)
+
+
+### Bug Fixes
+
+* hide from public directory only file whose basename start with a dot ([#206](https://github.com/forkbombeu/ncr/issues/206)) ([e39d441](https://github.com/forkbombeu/ncr/commit/e39d441e93ec30c777a6ed27654be9b3cc9f55dc))
+
 # [1.34.0](https://github.com/forkbombeu/ncr/compare/v1.33.6...v1.34.0) (2024-06-10)
 
 
