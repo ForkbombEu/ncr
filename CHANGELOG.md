@@ -1,3 +1,10 @@
+## [1.35.1](https://github.com/forkbombeu/ncr/compare/v1.35.0...v1.35.1) (2024-06-15)
+
+
+### Bug Fixes
+
+* evaluate chain files on request lifespan ([#214](https://github.com/forkbombeu/ncr/issues/214)) ([ae8b9d0](https://github.com/forkbombeu/ncr/commit/ae8b9d03d75ffcdbe8e24a126a296aaa7deb4905))
+
 # [1.35.0](https://github.com/forkbombeu/ncr/compare/v1.34.2...v1.35.0) (2024-06-15)
 
 
