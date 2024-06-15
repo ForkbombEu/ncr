@@ -1,9 +1,9 @@
-import LiveDirectory from 'live-directory';
 import fs from 'fs';
+import LiveDirectory from 'live-directory';
 import { config } from './cli.js';
-import { Endpoints } from './types.js';
-import { validateJSONSchema, newMetadata } from './utils.js';
 import { formatContract } from './fileUtils.js';
+import { Endpoints } from './types.js';
+import { newMetadata, validateJSONSchema } from './utils.js';
 
 export class Directory {
 	private static instance: Directory;
@@ -14,20 +14,21 @@ export class Directory {
 			static: false,
 			filter: {
 				keep: (path, stats) => {
-					return path.endsWith('.zen')
-						|| path.endsWith('.conf')
-						|| path.endsWith('.keys.json')
-						|| path.endsWith('.data.json')
-						|| path.endsWith('.schema.json')
-						|| path.endsWith('.metadata.json')
-						|| path.endsWith('.chain.js');
-					}
-				},
-				ignore: {
-					// extensions: ['keys']
+					return (
+						path.endsWith('.zen') ||
+						path.endsWith('.conf') ||
+						path.endsWith('.keys.json') ||
+						path.endsWith('.data.json') ||
+						path.endsWith('.schema.json') ||
+						path.endsWith('.metadata.json') ||
+						path.endsWith('.chain.js')
+					);
 				}
+			},
+			ignore: {
+				// extensions: ['keys']
 			}
-		);
+		});
 	}
 
 	private getContent(name: string) {
@@ -62,9 +63,13 @@ export class Directory {
 					metadata: newMetadata(this.getJSON(path, 'metadata') || {})
 				});
 			} else if (ext == 'chain' && json == 'js') {
+				function getChain(s) {
+					const fn = eval(s);
+					return fn();
+				}
 				result.push({
 					path: path,
-					chain: eval(this.getContent(f))(),
+					chain: getChain(this.getContent(f)),
 					schema: this.getJSONSchema(path),
 					metadata: newMetadata(this.getJSON(path, 'metadata') || {})
 				});
