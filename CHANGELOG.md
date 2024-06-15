@@ -1,3 +1,10 @@
+## [1.34.2](https://github.com/forkbombeu/ncr/compare/v1.34.1...v1.34.2) (2024-06-15)
+
+
+### Bug Fixes
+
+* prevent closure to execute different chains ([#212](https://github.com/forkbombeu/ncr/issues/212)) ([6637937](https://github.com/forkbombeu/ncr/commit/6637937fd298ac40a3f050d770e67b91656b54b7))
+
 ## [1.34.1](https://github.com/forkbombeu/ncr/compare/v1.34.0...v1.34.1) (2024-06-11)
 
 
