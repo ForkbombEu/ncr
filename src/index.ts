@@ -324,7 +324,10 @@ const generateRoutes = (app: TemplatedApp) => {
 				let jsonResult: Record <string, unknown>;
 				try {
 					if (chain) {
-						jsonResult = JSON.parse(await slangroomChainExecute(chain, data? JSON.stringify(data) : undefined));
+            const dataFormatted = data ? JSON.stringify(data) : undefined;
+            const parsedChain = eval(chain)();
+            const res = await slangroomChainExecute(parsedChain, dataFormatted);
+						jsonResult = JSON.parse(res);
 					} else {
 						({ result: jsonResult } = await s.execute(contract, { keys, data, conf }));
 					}
