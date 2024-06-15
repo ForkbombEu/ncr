@@ -1,3 +1,10 @@
+# [1.35.0](https://github.com/forkbombeu/ncr/compare/v1.34.2...v1.35.0) (2024-06-15)
+
+
+### Features
+
+* new slangroom deps ([#213](https://github.com/forkbombeu/ncr/issues/213)) ([48feed9](https://github.com/forkbombeu/ncr/commit/48feed9735cf67f5b8d36113a7dbdf852498eb5d))
+
 ## [1.34.2](https://github.com/forkbombeu/ncr/compare/v1.34.1...v1.34.2) (2024-06-15)
 
 
