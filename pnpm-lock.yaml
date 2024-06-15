@@ -10,52 +10,52 @@ importers:
     dependencies:
       '@dyne/slangroom-chain':
         specifier: ^1.6.0
-        version: 1.6.0(@capacitor/core@6.0.0)(zenroom@4.32.2)
+        version: 1.6.0(@capacitor/core@6.1.0)(zenroom@4.32.2)
       '@slangroom/core':
-        specifier: ^1.33.1
-        version: 1.33.1(zenroom@4.32.2)
+        specifier: ^1.33.2
+        version: 1.33.2(zenroom@4.32.2)
       '@slangroom/db':
-        specifier: ^1.33.1
-        version: 1.33.1(pg-hstore@2.3.4)(zenroom@4.32.2)
+        specifier: ^1.33.2
+        version: 1.33.2(pg-hstore@2.3.4)(zenroom@4.32.2)
       '@slangroom/ethereum':
-        specifier: ^1.33.1
-        version: 1.33.1(encoding@0.1.13)(typescript@5.4.5)(zenroom@4.32.2)(zod@3.23.8)
+        specifier: ^1.33.2
+        version: 1.33.2(encoding@0.1.13)(typescript@5.4.5)(zenroom@4.32.2)(zod@3.23.8)
       '@slangroom/fs':
-        specifier: ^1.33.1
-        version: 1.33.1(zenroom@4.32.2)
+        specifier: ^1.33.2
+        version: 1.33.2(zenroom@4.32.2)
       '@slangroom/git':
-        specifier: ^1.33.1
-        version: 1.33.1(zenroom@4.32.2)
+        specifier: ^1.33.2
+        version: 1.33.2(zenroom@4.32.2)
       '@slangroom/helpers':
-        specifier: ^1.33.1
-        version: 1.33.1(zenroom@4.32.2)
+        specifier: ^1.33.2
+        version: 1.33.2(zenroom@4.32.2)
       '@slangroom/http':
-        specifier: ^1.33.1
-        version: 1.33.1(zenroom@4.32.2)
+        specifier: ^1.33.2
+        version: 1.33.2(zenroom@4.32.2)
       '@slangroom/json-schema':
-        specifier: ^1.33.1
-        version: 1.33.1(zenroom@4.32.2)
+        specifier: ^1.33.2
+        version: 1.33.2(zenroom@4.32.2)
       '@slangroom/oauth':
-        specifier: ^1.33.1
-        version: 1.33.1(zenroom@4.32.2)
+        specifier: ^1.33.2
+        version: 1.33.2(zenroom@4.32.2)
       '@slangroom/pocketbase':
-        specifier: ^1.33.1
-        version: 1.33.1(@capacitor/core@6.0.0)(zenroom@4.32.2)
+        specifier: ^1.33.2
+        version: 1.33.2(@capacitor/core@6.1.0)(zenroom@4.32.2)
       '@slangroom/timestamp':
-        specifier: ^1.33.1
-        version: 1.33.1(zenroom@4.32.2)
+        specifier: ^1.33.2
+        version: 1.33.2(zenroom@4.32.2)
       '@slangroom/wallet':
-        specifier: ^1.33.1
-        version: 1.33.1(zenroom@4.32.2)
+        specifier: ^1.33.2
+        version: 1.33.2(zenroom@4.32.2)
       '@slangroom/zencode':
-        specifier: ^1.33.1
-        version: 1.33.1(zenroom@4.32.2)
+        specifier: ^1.33.2
+        version: 1.33.2(zenroom@4.32.2)
       '@tgwf/co2':
-        specifier: ^0.14.4
-        version: 0.14.4
+        specifier: ^0.15.0
+        version: 0.15.0
       '@typescript-eslint/parser':
         specifier: ^7.1.1
-        version: 7.12.0(eslint@8.57.0)(typescript@5.4.5)
+        version: 7.12.0(eslint@9.5.0)(typescript@5.4.5)
       ajv:
         specifier: ^8.12.0
         version: 8.14.0
@@ -127,14 +127,14 @@ importers:
         specifier: ^0.32.15
         version: 0.32.31
       '@slangroom/qrcode':
-        specifier: ^1.33.1
-        version: 1.33.1(zenroom@4.32.2)
+        specifier: ^1.33.2
+        version: 1.33.2(zenroom@4.32.2)
       '@slangroom/redis':
-        specifier: ^1.33.1
-        version: 1.33.1(zenroom@4.32.2)
+        specifier: ^1.33.2
+        version: 1.33.2(zenroom@4.32.2)
       '@slangroom/shell':
-        specifier: ^1.33.1
-        version: 1.33.1(zenroom@4.32.2)
+        specifier: ^1.33.2
+        version: 1.33.2(zenroom@4.32.2)
       '@swc/core':
         specifier: ^1.4.8
         version: 1.5.24(@swc/helpers@0.5.11)
@@ -148,20 +148,20 @@ importers:
         specifier: ^29.5.12
         version: 29.5.12
       '@types/lodash':
-        specifier: ^4.17.0
-        version: 4.17.4
+        specifier: ^4.17.5
+        version: 4.17.5
       '@types/lodash.isequal':
         specifier: ^4.5.8
         version: 4.5.8
       '@types/node':
-        specifier: ^20.11.25
-        version: 20.14.1
+        specifier: ^20.14.2
+        version: 20.14.2
       '@types/tgwf__co2':
         specifier: ^0.14.1
         version: 0.14.2
       jest:
         specifier: ^29.7.0
-        version: 29.7.0(@types/node@20.14.1)(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@20.14.2)(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.2)(typescript@5.4.5))
       lodash.isequal:
         specifier: ^4.5.0
         version: 4.5.0
@@ -199,17 +199,17 @@ importers:
         specifier: ^2.0.3
         version: 2.0.3
       stepci:
-        specifier: ^2.8.0
-        version: 2.8.1(openapi-types@12.1.3)
+        specifier: ^2.8.2
+        version: 2.8.2(openapi-types@12.1.3)
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.4(@babel/core@7.24.6)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.6))(jest@29.7.0(@types/node@20.14.1)(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.1)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.4(@babel/core@7.24.6)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.6))(jest@29.7.0(@types/node@20.14.2)(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.2)(typescript@5.4.5)))(typescript@5.4.5)
       ts-node:
         specifier: ^10.9.2
-        version: 10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.1)(typescript@5.4.5)
+        version: 10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.2)(typescript@5.4.5)
       tslog:
-        specifier: ^4.9.2
-        version: 4.9.2
+        specifier: ^4.9.3
+        version: 4.9.3
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -424,11 +424,11 @@ packages:
   '@bcoe/v8-coverage@0.2.3':
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
 
-  '@capacitor/core@6.0.0':
-    resolution: {integrity: sha512-NvxIQsJcMiIV+Le1DilR2GGyQQbDInfXK1UywGROQ5mycdFlW5XoAPZ+MKnFGB123RoEgE3uhDGgwTXUmSlX9A==}
+  '@capacitor/core@6.1.0':
+    resolution: {integrity: sha512-Kt4ONm0X9xxJXn9Q73oBaKdzep5B/VJw3VjXa2eGul4cD2k37mJwgjpXSMRnLH0Aju5bCiRL8J/hMAfTlokO6A==}
 
-  '@capacitor/preferences@6.0.0':
-    resolution: {integrity: sha512-4A49UKEc/sgf28TFNwRX4Kx6G0oMeRC9btA2voaEuL2LZd2l8IMfAEFDIrfQWi5rYE6RWenEUexUTyiEZnYFvQ==}
+  '@capacitor/preferences@6.0.1':
+    resolution: {integrity: sha512-5UvSK3O/tgPcQ1QyX0zYjb0uujFw+PQgYUSt6i2evf609jAIo7QG1IUZzGb6swEPCpk621wEc6R7Yq/Ywa3GPA==}
     peerDependencies:
       '@capacitor/core': ^6.0.0
 
@@ -473,13 +473,21 @@ packages:
     resolution: {integrity: sha512-Zm2NGpWELsQAD1xsJzGQpYfvICSsFkEpU0jxBjfdC6uNEWXcHnfs9hScFWtXVDVl+rBQJGrl4g1vcKIejpH9dA==}
     engines: {node: ^12.0.0 || ^14.0.0 || >=16.0.0}
 
-  '@eslint/eslintrc@2.1.4':
-    resolution: {integrity: sha512-269Z39MS6wVJtsoUl10L60WdkhJVdPG24Q4eZTH3nnF6lpvSShEK3wQjDX9JRWAUPvPh7COouPpU9IrqaZFvtQ==}
-    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+  '@eslint/config-array@0.16.0':
+    resolution: {integrity: sha512-/jmuSd74i4Czf1XXn7wGRWZCuyaUZ330NH1Bek0Pplatt4Sy1S5haN21SCLLdbeKslQ+S0wEJ+++v5YibSi+Lg==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@eslint/js@8.57.0':
-    resolution: {integrity: sha512-Ys+3g2TaW7gADOJzPt83SJtCDhMjndcDMFVQ/Tj9iA1BfJzFKD9mAUXT3OenpuPHbI6P/myECxRJrofUsDx/5g==}
-    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+  '@eslint/eslintrc@3.1.0':
+    resolution: {integrity: sha512-4Bfj15dVJdoy3RfZmmo86RK1Fwzn6SstsvK9JS+BaVKqC6QQQQyXekNaC+g+LKNgkQ+2VhGAzm6hO40AhMR3zQ==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@eslint/js@9.5.0':
+    resolution: {integrity: sha512-A7+AOT2ICkodvtsWnxZP4Xxk3NbZ3VMHd8oihydLRGrJgqqdEz1qSeEgXYyT/Cu8h1TWWsQRejIx48mtjZ5y1w==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@eslint/object-schema@2.1.4':
+    resolution: {integrity: sha512-BsWiH1yFGjXXS2yvrf5LyuoSIIbPrGUWob917o+BTKuZ7qJdxX8aJLRxs1fS9n6r7vESrq1OUqb68dANcFXuQQ==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   '@ethereumjs/rlp@4.0.1':
     resolution: {integrity: sha512-tqsQiBQDQdmPWE1xkkBq4rlSW5QZpLOUJ5RJh2/9fug+q9tnUhuZoVLk7s0scUIKTOzEtR72DFBXI4WiZcMpvw==}
@@ -496,8 +504,8 @@ packages:
   '@gar/promisify@1.1.3':
     resolution: {integrity: sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==}
 
-  '@grpc/grpc-js@1.10.8':
-    resolution: {integrity: sha512-vYVqYzHicDqyKB+NQhAc54I1QWCBLCrYG6unqOIcBTHx+7x8C9lcoLj3KVJXs2VB4lUbpWY+Kk9NipcbXYWmvg==}
+  '@grpc/grpc-js@1.10.9':
+    resolution: {integrity: sha512-5tcgUctCG0qoNyfChZifz2tJqbRbXVO9J7X6duFcOjY3HUNCxg5D0ZCK7EP9vIcZ0zRpLU9bWkyCqVCLZ46IbQ==}
     engines: {node: '>=12.10.0'}
 
   '@grpc/proto-loader@0.7.13':
@@ -511,16 +519,13 @@ packages:
   '@hapi/topo@5.1.0':
     resolution: {integrity: sha512-foQZKJig7Ob0BMAYBfcJk8d77QtOe7Wo4ox7ff1lQYoNNAb6jwcY1ncdoy2e9wQZzvNy7ODZCYJkK8kzmcAnAg==}
 
-  '@humanwhocodes/config-array@0.11.14':
-    resolution: {integrity: sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA33q8PSRSstjee3jSg==}
-    engines: {node: '>=10.10.0'}
-
   '@humanwhocodes/module-importer@1.0.1':
     resolution: {integrity: sha512-bxveV4V8v5Yb4ncFTT3rPSgZBOpCkjfK0y4oVVVJwIuDVBRMDXrPyXRL988i5ap9m9bnyEEjWfm5WkBmtffLfA==}
     engines: {node: '>=12.22'}
 
-  '@humanwhocodes/object-schema@2.0.3':
-    resolution: {integrity: sha512-93zYdMES/c1D69yZiKDBj0V24vqNzB/koF26KPaagAfd3P/4gUlh3Dys5ogAK+Exi9QyzlD8x/08Zt7wIKcDcA==}
+  '@humanwhocodes/retry@0.3.0':
+    resolution: {integrity: sha512-d2CGZR2o7fS6sWB7DG/3a95bGKQyHMACZ5aW8qGkkqQpUoZV6C0X7Pc7l4ZNMZkfNBf4VWNe9E1jRsf0G146Ew==}
+    engines: {node: '>=18.18'}
 
   '@istanbuljs/load-nyc-config@1.1.0':
     resolution: {integrity: sha512-VjeHSlIzpv/NyD3N0YuHfXOPDIixcA1q2ZV98wsMqcYlPmv2n3Yb2lYP9XMElnaFVXg5A7YLTeLu6V84uQDjmQ==}
@@ -631,11 +636,11 @@ packages:
     resolution: {integrity: sha512-r8T/W5zXIvGSg6QIWgTIUU9fwXAJwJrutb4m+fbpkSGPwAPWQHzYvzaZRRe4wcezhxSpAqodOd4KsYc+swbp0w==}
     engines: {node: '>=18', npm: '>=8.0.0'}
 
-  '@noble/curves@1.3.0':
-    resolution: {integrity: sha512-t01iSXPuN+Eqzb4eBX0S5oubSqXbK/xXa1Ne18Hj8f9pStxztHCE2gfboSp/dZRLSqfuLpRK2nDXDK+W9puocA==}
+  '@noble/curves@1.4.0':
+    resolution: {integrity: sha512-p+4cb332SFCrReJkCYe8Xzm0OWi4Jji5jVdIZRL/PmacmDkFNw6MrrV+gGpiPxLHbV+zKFRywUWbaseT+tZRXg==}
 
-  '@noble/hashes@1.3.3':
-    resolution: {integrity: sha512-V7/fPHgl+jsVPXqqeOzT8egNj2iBIVt+ECeMMG8TdcnTikP3oaBtUVqpT/gYCR68aEBJSF+XbYUxStjbFMqIIA==}
+  '@noble/hashes@1.4.0':
+    resolution: {integrity: sha512-V1JJ1WTRUqHHrOSh597hURcMqVKVGL/ea3kv0gSnEdsEZ0/+VyPghM1lMNGc00z7CIQorSvbKpuJkxvuHbvdbg==}
     engines: {node: '>= 16'}
 
   '@node-oauth/formats@1.0.0':
@@ -892,14 +897,14 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@scure/base@1.1.6':
-    resolution: {integrity: sha512-ok9AWwhcgYuGG3Zfhyqg+zwl+Wn5uE+dwC0NV/2qQkx4dABbb/bx96vWu8NSj+BNjjSjno+JRYRjle1jV08k3g==}
+  '@scure/base@1.1.7':
+    resolution: {integrity: sha512-PPNYBslrLNNUQ/Yad37MHYsNQtK67EhWb6WtSvNLLPo7SdVZgkUjD6Dg+5On7zNwmskf8OX7I7Nx5oN+MIWE0g==}
 
-  '@scure/bip32@1.3.3':
-    resolution: {integrity: sha512-LJaN3HwRbfQK0X1xFSi0Q9amqOgzQnnDngIt+ZlsBC3Bm7/nE7K0kwshZHyaru79yIVRv/e1mQAjZyuZG6jOFQ==}
+  '@scure/bip32@1.4.0':
+    resolution: {integrity: sha512-sVUpc0Vq3tXCkDGYVWGIZTRfnvu8LoTDaev7vbwh0omSvVORONr960MQWdKqJDCReIEmTj3PAr73O3aoxz7OPg==}
 
-  '@scure/bip39@1.2.2':
-    resolution: {integrity: sha512-HYf9TUXG80beW+hGAt3TRM8wU6pQoYur9iNypTROm42dorCGmLnFe3eWjz3gOq6G62H2WRh0FCzAR1PI+29zIA==}
+  '@scure/bip39@1.3.0':
+    resolution: {integrity: sha512-disdg7gHuTDZtY+ZdkmLpPCk7fxZSu3gBiEGuoC1XYxv9cGx3Z6cpTggCgW6odSOOIXCiDjuGejW+aJKCY/pIQ==}
 
   '@sec-ant/readable-stream@0.4.1':
     resolution: {integrity: sha512-831qok9r2t8AlxLko40y2ebgSDhenenCatLVeW/uBtnHPyhHOvG0C7TvfgecV+wHzIm5KUICgzmVpWS+IMEAeg==}
@@ -987,89 +992,89 @@ packages:
   '@sinonjs/fake-timers@10.3.0':
     resolution: {integrity: sha512-V4BG07kuYSUkTCSBHG8G8TNhM+F19jXFWnQtzj+we8DrkpSBCee9Z3Ms8yiGer/dlmhe35/Xdgyo3/0rQKg7YA==}
 
-  '@slangroom/core@1.33.1':
-    resolution: {integrity: sha512-jO2Ei3ZEbINqfax3Sdm56UMp4J7WnE6QvwHYY7Vrl+Ra8dC8BB4GuGa6G1MK+K+ujmOlBAeqs4Khnus4WNKM0Q==}
+  '@slangroom/core@1.33.2':
+    resolution: {integrity: sha512-MX8vvkgB+8SKe3W0E1WdJ6Qz49A9WCGX33OFNlnjduFoqsINloyJvWIHEvki5gJt1l1KIQOK4dI9jJ93+YYKUg==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
-  '@slangroom/db@1.33.1':
-    resolution: {integrity: sha512-wMmtT88azHDXRlPDhF4LLlwteLTHC5TkxDf+5Z+cWPR3KwmF3E2Lu0j3cj8zy9myb26CJIofO2R5gbCMGrc0Cg==}
+  '@slangroom/db@1.33.2':
+    resolution: {integrity: sha512-4s0T9qvng/rU8mwZWXfXZbYSHzkprM3DH0j7n7c4UjT8LAzWmZ5fr9MLeFK7yXr9WzS4CtIRBi2DGwnn4q/+bg==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
-  '@slangroom/deps@1.33.1':
-    resolution: {integrity: sha512-GB8z9BC0kCByTFR4wSllDNyNxUpx2YJNL3Iq18TcG7Xu5k+Bz0otwmuDbItyeFWbi5TZ9XV9VAHYY2l7tqwVYw==}
+  '@slangroom/deps@1.33.2':
+    resolution: {integrity: sha512-1lJgtGMcMb4EiniFJN/ZVa89/cV2Hu3GCQKJpG18X0MuIhXtpPqTbNMLKPlwH4dIqjlwYoAPKZOu7tIhaWpI4w==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
     peerDependencies:
       zenroom: ^4.31.2
 
-  '@slangroom/ethereum@1.33.1':
-    resolution: {integrity: sha512-yif/R9aiJHM2bfScLl2V7v5Q98V6KTJ0UDGVDU5YOPBiDX7IucJ7VbXAGZK/H0n6Lu1e9FqmN+dpekw0sDN8rw==}
+  '@slangroom/ethereum@1.33.2':
+    resolution: {integrity: sha512-h9Nt12yeHzVTUzpsfEoJ8D59LaCJ5icoKZVL/eJJ2l0zhYzs2JmF9RtgGTIvwh3S3bgogAH8WgsYvQmisvMrjw==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
-  '@slangroom/fs@1.33.1':
-    resolution: {integrity: sha512-0JQ9B8iCYjZsgudK5bGKLNo+i6ryRVVYn6uJC9uwQe1TYFDzkuW9zBcBhdcL+0K5dpBjAj20s0Tops5wdzT/iw==}
+  '@slangroom/fs@1.33.2':
+    resolution: {integrity: sha512-IUfQARPwXzJK74pLzwei45/mnrIV8BpPOSg6COkEB5zfgCheVEbrJMlECgmE4Dd+VmaebnEpaOkkUpUTN6bf8Q==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
-  '@slangroom/git@1.33.1':
-    resolution: {integrity: sha512-oJAgEVGWAWX3TVSm7XsEhNOtxLHBa3HT7J+iYmVlT4gC+bhrv+g38OMyvJpzb/uIay/CpAIt698enZzoyt0hhQ==}
+  '@slangroom/git@1.33.2':
+    resolution: {integrity: sha512-Wt33E8rR+M4hv2gOlPSML3lfrlJwuwjeTDup4b6Pdd+TCw3yrXY3rMhuGhz4SfH4MqkXarXPL/tBTAh8h0SzJw==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
-  '@slangroom/helpers@1.33.1':
-    resolution: {integrity: sha512-m9rZ103srKWsxJsXt8Ip8/ugjWWO+ua72xL3qME+/H85aAAswOA6yfjHQF3Zr//slaFoHQwoOt3FM96eArqcZg==}
+  '@slangroom/helpers@1.33.2':
+    resolution: {integrity: sha512-3HZuRiJyzJHv34m3Wasb4MQeEJQdiWne4mslYKthP8WX82yNG3AzGjg0j7XbZX3uURaR8AyM9s9VwryvPw8oTg==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
-  '@slangroom/http@1.33.1':
-    resolution: {integrity: sha512-YeUN/gN8CwOtTEHjsrMabYdwc93GuA8Klc8IwIKEZUBaX7F2SHCF27PJ0NPGWDsAKDgrzmXX7fVYjbrMvmOC0g==}
+  '@slangroom/http@1.33.2':
+    resolution: {integrity: sha512-xWQMlkA3NFPwJ+W/F/Fmg0xICb8eHWP4P8K7jI9MFR0o4pjgcpKKDAPrvkcXCprN4Fv2r68cqOeFyAMsXzpIxg==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
-  '@slangroom/ignored@1.33.1':
-    resolution: {integrity: sha512-2iJsF8mOZBFfHf1QxrpAySnAF6fsww1Zrg6B5qkfOsDHbKPibW8VNtp9nPxQiiiKp29IbvxmGk6Btf17rejrlQ==}
+  '@slangroom/ignored@1.33.2':
+    resolution: {integrity: sha512-glIDP3adXSxYS6Udl8iu51TQTDmNptNC1vdLqvnbsFBTE/xhWZ/5WspNa+WbATnybaJmG0nKWZPDfZ1bkMljgQ==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
-  '@slangroom/json-schema@1.33.1':
-    resolution: {integrity: sha512-YfO81In2aW5SJFKNoffD3zJfjWDacOr2NhRd5RKKm6OBE61JP4+mRze4E3zx9UIIWIeskimxMJ2CjnQ3LyuOyg==}
+  '@slangroom/json-schema@1.33.2':
+    resolution: {integrity: sha512-jRVgHKsHJ9Lq/QMSA1VuqN2yo7CRdlksDZnNpkVjzUnMwl5QHDQw7BQHx7jKkVKVbGBN66xp3XlmTwFJtlf9Ow==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
-  '@slangroom/oauth@1.33.1':
-    resolution: {integrity: sha512-FxXczoXWphr9/LIpNhk5fazPpxWl0SOsnv2m/U7AgMdzQSw3FsneZfh8YOSm/sPIGyPQRINlRShgu/hL1NGISw==}
+  '@slangroom/oauth@1.33.2':
+    resolution: {integrity: sha512-29dPCNSC3s+S17u0gSj+ghBMfzMd10lHk8SqDK4w3iv1sUIi0cKhcA0qjesETAX+BDnJ1g10eixMvFwD9meBBA==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
-  '@slangroom/pocketbase@1.33.1':
-    resolution: {integrity: sha512-YrENUANy89KXDnjyoemFeETFUjkPLZUeA1Ysuv673I8EaE6ihVNJHDLG57+PeuMtCOKdr0a7vaWcX+a1yNgEDA==}
+  '@slangroom/pocketbase@1.33.2':
+    resolution: {integrity: sha512-BgONlUKwUTM098SLZpnx5jlRDz4oVf4UcLL0J2MrFqxHMoXI4pMrksaJW7s1uFcX2gwujIkkhXBP4ALio9C/dw==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
-  '@slangroom/qrcode@1.33.1':
-    resolution: {integrity: sha512-ppoH3VsM/HIhB1YGHGf1MHtC72if0m689QlEXK6rg+zc1MWeYqiSWZQTVe9ydbtJR/o2wmp11RtQIc00hggDiw==}
+  '@slangroom/qrcode@1.33.2':
+    resolution: {integrity: sha512-/39MDkMftWFjhfGy647PpRGg37eJI0blfZAkLjVzCX3QhE6s+0YpuKgLKL1hdLok6LhH9BQjFDSEXRkwo63Fbg==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
-  '@slangroom/redis@1.33.1':
-    resolution: {integrity: sha512-Lq9d/eo4m0R3q4A+HJVXwsyhV2ySWUKQ05++3YOlHpT/kIIqHCkBaii1PYxMoK9NPdsOsibQcChthLFZpCU27w==}
+  '@slangroom/redis@1.33.2':
+    resolution: {integrity: sha512-U2aPM7Py8oHvjcBExiBpfuQjOOc3Y4kjroPCTwh1LLWjDXKTBu+xV+WjtHDdUusoI4Atw5KNWRbzGB6gxTlqXQ==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
-  '@slangroom/shared@1.33.1':
-    resolution: {integrity: sha512-2x40/D+7UXk6f1TWFMsHDwcqTJLLD7aQY8r5Vi6mIZSV13hAz7iv9cm0+iYK6Q8XndG1mm8iWvD7UawiyFfXwA==}
+  '@slangroom/shared@1.33.2':
+    resolution: {integrity: sha512-BPCLt1oGq3Ce+1KmoDq/4p+oletn5Y1mo4GzU/GP3bHiONYXIjTdffp6qJQfvEEXIzH5+3H+IyhBUqD5U08/9w==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
-  '@slangroom/shell@1.33.1':
-    resolution: {integrity: sha512-S2qJJ9AoSptJTX/dvIl8x3P88GSlBdWeLj4gJO+KRNDPiBh73X+EVSsZ9H5uboWygll2aE4CJXYVGWavgLATpQ==}
+  '@slangroom/shell@1.33.2':
+    resolution: {integrity: sha512-PbxhM0uTPBiMWiWPL9CiDawrOBPIkOTVIHXk4xfp+5A1X7rWZaWFbTqHAkchZoDsXGeT4wBvGkM1a431yOCynQ==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
-  '@slangroom/timestamp@1.33.1':
-    resolution: {integrity: sha512-yXKn2dGVzvYlz/bDlyFPUGAC4Q8ZXOHpfNd9BZzgNeIc9I6AMefaEzXpJvwe4aOrOmNsIFDeUcEUh1VDdSOZzQ==}
+  '@slangroom/timestamp@1.33.2':
+    resolution: {integrity: sha512-AZ+3Idq2j0NXPrxzn1NUs6xqWHUpEfSVioxh/MPj9E8OAVwOdtJ7wY5m3jgUerYFhYUP/UMM+uQtFDVW03NRFA==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
-  '@slangroom/wallet@1.33.1':
-    resolution: {integrity: sha512-/6EmxVG95X3Z8P4ehxqvEZXfelOHddKk5j1O1k7jhv/HCrj9PgIIMF8HyOjT2cCZHq4e4fTsJ6JQmq1hi+w4jA==}
+  '@slangroom/wallet@1.33.2':
+    resolution: {integrity: sha512-vtB2fk7mdTZze6MCXpRadtICT/YBT+bjXdLQCdU/R+0fY+GoBLLQWJQY14ZIGVovUWLFR4sWOU/863SAei9k/w==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
-  '@slangroom/zencode@1.33.1':
-    resolution: {integrity: sha512-G/sWC2CtUJ0AmeV2kquBce57NAGdy3vdn0fArqvTF9OWkzFcpevtEREYZN7GJM2NX8yPi4r2YkKb0hsI0/+wEA==}
+  '@slangroom/zencode@1.33.2':
+    resolution: {integrity: sha512-XpEpIy2W1M1Miem2iej1UMWiV9skP3DplQy73wovTYx0aA5nNvBGAZFw1C4H10nYDkv5QFmD6h/RRnlcsVq6ew==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
   '@stepci/plugin-openapi@0.3.9':
     resolution: {integrity: sha512-f2BryQgmXIvtcp2m8qlEui+LMbPKmfuo4cLwv0B1t7+SgPxUql5/ZEDfPpZzZt2tboqMAWg20DtIO91sYekgyw==}
 
-  '@stepci/runner@2.0.3':
-    resolution: {integrity: sha512-WMZXt2TrBWTWqFOc8g01n2PuAZT7/8xbW3NU8aGEDxuG33WSBJudeKkjlAO+nYGCrR5Gyt89xqADzDNob4CZWA==}
+  '@stepci/runner@2.0.5':
+    resolution: {integrity: sha512-oVoE6mSUSHG52J1zj1yY8sR2nTujWMRb4kHGBYXSTl3bjlzOdwfGFfzZbwD9eZt72a3iV55RsFoCOczRN6c96w==}
 
   '@swc/core-darwin-arm64@1.5.24':
     resolution: {integrity: sha512-M7oLOcC0sw+UTyAuL/9uyB9GeO4ZpaBbH76JSH6g1m0/yg7LYJZGRmplhDmwVSDAR5Fq4Sjoi1CksmmGkgihGA==}
@@ -1156,8 +1161,8 @@ packages:
   '@tgwf/co2@0.11.4':
     resolution: {integrity: sha512-I6e+WzdDpVbKLkTDJXAA0kJvOJQg1TNfTOu7PA5+FfxLEix9EqdigVK0Qd4flC82fLgTKSw4upuh+nCm4fFCaQ==}
 
-  '@tgwf/co2@0.14.4':
-    resolution: {integrity: sha512-837dH4n6cGt2s3ssR3Yt904WHy/MDmYZmnHCla6e73YjxIWmvLgYLXUYWzXJ2C5096jTR7yT5tNe1+Dq5bjnNw==}
+  '@tgwf/co2@0.15.0':
+    resolution: {integrity: sha512-H3Y+gw+GqRqzLj3rFZNfxHMSi2WpL3eCnnJqs9vOZHUM7/t+aaIG8WheV9PlILMat2bXXCk0hkJJTEW/NFDmTw==}
     engines: {node: '>=14.0.0'}
 
   '@tootallnate/once@1.1.2':
@@ -1239,8 +1244,8 @@ packages:
   '@types/lodash.isequal@4.5.8':
     resolution: {integrity: sha512-uput6pg4E/tj2LGxCZo9+y27JNyB2OZuuI/T5F+ylVDYuqICLG2/ktjxx0v6GvVntAf8TvEzeQLcV0ffRirXuA==}
 
-  '@types/lodash@4.17.4':
-    resolution: {integrity: sha512-wYCP26ZLxaT3R39kiN2+HcJ4kTd3U1waI/cY7ivWYqFP6pW3ZNpvi6Wd6PHZx7T/t8z0vlkXMg3QYLa7DZ/IJQ==}
+  '@types/lodash@4.17.5':
+    resolution: {integrity: sha512-MBIOHVZqVqgfro1euRDWX7OO0fBVUUMrN6Pwm8LQsz8cWhEpihlvR70ENj3f40j58TNxZaWv2ndSkInykNBBJw==}
 
   '@types/minimatch@5.1.2':
     resolution: {integrity: sha512-K0VQKziLUWkVKiRVrx4a40iPaxTUefQmjtkQofBkYRcoaaL/8rhwDWww9qWbrgicNOgnpIsMxyNIUM4+n6dUIA==}
@@ -1251,8 +1256,8 @@ packages:
   '@types/node@14.18.63':
     resolution: {integrity: sha512-fAtCfv4jJg+ExtXhvCkCqUKZ+4ok/JQk01qDKhL5BDDoS3AxKXhV5/MAVUZyQnSEd2GT92fkgZl0pz0Q0AzcIQ==}
 
-  '@types/node@20.14.1':
-    resolution: {integrity: sha512-T2MzSGEu+ysB/FkWfqmhV3PLyQlowdptmmgD20C6QxsS8Fmv5SjpZ1ayXaEC0S21/h5UJ9iA6W/5vSNU5l00OA==}
+  '@types/node@20.14.2':
+    resolution: {integrity: sha512-xyu6WAMVwv6AKFLB+e/7ySZVr/0zLCzOa7rSpq6jNwpqOrUbcACDWC+53d4n2QHOnDou0fbIsg8wZu/sxrnI4Q==}
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
@@ -1321,9 +1326,6 @@ packages:
     resolution: {integrity: sha512-uZk7DevrQLL3vSnfFl5bj4sL75qC9D6EdjemIdbtkuUmIheWpuiiylSY01JxJE7+zGrOWDZrp1WxOuDntvKrHQ==}
     engines: {node: ^18.18.0 || >=20.0.0}
 
-  '@ungap/structured-clone@1.2.0':
-    resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
-
   '@xmldom/xmldom@0.8.10':
     resolution: {integrity: sha512-2WALfTl4xo2SkGCYRt6rDTFfk9R1czmBvUQy12gK2KuRKIpWEhcbbzy8EZXtz/jkRqHX8bFEc6FC1HjX4TUWYw==}
     engines: {node: '>=10.0.0'}
@@ -1351,6 +1353,11 @@ packages:
 
   acorn@8.11.3:
     resolution: {integrity: sha512-Y9rRfJG5jcKOE0CLisYbojUjIrIEE7AGMzA/Sm4BslANhbS+cDMpgBdcPT91oJ7OuJ9hYJBx59RjbhxVnrF8Xg==}
+    engines: {node: '>=0.4.0'}
+    hasBin: true
+
+  acorn@8.12.0:
+    resolution: {integrity: sha512-RTvkC4w+KNXrM39/lWCUaG0IbRkWdCv7W/IOW9oU6SawyxulvkQy5HQPVTKxEjczcUvapcrw3cFx/60VN/NRNw==}
     engines: {node: '>=0.4.0'}
     hasBin: true
 
@@ -1972,10 +1979,6 @@ packages:
     resolution: {integrity: sha512-WkrWp9GR4KXfKGYzOLmTuGVi1UWFfws377n9cc55/tb6DuqyF6pcQ5AbiHEshaDpY9v6oaSr2XCDidGmMwdzIA==}
     engines: {node: '>=8'}
 
-  doctrine@3.0.0:
-    resolution: {integrity: sha512-yS+Q5i3hBf7GBkd4KG8a7eBNNWNGLTaEwwYWUijIYM7zrlYDM0BFXHjjPWlWZ1Rg7UaddZeIDmi9jF3HmqiQ2w==}
-    engines: {node: '>=6.0.0'}
-
   dom-serializer@2.0.0:
     resolution: {integrity: sha512-wIkAryiqt/nV5EQKqQpo3SToSOV9J0DnbJqwK7Wv/Trc92zIAYZ4FlMu+JPFW1DfGFt81ZTCGgDEabffXeLyJg==}
 
@@ -2105,22 +2108,26 @@ packages:
     engines: {node: '>=6.0'}
     hasBin: true
 
-  eslint-scope@7.2.2:
-    resolution: {integrity: sha512-dOt21O7lTMhDM+X9mB4GX+DZrZtCUJPL/wlcTqxyrx5IvO0IYtILdtrQGQp+8n5S0gwSVmOf9NQrjMOgfQZlIg==}
-    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+  eslint-scope@8.0.1:
+    resolution: {integrity: sha512-pL8XjgP4ZOmmwfFE8mEhSxA7ZY4C+LWyqjQ3o4yWkkmD0qcMT9kkW3zWHOczhWcjTSgqycYAgwSlXvZltv65og==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   eslint-visitor-keys@3.4.3:
     resolution: {integrity: sha512-wpc+LXeiyiisxPlEkUzU6svyS1frIO3Mgxj1fdy7Pm8Ygzguax2N3Fa/D/ag1WqbOprdI+uY6wMUl8/a2G+iag==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
 
-  eslint@8.57.0:
-    resolution: {integrity: sha512-dZ6+mexnaTIbSBZWgou51U6OmzIhYM2VcNdtiTtI7qPNZm35Akpr0f6vtw3w1Kmn5PYo+tZVfh13WrhpS6oLqQ==}
-    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+  eslint-visitor-keys@4.0.0:
+    resolution: {integrity: sha512-OtIRv/2GyiF6o/d8K7MYKKbXrOUBIK6SfkIRM4Z0dY3w+LiQ0vy3F57m0Z71bjbyeiWFiHJ8brqnmE6H6/jEuw==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  eslint@9.5.0:
+    resolution: {integrity: sha512-+NAOZFrW/jFTS3dASCGBxX1pkFD0/fsO+hfAkJ4TyYKwgsXZbqzrw+seCYFCcPCYXvnD67tAnglU7GQTz6kcVw==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     hasBin: true
 
-  espree@9.6.1:
-    resolution: {integrity: sha512-oruZaFkjorTpF32kDSI5/75ViwGeZginGGy2NoOSg3Q9bnwlnmDm4HLnkl0RE3n+njDXR037aY1+x58Z/zFdwQ==}
-    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+  espree@10.0.1:
+    resolution: {integrity: sha512-MWkrWZbJsL2UwnjxTX3gG8FneachS/Mwg7tdGXce011sJd5b0JG54vat5KHnfSBODZ3Wvzd2WnjxyzsRoVv+ww==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   esprima@4.0.1:
     resolution: {integrity: sha512-eGuFFw7Upda+g4p+QHvnW0RyTX/SVeJBDM/gCtMARO0cLuT2HcEKnTPvhjV6aGeqrCB/sbNop0Kszm0jsaWU4A==}
@@ -2149,8 +2156,8 @@ packages:
     resolution: {integrity: sha512-kVscqXk4OCp68SZ0dkgEKVi6/8ij300KBWTJq32P/dYeWTSwK41WyTxalN1eRmA5Z9UU/LX9D7FWSmV9SAYx6g==}
     engines: {node: '>=0.10.0'}
 
-  ethereum-cryptography@2.1.3:
-    resolution: {integrity: sha512-BlwbIL7/P45W8FGW2r7LGuvoEZ+7PWsniMvQ4p5s2xCyw9tmaDlpfsN9HjAucbF+t/qpVHwZUisgfK24TCW8aA==}
+  ethereum-cryptography@2.2.0:
+    resolution: {integrity: sha512-hsm9JhfytIf8QME/3B7j4bc8V+VdTU+Vas1aJlvIS96ffoNAosudXvGoEvWmc7QZYdkC8mrMJz9r0fcbw7GyCA==}
 
   event-stream@3.3.4:
     resolution: {integrity: sha512-QHpkERcGsR0T7Qm3HNJSyXKEEj8AHNxkY3PK8TS2KJvQ7NiSHe3DDpwVKKtoYprL/AreyzFBeIkBIWChAqn60g==}
@@ -2224,9 +2231,9 @@ packages:
     resolution: {integrity: sha512-d+l3qxjSesT4V7v2fh+QnmFnUWv9lSpjarhShNTgBOfA0ttejbQUAlHLitbjkoRiDulW0OPoQPYIGhIC8ohejg==}
     engines: {node: '>=18'}
 
-  file-entry-cache@6.0.1:
-    resolution: {integrity: sha512-7Gps/XWymbLk2QLYK4NzpMOrYjMhdIxXuIvy2QBsLE6ljuodKvdkWs/cpyJJ3CVIVpH0Oi1Hvg1ovbMzLdFBBg==}
-    engines: {node: ^10.12.0 || >=12.0.0}
+  file-entry-cache@8.0.0:
+    resolution: {integrity: sha512-XXTUwCvisa5oacNGRP9SfNtYBNAMi+RPwBFmblZEF7N7swHYQS6/Zfk7SRwx4D5j3CH211YNRco1DEMNVfZCnQ==}
+    engines: {node: '>=16.0.0'}
 
   file-uri-to-path@1.0.0:
     resolution: {integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==}
@@ -2262,9 +2269,9 @@ packages:
     resolution: {integrity: sha512-2kCCtc+JvcZ86IGAz3Z2Y0A1baIz9fL31pH/0S1IqZr9Iwnjq8izfPtrCyQKO6TLMPELLsQMre7VDqeIKCsHkA==}
     engines: {node: '>=18'}
 
-  flat-cache@3.2.0:
-    resolution: {integrity: sha512-CYcENa+FtcUKLmhhqyctpclsq7QF38pKjZHsGNiSQF5r4FtoKDWabFDl3hzaEQMvT1LHEysw5twgLvpYYb4vbw==}
-    engines: {node: ^10.12.0 || >=12.0.0}
+  flat-cache@4.0.1:
+    resolution: {integrity: sha512-f7ccFPK3SXFHpx15UIGyRJ/FJQctuKZ0zVuN3frBo4HnK3cay9VEW0R6yPYFHC0AgqhukPzKjq22t5DmAyqGyw==}
+    engines: {node: '>=16'}
 
   flat@5.0.2:
     resolution: {integrity: sha512-b6suED+5/3rTpUBdG1gupIl8MPFCAMA0QXwmljLhvCUKcUvdE4gWky9zpuGCcXHOsz4J9wPGNWq6OKpmIzz3hQ==}
@@ -2422,9 +2429,9 @@ packages:
     resolution: {integrity: sha512-WOBp/EEGUiIsJSp7wcv/y6MO+lV9UoncWqxuFfm8eBwzWNgyfBd6Gz+IeKQ9jCmyhoH99g15M3T+QaVHFjizVA==}
     engines: {node: '>=4'}
 
-  globals@13.24.0:
-    resolution: {integrity: sha512-AhO5QUcj8llrbG09iWhPU2B204J1xnPeL8kQmVorSsy+Sjj1sk8gIyh6cUocGmH4L0UuhAJy+hJMRA4mgA4mFQ==}
-    engines: {node: '>=8'}
+  globals@14.0.0:
+    resolution: {integrity: sha512-oahGvuMGQlPw/ivIYBjVSrWAfWLBeku5tpPE2fOPLi+WHffIWbuh2tCjhyQhTBPMf5E9jDEH4FOmTYgYwbKwtQ==}
+    engines: {node: '>=18'}
 
   globalthis@1.0.4:
     resolution: {integrity: sha512-DpLKbNU4WylpxJykQujfCcwYWiV/Jhm50Goo0wrVILAv5jOr9d+H+UR3PhSCD2rCCEIg0uc+G+muBTwD54JhDQ==}
@@ -2454,9 +2461,6 @@ packages:
 
   graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
-
-  graphemer@1.4.0:
-    resolution: {integrity: sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==}
 
   handlebars@4.7.8:
     resolution: {integrity: sha512-vafaFqs8MZkRrSX7sFVUdo3ap/eNiLnb4IakshzvP56X5Nr1iGKAIqdX6tMlm6HcNRIkr6AxO5jFEoJzzpT8aQ==}
@@ -2981,8 +2985,8 @@ packages:
   joi@17.13.1:
     resolution: {integrity: sha512-vaBlIKCyo4FCUtCm7Eu4QZd/q02bWcxfUO6YSXAZOWF6gzcLBeba8kwotUdYJjDLW8Cz8RywsSOqiNJZW0mNvg==}
 
-  jose@5.3.0:
-    resolution: {integrity: sha512-IChe9AtAE79ru084ow8jzkN2lNrG3Ntfiv65Cvj9uOCE2m5LNsdHG+9EbxWxAoWRF9TgDOqLN5jm08++owDVRg==}
+  jose@5.4.0:
+    resolution: {integrity: sha512-6rpxTHPAQyWMb9A35BroFl1Sp0ST3DpPcm5EVIxZxdH+e0Hv9fwhyB3XLKFUcHNpdSDnETmBfuPPTTlYz5+USw==}
 
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
@@ -3078,8 +3082,8 @@ packages:
   liquidless-naughtystrings@1.0.0:
     resolution: {integrity: sha512-3NWiHCsfCxMa+OELlNGL13Ka2LqrasVcw20vITq0/vVN0fmbcRK1o4e6NNtyvJo6Ukk1y9pRmmPNx45s5KpLNw==}
 
-  liquidless@1.3.3:
-    resolution: {integrity: sha512-J/4SKtRA9narGTyrrcu6XHWjwy+JnLOst2KplvhENqQIdTV6GBQ/oeU0BJgesehSPlRxlRBteM1Jc8cyLRVwOQ==}
+  liquidless@1.3.4:
+    resolution: {integrity: sha512-VXLefnxZv7Ybbr+77RNvKxtGUKfLzp7HmGEDVX5PTQcfQB27JnzO/W5rNk7pILDnIZ6tSxWyfnAGxCfMBAz9aA==}
 
   live-directory@3.0.3:
     resolution: {integrity: sha512-d5jchsscPvkDqwv8lypjpxIIUz4w8fu+czfEkNEMGub4+EZ0SBj5Nclb4E2QmJNC5HJ4BwEdc5DHvoHZfIAK+w==}
@@ -3358,6 +3362,10 @@ packages:
 
   node-abi@3.62.0:
     resolution: {integrity: sha512-CPMcGa+y33xuL1E0TcNIu4YyaZCxnnvkVaEXrsosR3FxN+fV8xvb7Mzpb7IgKler10qeMkE6+Dp8qJhpzdq35g==}
+    engines: {node: '>=10'}
+
+  node-abi@3.65.0:
+    resolution: {integrity: sha512-ThjYBfoDNr08AWx6hGaRbfPwxKV9kVzAzOzlLKbk2CuqXE2xnCh+cbAGnwM3t8Lq4v9rUB7VfondlkBckcJrVA==}
     engines: {node: '>=10'}
 
   node-addon-api@7.1.0:
@@ -3827,8 +3835,8 @@ packages:
   proto-list@1.2.4:
     resolution: {integrity: sha512-vtK/94akxsTMhe0/cbfpR+syPuszcuwhqVjJq26CuNDgFGj682oRBXOP5MJpv2r7JtE8MsiepGIqvvOTBwn2vA==}
 
-  protobufjs@7.3.0:
-    resolution: {integrity: sha512-YWD03n3shzV9ImZRX3ccbjqLxj7NokGN0V/ESiBV5xWqrommYHYiihuIyavq03pWSGqlyvYUFmfoMKd+1rPA/g==}
+  protobufjs@7.3.2:
+    resolution: {integrity: sha512-RXyHaACeqXeqAKGLDl68rQKbmObRsTIn4TYVUUug1KfS47YWCo5MacGITEryugIgZqORCvJWEk4l449POg5Txg==}
     engines: {node: '>=12.0.0'}
 
   proxy-agent@6.4.0:
@@ -4217,8 +4225,8 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
-  stepci@2.8.1:
-    resolution: {integrity: sha512-1hhBloUndNg/0z37AU9ezyIOYI0zAde98DvoArcDlB3dZhV1LmFmg+MGf764GqNCc/XgSX2vibzCv3jimVxnXQ==}
+  stepci@2.8.2:
+    resolution: {integrity: sha512-Fsz/5r9YO3oWbfCJ901o7RxScY7DU7x+szp0/3njSDYvZoLlKBfusGSaJwaYP+0a5aFkktImY2EnFyUbn34U1g==}
     hasBin: true
 
   stop-iteration-iterator@1.0.0:
@@ -4447,8 +4455,8 @@ packages:
   tslib@2.6.3:
     resolution: {integrity: sha512-xNvxJEOUiWPGhUuUdQgAJPKOOJfGnIyKySOc09XkKsgdUV/3E2zvwZYdejjmRgPCgcym1juLH3226yA7sEFJKQ==}
 
-  tslog@4.9.2:
-    resolution: {integrity: sha512-wBM+LRJoNl34Bdu8mYEFxpvmOUedpNUwMNQB/NcuPIZKwdDde6xLHUev3bBjXQU7gdurX++X/YE7gLH8eXYsiQ==}
+  tslog@4.9.3:
+    resolution: {integrity: sha512-oDWuGVONxhVEBtschLf2cs/Jy8i7h1T+CpdkTNWQgdAF7DhRo2G8vMCgILKe7ojdEkLhICWgI1LYSSKaJsRgcw==}
     engines: {node: '>=16'}
 
   tunnel-agent@0.6.0:
@@ -4461,10 +4469,6 @@ packages:
   type-detect@4.0.8:
     resolution: {integrity: sha512-0fr/mIH1dlO+x7TlcMy+bIDqKPsw/70tVyeHW787goQjhmqaZe10uwLujubK9q9Lg6Fiho1KUKDYz0Z7k7g5/g==}
     engines: {node: '>=4'}
-
-  type-fest@0.20.2:
-    resolution: {integrity: sha512-Ne+eE4r0/iWnpAxD852z3A+N0Bt5RN//NjJwRd2VFHEmrywxf5vsZlh4R6lixl6B+wz/8d+maTSAkN1FIkI3LQ==}
-    engines: {node: '>=10'}
 
   type-fest@0.21.3:
     resolution: {integrity: sha512-t0rzBq87m3fVcduHDUFhKmyyX+9eo6WQjZvf51Ea/M0Q7+T374Jp1aUiyUl0GKxp8M/OETVHSDvmkyPgvX+X2w==}
@@ -4613,8 +4617,8 @@ packages:
   walker@1.0.8:
     resolution: {integrity: sha512-ts/8E8l5b7kY0vlWLewOkDXMmPdLcVV4GmOQLyxuSswIJsweeFZtAsMF7k1Nszz+TYBQrlYRmzOnr398y1JemQ==}
 
-  web3-core@4.4.0:
-    resolution: {integrity: sha512-sN1AkhTAFI89anOeCaO0c3GtiGeWtOGVc2tmTdQs2Rd14HuxLyDuLIF3/WwjtkDFRM2189uYy8HJJSWJvW2mYA==}
+  web3-core@4.5.0:
+    resolution: {integrity: sha512-Q8LIAqmF7vkRydBPiU+OC7wI44nEU6JEExolFaOakqrjMtQ1CWFHRUQMNJRDsk5bRirjyShuAsuqLeYByvvXhg==}
     engines: {node: '>=14', npm: '>=6.12.0'}
 
   web3-errors@1.2.0:
@@ -4669,8 +4673,8 @@ packages:
     resolution: {integrity: sha512-/CHmzGN+IYgdBOme7PdqzF+FNeMleefzqs0LVOduncSaqsppeOEoskLXb2anSpzmQAP3xZJPaTrkQPWSJMORig==}
     engines: {node: '>=14', npm: '>=6.12.0'}
 
-  web3-types@1.6.0:
-    resolution: {integrity: sha512-qgOtADqlD5hw+KPKBUGaXAcdNLL0oh6qTeVgXwewCfbL/lG9R+/GrgMQB1gbTJ3cit8hMwtH8KX2Em6OwO0HRw==}
+  web3-types@1.7.0:
+    resolution: {integrity: sha512-nhXxDJ7a5FesRw9UG5SZdP/C/3Q2EzHGnB39hkAV+YGXDMgwxBXFWebQLfEzZzuArfHnvC0sQqkIHNwSKcVjdA==}
     engines: {node: '>=14', npm: '>=6.12.0'}
 
   web3-utils@4.3.0:
@@ -5074,13 +5078,13 @@ snapshots:
 
   '@bcoe/v8-coverage@0.2.3': {}
 
-  '@capacitor/core@6.0.0':
+  '@capacitor/core@6.1.0':
     dependencies:
       tslib: 2.6.3
 
-  '@capacitor/preferences@6.0.0(@capacitor/core@6.0.0)':
+  '@capacitor/preferences@6.0.1(@capacitor/core@6.1.0)':
     dependencies:
-      '@capacitor/core': 6.0.0
+      '@capacitor/core': 6.1.0
 
   '@chevrotain/cst-dts-gen@10.5.0':
     dependencies:
@@ -5112,41 +5116,49 @@ snapshots:
       enabled: 2.0.0
       kuler: 2.0.0
 
-  '@dyne/slangroom-chain@1.6.0(@capacitor/core@6.0.0)(zenroom@4.32.2)':
+  '@dyne/slangroom-chain@1.6.0(@capacitor/core@6.1.0)(zenroom@4.32.2)':
     dependencies:
-      '@slangroom/core': 1.33.1(zenroom@4.32.2)
-      '@slangroom/fs': 1.33.1(zenroom@4.32.2)
-      '@slangroom/git': 1.33.1(zenroom@4.32.2)
-      '@slangroom/helpers': 1.33.1(zenroom@4.32.2)
-      '@slangroom/http': 1.33.1(zenroom@4.32.2)
-      '@slangroom/json-schema': 1.33.1(zenroom@4.32.2)
-      '@slangroom/oauth': 1.33.1(zenroom@4.32.2)
-      '@slangroom/pocketbase': 1.33.1(@capacitor/core@6.0.0)(zenroom@4.32.2)
-      '@slangroom/qrcode': 1.33.1(zenroom@4.32.2)
-      '@slangroom/redis': 1.33.1(zenroom@4.32.2)
-      '@slangroom/shell': 1.33.1(zenroom@4.32.2)
-      '@slangroom/timestamp': 1.33.1(zenroom@4.32.2)
-      '@slangroom/wallet': 1.33.1(zenroom@4.32.2)
-      '@slangroom/zencode': 1.33.1(zenroom@4.32.2)
+      '@slangroom/core': 1.33.2(zenroom@4.32.2)
+      '@slangroom/fs': 1.33.2(zenroom@4.32.2)
+      '@slangroom/git': 1.33.2(zenroom@4.32.2)
+      '@slangroom/helpers': 1.33.2(zenroom@4.32.2)
+      '@slangroom/http': 1.33.2(zenroom@4.32.2)
+      '@slangroom/json-schema': 1.33.2(zenroom@4.32.2)
+      '@slangroom/oauth': 1.33.2(zenroom@4.32.2)
+      '@slangroom/pocketbase': 1.33.2(@capacitor/core@6.1.0)(zenroom@4.32.2)
+      '@slangroom/qrcode': 1.33.2(zenroom@4.32.2)
+      '@slangroom/redis': 1.33.2(zenroom@4.32.2)
+      '@slangroom/shell': 1.33.2(zenroom@4.32.2)
+      '@slangroom/timestamp': 1.33.2(zenroom@4.32.2)
+      '@slangroom/wallet': 1.33.2(zenroom@4.32.2)
+      '@slangroom/zencode': 1.33.2(zenroom@4.32.2)
     transitivePeerDependencies:
       - '@capacitor/core'
       - debug
       - supports-color
       - zenroom
 
-  '@eslint-community/eslint-utils@4.4.0(eslint@8.57.0)':
+  '@eslint-community/eslint-utils@4.4.0(eslint@9.5.0)':
     dependencies:
-      eslint: 8.57.0
+      eslint: 9.5.0
       eslint-visitor-keys: 3.4.3
 
   '@eslint-community/regexpp@4.10.1': {}
 
-  '@eslint/eslintrc@2.1.4':
+  '@eslint/config-array@0.16.0':
+    dependencies:
+      '@eslint/object-schema': 2.1.4
+      debug: 4.3.5(supports-color@5.5.0)
+      minimatch: 3.1.2
+    transitivePeerDependencies:
+      - supports-color
+
+  '@eslint/eslintrc@3.1.0':
     dependencies:
       ajv: 6.12.6
       debug: 4.3.5(supports-color@5.5.0)
-      espree: 9.6.1
-      globals: 13.24.0
+      espree: 10.0.1
+      globals: 14.0.0
       ignore: 5.3.1
       import-fresh: 3.3.0
       js-yaml: 4.1.0
@@ -5155,7 +5167,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@eslint/js@8.57.0': {}
+  '@eslint/js@9.5.0': {}
+
+  '@eslint/object-schema@2.1.4': {}
 
   '@ethereumjs/rlp@4.0.1': {}
 
@@ -5174,7 +5188,7 @@ snapshots:
   '@gar/promisify@1.1.3':
     optional: true
 
-  '@grpc/grpc-js@1.10.8':
+  '@grpc/grpc-js@1.10.9':
     dependencies:
       '@grpc/proto-loader': 0.7.13
       '@js-sdsl/ordered-map': 4.4.2
@@ -5183,7 +5197,7 @@ snapshots:
     dependencies:
       lodash.camelcase: 4.3.0
       long: 5.2.3
-      protobufjs: 7.3.0
+      protobufjs: 7.3.2
       yargs: 17.7.2
 
   '@hapi/hoek@9.3.0': {}
@@ -5192,17 +5206,9 @@ snapshots:
     dependencies:
       '@hapi/hoek': 9.3.0
 
-  '@humanwhocodes/config-array@0.11.14':
-    dependencies:
-      '@humanwhocodes/object-schema': 2.0.3
-      debug: 4.3.5(supports-color@5.5.0)
-      minimatch: 3.1.2
-    transitivePeerDependencies:
-      - supports-color
-
   '@humanwhocodes/module-importer@1.0.1': {}
 
-  '@humanwhocodes/object-schema@2.0.3': {}
+  '@humanwhocodes/retry@0.3.0': {}
 
   '@istanbuljs/load-nyc-config@1.1.0':
     dependencies:
@@ -5217,27 +5223,27 @@ snapshots:
   '@jest/console@29.7.0':
     dependencies:
       '@jest/types': 29.6.3
-      '@types/node': 20.14.1
+      '@types/node': 20.14.2
       chalk: 4.1.2
       jest-message-util: 29.7.0
       jest-util: 29.7.0
       slash: 3.0.0
 
-  '@jest/core@29.7.0(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.1)(typescript@5.4.5))':
+  '@jest/core@29.7.0(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.2)(typescript@5.4.5))':
     dependencies:
       '@jest/console': 29.7.0
       '@jest/reporters': 29.7.0
       '@jest/test-result': 29.7.0
       '@jest/transform': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 20.14.1
+      '@types/node': 20.14.2
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       ci-info: 3.9.0
       exit: 0.1.2
       graceful-fs: 4.2.11
       jest-changed-files: 29.7.0
-      jest-config: 29.7.0(@types/node@20.14.1)(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.1)(typescript@5.4.5))
+      jest-config: 29.7.0(@types/node@20.14.2)(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.2)(typescript@5.4.5))
       jest-haste-map: 29.7.0
       jest-message-util: 29.7.0
       jest-regex-util: 29.6.3
@@ -5262,7 +5268,7 @@ snapshots:
     dependencies:
       '@jest/fake-timers': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 20.14.1
+      '@types/node': 20.14.2
       jest-mock: 29.7.0
 
   '@jest/expect-utils@29.7.0':
@@ -5280,7 +5286,7 @@ snapshots:
     dependencies:
       '@jest/types': 29.6.3
       '@sinonjs/fake-timers': 10.3.0
-      '@types/node': 20.14.1
+      '@types/node': 20.14.2
       jest-message-util: 29.7.0
       jest-mock: 29.7.0
       jest-util: 29.7.0
@@ -5302,7 +5308,7 @@ snapshots:
       '@jest/transform': 29.7.0
       '@jest/types': 29.6.3
       '@jridgewell/trace-mapping': 0.3.25
-      '@types/node': 20.14.1
+      '@types/node': 20.14.2
       chalk: 4.1.2
       collect-v8-coverage: 1.0.2
       exit: 0.1.2
@@ -5372,7 +5378,7 @@ snapshots:
       '@jest/schemas': 29.6.3
       '@types/istanbul-lib-coverage': 2.0.6
       '@types/istanbul-reports': 3.0.4
-      '@types/node': 20.14.1
+      '@types/node': 20.14.2
       '@types/yargs': 17.0.32
       chalk: 4.1.2
 
@@ -5408,11 +5414,11 @@ snapshots:
 
   '@meeco/sd-jwt@0.0.3': {}
 
-  '@noble/curves@1.3.0':
+  '@noble/curves@1.4.0':
     dependencies:
-      '@noble/hashes': 1.3.3
+      '@noble/hashes': 1.4.0
 
-  '@noble/hashes@1.3.3': {}
+  '@noble/hashes@1.4.0': {}
 
   '@node-oauth/formats@1.0.0': {}
 
@@ -5640,18 +5646,18 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.18.0':
     optional: true
 
-  '@scure/base@1.1.6': {}
+  '@scure/base@1.1.7': {}
 
-  '@scure/bip32@1.3.3':
+  '@scure/bip32@1.4.0':
     dependencies:
-      '@noble/curves': 1.3.0
-      '@noble/hashes': 1.3.3
-      '@scure/base': 1.1.6
+      '@noble/curves': 1.4.0
+      '@noble/hashes': 1.4.0
+      '@scure/base': 1.1.7
 
-  '@scure/bip39@1.2.2':
+  '@scure/bip39@1.3.0':
     dependencies:
-      '@noble/hashes': 1.3.3
-      '@scure/base': 1.1.6
+      '@noble/hashes': 1.4.0
+      '@scure/base': 1.1.7
 
   '@sec-ant/readable-stream@0.4.1': {}
 
@@ -5788,17 +5794,17 @@ snapshots:
     dependencies:
       '@sinonjs/commons': 3.0.1
 
-  '@slangroom/core@1.33.1(zenroom@4.32.2)':
+  '@slangroom/core@1.33.2(zenroom@4.32.2)':
     dependencies:
-      '@slangroom/deps': 1.33.1(zenroom@4.32.2)
-      '@slangroom/ignored': 1.33.1(zenroom@4.32.2)
-      '@slangroom/shared': 1.33.1(zenroom@4.32.2)
+      '@slangroom/deps': 1.33.2(zenroom@4.32.2)
+      '@slangroom/ignored': 1.33.2(zenroom@4.32.2)
+      '@slangroom/shared': 1.33.2(zenroom@4.32.2)
     transitivePeerDependencies:
       - zenroom
 
-  '@slangroom/db@1.33.1(pg-hstore@2.3.4)(zenroom@4.32.2)':
+  '@slangroom/db@1.33.2(pg-hstore@2.3.4)(zenroom@4.32.2)':
     dependencies:
-      '@slangroom/core': 1.33.1(zenroom@4.32.2)
+      '@slangroom/core': 1.33.2(zenroom@4.32.2)
       sequelize: 6.37.3(pg-hstore@2.3.4)(sqlite3@5.1.7)
       sqlite3: 5.1.7
     transitivePeerDependencies:
@@ -5814,15 +5820,15 @@ snapshots:
       - tedious
       - zenroom
 
-  '@slangroom/deps@1.33.1(zenroom@4.32.2)':
+  '@slangroom/deps@1.33.2(zenroom@4.32.2)':
     dependencies:
       chevrotain: 10.5.0
       zenroom: 4.32.2
 
-  '@slangroom/ethereum@1.33.1(encoding@0.1.13)(typescript@5.4.5)(zenroom@4.32.2)(zod@3.23.8)':
+  '@slangroom/ethereum@1.33.2(encoding@0.1.13)(typescript@5.4.5)(zenroom@4.32.2)(zod@3.23.8)':
     dependencies:
-      '@slangroom/core': 1.33.1(zenroom@4.32.2)
-      '@slangroom/shared': 1.33.1(zenroom@4.32.2)
+      '@slangroom/core': 1.33.2(zenroom@4.32.2)
+      '@slangroom/shared': 1.33.2(zenroom@4.32.2)
       axios: 1.7.2(debug@4.3.4)
       web3: 4.9.0(encoding@0.1.13)(typescript@5.4.5)(zod@3.23.8)
       web3-validator: 2.0.6
@@ -5835,10 +5841,10 @@ snapshots:
       - zenroom
       - zod
 
-  '@slangroom/fs@1.33.1(zenroom@4.32.2)':
+  '@slangroom/fs@1.33.2(zenroom@4.32.2)':
     dependencies:
-      '@slangroom/core': 1.33.1(zenroom@4.32.2)
-      '@slangroom/shared': 1.33.1(zenroom@4.32.2)
+      '@slangroom/core': 1.33.2(zenroom@4.32.2)
+      '@slangroom/shared': 1.33.2(zenroom@4.32.2)
       axios: 1.7.2(debug@4.3.4)
       extract-zip: 2.0.1
     transitivePeerDependencies:
@@ -5846,61 +5852,61 @@ snapshots:
       - supports-color
       - zenroom
 
-  '@slangroom/git@1.33.1(zenroom@4.32.2)':
+  '@slangroom/git@1.33.2(zenroom@4.32.2)':
     dependencies:
-      '@slangroom/core': 1.33.1(zenroom@4.32.2)
+      '@slangroom/core': 1.33.2(zenroom@4.32.2)
       isomorphic-git: 1.25.10
     transitivePeerDependencies:
       - zenroom
 
-  '@slangroom/helpers@1.33.1(zenroom@4.32.2)':
+  '@slangroom/helpers@1.33.2(zenroom@4.32.2)':
     dependencies:
-      '@slangroom/core': 1.33.1(zenroom@4.32.2)
-      '@slangroom/shared': 1.33.1(zenroom@4.32.2)
-      '@types/lodash': 4.17.4
+      '@slangroom/core': 1.33.2(zenroom@4.32.2)
+      '@slangroom/shared': 1.33.2(zenroom@4.32.2)
+      '@types/lodash': 4.17.5
       lodash: 4.17.21
     transitivePeerDependencies:
       - zenroom
 
-  '@slangroom/http@1.33.1(zenroom@4.32.2)':
+  '@slangroom/http@1.33.2(zenroom@4.32.2)':
     dependencies:
-      '@slangroom/core': 1.33.1(zenroom@4.32.2)
-      '@slangroom/shared': 1.33.1(zenroom@4.32.2)
+      '@slangroom/core': 1.33.2(zenroom@4.32.2)
+      '@slangroom/shared': 1.33.2(zenroom@4.32.2)
       axios: 1.7.2(debug@4.3.4)
     transitivePeerDependencies:
       - debug
       - zenroom
 
-  '@slangroom/ignored@1.33.1(zenroom@4.32.2)':
+  '@slangroom/ignored@1.33.2(zenroom@4.32.2)':
     dependencies:
-      '@slangroom/deps': 1.33.1(zenroom@4.32.2)
-      '@slangroom/shared': 1.33.1(zenroom@4.32.2)
+      '@slangroom/deps': 1.33.2(zenroom@4.32.2)
+      '@slangroom/shared': 1.33.2(zenroom@4.32.2)
     transitivePeerDependencies:
       - zenroom
 
-  '@slangroom/json-schema@1.33.1(zenroom@4.32.2)':
+  '@slangroom/json-schema@1.33.2(zenroom@4.32.2)':
     dependencies:
-      '@slangroom/core': 1.33.1(zenroom@4.32.2)
-      '@slangroom/shared': 1.33.1(zenroom@4.32.2)
+      '@slangroom/core': 1.33.2(zenroom@4.32.2)
+      '@slangroom/shared': 1.33.2(zenroom@4.32.2)
       ajv: 8.14.0
     transitivePeerDependencies:
       - zenroom
 
-  '@slangroom/oauth@1.33.1(zenroom@4.32.2)':
+  '@slangroom/oauth@1.33.2(zenroom@4.32.2)':
     dependencies:
       '@node-oauth/oauth2-server': 5.1.0
-      '@slangroom/core': 1.33.1(zenroom@4.32.2)
-      '@slangroom/shared': 1.33.1(zenroom@4.32.2)
+      '@slangroom/core': 1.33.2(zenroom@4.32.2)
+      '@slangroom/shared': 1.33.2(zenroom@4.32.2)
       bs58: 5.0.0
-      jose: 5.3.0
+      jose: 5.4.0
     transitivePeerDependencies:
       - zenroom
 
-  '@slangroom/pocketbase@1.33.1(@capacitor/core@6.0.0)(zenroom@4.32.2)':
+  '@slangroom/pocketbase@1.33.2(@capacitor/core@6.1.0)(zenroom@4.32.2)':
     dependencies:
-      '@capacitor/preferences': 6.0.0(@capacitor/core@6.0.0)
-      '@slangroom/core': 1.33.1(zenroom@4.32.2)
-      '@slangroom/shared': 1.33.1(zenroom@4.32.2)
+      '@capacitor/preferences': 6.0.1(@capacitor/core@6.1.0)
+      '@slangroom/core': 1.33.2(zenroom@4.32.2)
+      '@slangroom/shared': 1.33.2(zenroom@4.32.2)
       dotenv: 16.4.5
       pocketbase: 0.19.0
       zod: 3.23.8
@@ -5908,56 +5914,56 @@ snapshots:
       - '@capacitor/core'
       - zenroom
 
-  '@slangroom/qrcode@1.33.1(zenroom@4.32.2)':
+  '@slangroom/qrcode@1.33.2(zenroom@4.32.2)':
     dependencies:
-      '@slangroom/core': 1.33.1(zenroom@4.32.2)
+      '@slangroom/core': 1.33.2(zenroom@4.32.2)
       qrcode: 1.5.3
     transitivePeerDependencies:
       - zenroom
 
-  '@slangroom/redis@1.33.1(zenroom@4.32.2)':
+  '@slangroom/redis@1.33.2(zenroom@4.32.2)':
     dependencies:
       '@redis/client': 1.5.16
-      '@slangroom/core': 1.33.1(zenroom@4.32.2)
-      '@slangroom/shared': 1.33.1(zenroom@4.32.2)
+      '@slangroom/core': 1.33.2(zenroom@4.32.2)
+      '@slangroom/shared': 1.33.2(zenroom@4.32.2)
     transitivePeerDependencies:
       - zenroom
 
-  '@slangroom/shared@1.33.1(zenroom@4.32.2)':
+  '@slangroom/shared@1.33.2(zenroom@4.32.2)':
     dependencies:
-      '@slangroom/deps': 1.33.1(zenroom@4.32.2)
+      '@slangroom/deps': 1.33.2(zenroom@4.32.2)
     transitivePeerDependencies:
       - zenroom
 
-  '@slangroom/shell@1.33.1(zenroom@4.32.2)':
+  '@slangroom/shell@1.33.2(zenroom@4.32.2)':
     dependencies:
-      '@slangroom/core': 1.33.1(zenroom@4.32.2)
+      '@slangroom/core': 1.33.2(zenroom@4.32.2)
       execa: 8.0.1
     transitivePeerDependencies:
       - zenroom
 
-  '@slangroom/timestamp@1.33.1(zenroom@4.32.2)':
+  '@slangroom/timestamp@1.33.2(zenroom@4.32.2)':
     dependencies:
-      '@slangroom/core': 1.33.1(zenroom@4.32.2)
-      '@slangroom/shared': 1.33.1(zenroom@4.32.2)
+      '@slangroom/core': 1.33.2(zenroom@4.32.2)
+      '@slangroom/shared': 1.33.2(zenroom@4.32.2)
     transitivePeerDependencies:
       - zenroom
 
-  '@slangroom/wallet@1.33.1(zenroom@4.32.2)':
+  '@slangroom/wallet@1.33.2(zenroom@4.32.2)':
     dependencies:
       '@meeco/sd-jwt': 0.0.3
       '@meeco/sd-jwt-vc': 0.0.4
-      '@slangroom/core': 1.33.1(zenroom@4.32.2)
-      '@slangroom/shared': 1.33.1(zenroom@4.32.2)
+      '@slangroom/core': 1.33.2(zenroom@4.32.2)
+      '@slangroom/shared': 1.33.2(zenroom@4.32.2)
       bs58: 5.0.0
-      jose: 5.3.0
+      jose: 5.4.0
     transitivePeerDependencies:
       - zenroom
 
-  '@slangroom/zencode@1.33.1(zenroom@4.32.2)':
+  '@slangroom/zencode@1.33.2(zenroom@4.32.2)':
     dependencies:
-      '@slangroom/core': 1.33.1(zenroom@4.32.2)
-      '@slangroom/shared': 1.33.1(zenroom@4.32.2)
+      '@slangroom/core': 1.33.2(zenroom@4.32.2)
+      '@slangroom/shared': 1.33.2(zenroom@4.32.2)
     transitivePeerDependencies:
       - zenroom
 
@@ -5970,7 +5976,7 @@ snapshots:
     transitivePeerDependencies:
       - openapi-types
 
-  '@stepci/runner@2.0.3':
+  '@stepci/runner@2.0.5':
     dependencies:
       '@apidevtools/json-schema-ref-parser': 9.1.0
       '@fast-csv/parse': 4.3.6
@@ -5988,7 +5994,7 @@ snapshots:
       got: 11.8.6
       js-yaml: 4.1.0
       jsonpath-plus: 7.2.0
-      liquidless: 1.3.3
+      liquidless: 1.3.4
       liquidless-faker: 1.1.1
       liquidless-naughtystrings: 1.0.0
       p-limit: 3.1.0
@@ -6068,7 +6074,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@tgwf/co2@0.14.4': {}
+  '@tgwf/co2@0.15.0': {}
 
   '@tootallnate/once@1.1.2':
     optional: true
@@ -6108,7 +6114,7 @@ snapshots:
     dependencies:
       '@types/http-cache-semantics': 4.0.4
       '@types/keyv': 3.1.4
-      '@types/node': 20.14.1
+      '@types/node': 20.14.2
       '@types/responselike': 1.0.3
 
   '@types/debug@4.1.12':
@@ -6120,20 +6126,20 @@ snapshots:
   '@types/fs-extra@11.0.4':
     dependencies:
       '@types/jsonfile': 6.1.4
-      '@types/node': 20.14.1
+      '@types/node': 20.14.2
 
   '@types/fs-extra@8.1.5':
     dependencies:
-      '@types/node': 20.14.1
+      '@types/node': 20.14.2
 
   '@types/glob@7.2.0':
     dependencies:
       '@types/minimatch': 5.1.2
-      '@types/node': 20.14.1
+      '@types/node': 20.14.2
 
   '@types/graceful-fs@4.1.9':
     dependencies:
-      '@types/node': 20.14.1
+      '@types/node': 20.14.2
 
   '@types/http-cache-semantics@4.0.4': {}
 
@@ -6156,17 +6162,17 @@ snapshots:
 
   '@types/jsonfile@6.1.4':
     dependencies:
-      '@types/node': 20.14.1
+      '@types/node': 20.14.2
 
   '@types/keyv@3.1.4':
     dependencies:
-      '@types/node': 20.14.1
+      '@types/node': 20.14.2
 
   '@types/lodash.isequal@4.5.8':
     dependencies:
-      '@types/lodash': 4.17.4
+      '@types/lodash': 4.17.5
 
-  '@types/lodash@4.17.4': {}
+  '@types/lodash@4.17.5': {}
 
   '@types/minimatch@5.1.2': {}
 
@@ -6174,7 +6180,7 @@ snapshots:
 
   '@types/node@14.18.63': {}
 
-  '@types/node@20.14.1':
+  '@types/node@20.14.2':
     dependencies:
       undici-types: 5.26.5
 
@@ -6184,7 +6190,7 @@ snapshots:
 
   '@types/responselike@1.0.3':
     dependencies:
-      '@types/node': 20.14.1
+      '@types/node': 20.14.2
 
   '@types/semver@7.5.8': {}
 
@@ -6198,7 +6204,7 @@ snapshots:
 
   '@types/ws@8.5.3':
     dependencies:
-      '@types/node': 20.14.1
+      '@types/node': 20.14.2
 
   '@types/yargs-parser@21.0.3': {}
 
@@ -6208,17 +6214,17 @@ snapshots:
 
   '@types/yauzl@2.10.3':
     dependencies:
-      '@types/node': 20.14.1
+      '@types/node': 20.14.2
     optional: true
 
-  '@typescript-eslint/parser@7.12.0(eslint@8.57.0)(typescript@5.4.5)':
+  '@typescript-eslint/parser@7.12.0(eslint@9.5.0)(typescript@5.4.5)':
     dependencies:
       '@typescript-eslint/scope-manager': 7.12.0
       '@typescript-eslint/types': 7.12.0
       '@typescript-eslint/typescript-estree': 7.12.0(typescript@5.4.5)
       '@typescript-eslint/visitor-keys': 7.12.0
       debug: 4.3.5(supports-color@5.5.0)
-      eslint: 8.57.0
+      eslint: 9.5.0
     optionalDependencies:
       typescript: 5.4.5
     transitivePeerDependencies:
@@ -6251,8 +6257,6 @@ snapshots:
       '@typescript-eslint/types': 7.12.0
       eslint-visitor-keys: 3.4.3
 
-  '@ungap/structured-clone@1.2.0': {}
-
   '@xmldom/xmldom@0.8.10': {}
 
   abbrev@1.1.1:
@@ -6264,13 +6268,15 @@ snapshots:
     optionalDependencies:
       zod: 3.23.8
 
-  acorn-jsx@5.3.2(acorn@8.11.3):
+  acorn-jsx@5.3.2(acorn@8.12.0):
     dependencies:
-      acorn: 8.11.3
+      acorn: 8.12.0
 
   acorn-walk@8.3.2: {}
 
   acorn@8.11.3: {}
+
+  acorn@8.12.0: {}
 
   agent-base@6.0.2:
     dependencies:
@@ -6389,7 +6395,7 @@ snapshots:
 
   ast-types@0.13.4:
     dependencies:
-      tslib: 2.6.2
+      tslib: 2.6.3
 
   async-lock@1.4.1: {}
 
@@ -6811,7 +6817,7 @@ snapshots:
 
   cool-grpc@1.2.3:
     dependencies:
-      '@grpc/grpc-js': 1.10.8
+      '@grpc/grpc-js': 1.10.9
       '@grpc/proto-loader': 0.7.13
 
   core-util-is@1.0.3: {}
@@ -6827,13 +6833,13 @@ snapshots:
 
   crc-32@1.2.2: {}
 
-  create-jest@29.7.0(@types/node@20.14.1)(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.1)(typescript@5.4.5)):
+  create-jest@29.7.0(@types/node@20.14.2)(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.2)(typescript@5.4.5)):
     dependencies:
       '@jest/types': 29.6.3
       chalk: 4.1.2
       exit: 0.1.2
       graceful-fs: 4.2.11
-      jest-config: 29.7.0(@types/node@20.14.1)(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.1)(typescript@5.4.5))
+      jest-config: 29.7.0(@types/node@20.14.2)(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.2)(typescript@5.4.5))
       jest-util: 29.7.0
       prompts: 2.4.2
     transitivePeerDependencies:
@@ -6979,10 +6985,6 @@ snapshots:
   dir-glob@3.0.1:
     dependencies:
       path-type: 4.0.0
-
-  doctrine@3.0.0:
-    dependencies:
-      esutils: 2.0.3
 
   dom-serializer@2.0.0:
     dependencies:
@@ -7158,45 +7160,43 @@ snapshots:
     optionalDependencies:
       source-map: 0.6.1
 
-  eslint-scope@7.2.2:
+  eslint-scope@8.0.1:
     dependencies:
       esrecurse: 4.3.0
       estraverse: 5.3.0
 
   eslint-visitor-keys@3.4.3: {}
 
-  eslint@8.57.0:
+  eslint-visitor-keys@4.0.0: {}
+
+  eslint@9.5.0:
     dependencies:
-      '@eslint-community/eslint-utils': 4.4.0(eslint@8.57.0)
+      '@eslint-community/eslint-utils': 4.4.0(eslint@9.5.0)
       '@eslint-community/regexpp': 4.10.1
-      '@eslint/eslintrc': 2.1.4
-      '@eslint/js': 8.57.0
-      '@humanwhocodes/config-array': 0.11.14
+      '@eslint/config-array': 0.16.0
+      '@eslint/eslintrc': 3.1.0
+      '@eslint/js': 9.5.0
       '@humanwhocodes/module-importer': 1.0.1
+      '@humanwhocodes/retry': 0.3.0
       '@nodelib/fs.walk': 1.2.8
-      '@ungap/structured-clone': 1.2.0
       ajv: 6.12.6
       chalk: 4.1.2
       cross-spawn: 7.0.3
       debug: 4.3.5(supports-color@5.5.0)
-      doctrine: 3.0.0
       escape-string-regexp: 4.0.0
-      eslint-scope: 7.2.2
-      eslint-visitor-keys: 3.4.3
-      espree: 9.6.1
+      eslint-scope: 8.0.1
+      eslint-visitor-keys: 4.0.0
+      espree: 10.0.1
       esquery: 1.5.0
       esutils: 2.0.3
       fast-deep-equal: 3.1.3
-      file-entry-cache: 6.0.1
+      file-entry-cache: 8.0.0
       find-up: 5.0.0
       glob-parent: 6.0.2
-      globals: 13.24.0
-      graphemer: 1.4.0
       ignore: 5.3.1
       imurmurhash: 0.1.4
       is-glob: 4.0.3
       is-path-inside: 3.0.3
-      js-yaml: 4.1.0
       json-stable-stringify-without-jsonify: 1.0.1
       levn: 0.4.1
       lodash.merge: 4.6.2
@@ -7208,11 +7208,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  espree@9.6.1:
+  espree@10.0.1:
     dependencies:
-      acorn: 8.11.3
-      acorn-jsx: 5.3.2(acorn@8.11.3)
-      eslint-visitor-keys: 3.4.3
+      acorn: 8.12.0
+      acorn-jsx: 5.3.2(acorn@8.12.0)
+      eslint-visitor-keys: 4.0.0
 
   esprima@4.0.1: {}
 
@@ -7232,12 +7232,12 @@ snapshots:
 
   esutils@2.0.3: {}
 
-  ethereum-cryptography@2.1.3:
+  ethereum-cryptography@2.2.0:
     dependencies:
-      '@noble/curves': 1.3.0
-      '@noble/hashes': 1.3.3
-      '@scure/bip32': 1.3.3
-      '@scure/bip39': 1.2.2
+      '@noble/curves': 1.4.0
+      '@noble/hashes': 1.4.0
+      '@scure/bip32': 1.4.0
+      '@scure/bip39': 1.3.0
 
   event-stream@3.3.4:
     dependencies:
@@ -7350,9 +7350,9 @@ snapshots:
     dependencies:
       is-unicode-supported: 2.0.0
 
-  file-entry-cache@6.0.1:
+  file-entry-cache@8.0.0:
     dependencies:
-      flat-cache: 3.2.0
+      flat-cache: 4.0.1
 
   file-uri-to-path@1.0.0: {}
 
@@ -7387,11 +7387,10 @@ snapshots:
       semver-regex: 4.0.5
       super-regex: 1.0.0
 
-  flat-cache@3.2.0:
+  flat-cache@4.0.1:
     dependencies:
       flatted: 3.3.1
       keyv: 4.5.4
-      rimraf: 3.0.2
 
   flat@5.0.2: {}
 
@@ -7561,9 +7560,7 @@ snapshots:
 
   globals@11.12.0: {}
 
-  globals@13.24.0:
-    dependencies:
-      type-fest: 0.20.2
+  globals@14.0.0: {}
 
   globalthis@1.0.4:
     dependencies:
@@ -7620,8 +7617,6 @@ snapshots:
   graceful-fs@4.2.10: {}
 
   graceful-fs@4.2.11: {}
-
-  graphemer@1.4.0: {}
 
   handlebars@4.7.8:
     dependencies:
@@ -8018,7 +8013,7 @@ snapshots:
       '@jest/expect': 29.7.0
       '@jest/test-result': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 20.14.1
+      '@types/node': 20.14.2
       chalk: 4.1.2
       co: 4.6.0
       dedent: 1.5.3
@@ -8038,16 +8033,16 @@ snapshots:
       - babel-plugin-macros
       - supports-color
 
-  jest-cli@29.7.0(@types/node@20.14.1)(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.1)(typescript@5.4.5)):
+  jest-cli@29.7.0(@types/node@20.14.2)(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.2)(typescript@5.4.5)):
     dependencies:
-      '@jest/core': 29.7.0(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.1)(typescript@5.4.5))
+      '@jest/core': 29.7.0(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.2)(typescript@5.4.5))
       '@jest/test-result': 29.7.0
       '@jest/types': 29.6.3
       chalk: 4.1.2
-      create-jest: 29.7.0(@types/node@20.14.1)(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.1)(typescript@5.4.5))
+      create-jest: 29.7.0(@types/node@20.14.2)(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.2)(typescript@5.4.5))
       exit: 0.1.2
       import-local: 3.1.0
-      jest-config: 29.7.0(@types/node@20.14.1)(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.1)(typescript@5.4.5))
+      jest-config: 29.7.0(@types/node@20.14.2)(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.2)(typescript@5.4.5))
       jest-util: 29.7.0
       jest-validate: 29.7.0
       yargs: 17.7.2
@@ -8057,7 +8052,7 @@ snapshots:
       - supports-color
       - ts-node
 
-  jest-config@29.7.0(@types/node@20.14.1)(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.1)(typescript@5.4.5)):
+  jest-config@29.7.0(@types/node@20.14.2)(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.2)(typescript@5.4.5)):
     dependencies:
       '@babel/core': 7.24.6
       '@jest/test-sequencer': 29.7.0
@@ -8082,8 +8077,8 @@ snapshots:
       slash: 3.0.0
       strip-json-comments: 3.1.1
     optionalDependencies:
-      '@types/node': 20.14.1
-      ts-node: 10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.1)(typescript@5.4.5)
+      '@types/node': 20.14.2
+      ts-node: 10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.2)(typescript@5.4.5)
     transitivePeerDependencies:
       - babel-plugin-macros
       - supports-color
@@ -8112,7 +8107,7 @@ snapshots:
       '@jest/environment': 29.7.0
       '@jest/fake-timers': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 20.14.1
+      '@types/node': 20.14.2
       jest-mock: 29.7.0
       jest-util: 29.7.0
 
@@ -8122,7 +8117,7 @@ snapshots:
     dependencies:
       '@jest/types': 29.6.3
       '@types/graceful-fs': 4.1.9
-      '@types/node': 20.14.1
+      '@types/node': 20.14.2
       anymatch: 3.1.3
       fb-watchman: 2.0.2
       graceful-fs: 4.2.11
@@ -8161,7 +8156,7 @@ snapshots:
   jest-mock@29.7.0:
     dependencies:
       '@jest/types': 29.6.3
-      '@types/node': 20.14.1
+      '@types/node': 20.14.2
       jest-util: 29.7.0
 
   jest-pnp-resolver@1.2.3(jest-resolve@29.7.0):
@@ -8196,7 +8191,7 @@ snapshots:
       '@jest/test-result': 29.7.0
       '@jest/transform': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 20.14.1
+      '@types/node': 20.14.2
       chalk: 4.1.2
       emittery: 0.13.1
       graceful-fs: 4.2.11
@@ -8224,7 +8219,7 @@ snapshots:
       '@jest/test-result': 29.7.0
       '@jest/transform': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 20.14.1
+      '@types/node': 20.14.2
       chalk: 4.1.2
       cjs-module-lexer: 1.3.1
       collect-v8-coverage: 1.0.2
@@ -8270,7 +8265,7 @@ snapshots:
   jest-util@29.7.0:
     dependencies:
       '@jest/types': 29.6.3
-      '@types/node': 20.14.1
+      '@types/node': 20.14.2
       chalk: 4.1.2
       ci-info: 3.9.0
       graceful-fs: 4.2.11
@@ -8289,7 +8284,7 @@ snapshots:
     dependencies:
       '@jest/test-result': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 20.14.1
+      '@types/node': 20.14.2
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       emittery: 0.13.1
@@ -8298,17 +8293,17 @@ snapshots:
 
   jest-worker@29.7.0:
     dependencies:
-      '@types/node': 20.14.1
+      '@types/node': 20.14.2
       jest-util: 29.7.0
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
-  jest@29.7.0(@types/node@20.14.1)(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.1)(typescript@5.4.5)):
+  jest@29.7.0(@types/node@20.14.2)(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.2)(typescript@5.4.5)):
     dependencies:
-      '@jest/core': 29.7.0(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.1)(typescript@5.4.5))
+      '@jest/core': 29.7.0(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.2)(typescript@5.4.5))
       '@jest/types': 29.6.3
       import-local: 3.1.0
-      jest-cli: 29.7.0(@types/node@20.14.1)(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.1)(typescript@5.4.5))
+      jest-cli: 29.7.0(@types/node@20.14.2)(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.2)(typescript@5.4.5))
     transitivePeerDependencies:
       - '@types/node'
       - babel-plugin-macros
@@ -8323,7 +8318,7 @@ snapshots:
       '@sideway/formula': 3.0.1
       '@sideway/pinpoint': 2.0.0
 
-  jose@5.3.0: {}
+  jose@5.4.0: {}
 
   js-tokens@4.0.0: {}
 
@@ -8404,7 +8399,7 @@ snapshots:
 
   liquidless-naughtystrings@1.0.0: {}
 
-  liquidless@1.3.3:
+  liquidless@1.3.4:
     dependencies:
       flat: 5.0.2
       json5: 2.2.3
@@ -8675,6 +8670,10 @@ snapshots:
   netmask@2.0.2: {}
 
   node-abi@3.62.0:
+    dependencies:
+      semver: 7.6.2
+
+  node-abi@3.65.0:
     dependencies:
       semver: 7.6.2
 
@@ -9054,7 +9053,7 @@ snapshots:
       minimist: 1.2.8
       mkdirp-classic: 0.5.3
       napi-build-utils: 1.0.2
-      node-abi: 3.62.0
+      node-abi: 3.65.0
       pump: 3.0.0
       rc: 1.2.8
       simple-get: 4.0.1
@@ -9100,7 +9099,7 @@ snapshots:
 
   proto-list@1.2.4: {}
 
-  protobufjs@7.3.0:
+  protobufjs@7.3.2:
     dependencies:
       '@protobufjs/aspromise': 1.1.2
       '@protobufjs/base64': 1.1.2
@@ -9112,7 +9111,7 @@ snapshots:
       '@protobufjs/path': 1.1.2
       '@protobufjs/pool': 1.1.0
       '@protobufjs/utf8': 1.1.0
-      '@types/node': 20.14.1
+      '@types/node': 20.14.2
       long: 5.2.3
 
   proxy-agent@6.4.0:
@@ -9264,6 +9263,7 @@ snapshots:
   rimraf@3.0.2:
     dependencies:
       glob: 7.2.3
+    optional: true
 
   rollup-plugin-copy@3.5.0:
     dependencies:
@@ -9575,10 +9575,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  stepci@2.8.1(openapi-types@12.1.3):
+  stepci@2.8.2(openapi-types@12.1.3):
     dependencies:
       '@stepci/plugin-openapi': 0.3.9(openapi-types@12.1.3)
-      '@stepci/runner': 2.0.3
+      '@stepci/runner': 2.0.5
       chalk: 4.1.2
       ci-info: 3.9.0
       cli-highlight: 2.1.11
@@ -9788,11 +9788,11 @@ snapshots:
     dependencies:
       typescript: 5.4.5
 
-  ts-jest@29.1.4(@babel/core@7.24.6)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.6))(jest@29.7.0(@types/node@20.14.1)(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.1)(typescript@5.4.5)))(typescript@5.4.5):
+  ts-jest@29.1.4(@babel/core@7.24.6)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.6))(jest@29.7.0(@types/node@20.14.2)(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.2)(typescript@5.4.5)))(typescript@5.4.5):
     dependencies:
       bs-logger: 0.2.6
       fast-json-stable-stringify: 2.1.0
-      jest: 29.7.0(@types/node@20.14.1)(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.1)(typescript@5.4.5))
+      jest: 29.7.0(@types/node@20.14.2)(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.2)(typescript@5.4.5))
       jest-util: 29.7.0
       json5: 2.2.3
       lodash.memoize: 4.1.2
@@ -9806,14 +9806,14 @@ snapshots:
       '@jest/types': 29.6.3
       babel-jest: 29.7.0(@babel/core@7.24.6)
 
-  ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.1)(typescript@5.4.5):
+  ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.2)(typescript@5.4.5):
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       '@tsconfig/node10': 1.0.11
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
-      '@types/node': 20.14.1
+      '@types/node': 20.14.2
       acorn: 8.11.3
       acorn-walk: 8.3.2
       arg: 4.1.3
@@ -9830,7 +9830,7 @@ snapshots:
 
   tslib@2.6.3: {}
 
-  tslog@4.9.2: {}
+  tslog@4.9.3: {}
 
   tunnel-agent@0.6.0:
     dependencies:
@@ -9841,8 +9841,6 @@ snapshots:
       prelude-ls: 1.2.1
 
   type-detect@4.0.8: {}
-
-  type-fest@0.20.2: {}
 
   type-fest@0.21.3: {}
 
@@ -10002,14 +10000,14 @@ snapshots:
     dependencies:
       makeerror: 1.0.12
 
-  web3-core@4.4.0(encoding@0.1.13):
+  web3-core@4.5.0(encoding@0.1.13):
     dependencies:
       web3-errors: 1.2.0
       web3-eth-accounts: 4.1.2
       web3-eth-iban: 4.0.7
       web3-providers-http: 4.1.0(encoding@0.1.13)
       web3-providers-ws: 4.0.7
-      web3-types: 1.6.0
+      web3-types: 1.7.0
       web3-utils: 4.3.0
       web3-validator: 2.0.6
     optionalDependencies:
@@ -10021,13 +10019,13 @@ snapshots:
 
   web3-errors@1.2.0:
     dependencies:
-      web3-types: 1.6.0
+      web3-types: 1.7.0
 
   web3-eth-abi@4.2.2(typescript@5.4.5)(zod@3.23.8):
     dependencies:
       abitype: 0.7.1(typescript@5.4.5)(zod@3.23.8)
       web3-errors: 1.2.0
-      web3-types: 1.6.0
+      web3-types: 1.7.0
       web3-utils: 4.3.0
       web3-validator: 2.0.6
     transitivePeerDependencies:
@@ -10038,19 +10036,19 @@ snapshots:
     dependencies:
       '@ethereumjs/rlp': 4.0.1
       crc-32: 1.2.2
-      ethereum-cryptography: 2.1.3
+      ethereum-cryptography: 2.2.0
       web3-errors: 1.2.0
-      web3-types: 1.6.0
+      web3-types: 1.7.0
       web3-utils: 4.3.0
       web3-validator: 2.0.6
 
   web3-eth-contract@4.5.0(encoding@0.1.13)(typescript@5.4.5)(zod@3.23.8):
     dependencies:
-      web3-core: 4.4.0(encoding@0.1.13)
+      web3-core: 4.5.0(encoding@0.1.13)
       web3-errors: 1.2.0
       web3-eth: 4.7.0(encoding@0.1.13)(typescript@5.4.5)(zod@3.23.8)
       web3-eth-abi: 4.2.2(typescript@5.4.5)(zod@3.23.8)
-      web3-types: 1.6.0
+      web3-types: 1.7.0
       web3-utils: 4.3.0
       web3-validator: 2.0.6
     transitivePeerDependencies:
@@ -10063,12 +10061,12 @@ snapshots:
   web3-eth-ens@4.3.0(encoding@0.1.13)(typescript@5.4.5)(zod@3.23.8):
     dependencies:
       '@adraffy/ens-normalize': 1.10.1
-      web3-core: 4.4.0(encoding@0.1.13)
+      web3-core: 4.5.0(encoding@0.1.13)
       web3-errors: 1.2.0
       web3-eth: 4.7.0(encoding@0.1.13)(typescript@5.4.5)(zod@3.23.8)
       web3-eth-contract: 4.5.0(encoding@0.1.13)(typescript@5.4.5)(zod@3.23.8)
       web3-net: 4.1.0(encoding@0.1.13)
-      web3-types: 1.6.0
+      web3-types: 1.7.0
       web3-utils: 4.3.0
       web3-validator: 2.0.6
     transitivePeerDependencies:
@@ -10081,16 +10079,16 @@ snapshots:
   web3-eth-iban@4.0.7:
     dependencies:
       web3-errors: 1.2.0
-      web3-types: 1.6.0
+      web3-types: 1.7.0
       web3-utils: 4.3.0
       web3-validator: 2.0.6
 
   web3-eth-personal@4.0.8(encoding@0.1.13)(typescript@5.4.5)(zod@3.23.8):
     dependencies:
-      web3-core: 4.4.0(encoding@0.1.13)
+      web3-core: 4.5.0(encoding@0.1.13)
       web3-eth: 4.7.0(encoding@0.1.13)(typescript@5.4.5)(zod@3.23.8)
       web3-rpc-methods: 1.3.0(encoding@0.1.13)
-      web3-types: 1.6.0
+      web3-types: 1.7.0
       web3-utils: 4.3.0
       web3-validator: 2.0.6
     transitivePeerDependencies:
@@ -10103,14 +10101,14 @@ snapshots:
   web3-eth@4.7.0(encoding@0.1.13)(typescript@5.4.5)(zod@3.23.8):
     dependencies:
       setimmediate: 1.0.5
-      web3-core: 4.4.0(encoding@0.1.13)
+      web3-core: 4.5.0(encoding@0.1.13)
       web3-errors: 1.2.0
       web3-eth-abi: 4.2.2(typescript@5.4.5)(zod@3.23.8)
       web3-eth-accounts: 4.1.2
       web3-net: 4.1.0(encoding@0.1.13)
       web3-providers-ws: 4.0.7
       web3-rpc-methods: 1.3.0(encoding@0.1.13)
-      web3-types: 1.6.0
+      web3-types: 1.7.0
       web3-utils: 4.3.0
       web3-validator: 2.0.6
     transitivePeerDependencies:
@@ -10122,9 +10120,9 @@ snapshots:
 
   web3-net@4.1.0(encoding@0.1.13):
     dependencies:
-      web3-core: 4.4.0(encoding@0.1.13)
+      web3-core: 4.5.0(encoding@0.1.13)
       web3-rpc-methods: 1.3.0(encoding@0.1.13)
-      web3-types: 1.6.0
+      web3-types: 1.7.0
       web3-utils: 4.3.0
     transitivePeerDependencies:
       - bufferutil
@@ -10135,7 +10133,7 @@ snapshots:
     dependencies:
       cross-fetch: 4.0.0(encoding@0.1.13)
       web3-errors: 1.2.0
-      web3-types: 1.6.0
+      web3-types: 1.7.0
       web3-utils: 4.3.0
     transitivePeerDependencies:
       - encoding
@@ -10143,7 +10141,7 @@ snapshots:
   web3-providers-ipc@4.0.7:
     dependencies:
       web3-errors: 1.2.0
-      web3-types: 1.6.0
+      web3-types: 1.7.0
       web3-utils: 4.3.0
     optional: true
 
@@ -10152,7 +10150,7 @@ snapshots:
       '@types/ws': 8.5.3
       isomorphic-ws: 5.0.0(ws@8.17.0)
       web3-errors: 1.2.0
-      web3-types: 1.6.0
+      web3-types: 1.7.0
       web3-utils: 4.3.0
       ws: 8.17.0
     transitivePeerDependencies:
@@ -10161,35 +10159,35 @@ snapshots:
 
   web3-rpc-methods@1.3.0(encoding@0.1.13):
     dependencies:
-      web3-core: 4.4.0(encoding@0.1.13)
-      web3-types: 1.6.0
+      web3-core: 4.5.0(encoding@0.1.13)
+      web3-types: 1.7.0
       web3-validator: 2.0.6
     transitivePeerDependencies:
       - bufferutil
       - encoding
       - utf-8-validate
 
-  web3-types@1.6.0: {}
+  web3-types@1.7.0: {}
 
   web3-utils@4.3.0:
     dependencies:
-      ethereum-cryptography: 2.1.3
+      ethereum-cryptography: 2.2.0
       eventemitter3: 5.0.1
       web3-errors: 1.2.0
-      web3-types: 1.6.0
+      web3-types: 1.7.0
       web3-validator: 2.0.6
 
   web3-validator@2.0.6:
     dependencies:
-      ethereum-cryptography: 2.1.3
+      ethereum-cryptography: 2.2.0
       util: 0.12.5
       web3-errors: 1.2.0
-      web3-types: 1.6.0
+      web3-types: 1.7.0
       zod: 3.23.8
 
   web3@4.9.0(encoding@0.1.13)(typescript@5.4.5)(zod@3.23.8):
     dependencies:
-      web3-core: 4.4.0(encoding@0.1.13)
+      web3-core: 4.5.0(encoding@0.1.13)
       web3-errors: 1.2.0
       web3-eth: 4.7.0(encoding@0.1.13)(typescript@5.4.5)(zod@3.23.8)
       web3-eth-abi: 4.2.2(typescript@5.4.5)(zod@3.23.8)
@@ -10202,7 +10200,7 @@ snapshots:
       web3-providers-http: 4.1.0(encoding@0.1.13)
       web3-providers-ws: 4.0.7
       web3-rpc-methods: 1.3.0(encoding@0.1.13)
-      web3-types: 1.6.0
+      web3-types: 1.7.0
       web3-utils: 4.3.0
       web3-validator: 2.0.6
     transitivePeerDependencies:
@@ -10275,7 +10273,7 @@ snapshots:
 
   wkx@0.5.0:
     dependencies:
-      '@types/node': 20.14.1
+      '@types/node': 20.14.2
 
   word-wrap@1.2.5: {}
 
