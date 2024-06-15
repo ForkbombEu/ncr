@@ -63,13 +63,9 @@ export class Directory {
 					metadata: newMetadata(this.getJSON(path, 'metadata') || {})
 				});
 			} else if (ext == 'chain' && json == 'js') {
-				function getChain(s) {
-					const fn = eval(s);
-					return fn();
-				}
 				result.push({
 					path: path,
-					chain: getChain(this.getContent(f)),
+					chain: this.getContent(f),
 					schema: this.getJSONSchema(path),
 					metadata: newMetadata(this.getJSON(path, 'metadata') || {})
 				});
