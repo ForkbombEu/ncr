@@ -50,7 +50,7 @@
 		"@slangroom/oauth": "^1.33.2",
 		"@slangroom/pocketbase": "^1.33.2",
 		"@slangroom/timestamp": "^1.33.2",
-		"@slangroom/wallet": "^1.33.2",
+		"@slangroom/wallet": "^1.33.3",
 		"@slangroom/zencode": "^1.33.2",
 		"@tgwf/co2": "^0.15.0",
 		"@typescript-eslint/parser": "^7.1.1",
