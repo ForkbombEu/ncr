@@ -464,7 +464,7 @@ const generateRoutes = (app: TemplatedApp) => {
 				schema: JSON.stringify(schema),
 				title: path || 'Welcome 🥳 to ',
 				description: contract,
-				endpoint: `http://${config.hostname}:${config.port}${path}`
+				endpoint: `//${config.hostname}:${config.port}${path}`
 			});
 
 			res.writeStatus('200 OK').writeHeader('Content-Type', 'text/html').end(result);
