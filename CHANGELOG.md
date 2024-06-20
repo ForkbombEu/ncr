@@ -1,3 +1,10 @@
+## [1.35.2](https://github.com/forkbombeu/ncr/compare/v1.35.1...v1.35.2) (2024-06-20)
+
+
+### Bug Fixes
+
+* applets internal endpoint protocol is autodetected ([#220](https://github.com/forkbombeu/ncr/issues/220)) ([f45c90b](https://github.com/forkbombeu/ncr/commit/f45c90b4d3408ef73ccdefe1e617668c3cba760a))
+
 ## [1.35.1](https://github.com/forkbombeu/ncr/compare/v1.35.0...v1.35.1) (2024-06-15)
 
 
