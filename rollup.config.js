@@ -19,7 +19,10 @@ export default {
 	plugins: [
 		json(),
 		typescript(),
-		nodeResolve({ preferBuiltins: true }),
+		nodeResolve({
+			preferBuiltins: true,
+			exportConditions: ['node']
+		}),
 		commonjs({ ignoreDynamicRequires: true }),
 		copy({
 			targets: [
