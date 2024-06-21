@@ -1,3 +1,10 @@
+## [1.35.3](https://github.com/forkbombeu/ncr/compare/v1.35.2...v1.35.3) (2024-06-21)
+
+
+### Bug Fixes
+
+* add packages to support all databases in @slangroom/db plugin ([#227](https://github.com/forkbombeu/ncr/issues/227)) ([700cfe6](https://github.com/forkbombeu/ncr/commit/700cfe66aaffb0cafcd632b9cf4a75e2b8f6d0f8))
+
 ## [1.35.2](https://github.com/forkbombeu/ncr/compare/v1.35.1...v1.35.2) (2024-06-20)
 
 
