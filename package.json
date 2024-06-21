@@ -63,6 +63,7 @@
 		"live-directory": "^3.0.3",
 		"lodash": "^4.17.21",
 		"mime": "^4.0.1",
+		"mysql2": "^3.10.1",
 		"prom-client": "^15.0.0",
 		"uWebSockets.js": "https://github.com/uNetworking/uWebSockets.js#semver:^20",
 		"zenroom": "^4.32.0"
