@@ -44,7 +44,7 @@
 		"@slangroom/db": "^1.33.2",
 		"@slangroom/ethereum": "^1.33.2",
 		"@slangroom/fs": "^1.33.2",
-		"@slangroom/git": "^1.33.2",
+		"@slangroom/git": "^1.33.12",
 		"@slangroom/helpers": "^1.33.2",
 		"@slangroom/http": "^1.33.2",
 		"@slangroom/json-schema": "^1.33.2",
