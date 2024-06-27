@@ -1,3 +1,10 @@
+## [1.35.4](https://github.com/forkbombeu/ncr/compare/v1.35.3...v1.35.4) (2024-06-27)
+
+
+### Bug Fixes
+
+* bump @slangroom/* deps ([#249](https://github.com/forkbombeu/ncr/issues/249)) ([f5439b6](https://github.com/forkbombeu/ncr/commit/f5439b6ffd9b5bd428bc7436628c7bf11c0d4715))
+
 ## [1.35.3](https://github.com/forkbombeu/ncr/compare/v1.35.2...v1.35.3) (2024-06-21)
 
 
