@@ -105,7 +105,7 @@ tests:
           method: GET
           check:
             status: 500
-            sha256: d8221248b57790dd65dfc7beac9de0cca6cb0ed1e39b63cec6a5cd6c4738ad49
+            sha256: 1e5d47d8a894953bee103dba348ac67b64a633a35a94d3ceec7bf931bf580410
 
       - name: POST /broken no body
         http:
@@ -116,7 +116,7 @@ tests:
           json: {}
           check:
             status: 500
-            sha256: d8221248b57790dd65dfc7beac9de0cca6cb0ed1e39b63cec6a5cd6c4738ad49
+            sha256: 1e5d47d8a894953bee103dba348ac67b64a633a35a94d3ceec7bf931bf580410
 
       - name: POST /broken no body
         http:
