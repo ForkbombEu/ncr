@@ -50,7 +50,7 @@
 		"@slangroom/json-schema": "^1.33.13",
 		"@slangroom/oauth": "^1.33.13",
 		"@slangroom/pocketbase": "^1.33.13",
-		"@slangroom/timestamp": "^1.33.13",
+		"@slangroom/timestamp": "^1.33.14",
 		"@slangroom/wallet": "^1.33.13",
 		"@slangroom/zencode": "^1.33.13",
 		"@tgwf/co2": "^0.15.0",
