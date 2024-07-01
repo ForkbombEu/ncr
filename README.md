@@ -78,7 +78,9 @@ that will serve the zencode contract under the folder `./tests/fixtures` and the
 
 ## 🐋 Docker
 
-Coming soon.
+```
+docker pull ghcr.io/forkbombeu/ncr:latest
+```
 
 **[🔝 back to top](#toc)**
 
