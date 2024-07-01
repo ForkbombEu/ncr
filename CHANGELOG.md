@@ -1,3 +1,10 @@
+## [1.35.5](https://github.com/forkbombeu/ncr/compare/v1.35.4...v1.35.5) (2024-07-01)
+
+
+### Bug Fixes
+
+* update the deps to include the oauth changes ([483a09f](https://github.com/forkbombeu/ncr/commit/483a09f3d16d5700d7adc02188fae08907b5682a))
+
 ## [1.35.4](https://github.com/forkbombeu/ncr/compare/v1.35.3...v1.35.4) (2024-06-27)
 
 
