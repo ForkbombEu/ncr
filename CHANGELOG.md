@@ -1,3 +1,10 @@
+## [1.35.6](https://github.com/forkbombeu/ncr/compare/v1.35.5...v1.35.6) (2024-07-01)
+
+
+### Bug Fixes
+
+* docker description in README ([#257](https://github.com/forkbombeu/ncr/issues/257)) ([3231bb1](https://github.com/forkbombeu/ncr/commit/3231bb124abd74eb11724ca5d256e25aa0053cfb))
+
 ## [1.35.5](https://github.com/forkbombeu/ncr/compare/v1.35.4...v1.35.5) (2024-07-01)
 
 
