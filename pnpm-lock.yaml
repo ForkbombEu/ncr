@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@dyne/slangroom-chain':
-        specifier: ^1.6.3
-        version: 1.6.3(@capacitor/core@6.1.0)(zenroom@4.32.4)
+        specifier: ^1.6.4
+        version: 1.6.4(@capacitor/core@6.1.0)(mariadb@3.3.1)(mysql2@3.10.1)(oracledb@6.5.1)(pg-hstore@2.3.4)(pg@8.12.0)(snowflake-sdk@1.11.0(asn1.js@5.4.1)(encoding@0.1.13))(tedious@18.2.0)(zenroom@4.32.4)
       '@slangroom/core':
         specifier: ^1.33.14
         version: 1.33.14(zenroom@4.32.4)
@@ -722,8 +722,8 @@ packages:
   '@dabh/diagnostics@2.0.3':
     resolution: {integrity: sha512-hrlQOIi7hAfzsMqlGSFyVucrx38O+j6wiGOf//H2ecvIEqYN4ADBSS2iLMh5UFyDunCNniUIPk/q3riFv45xRA==}
 
-  '@dyne/slangroom-chain@1.6.3':
-    resolution: {integrity: sha512-KbFKHxwuoGGJxvnhQtuqrCC1KyvaZKgYV32zqMYRhkRwiV20aFru/W8KOnZtbeXTH29sV4skVDCV1Fl9ncUggw==}
+  '@dyne/slangroom-chain@1.6.4':
+    resolution: {integrity: sha512-tfxpa70c9h6IwrXPYmzJybgkMjZn/FmfRp93zayJQHyrmxIIBV+wQlvRjiGLMvpZXhSGPGYjq59DABX5x9PJ8w==}
     engines: {node: '>=18'}
 
   '@eslint-community/eslint-utils@4.4.0':
@@ -6682,9 +6682,10 @@ snapshots:
       enabled: 2.0.0
       kuler: 2.0.0
 
-  '@dyne/slangroom-chain@1.6.3(@capacitor/core@6.1.0)(zenroom@4.32.4)':
+  '@dyne/slangroom-chain@1.6.4(@capacitor/core@6.1.0)(mariadb@3.3.1)(mysql2@3.10.1)(oracledb@6.5.1)(pg-hstore@2.3.4)(pg@8.12.0)(snowflake-sdk@1.11.0(asn1.js@5.4.1)(encoding@0.1.13))(tedious@18.2.0)(zenroom@4.32.4)':
     dependencies:
       '@slangroom/core': 1.33.14(zenroom@4.32.4)
+      '@slangroom/db': 1.33.14(mariadb@3.3.1)(mysql2@3.10.1)(oracledb@6.5.1)(pg-hstore@2.3.4)(pg@8.12.0)(snowflake-sdk@1.11.0(asn1.js@5.4.1)(encoding@0.1.13))(tedious@18.2.0)(zenroom@4.32.4)
       '@slangroom/fs': 1.33.14(zenroom@4.32.4)
       '@slangroom/git': 1.33.14(zenroom@4.32.4)
       '@slangroom/helpers': 1.33.14(zenroom@4.32.4)
@@ -6700,8 +6701,17 @@ snapshots:
       '@slangroom/zencode': 1.33.14(zenroom@4.32.4)
     transitivePeerDependencies:
       - '@capacitor/core'
+      - bluebird
       - debug
+      - ibm_db
+      - mariadb
+      - mysql2
+      - oracledb
+      - pg
+      - pg-hstore
+      - snowflake-sdk
       - supports-color
+      - tedious
       - zenroom
 
   '@eslint-community/eslint-utils@4.4.0(eslint@9.6.0)':
