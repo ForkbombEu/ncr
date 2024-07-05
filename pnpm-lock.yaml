@@ -39,8 +39,8 @@ importers:
         specifier: ^1.33.14
         version: 1.33.14(zenroom@4.32.4)
       '@slangroom/pocketbase':
-        specifier: ^1.33.14
-        version: 1.33.14(@capacitor/core@6.1.0)(zenroom@4.32.4)
+        specifier: ^1.33.15
+        version: 1.33.15(@capacitor/core@6.1.0)(zenroom@4.32.4)
       '@slangroom/timestamp':
         specifier: ^1.33.14
         version: 1.33.14(zenroom@4.32.4)
@@ -109,7 +109,7 @@ importers:
         version: 18.2.0
       uWebSockets.js:
         specifier: https://github.com/uNetworking/uWebSockets.js#semver:^20
-        version: https://codeload.github.com/uNetworking/uWebSockets.js/tar.gz/1977b5039938ad863d42fc4958d48c17e5a1fa06
+        version: git+https://git@github.com:uNetworking/uWebSockets.js.git#8fa05571bf6ea95be8966ad313d9d39453e381ae
       zenroom:
         specifier: ^4.32.4
         version: 4.32.4
@@ -1286,12 +1286,22 @@ packages:
     resolution: {integrity: sha512-nHu1zP0mPPuwuZf3eGVYqzxDtUBVS/IXj8decGgVaK6hYEHMX8rIrU6AQeT+U6DjboAe4Seip+PUa6s87DRqgw==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
+  '@slangroom/core@1.33.15':
+    resolution: {integrity: sha512-Y+UdH+jruOfssFnEmB0W72DaP7Yhq4HaMoY9yiXjBOrjN/sCcAf6M3mx8UQiUmcCeazG4R6VX0q++sLa1P4nAQ==}
+    engines: {node: ^18.20.0 || ^20.10.0 || ^22}
+
   '@slangroom/db@1.33.14':
     resolution: {integrity: sha512-GdFgDnybjKmRrY5j3pA5NVmG6VVqqJU03BfwTFiePQG8XqoeDPciOmNNxGLNdhnh6RXIrIEkFa1OsSL6CoJyzw==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
   '@slangroom/deps@1.33.14':
     resolution: {integrity: sha512-a7O3crOafdl6lpRbuIOb2S7TZkyp7dEluzXuxwDVOofi7pS9Yh8kCv43Q34cuyJXotP4lomNsdAcnZE1QbeXzQ==}
+    engines: {node: ^18.20.0 || ^20.10.0 || ^22}
+    peerDependencies:
+      zenroom: ^4.31.2
+
+  '@slangroom/deps@1.33.15':
+    resolution: {integrity: sha512-fiprrv5/AEhAXHf1XiX92NtsZ4lm4mHcPamzMC1jmX9OjiaHlITVkOoy8asIOmL28JKrjvDNdwmxkT4/IZLFZg==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
     peerDependencies:
       zenroom: ^4.31.2
@@ -1320,6 +1330,10 @@ packages:
     resolution: {integrity: sha512-ZeePPaoM8alOXqr9WpaugrZ8otCLWhAP1xIbE0Ae1yLXn5fMDq/6x/zlUdM6B/sctXAxMWpnbcHmsYSLBf21Cw==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
+  '@slangroom/ignored@1.33.15':
+    resolution: {integrity: sha512-ajgC2jpHmclsiZi9+kLg9Ycp0ZaobQ9huEGt4rG7FII3UPYq1fLQf2xu9FDjFctk6Z8+oF06ZT9yteJgjCgwBw==}
+    engines: {node: ^18.20.0 || ^20.10.0 || ^22}
+
   '@slangroom/json-schema@1.33.14':
     resolution: {integrity: sha512-t7mhMu4vye7oJBIIMK7UvLHVaP/2ouWfHnyUkN3E/oLANa7AIU8E5Aydg8QAo8onCTQiMkOyw7SJoNXZZ1A37w==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
@@ -1328,8 +1342,8 @@ packages:
     resolution: {integrity: sha512-JILbojdWkIw3dtulocbuD2ckggYaKv+8kjGCiHWNulUcXCkS1J7R5MGCtJm7LKbTE8e3OBIU7GoqY+fpBvjAsg==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
-  '@slangroom/pocketbase@1.33.14':
-    resolution: {integrity: sha512-q/PqI1GR/bePJZ9hReDpdxWS3cb9L4SVKM6uz6Sg/1V3VTRyvDDmCElxFlR4jJKYDMzkbC6ir3H7HOv7JGVueg==}
+  '@slangroom/pocketbase@1.33.15':
+    resolution: {integrity: sha512-ZTIiu74321z06V+D1GvOTbQFIp1JYPrcByrYbtFIkMZRmsp9c0Bxf2Loqs79REdZhMNOe7vWFIk+HC5CwAG5DQ==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
   '@slangroom/qrcode@1.33.14':
@@ -1342,6 +1356,10 @@ packages:
 
   '@slangroom/shared@1.33.14':
     resolution: {integrity: sha512-nMr0vrfamKExFY6JDZ5k9+oUDRxrPfoK8JUGw1Gbx/FAbWHLmr+f+q5vtd/E/49hKg00Ki3E5TesSaXIXQB+Tg==}
+    engines: {node: ^18.20.0 || ^20.10.0 || ^22}
+
+  '@slangroom/shared@1.33.15':
+    resolution: {integrity: sha512-Q+jx+wHG1U7s4iJFbm0pM22rXDo9fOm35A4WKubi1IZlUrIZRYlU4w8NjsuxI5bGSWpCk6OhHmqEwK22RNs8xA==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
   '@slangroom/shell@1.33.14':
@@ -5428,9 +5446,9 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
-  uWebSockets.js@https://codeload.github.com/uNetworking/uWebSockets.js/tar.gz/1977b5039938ad863d42fc4958d48c17e5a1fa06:
-    resolution: {tarball: https://codeload.github.com/uNetworking/uWebSockets.js/tar.gz/1977b5039938ad863d42fc4958d48c17e5a1fa06}
-    version: 20.43.0
+  uWebSockets.js@git+https://git@github.com:uNetworking/uWebSockets.js.git#8fa05571bf6ea95be8966ad313d9d39453e381ae:
+    resolution: {commit: 8fa05571bf6ea95be8966ad313d9d39453e381ae, repo: git@github.com:uNetworking/uWebSockets.js.git, type: git}
+    version: 20.44.0
 
   uglify-js@3.17.4:
     resolution: {integrity: sha512-T9q82TJI9e/C1TAxYvfb16xO120tMVFZrGA3f9/P4424DNu6ypK103y0GPFVa17yotwSyZW5iYXgjYHkGrJW/g==}
@@ -5842,10 +5860,10 @@ snapshots:
       '@aws-crypto/sha1-browser': 5.2.0
       '@aws-crypto/sha256-browser': 5.2.0
       '@aws-crypto/sha256-js': 5.2.0
-      '@aws-sdk/client-sso-oidc': 3.600.0(@aws-sdk/client-sts@3.600.0)
-      '@aws-sdk/client-sts': 3.600.0
+      '@aws-sdk/client-sso-oidc': 3.600.0
+      '@aws-sdk/client-sts': 3.600.0(@aws-sdk/client-sso-oidc@3.600.0)
       '@aws-sdk/core': 3.598.0
-      '@aws-sdk/credential-provider-node': 3.600.0(@aws-sdk/client-sso-oidc@3.600.0(@aws-sdk/client-sts@3.600.0))(@aws-sdk/client-sts@3.600.0)
+      '@aws-sdk/credential-provider-node': 3.600.0(@aws-sdk/client-sso-oidc@3.600.0)(@aws-sdk/client-sts@3.600.0(@aws-sdk/client-sso-oidc@3.600.0))
       '@aws-sdk/middleware-bucket-endpoint': 3.598.0
       '@aws-sdk/middleware-expect-continue': 3.598.0
       '@aws-sdk/middleware-flexible-checksums': 3.598.0
@@ -5900,13 +5918,13 @@ snapshots:
     transitivePeerDependencies:
       - aws-crt
 
-  '@aws-sdk/client-sso-oidc@3.600.0(@aws-sdk/client-sts@3.600.0)':
+  '@aws-sdk/client-sso-oidc@3.600.0':
     dependencies:
       '@aws-crypto/sha256-browser': 5.2.0
       '@aws-crypto/sha256-js': 5.2.0
-      '@aws-sdk/client-sts': 3.600.0
+      '@aws-sdk/client-sts': 3.600.0(@aws-sdk/client-sso-oidc@3.600.0)
       '@aws-sdk/core': 3.598.0
-      '@aws-sdk/credential-provider-node': 3.600.0(@aws-sdk/client-sso-oidc@3.600.0(@aws-sdk/client-sts@3.600.0))(@aws-sdk/client-sts@3.600.0)
+      '@aws-sdk/credential-provider-node': 3.600.0(@aws-sdk/client-sso-oidc@3.600.0)(@aws-sdk/client-sts@3.600.0(@aws-sdk/client-sso-oidc@3.600.0))
       '@aws-sdk/middleware-host-header': 3.598.0
       '@aws-sdk/middleware-logger': 3.598.0
       '@aws-sdk/middleware-recursion-detection': 3.598.0
@@ -5943,7 +5961,6 @@ snapshots:
       '@smithy/util-utf8': 3.0.0
       tslib: 2.6.3
     transitivePeerDependencies:
-      - '@aws-sdk/client-sts'
       - aws-crt
 
   '@aws-sdk/client-sso@3.598.0':
@@ -5989,13 +6006,13 @@ snapshots:
     transitivePeerDependencies:
       - aws-crt
 
-  '@aws-sdk/client-sts@3.600.0':
+  '@aws-sdk/client-sts@3.600.0(@aws-sdk/client-sso-oidc@3.600.0)':
     dependencies:
       '@aws-crypto/sha256-browser': 5.2.0
       '@aws-crypto/sha256-js': 5.2.0
-      '@aws-sdk/client-sso-oidc': 3.600.0(@aws-sdk/client-sts@3.600.0)
+      '@aws-sdk/client-sso-oidc': 3.600.0
       '@aws-sdk/core': 3.598.0
-      '@aws-sdk/credential-provider-node': 3.600.0(@aws-sdk/client-sso-oidc@3.600.0(@aws-sdk/client-sts@3.600.0))(@aws-sdk/client-sts@3.600.0)
+      '@aws-sdk/credential-provider-node': 3.600.0(@aws-sdk/client-sso-oidc@3.600.0)(@aws-sdk/client-sts@3.600.0(@aws-sdk/client-sso-oidc@3.600.0))
       '@aws-sdk/middleware-host-header': 3.598.0
       '@aws-sdk/middleware-logger': 3.598.0
       '@aws-sdk/middleware-recursion-detection': 3.598.0
@@ -6032,6 +6049,7 @@ snapshots:
       '@smithy/util-utf8': 3.0.0
       tslib: 2.6.3
     transitivePeerDependencies:
+      - '@aws-sdk/client-sso-oidc'
       - aws-crt
 
   '@aws-sdk/core@3.598.0':
@@ -6063,14 +6081,14 @@ snapshots:
       '@smithy/util-stream': 3.0.4
       tslib: 2.6.3
 
-  '@aws-sdk/credential-provider-ini@3.598.0(@aws-sdk/client-sso-oidc@3.600.0(@aws-sdk/client-sts@3.600.0))(@aws-sdk/client-sts@3.600.0)':
+  '@aws-sdk/credential-provider-ini@3.598.0(@aws-sdk/client-sso-oidc@3.600.0)(@aws-sdk/client-sts@3.600.0(@aws-sdk/client-sso-oidc@3.600.0))':
     dependencies:
-      '@aws-sdk/client-sts': 3.600.0
+      '@aws-sdk/client-sts': 3.600.0(@aws-sdk/client-sso-oidc@3.600.0)
       '@aws-sdk/credential-provider-env': 3.598.0
       '@aws-sdk/credential-provider-http': 3.598.0
       '@aws-sdk/credential-provider-process': 3.598.0
-      '@aws-sdk/credential-provider-sso': 3.598.0(@aws-sdk/client-sso-oidc@3.600.0(@aws-sdk/client-sts@3.600.0))
-      '@aws-sdk/credential-provider-web-identity': 3.598.0(@aws-sdk/client-sts@3.600.0)
+      '@aws-sdk/credential-provider-sso': 3.598.0(@aws-sdk/client-sso-oidc@3.600.0)
+      '@aws-sdk/credential-provider-web-identity': 3.598.0(@aws-sdk/client-sts@3.600.0(@aws-sdk/client-sso-oidc@3.600.0))
       '@aws-sdk/types': 3.598.0
       '@smithy/credential-provider-imds': 3.1.2
       '@smithy/property-provider': 3.1.2
@@ -6081,14 +6099,14 @@ snapshots:
       - '@aws-sdk/client-sso-oidc'
       - aws-crt
 
-  '@aws-sdk/credential-provider-node@3.600.0(@aws-sdk/client-sso-oidc@3.600.0(@aws-sdk/client-sts@3.600.0))(@aws-sdk/client-sts@3.600.0)':
+  '@aws-sdk/credential-provider-node@3.600.0(@aws-sdk/client-sso-oidc@3.600.0)(@aws-sdk/client-sts@3.600.0(@aws-sdk/client-sso-oidc@3.600.0))':
     dependencies:
       '@aws-sdk/credential-provider-env': 3.598.0
       '@aws-sdk/credential-provider-http': 3.598.0
-      '@aws-sdk/credential-provider-ini': 3.598.0(@aws-sdk/client-sso-oidc@3.600.0(@aws-sdk/client-sts@3.600.0))(@aws-sdk/client-sts@3.600.0)
+      '@aws-sdk/credential-provider-ini': 3.598.0(@aws-sdk/client-sso-oidc@3.600.0)(@aws-sdk/client-sts@3.600.0(@aws-sdk/client-sso-oidc@3.600.0))
       '@aws-sdk/credential-provider-process': 3.598.0
-      '@aws-sdk/credential-provider-sso': 3.598.0(@aws-sdk/client-sso-oidc@3.600.0(@aws-sdk/client-sts@3.600.0))
-      '@aws-sdk/credential-provider-web-identity': 3.598.0(@aws-sdk/client-sts@3.600.0)
+      '@aws-sdk/credential-provider-sso': 3.598.0(@aws-sdk/client-sso-oidc@3.600.0)
+      '@aws-sdk/credential-provider-web-identity': 3.598.0(@aws-sdk/client-sts@3.600.0(@aws-sdk/client-sso-oidc@3.600.0))
       '@aws-sdk/types': 3.598.0
       '@smithy/credential-provider-imds': 3.1.2
       '@smithy/property-provider': 3.1.2
@@ -6108,10 +6126,10 @@ snapshots:
       '@smithy/types': 3.2.0
       tslib: 2.6.3
 
-  '@aws-sdk/credential-provider-sso@3.598.0(@aws-sdk/client-sso-oidc@3.600.0(@aws-sdk/client-sts@3.600.0))':
+  '@aws-sdk/credential-provider-sso@3.598.0(@aws-sdk/client-sso-oidc@3.600.0)':
     dependencies:
       '@aws-sdk/client-sso': 3.598.0
-      '@aws-sdk/token-providers': 3.598.0(@aws-sdk/client-sso-oidc@3.600.0(@aws-sdk/client-sts@3.600.0))
+      '@aws-sdk/token-providers': 3.598.0(@aws-sdk/client-sso-oidc@3.600.0)
       '@aws-sdk/types': 3.598.0
       '@smithy/property-provider': 3.1.2
       '@smithy/shared-ini-file-loader': 3.1.2
@@ -6121,9 +6139,9 @@ snapshots:
       - '@aws-sdk/client-sso-oidc'
       - aws-crt
 
-  '@aws-sdk/credential-provider-web-identity@3.598.0(@aws-sdk/client-sts@3.600.0)':
+  '@aws-sdk/credential-provider-web-identity@3.598.0(@aws-sdk/client-sts@3.600.0(@aws-sdk/client-sso-oidc@3.600.0))':
     dependencies:
-      '@aws-sdk/client-sts': 3.600.0
+      '@aws-sdk/client-sts': 3.600.0(@aws-sdk/client-sso-oidc@3.600.0)
       '@aws-sdk/types': 3.598.0
       '@smithy/property-provider': 3.1.2
       '@smithy/types': 3.2.0
@@ -6242,9 +6260,9 @@ snapshots:
       '@smithy/types': 3.2.0
       tslib: 2.6.3
 
-  '@aws-sdk/token-providers@3.598.0(@aws-sdk/client-sso-oidc@3.600.0(@aws-sdk/client-sts@3.600.0))':
+  '@aws-sdk/token-providers@3.598.0(@aws-sdk/client-sso-oidc@3.600.0)':
     dependencies:
-      '@aws-sdk/client-sso-oidc': 3.600.0(@aws-sdk/client-sts@3.600.0)
+      '@aws-sdk/client-sso-oidc': 3.600.0
       '@aws-sdk/types': 3.598.0
       '@smithy/property-provider': 3.1.2
       '@smithy/shared-ini-file-loader': 3.1.2
@@ -6692,7 +6710,7 @@ snapshots:
       '@slangroom/http': 1.33.14(zenroom@4.32.4)
       '@slangroom/json-schema': 1.33.14(zenroom@4.32.4)
       '@slangroom/oauth': 1.33.14(zenroom@4.32.4)
-      '@slangroom/pocketbase': 1.33.14(@capacitor/core@6.1.0)(zenroom@4.32.4)
+      '@slangroom/pocketbase': 1.33.15(@capacitor/core@6.1.0)(zenroom@4.32.4)
       '@slangroom/qrcode': 1.33.14(zenroom@4.32.4)
       '@slangroom/redis': 1.33.14(zenroom@4.32.4)
       '@slangroom/shell': 1.33.14(zenroom@4.32.4)
@@ -7422,6 +7440,14 @@ snapshots:
     transitivePeerDependencies:
       - zenroom
 
+  '@slangroom/core@1.33.15(zenroom@4.32.4)':
+    dependencies:
+      '@slangroom/deps': 1.33.15(zenroom@4.32.4)
+      '@slangroom/ignored': 1.33.15(zenroom@4.32.4)
+      '@slangroom/shared': 1.33.15(zenroom@4.32.4)
+    transitivePeerDependencies:
+      - zenroom
+
   '@slangroom/db@1.33.14(mariadb@3.3.1)(mysql2@3.10.1)(oracledb@6.5.1)(pg-hstore@2.3.4)(pg@8.12.0)(snowflake-sdk@1.11.0(asn1.js@5.4.1)(encoding@0.1.13))(tedious@18.2.0)(zenroom@4.32.4)':
     dependencies:
       '@slangroom/core': 1.33.14(zenroom@4.32.4)
@@ -7442,6 +7468,12 @@ snapshots:
       - zenroom
 
   '@slangroom/deps@1.33.14(zenroom@4.32.4)':
+    dependencies:
+      chalk: 5.3.0
+      chevrotain: 10.5.0
+      zenroom: 4.32.4
+
+  '@slangroom/deps@1.33.15(zenroom@4.32.4)':
     dependencies:
       chalk: 5.3.0
       chevrotain: 10.5.0
@@ -7506,6 +7538,13 @@ snapshots:
     transitivePeerDependencies:
       - zenroom
 
+  '@slangroom/ignored@1.33.15(zenroom@4.32.4)':
+    dependencies:
+      '@slangroom/deps': 1.33.15(zenroom@4.32.4)
+      '@slangroom/shared': 1.33.15(zenroom@4.32.4)
+    transitivePeerDependencies:
+      - zenroom
+
   '@slangroom/json-schema@1.33.14(zenroom@4.32.4)':
     dependencies:
       '@slangroom/core': 1.33.14(zenroom@4.32.4)
@@ -7524,11 +7563,11 @@ snapshots:
     transitivePeerDependencies:
       - zenroom
 
-  '@slangroom/pocketbase@1.33.14(@capacitor/core@6.1.0)(zenroom@4.32.4)':
+  '@slangroom/pocketbase@1.33.15(@capacitor/core@6.1.0)(zenroom@4.32.4)':
     dependencies:
       '@capacitor/preferences': 6.0.1(@capacitor/core@6.1.0)
-      '@slangroom/core': 1.33.14(zenroom@4.32.4)
-      '@slangroom/shared': 1.33.14(zenroom@4.32.4)
+      '@slangroom/core': 1.33.15(zenroom@4.32.4)
+      '@slangroom/shared': 1.33.15(zenroom@4.32.4)
       dotenv: 16.4.5
       pocketbase: 0.19.0
       zod: 3.23.8
@@ -7554,6 +7593,12 @@ snapshots:
   '@slangroom/shared@1.33.14(zenroom@4.32.4)':
     dependencies:
       '@slangroom/deps': 1.33.14(zenroom@4.32.4)
+    transitivePeerDependencies:
+      - zenroom
+
+  '@slangroom/shared@1.33.15(zenroom@4.32.4)':
+    dependencies:
+      '@slangroom/deps': 1.33.15(zenroom@4.32.4)
     transitivePeerDependencies:
       - zenroom
 
@@ -12367,7 +12412,7 @@ snapshots:
 
   typescript@5.4.5: {}
 
-  uWebSockets.js@https://codeload.github.com/uNetworking/uWebSockets.js/tar.gz/1977b5039938ad863d42fc4958d48c17e5a1fa06: {}
+  uWebSockets.js@git+https://git@github.com:uNetworking/uWebSockets.js.git#8fa05571bf6ea95be8966ad313d9d39453e381ae: {}
 
   uglify-js@3.17.4:
     optional: true
