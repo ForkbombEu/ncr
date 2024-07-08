@@ -88,7 +88,7 @@
 		"@semantic-release/npm": "^12.0.1",
 		"@semantic-release/release-notes-generator": "^14.0.0",
 		"@sinclair/typebox": "^0.32.15",
-		"@slangroom/qrcode": "^1.33.14",
+		"@slangroom/qrcode": "^1.34.0",
 		"@slangroom/redis": "^1.33.14",
 		"@slangroom/shell": "^1.33.14",
 		"@swc/core": "^1.4.8",
