@@ -120,9 +120,6 @@ tests:
                   
                   ParseError @slangroom/core@(\d+)\.(\d+)\.(\d+): at 3:1-1
                    (.+)G(.+) may be (.+)given(.+) or (.+)then(.+)
-                  
-                  .+
-
       - name: POST /broken no body
         http:
           url: http://${{env.host}}/broken
@@ -147,9 +144,6 @@ tests:
                   
                   ParseError @slangroom/core@(\d+)\.(\d+)\.(\d+): at 3:1-1
                    (.+)G(.+) may be (.+)given(.+) or (.+)then(.+)
-                  
-                  .+
-
       - name: POST /broken no body
         http:
           url: http://${{env.host}}/broken
