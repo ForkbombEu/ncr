@@ -387,72 +387,86 @@ const generateRoutes = (app: TemplatedApp) => {
 			res.end();
 		});
 
-		if (!metadata.disablePost) {
-			app.post(path, (res, req) => {
-				let headers: Record<string, Record<string, string>> = {};
-				headers.request = {}
-				req.forEach((k, v) => {
-					headers.request[k] = v;
-				});
-				/**
-				 * Code may break on `slangroom.execute`
-				 * so it's important to attach the `onAborted` handler before everything else
-				 */
-				res.onAborted(() => {
-					res.writeStatus(metadata.errorCode ? metadata.errorCode : '500').end('Aborted');
-				});
-				let buffer: Buffer;
-				res.onData((d, isLast) => {
-					let chunk = Buffer.from(d);
-					if (isLast) {
-						let data;
-						try {
-							data = JSON.parse(buffer ? Buffer.concat([buffer, chunk]) : chunk);
-						} catch (e) {
-							L.error(e);
-							res
-								.writeStatus(metadata.errorCode)
-								.writeHeader('Access-Control-Allow-Origin', '*')
-								.end((e as Error).message);
-							return;
-						}
-						execZencodeAndReply(res, data, headers);
-						return;
-					} else {
-						if (buffer) {
-							buffer = Buffer.concat([buffer, chunk]);
-						} else {
-							buffer = Buffer.concat([chunk]);
-						}
-					}
-				});
+		app.post(path, (res, req) => {
+			if(metadata.disablePost) {
+				res.cork(() => {
+					res
+						.writeStatus('405 METHOD NOT ALLOWED')
+						.writeHeader('Access-Control-Allow-Origin', '*')
+						.end('Method not allowed');
+				})
+				return;
+			}
+			let headers: Record<string, Record<string, string>> = {};
+			headers.request = {}
+			req.forEach((k, v) => {
+				headers.request[k] = v;
 			});
-		}
-		if (!metadata.disableGet) {
-			app.get(path, async (res, req) => {
-				let headers: Record<string, Record<string, string>> = {};
-				headers.request = {}
-				req.forEach((k, v) => {
-					headers.request[k] = v;
-				});
-				/**
-				 * Code may break on `slangroom.execute`
-				 * so it's important to attach the `onAborted` handler before everything else
-				 */
-				res.onAborted(() => {
-					res.writeStatus(metadata.errorCode).end('Aborted');
-				});
-
-				try {
-					const data: Record<string, unknown> = getQueryParams(req);
+			/**
+			 * Code may break on `slangroom.execute`
+			 * so it's important to attach the `onAborted` handler before everything else
+			 */
+			res.onAborted(() => {
+				res.writeStatus(metadata.errorCode ? metadata.errorCode : '500').end('Aborted');
+			});
+			let buffer: Buffer;
+			res.onData((d, isLast) => {
+				let chunk = Buffer.from(d);
+				if (isLast) {
+					let data;
+					try {
+						data = JSON.parse(buffer ? Buffer.concat([buffer, chunk]) : chunk);
+					} catch (e) {
+						L.error(e);
+						res
+							.writeStatus(metadata.errorCode)
+							.writeHeader('Access-Control-Allow-Origin', '*')
+							.end((e as Error).message);
+						return;
+					}
 					execZencodeAndReply(res, data, headers);
-				} catch (e) {
-					LOG.fatal(e);
-					res.writeStatus(metadata.errorCode).end((e as Error).message);
 					return;
+				} else {
+					if (buffer) {
+						buffer = Buffer.concat([buffer, chunk]);
+					} else {
+						buffer = Buffer.concat([chunk]);
+					}
 				}
 			});
-		}
+		});
+		app.get(path, async (res, req) => {
+			if(metadata.disableGet) {
+				res.cork(() => {
+					res
+						.writeStatus('405 METHOD NOT ALLOWED')
+						.writeHeader('Access-Control-Allow-Origin', '*')
+						.end('Method not allowed');
+				})
+				return;
+			}
+			let headers: Record<string, Record<string, string>> = {};
+			headers.request = {}
+			req.forEach((k, v) => {
+				headers.request[k] = v;
+			});
+			/**
+			 * Code may break on `slangroom.execute`
+			 * so it's important to attach the `onAborted` handler before everything else
+			 */
+			res.onAborted(() => {
+				res.writeStatus(metadata.errorCode).end('Aborted');
+			});
+
+			try {
+				const data: Record<string, unknown> = getQueryParams(req);
+				execZencodeAndReply(res, data, headers);
+			} catch (e) {
+				LOG.fatal(e);
+				res.writeStatus(metadata.errorCode).end((e as Error).message);
+				return;
+			}
+		});
 
 		app.get(path + '/raw', (res, req) => {
 			res.writeStatus('200 OK').writeHeader('Content-Type', 'text/plain').end(contract);
