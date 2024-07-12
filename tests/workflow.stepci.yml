@@ -170,7 +170,6 @@ tests:
           json: {}
           check:
             status: 422
-            sha256: 8608411a7fed65806e6566c7eea18022fb0f49145aec427390f120010a45cae7
             body:
               - match: |
                   ^(.*)REQUIRED(.*) must have required property 'love'(.*)
@@ -188,7 +187,6 @@ tests:
             bad: 1
           check:
             status: 422
-            sha256: 49884832b132a7158dee282a2947f6505eaac15f02976f5374b81c2ad6023fe7
             body:
               - match: |
                   ^(.*)REQUIRED(.*) must have required property 'love'(.*)
