@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2024 The Forkbomb Company
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 //@ts-nocheck
 import { Slangroom } from '@slangroom/core';
 import { type Slangroom as SlangroomType } from '@slangroom/core/build/esm/src/slangroom';

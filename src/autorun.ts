@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2024 The Forkbomb Company
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 import { join, parse } from 'node:path';
 import fs from 'fs-extra';
 import { Type as T, Static } from '@sinclair/typebox';
