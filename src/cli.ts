@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2024 The Forkbomb Company
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 import { Command, Option } from 'commander';
 import 'dotenv/config';
 import { statSync } from 'node:fs';
