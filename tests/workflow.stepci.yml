@@ -105,8 +105,22 @@ tests:
           method: GET
           check:
             status: 500
-            sha256: 42bacb6ec40ab9e524ede7f0bc3cef480ea407a5482fb71ba1fd04549fda4b29
-
+            body:
+              - match: |
+                  ^(.*)(\d+)\s\|\s(.*)Rule check version (\d+)\.(\d+)\.(\d+)
+                  (.*)(\d+)\s\|\s(.*)G(.*)
+                  (\s+)(.*)\^(.*)
+                  (.*)(\d+)\s\|\s(.*)
+                  
+                  Error colors:
+                   - (.*)error(.*)
+                   - (.*)suggested words(.*)
+                   - (.*)missing words(.*)
+                   - (.*)extra words(.*)
+                  
+                  ParseError @slangroom/core@(\d+)\.(\d+)\.(\d+): at 3:1-1
+                   (.*)G(.*) may be (.*)given(.*) or (.*)then(.*)
+                  (.|\n)*
       - name: POST /broken no body
         http:
           url: http://${{env.host}}/broken
@@ -116,8 +130,22 @@ tests:
           json: {}
           check:
             status: 500
-            sha256: 42bacb6ec40ab9e524ede7f0bc3cef480ea407a5482fb71ba1fd04549fda4b29
-
+            body:
+              - match: |
+                  ^(.*)(\d+)\s\|\s(.*)Rule check version (\d+)\.(\d+)\.(\d+)
+                  (.*)(\d+)\s\|\s(.*)G(.*)
+                  (\s+)(.*)\^(.*)
+                  (.*)(\d+)\s\|\s(.*)
+                  
+                  Error colors:
+                   - (.*)error(.*)
+                   - (.*)suggested words(.*)
+                   - (.*)missing words(.*)
+                   - (.*)extra words(.*)
+                  
+                  ParseError @slangroom/core@(\d+)\.(\d+)\.(\d+): at 3:1-1
+                   (.*)G(.*) may be (.*)given(.*) or (.*)then(.*)
+                  (.|\n)*
       - name: POST /broken no body
         http:
           url: http://${{env.host}}/broken
@@ -290,7 +318,8 @@ tests:
           url: http://${{env.host}}/meta/just_post
           method: GET
           check:
-            status: 404
+            status: 405
+            body: Method not allowed
       - name: GET request
         http:
           url: http://${{env.host}}/meta/content_type
