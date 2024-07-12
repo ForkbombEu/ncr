@@ -1,3 +1,10 @@
+# [1.36.0](https://github.com/forkbombeu/ncr/compare/v1.35.6...v1.36.0) (2024-07-12)
+
+
+### Features
+
+* on disbalePost or disableGet respond with status 405 method not allowed ([#273](https://github.com/forkbombeu/ncr/issues/273)) ([7df67bc](https://github.com/forkbombeu/ncr/commit/7df67bc5c6cfe622f5091d8be00552437d6d5067))
+
 ## [1.35.6](https://github.com/forkbombeu/ncr/compare/v1.35.5...v1.35.6) (2024-07-01)
 
 
