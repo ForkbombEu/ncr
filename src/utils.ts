@@ -5,6 +5,7 @@
 import { Type } from '@sinclair/typebox';
 import Ajv, { type ValidateFunction } from 'ajv';
 import addFormats from 'ajv-formats';
+import betterAjvErrors from 'better-ajv-errors';
 import _ from 'lodash';
 import { introspect } from 'zenroom';
 import { config } from './cli.js';
@@ -77,18 +78,13 @@ export const validateData = (schema: JSONSchema, data: JSON | Record<string, unk
 	const ajv = createAjv();
 	try {
 		const validate = ajv.compile(schema);
-		if (!validate(data)) throw new Error(formatAjvErrors(validate.errors));
+		if (!validate(data)) throw new Error(betterAjvErrors(schema, data, validate.errors));
 	} catch (e) {
 		L.error(e);
 		throw e;
 	}
 	return data;
 };
-
-export function formatAjvErrors(ajvErrors: ValidateFunction['errors']): string {
-	if (!ajvErrors) return '';
-	return JSON.stringify(ajvErrors, null, 2);
-}
 
 //
 

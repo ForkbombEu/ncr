@@ -53,14 +53,12 @@ tests:
           json: {}
           check:
             status: 422
-            json:
-              - eq:
-                - instancePath: ''
-                  schemaPath: '#/required'
-                  keyword: required
-                  params:
-                    missingProperty: http_headers
-                  message: must have required property 'http_headers'
+            body:
+              - match: |
+                  ^(.*)REQUIRED(.*) must have required property 'http_headers'(.*)
+
+                  (.*)>(.*) 1 | {}
+                   (.*)   | ^ ☹️  http_headers is missing here!
       - name: print http_headers with http_headers metadata set to false
         http:
           url: http://${{env.host}}/meta/create_http_headers_and_print
@@ -172,15 +170,12 @@ tests:
           json: {}
           check:
             status: 422
-            sha256: 7fbee1934646ca0ea2a64dbec1dfbfcf1e23d8c8016bda6914a120fad55b1721
-            json:
-              - eq:
-                  - instancePath: ''
-                    schemaPath: '#/required'
-                    keyword: required
-                    params:
-                      missingProperty: love
-                    message: must have required property 'love'
+            body:
+              - match: |
+                  ^(.*)REQUIRED(.*) must have required property 'love'(.*)
+
+                  (.*)>(.*) 1 | {}
+                   (.*)   | ^ ☹️  love is missing here!
 
       - name: introspection invalid data
         http:
@@ -192,15 +187,12 @@ tests:
             bad: 1
           check:
             status: 422
-            sha256: 7fbee1934646ca0ea2a64dbec1dfbfcf1e23d8c8016bda6914a120fad55b1721
-            json:
-              - eq:
-                  - instancePath: ''
-                    schemaPath: '#/required'
-                    keyword: required
-                    params:
-                      missingProperty: love
-                    message: must have required property 'love'
+            body:
+              - match: |
+                  ^(.*)REQUIRED(.*) must have required property 'love'(.*)
+
+                  (.*)>(.*) 1 | {"bad":1}
+                   (.*)   | ^ ☹️  love is missing here!
 
       - name: introspection valid data
         http:
@@ -239,14 +231,12 @@ tests:
             love: 'puria'
           check:
             status: 422
-            json:
-              - eq:
-                  - instancePath: ''
-                    schemaPath: '#/required'
-                    keyword: required
-                    params:
-                      missingProperty: male
-                    message: must have required property 'male'
+            body:
+              - match: |
+                  ^(.*)REQUIRED(.*) must have required property 'male'(.*)
+
+                  (.*)>(.*) 1 | {"love":"puria"}
+                   (.*)   | ^ ☹️  male is missing here!
 
       - name: json-schema valid data
         http:

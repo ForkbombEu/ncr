@@ -313,7 +313,7 @@ const generateRoutes = (app: TemplatedApp) => {
 					validateData(schema, data);
 				} catch (e) {
 					if (!res.aborted) {
-						LOG.fatal(JSON.parse((e as Error).message));
+						LOG.fatal((e as Error).message);
 						res.cork(() => {
 							res
 								.writeStatus('422 UNPROCESSABLE ENTITY')
