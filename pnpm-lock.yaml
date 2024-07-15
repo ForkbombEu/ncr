@@ -10,46 +10,46 @@ importers:
     dependencies:
       '@dyne/slangroom-chain':
         specifier: ^1.6.4
-        version: 1.6.4(@capacitor/core@6.1.0)(mariadb@3.3.1)(mysql2@3.10.1)(oracledb@6.5.1)(pg-hstore@2.3.4)(pg@8.12.0)(snowflake-sdk@1.11.0(asn1.js@5.4.1)(encoding@0.1.13))(tedious@18.2.0)(zenroom@4.32.4)
+        version: 1.6.4(@capacitor/core@6.1.0)(mariadb@3.3.1)(mysql2@3.10.1)(oracledb@6.5.1)(pg-hstore@2.3.4)(pg@8.12.0)(snowflake-sdk@1.11.0(asn1.js@5.4.1)(encoding@0.1.13))(tedious@18.2.0)(zenroom@4.32.5)
       '@slangroom/core':
-        specifier: ^1.33.14
-        version: 1.33.14(zenroom@4.32.4)
+        specifier: ^1.35.0
+        version: 1.35.0(zenroom@4.32.5)
       '@slangroom/db':
-        specifier: ^1.33.14
-        version: 1.33.14(mariadb@3.3.1)(mysql2@3.10.1)(oracledb@6.5.1)(pg-hstore@2.3.4)(pg@8.12.0)(snowflake-sdk@1.11.0(asn1.js@5.4.1)(encoding@0.1.13))(tedious@18.2.0)(zenroom@4.32.4)
+        specifier: ^1.35.0
+        version: 1.35.0(mariadb@3.3.1)(mysql2@3.10.1)(oracledb@6.5.1)(pg-hstore@2.3.4)(pg@8.12.0)(snowflake-sdk@1.11.0(asn1.js@5.4.1)(encoding@0.1.13))(tedious@18.2.0)(zenroom@4.32.5)
       '@slangroom/ethereum':
-        specifier: ^1.33.14
-        version: 1.33.14(encoding@0.1.13)(typescript@5.4.5)(zenroom@4.32.4)(zod@3.23.8)
+        specifier: ^1.35.0
+        version: 1.35.0(encoding@0.1.13)(typescript@5.4.5)(zenroom@4.32.5)(zod@3.23.8)
       '@slangroom/fs':
-        specifier: ^1.33.14
-        version: 1.33.14(zenroom@4.32.4)
+        specifier: ^1.35.0
+        version: 1.35.0(zenroom@4.32.5)
       '@slangroom/git':
-        specifier: ^1.33.14
-        version: 1.33.14(zenroom@4.32.4)
+        specifier: ^1.35.0
+        version: 1.35.0(zenroom@4.32.5)
       '@slangroom/helpers':
-        specifier: ^1.33.14
-        version: 1.33.14(zenroom@4.32.4)
+        specifier: ^1.35.0
+        version: 1.35.0(zenroom@4.32.5)
       '@slangroom/http':
-        specifier: ^1.33.14
-        version: 1.33.14(zenroom@4.32.4)
+        specifier: ^1.35.0
+        version: 1.35.0(zenroom@4.32.5)
       '@slangroom/json-schema':
-        specifier: ^1.33.14
-        version: 1.33.14(zenroom@4.32.4)
+        specifier: ^1.35.0
+        version: 1.35.0(zenroom@4.32.5)
       '@slangroom/oauth':
-        specifier: ^1.33.14
-        version: 1.33.14(zenroom@4.32.4)
+        specifier: ^1.35.0
+        version: 1.35.0(zenroom@4.32.5)
       '@slangroom/pocketbase':
-        specifier: ^1.33.14
-        version: 1.33.14(@capacitor/core@6.1.0)(zenroom@4.32.4)
+        specifier: ^1.35.0
+        version: 1.35.0(@capacitor/core@6.1.0)(zenroom@4.32.5)
       '@slangroom/timestamp':
-        specifier: ^1.33.14
-        version: 1.33.14(zenroom@4.32.4)
+        specifier: ^1.35.0
+        version: 1.35.0(zenroom@4.32.5)
       '@slangroom/wallet':
-        specifier: ^1.33.14
-        version: 1.33.14(zenroom@4.32.4)
+        specifier: ^1.35.0
+        version: 1.35.0(zenroom@4.32.5)
       '@slangroom/zencode':
-        specifier: ^1.33.14
-        version: 1.33.14(zenroom@4.32.4)
+        specifier: ^1.35.0
+        version: 1.35.0(zenroom@4.32.5)
       '@tgwf/co2':
         specifier: ^0.16.0
         version: 0.16.0
@@ -114,8 +114,8 @@ importers:
         specifier: https://github.com/uNetworking/uWebSockets.js#semver:^20
         version: https://codeload.github.com/uNetworking/uWebSockets.js/tar.gz/1977b5039938ad863d42fc4958d48c17e5a1fa06
       zenroom:
-        specifier: ^4.32.4
-        version: 4.32.4
+        specifier: ^4.32.5
+        version: 4.32.5
     devDependencies:
       '@rollup/plugin-commonjs':
         specifier: ^25.0.7
@@ -154,14 +154,14 @@ importers:
         specifier: ^0.32.15
         version: 0.32.31
       '@slangroom/qrcode':
-        specifier: ^1.33.14
-        version: 1.33.14(zenroom@4.32.4)
+        specifier: ^1.35.0
+        version: 1.35.0(zenroom@4.32.5)
       '@slangroom/redis':
-        specifier: ^1.33.14
-        version: 1.33.14(zenroom@4.32.4)
+        specifier: ^1.35.0
+        version: 1.35.0(zenroom@4.32.5)
       '@slangroom/shell':
-        specifier: ^1.33.14
-        version: 1.33.14(zenroom@4.32.4)
+        specifier: ^1.35.0
+        version: 1.35.0(zenroom@4.32.5)
       '@swc/core':
         specifier: ^1.4.8
         version: 1.5.24(@swc/helpers@0.5.11)
@@ -1289,82 +1289,82 @@ packages:
   '@sinonjs/fake-timers@10.3.0':
     resolution: {integrity: sha512-V4BG07kuYSUkTCSBHG8G8TNhM+F19jXFWnQtzj+we8DrkpSBCee9Z3Ms8yiGer/dlmhe35/Xdgyo3/0rQKg7YA==}
 
-  '@slangroom/core@1.33.14':
-    resolution: {integrity: sha512-nHu1zP0mPPuwuZf3eGVYqzxDtUBVS/IXj8decGgVaK6hYEHMX8rIrU6AQeT+U6DjboAe4Seip+PUa6s87DRqgw==}
+  '@slangroom/core@1.35.0':
+    resolution: {integrity: sha512-OOIGZiOXlKdar4iOoFZC1OhAZZ2D3lQT21CampNFmNAUMxtWCDRAEoZBqOlEdLQxhJEmnSya+z8nIl+F//pSFg==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
-  '@slangroom/db@1.33.14':
-    resolution: {integrity: sha512-GdFgDnybjKmRrY5j3pA5NVmG6VVqqJU03BfwTFiePQG8XqoeDPciOmNNxGLNdhnh6RXIrIEkFa1OsSL6CoJyzw==}
+  '@slangroom/db@1.35.0':
+    resolution: {integrity: sha512-wGnOKMb7+BFvZrqK1V283pDMmnLkl8N3DMTaY3VuU96ApwyADahU67shRzRDTjMPWkkeCfB2zpTcYm/ySRhrDw==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
-  '@slangroom/deps@1.33.14':
-    resolution: {integrity: sha512-a7O3crOafdl6lpRbuIOb2S7TZkyp7dEluzXuxwDVOofi7pS9Yh8kCv43Q34cuyJXotP4lomNsdAcnZE1QbeXzQ==}
+  '@slangroom/deps@1.35.0':
+    resolution: {integrity: sha512-hzJIzl8tQ4DV3Qca14gAmtU14H9FKlEYrTGqxoCaLy8osvJvXGRJs+SVCzvrVbL26K/4pyHfSFGUK5SbyNABOQ==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
     peerDependencies:
       zenroom: ^4.31.2
 
-  '@slangroom/ethereum@1.33.14':
-    resolution: {integrity: sha512-7mRlloqb6nFN9Tup+613X3XuIkuZxGfrv150I32kSj4j3vtb1gjGlVG34lPvJAnDQHevAXKD2cT3NiEp/I5HeA==}
+  '@slangroom/ethereum@1.35.0':
+    resolution: {integrity: sha512-CCOwrOU6IvxZfYAmGNjO5K7hf9t2gIaCBmCEpCR7JLpxZobKtyj56/JCGlyVnMX6wIZiAuqMNap0UjsqMca4vg==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
-  '@slangroom/fs@1.33.14':
-    resolution: {integrity: sha512-wTKV718Yf4Gb/CrjGkfAZyRnQmlXJk3gUxBfbClT3ROs1gKRMpTQHgnn8S8bxPlhNYCerU15/51Vt+6V5ta+mg==}
+  '@slangroom/fs@1.35.0':
+    resolution: {integrity: sha512-gPliK4r0w4Uj1WsVKtsPBP9FnO9NJaJ3rp8zI3NFo6ae7NJgnP6m7oiyrJ4JFhAh5UGdrfrhKMQz1Fo19XYZdw==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
-  '@slangroom/git@1.33.14':
-    resolution: {integrity: sha512-6c8qbVDIGObRdxd0ZFC9RFZaIBz2YyTII9GSndcIb7CuZeyd71i9EZ4phuX1UGzeUQcyR4KNinzrKQsXdyAGSg==}
+  '@slangroom/git@1.35.0':
+    resolution: {integrity: sha512-6fmPWdD0rT6YrF56TZt/I26rDHUSNfxSz3Y7yYABmw+z++gtlRWacYl9zuYBnH9DkhMdpKCQHhQgPE8C1Z2uLg==}
+    engines: {node: ^18.20.0 || ^20.10.0 || >=22.0.0 <22.3.0 || ^22.4.0}
+
+  '@slangroom/helpers@1.35.0':
+    resolution: {integrity: sha512-ZOqx9e4WdkEpDcDBq4lRnElFgDJE5eo+eDQDvqFzwvGihlEY8IbcG9SOkt6kb1vvlX1oE6yIBZCXzzX1oZD19w==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
-  '@slangroom/helpers@1.33.14':
-    resolution: {integrity: sha512-qx8U5mCxYhWqrUULJ/eBbXhXvKWqE351k064h5dpw+VZ3r0ZazdFvVNX8DEJHEQXcaipAycnY/A/w6e+OnAs4g==}
+  '@slangroom/http@1.35.0':
+    resolution: {integrity: sha512-DFEFIahy4MlrKzx821kT9UJXDRtbboKLZgbDU06saSYbuf/Ow0kGjEQTofMwpjLsBEgM9HodTPY0vZt2jGE/Og==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
-  '@slangroom/http@1.33.14':
-    resolution: {integrity: sha512-Wh8ukPXaMxZCH53CcGrkfcGE7a+UHjpxIl3nATU6cDw4RtBXYvyeG3COMFs9ftwJeG2K3ONXnV8wxCpNnBTNbg==}
+  '@slangroom/ignored@1.35.0':
+    resolution: {integrity: sha512-hBT19X/92TxzFxuGeTSBFGIx+WH9B+7fEveNcZGFm6uasep7g02tMxrPhT3CtHcbXBipdnTtEAQ6Eohwt5nB8A==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
-  '@slangroom/ignored@1.33.14':
-    resolution: {integrity: sha512-ZeePPaoM8alOXqr9WpaugrZ8otCLWhAP1xIbE0Ae1yLXn5fMDq/6x/zlUdM6B/sctXAxMWpnbcHmsYSLBf21Cw==}
+  '@slangroom/json-schema@1.35.0':
+    resolution: {integrity: sha512-/zrmGgXTBB9NjtqL2Ws3olBogwUVcowIyEAx78vchYRUSb5JRRTzXFleoBrzbSGAbhZhYctbQL2RwhrZEjCGpg==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
-  '@slangroom/json-schema@1.33.14':
-    resolution: {integrity: sha512-t7mhMu4vye7oJBIIMK7UvLHVaP/2ouWfHnyUkN3E/oLANa7AIU8E5Aydg8QAo8onCTQiMkOyw7SJoNXZZ1A37w==}
+  '@slangroom/oauth@1.35.0':
+    resolution: {integrity: sha512-cFItwKn9NHNYRbn0FufTPb3BJRJ5EDFWDB7rO5xBx0YfghN37NfLiVqf/NIZNIqjEsHJ+lgxX1emZTW7TWZ+Dg==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
-  '@slangroom/oauth@1.33.14':
-    resolution: {integrity: sha512-JILbojdWkIw3dtulocbuD2ckggYaKv+8kjGCiHWNulUcXCkS1J7R5MGCtJm7LKbTE8e3OBIU7GoqY+fpBvjAsg==}
+  '@slangroom/pocketbase@1.35.0':
+    resolution: {integrity: sha512-7wUTVdyesGFejZRgb1Q1W1hepm4sNgJ6YV8fRXVOA5RE03enPe6DLL56miZ+jELgoJbOJYZGGU2hByY9+MmH+g==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
-  '@slangroom/pocketbase@1.33.14':
-    resolution: {integrity: sha512-q/PqI1GR/bePJZ9hReDpdxWS3cb9L4SVKM6uz6Sg/1V3VTRyvDDmCElxFlR4jJKYDMzkbC6ir3H7HOv7JGVueg==}
+  '@slangroom/qrcode@1.35.0':
+    resolution: {integrity: sha512-I9cw4qABfYO/Q2HIyYwkH/Dpi4zh0aMmVcGCQdLZf+X9sbuJbr0c8RIgBIjLymYoBNoJ/xGh4JoIuvJaW29/YA==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
-  '@slangroom/qrcode@1.33.14':
-    resolution: {integrity: sha512-F0DPWxzLQA4EocFdWw8A1cUdMxQkhXxYVYHmJtWIMVXGNCT+JQT6LlZSz1+yYagAqdBFgqwSAuF9b2aUXRNh2Q==}
+  '@slangroom/redis@1.35.0':
+    resolution: {integrity: sha512-roGqmXo4z9G8OIElKBttEcChSMhrxMn7UbPu3HwP8PjbbFnqkJL6qMy+Bbqys95lZ7oFqz0d/PmvWtCA2wb/gw==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
-  '@slangroom/redis@1.33.14':
-    resolution: {integrity: sha512-YbFRXOclQGGQdAiUw9UFUbulIcaCgjCV8GMR86py/uikvluaV3AC8tg0+R4QDIkn4Bw1mpND1iSWcRxmc3uFRA==}
+  '@slangroom/shared@1.35.0':
+    resolution: {integrity: sha512-dZ77Gpx8YB4ej/f8/HhyuMgepabPf0LCoz8DZl32aO90Y6G+NQ5q48V0+6GmdJb4U0Wp/xlm7JoDMDFU7+fadg==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
-  '@slangroom/shared@1.33.14':
-    resolution: {integrity: sha512-nMr0vrfamKExFY6JDZ5k9+oUDRxrPfoK8JUGw1Gbx/FAbWHLmr+f+q5vtd/E/49hKg00Ki3E5TesSaXIXQB+Tg==}
+  '@slangroom/shell@1.35.0':
+    resolution: {integrity: sha512-E+MEFSirqStEbYuPdp0AfcOdag5wYxslqpcqI49adKHkXPtO+LP7KbhUe2lp0Fe/XH1zEIsLoYsgTInPFDC4mA==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
-  '@slangroom/shell@1.33.14':
-    resolution: {integrity: sha512-3nCIZ2TP5NkZUs39Fus8Dw3teA9beT0ocdscEso4p5fFPJCTnwrvhTzlpMB5a+4P8RsWVffxS1lTf7c4AzytPA==}
+  '@slangroom/timestamp@1.35.0':
+    resolution: {integrity: sha512-N29VZ/d03eqS60RVae/Nq+ZqBJXGdmEmBCO2vz1hy4/wifT9fOeh0Y4NvDiGsCTUkC4ydv+ZCZD8JRkQc5COxw==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
-  '@slangroom/timestamp@1.33.14':
-    resolution: {integrity: sha512-epX0bRiGAi2dnRVTtU5Ni5ik2zpLYSY9LnmyX9u6o4c5M7VpsMtjrkYnyptELc+Bdacs3PQDI9SCGxpa+3d5lg==}
+  '@slangroom/wallet@1.35.0':
+    resolution: {integrity: sha512-zL4/CMIC0DbTHR1y94fz4O/Zl3sPTKSfT6GAEaWp/f9MpOzyHMdTvQGOiraXwX80trGm0zl/Nafbjniliou+Og==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
-  '@slangroom/wallet@1.33.14':
-    resolution: {integrity: sha512-r5f3v/RemyUbAh3OvuWdiEbelfBnXYLI8UdWh6YSARmQK/l/Gn67TuHF+b6r9M8lE9tPqFRjjDBQGCGAgD7LFg==}
-    engines: {node: ^18.20.0 || ^20.10.0 || ^22}
-
-  '@slangroom/zencode@1.33.14':
-    resolution: {integrity: sha512-fGHQPmiVuhw8oV9kLr9KdWH+fQ7g6MvRI+6nav5qfs0mxTmxnV79Wj0Q4C0rB9dcpC3V3as3BDnBUsYfVpbKEg==}
+  '@slangroom/zencode@1.35.0':
+    resolution: {integrity: sha512-YfS57uSfXH87kp82lNvAEYO+xOIqQdTEtar6nANZHhIvCH+ER4xqrIR6afOt7qoCHEsFnXAOlmT+AqCIMVEEXQ==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
   '@smithy/abort-controller@1.1.0':
@@ -1906,8 +1906,8 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
 
-  acorn@8.12.0:
-    resolution: {integrity: sha512-RTvkC4w+KNXrM39/lWCUaG0IbRkWdCv7W/IOW9oU6SawyxulvkQy5HQPVTKxEjczcUvapcrw3cFx/60VN/NRNw==}
+  acorn@8.12.1:
+    resolution: {integrity: sha512-tcpGyI9zbizT9JbV6oYE477V6mTlXvvi0T0G3SNIYE2apm/G5huBa1+K89VGeovbg+jycCrfhl3ADxErOuO6Jg==}
     engines: {node: '>=0.4.0'}
     hasBin: true
 
@@ -2742,8 +2742,8 @@ packages:
     engines: {node: '>=6.0'}
     hasBin: true
 
-  eslint-scope@8.0.1:
-    resolution: {integrity: sha512-pL8XjgP4ZOmmwfFE8mEhSxA7ZY4C+LWyqjQ3o4yWkkmD0qcMT9kkW3zWHOczhWcjTSgqycYAgwSlXvZltv65og==}
+  eslint-scope@8.0.2:
+    resolution: {integrity: sha512-6E4xmrTw5wtxnLA5wYL3WDfhZ/1bUBGOXV0zQvVRDOtrR8D0p6W7fs3JweNYhwRYeGvd/1CKX2se0/2s7Q/nJA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   eslint-visitor-keys@3.4.3:
@@ -2768,8 +2768,8 @@ packages:
     engines: {node: '>=4'}
     hasBin: true
 
-  esquery@1.5.0:
-    resolution: {integrity: sha512-YQLXUplAwJgCydQ78IMJywZCceoqk1oH01OERdSAJc/7U2AylwjhSCLDEtqwg811idIS/9fIU5GjG73IgjKMVg==}
+  esquery@1.6.0:
+    resolution: {integrity: sha512-ca9pw9fomFcKPvFLXhBKUK90ZvGibiGOvRJNbjljY7s7uq/5YO4BOzcYtJqExdx99rF6aAcnRxHmcUHcz6sQsg==}
     engines: {node: '>=0.10'}
 
   esrecurse@4.3.0:
@@ -5764,8 +5764,8 @@ packages:
     resolution: {integrity: sha512-Ct97huExsu7cWeEjmrXlofevF8CvzUglJ4iGUet5B8xn1oumtAZBpHU4GzYuoE6PVqcZ5hghtBrSlhwHuR1Jmw==}
     engines: {node: '>=18'}
 
-  zenroom@4.32.4:
-    resolution: {integrity: sha512-DhQkpBcvozcEpeD44NbnkhtLg7kWs1S6de2u5K2tjeeHVyZgjrLmSun/BsiqNe7ff8opcw6E3wl6eilDDZ94/Q==}
+  zenroom@4.32.5:
+    resolution: {integrity: sha512-mejxHsyOgDvF/kYdIe3E5iHQpDRn7BV0vbRrDxayC6OzgKLm5ZMwW6d5KB62R9nXeTx9YFrFhd2PL3CjYhgx5w==}
 
   zod@3.23.8:
     resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
@@ -6699,23 +6699,23 @@ snapshots:
       enabled: 2.0.0
       kuler: 2.0.0
 
-  '@dyne/slangroom-chain@1.6.4(@capacitor/core@6.1.0)(mariadb@3.3.1)(mysql2@3.10.1)(oracledb@6.5.1)(pg-hstore@2.3.4)(pg@8.12.0)(snowflake-sdk@1.11.0(asn1.js@5.4.1)(encoding@0.1.13))(tedious@18.2.0)(zenroom@4.32.4)':
+  '@dyne/slangroom-chain@1.6.4(@capacitor/core@6.1.0)(mariadb@3.3.1)(mysql2@3.10.1)(oracledb@6.5.1)(pg-hstore@2.3.4)(pg@8.12.0)(snowflake-sdk@1.11.0(asn1.js@5.4.1)(encoding@0.1.13))(tedious@18.2.0)(zenroom@4.32.5)':
     dependencies:
-      '@slangroom/core': 1.33.14(zenroom@4.32.4)
-      '@slangroom/db': 1.33.14(mariadb@3.3.1)(mysql2@3.10.1)(oracledb@6.5.1)(pg-hstore@2.3.4)(pg@8.12.0)(snowflake-sdk@1.11.0(asn1.js@5.4.1)(encoding@0.1.13))(tedious@18.2.0)(zenroom@4.32.4)
-      '@slangroom/fs': 1.33.14(zenroom@4.32.4)
-      '@slangroom/git': 1.33.14(zenroom@4.32.4)
-      '@slangroom/helpers': 1.33.14(zenroom@4.32.4)
-      '@slangroom/http': 1.33.14(zenroom@4.32.4)
-      '@slangroom/json-schema': 1.33.14(zenroom@4.32.4)
-      '@slangroom/oauth': 1.33.14(zenroom@4.32.4)
-      '@slangroom/pocketbase': 1.33.14(@capacitor/core@6.1.0)(zenroom@4.32.4)
-      '@slangroom/qrcode': 1.33.14(zenroom@4.32.4)
-      '@slangroom/redis': 1.33.14(zenroom@4.32.4)
-      '@slangroom/shell': 1.33.14(zenroom@4.32.4)
-      '@slangroom/timestamp': 1.33.14(zenroom@4.32.4)
-      '@slangroom/wallet': 1.33.14(zenroom@4.32.4)
-      '@slangroom/zencode': 1.33.14(zenroom@4.32.4)
+      '@slangroom/core': 1.35.0(zenroom@4.32.5)
+      '@slangroom/db': 1.35.0(mariadb@3.3.1)(mysql2@3.10.1)(oracledb@6.5.1)(pg-hstore@2.3.4)(pg@8.12.0)(snowflake-sdk@1.11.0(asn1.js@5.4.1)(encoding@0.1.13))(tedious@18.2.0)(zenroom@4.32.5)
+      '@slangroom/fs': 1.35.0(zenroom@4.32.5)
+      '@slangroom/git': 1.35.0(zenroom@4.32.5)
+      '@slangroom/helpers': 1.35.0(zenroom@4.32.5)
+      '@slangroom/http': 1.35.0(zenroom@4.32.5)
+      '@slangroom/json-schema': 1.35.0(zenroom@4.32.5)
+      '@slangroom/oauth': 1.35.0(zenroom@4.32.5)
+      '@slangroom/pocketbase': 1.35.0(@capacitor/core@6.1.0)(zenroom@4.32.5)
+      '@slangroom/qrcode': 1.35.0(zenroom@4.32.5)
+      '@slangroom/redis': 1.35.0(zenroom@4.32.5)
+      '@slangroom/shell': 1.35.0(zenroom@4.32.5)
+      '@slangroom/timestamp': 1.35.0(zenroom@4.32.5)
+      '@slangroom/wallet': 1.35.0(zenroom@4.32.5)
+      '@slangroom/zencode': 1.35.0(zenroom@4.32.5)
     transitivePeerDependencies:
       - '@capacitor/core'
       - bluebird
@@ -7433,18 +7433,18 @@ snapshots:
     dependencies:
       '@sinonjs/commons': 3.0.1
 
-  '@slangroom/core@1.33.14(zenroom@4.32.4)':
+  '@slangroom/core@1.35.0(zenroom@4.32.5)':
     dependencies:
-      '@slangroom/deps': 1.33.14(zenroom@4.32.4)
-      '@slangroom/ignored': 1.33.14(zenroom@4.32.4)
-      '@slangroom/shared': 1.33.14(zenroom@4.32.4)
+      '@slangroom/deps': 1.35.0(zenroom@4.32.5)
+      '@slangroom/ignored': 1.35.0(zenroom@4.32.5)
+      '@slangroom/shared': 1.35.0(zenroom@4.32.5)
     transitivePeerDependencies:
       - zenroom
 
-  '@slangroom/db@1.33.14(mariadb@3.3.1)(mysql2@3.10.1)(oracledb@6.5.1)(pg-hstore@2.3.4)(pg@8.12.0)(snowflake-sdk@1.11.0(asn1.js@5.4.1)(encoding@0.1.13))(tedious@18.2.0)(zenroom@4.32.4)':
+  '@slangroom/db@1.35.0(mariadb@3.3.1)(mysql2@3.10.1)(oracledb@6.5.1)(pg-hstore@2.3.4)(pg@8.12.0)(snowflake-sdk@1.11.0(asn1.js@5.4.1)(encoding@0.1.13))(tedious@18.2.0)(zenroom@4.32.5)':
     dependencies:
-      '@slangroom/core': 1.33.14(zenroom@4.32.4)
-      '@slangroom/shared': 1.33.14(zenroom@4.32.4)
+      '@slangroom/core': 1.35.0(zenroom@4.32.5)
+      '@slangroom/shared': 1.35.0(zenroom@4.32.5)
       sequelize: 6.37.3(mariadb@3.3.1)(mysql2@3.10.1)(oracledb@6.5.1)(pg-hstore@2.3.4)(pg@8.12.0)(snowflake-sdk@1.11.0(asn1.js@5.4.1)(encoding@0.1.13))(sqlite3@5.1.7)(tedious@18.2.0)
       sqlite3: 5.1.7
     transitivePeerDependencies:
@@ -7460,16 +7460,16 @@ snapshots:
       - tedious
       - zenroom
 
-  '@slangroom/deps@1.33.14(zenroom@4.32.4)':
+  '@slangroom/deps@1.35.0(zenroom@4.32.5)':
     dependencies:
       chalk: 5.3.0
       chevrotain: 10.5.0
-      zenroom: 4.32.4
+      zenroom: 4.32.5
 
-  '@slangroom/ethereum@1.33.14(encoding@0.1.13)(typescript@5.4.5)(zenroom@4.32.4)(zod@3.23.8)':
+  '@slangroom/ethereum@1.35.0(encoding@0.1.13)(typescript@5.4.5)(zenroom@4.32.5)(zod@3.23.8)':
     dependencies:
-      '@slangroom/core': 1.33.14(zenroom@4.32.4)
-      '@slangroom/shared': 1.33.14(zenroom@4.32.4)
+      '@slangroom/core': 1.35.0(zenroom@4.32.5)
+      '@slangroom/shared': 1.35.0(zenroom@4.32.5)
       axios: 1.7.2(debug@4.3.4)
       web3: 4.10.0(encoding@0.1.13)(typescript@5.4.5)(zod@3.23.8)
       web3-validator: 2.0.6
@@ -7482,10 +7482,10 @@ snapshots:
       - zenroom
       - zod
 
-  '@slangroom/fs@1.33.14(zenroom@4.32.4)':
+  '@slangroom/fs@1.35.0(zenroom@4.32.5)':
     dependencies:
-      '@slangroom/core': 1.33.14(zenroom@4.32.4)
-      '@slangroom/shared': 1.33.14(zenroom@4.32.4)
+      '@slangroom/core': 1.35.0(zenroom@4.32.5)
+      '@slangroom/shared': 1.35.0(zenroom@4.32.5)
       axios: 1.7.2(debug@4.3.4)
       extract-zip: 2.0.1
     transitivePeerDependencies:
@@ -7493,61 +7493,61 @@ snapshots:
       - supports-color
       - zenroom
 
-  '@slangroom/git@1.33.14(zenroom@4.32.4)':
+  '@slangroom/git@1.35.0(zenroom@4.32.5)':
     dependencies:
-      '@slangroom/core': 1.33.14(zenroom@4.32.4)
+      '@slangroom/core': 1.35.0(zenroom@4.32.5)
       isomorphic-git: 1.26.3
     transitivePeerDependencies:
       - zenroom
 
-  '@slangroom/helpers@1.33.14(zenroom@4.32.4)':
+  '@slangroom/helpers@1.35.0(zenroom@4.32.5)':
     dependencies:
-      '@slangroom/core': 1.33.14(zenroom@4.32.4)
-      '@slangroom/shared': 1.33.14(zenroom@4.32.4)
+      '@slangroom/core': 1.35.0(zenroom@4.32.5)
+      '@slangroom/shared': 1.35.0(zenroom@4.32.5)
       '@types/lodash': 4.17.5
       lodash: 4.17.21
     transitivePeerDependencies:
       - zenroom
 
-  '@slangroom/http@1.33.14(zenroom@4.32.4)':
+  '@slangroom/http@1.35.0(zenroom@4.32.5)':
     dependencies:
-      '@slangroom/core': 1.33.14(zenroom@4.32.4)
-      '@slangroom/shared': 1.33.14(zenroom@4.32.4)
+      '@slangroom/core': 1.35.0(zenroom@4.32.5)
+      '@slangroom/shared': 1.35.0(zenroom@4.32.5)
       axios: 1.7.2(debug@4.3.4)
     transitivePeerDependencies:
       - debug
       - zenroom
 
-  '@slangroom/ignored@1.33.14(zenroom@4.32.4)':
+  '@slangroom/ignored@1.35.0(zenroom@4.32.5)':
     dependencies:
-      '@slangroom/deps': 1.33.14(zenroom@4.32.4)
-      '@slangroom/shared': 1.33.14(zenroom@4.32.4)
+      '@slangroom/deps': 1.35.0(zenroom@4.32.5)
+      '@slangroom/shared': 1.35.0(zenroom@4.32.5)
     transitivePeerDependencies:
       - zenroom
 
-  '@slangroom/json-schema@1.33.14(zenroom@4.32.4)':
+  '@slangroom/json-schema@1.35.0(zenroom@4.32.5)':
     dependencies:
-      '@slangroom/core': 1.33.14(zenroom@4.32.4)
-      '@slangroom/shared': 1.33.14(zenroom@4.32.4)
+      '@slangroom/core': 1.35.0(zenroom@4.32.5)
+      '@slangroom/shared': 1.35.0(zenroom@4.32.5)
       ajv: 8.14.0
     transitivePeerDependencies:
       - zenroom
 
-  '@slangroom/oauth@1.33.14(zenroom@4.32.4)':
+  '@slangroom/oauth@1.35.0(zenroom@4.32.5)':
     dependencies:
       '@node-oauth/oauth2-server': 5.1.0
-      '@slangroom/core': 1.33.14(zenroom@4.32.4)
-      '@slangroom/shared': 1.33.14(zenroom@4.32.4)
+      '@slangroom/core': 1.35.0(zenroom@4.32.5)
+      '@slangroom/shared': 1.35.0(zenroom@4.32.5)
       bs58: 5.0.0
       jose: 5.6.2
     transitivePeerDependencies:
       - zenroom
 
-  '@slangroom/pocketbase@1.33.14(@capacitor/core@6.1.0)(zenroom@4.32.4)':
+  '@slangroom/pocketbase@1.35.0(@capacitor/core@6.1.0)(zenroom@4.32.5)':
     dependencies:
       '@capacitor/preferences': 6.0.1(@capacitor/core@6.1.0)
-      '@slangroom/core': 1.33.14(zenroom@4.32.4)
-      '@slangroom/shared': 1.33.14(zenroom@4.32.4)
+      '@slangroom/core': 1.35.0(zenroom@4.32.5)
+      '@slangroom/shared': 1.35.0(zenroom@4.32.5)
       dotenv: 16.4.5
       pocketbase: 0.19.0
       zod: 3.23.8
@@ -7555,56 +7555,56 @@ snapshots:
       - '@capacitor/core'
       - zenroom
 
-  '@slangroom/qrcode@1.33.14(zenroom@4.32.4)':
+  '@slangroom/qrcode@1.35.0(zenroom@4.32.5)':
     dependencies:
-      '@slangroom/core': 1.33.14(zenroom@4.32.4)
+      '@slangroom/core': 1.35.0(zenroom@4.32.5)
       qrcode: 1.5.3
     transitivePeerDependencies:
       - zenroom
 
-  '@slangroom/redis@1.33.14(zenroom@4.32.4)':
+  '@slangroom/redis@1.35.0(zenroom@4.32.5)':
     dependencies:
       '@redis/client': 1.5.16
-      '@slangroom/core': 1.33.14(zenroom@4.32.4)
-      '@slangroom/shared': 1.33.14(zenroom@4.32.4)
+      '@slangroom/core': 1.35.0(zenroom@4.32.5)
+      '@slangroom/shared': 1.35.0(zenroom@4.32.5)
     transitivePeerDependencies:
       - zenroom
 
-  '@slangroom/shared@1.33.14(zenroom@4.32.4)':
+  '@slangroom/shared@1.35.0(zenroom@4.32.5)':
     dependencies:
-      '@slangroom/deps': 1.33.14(zenroom@4.32.4)
+      '@slangroom/deps': 1.35.0(zenroom@4.32.5)
     transitivePeerDependencies:
       - zenroom
 
-  '@slangroom/shell@1.33.14(zenroom@4.32.4)':
+  '@slangroom/shell@1.35.0(zenroom@4.32.5)':
     dependencies:
-      '@slangroom/core': 1.33.14(zenroom@4.32.4)
+      '@slangroom/core': 1.35.0(zenroom@4.32.5)
       execa: 8.0.1
     transitivePeerDependencies:
       - zenroom
 
-  '@slangroom/timestamp@1.33.14(zenroom@4.32.4)':
+  '@slangroom/timestamp@1.35.0(zenroom@4.32.5)':
     dependencies:
-      '@slangroom/core': 1.33.14(zenroom@4.32.4)
-      '@slangroom/shared': 1.33.14(zenroom@4.32.4)
+      '@slangroom/core': 1.35.0(zenroom@4.32.5)
+      '@slangroom/shared': 1.35.0(zenroom@4.32.5)
     transitivePeerDependencies:
       - zenroom
 
-  '@slangroom/wallet@1.33.14(zenroom@4.32.4)':
+  '@slangroom/wallet@1.35.0(zenroom@4.32.5)':
     dependencies:
       '@meeco/sd-jwt': 0.0.3
       '@meeco/sd-jwt-vc': 0.0.4
-      '@slangroom/core': 1.33.14(zenroom@4.32.4)
-      '@slangroom/shared': 1.33.14(zenroom@4.32.4)
+      '@slangroom/core': 1.35.0(zenroom@4.32.5)
+      '@slangroom/shared': 1.35.0(zenroom@4.32.5)
       bs58: 5.0.0
       jose: 5.6.2
     transitivePeerDependencies:
       - zenroom
 
-  '@slangroom/zencode@1.33.14(zenroom@4.32.4)':
+  '@slangroom/zencode@1.35.0(zenroom@4.32.5)':
     dependencies:
-      '@slangroom/core': 1.33.14(zenroom@4.32.4)
-      '@slangroom/shared': 1.33.14(zenroom@4.32.4)
+      '@slangroom/core': 1.35.0(zenroom@4.32.5)
+      '@slangroom/shared': 1.35.0(zenroom@4.32.5)
     transitivePeerDependencies:
       - zenroom
 
@@ -8301,15 +8301,15 @@ snapshots:
     dependencies:
       event-target-shim: 5.0.1
 
-  acorn-jsx@5.3.2(acorn@8.12.0):
+  acorn-jsx@5.3.2(acorn@8.12.1):
     dependencies:
-      acorn: 8.12.0
+      acorn: 8.12.1
 
   acorn-walk@8.3.2: {}
 
   acorn@8.11.3: {}
 
-  acorn@8.12.0: {}
+  acorn@8.12.1: {}
 
   agent-base@6.0.2:
     dependencies:
@@ -9275,7 +9275,7 @@ snapshots:
     optionalDependencies:
       source-map: 0.6.1
 
-  eslint-scope@8.0.1:
+  eslint-scope@8.0.2:
     dependencies:
       esrecurse: 4.3.0
       estraverse: 5.3.0
@@ -9299,10 +9299,10 @@ snapshots:
       cross-spawn: 7.0.3
       debug: 4.3.5(supports-color@5.5.0)
       escape-string-regexp: 4.0.0
-      eslint-scope: 8.0.1
+      eslint-scope: 8.0.2
       eslint-visitor-keys: 4.0.0
       espree: 10.1.0
-      esquery: 1.5.0
+      esquery: 1.6.0
       esutils: 2.0.3
       fast-deep-equal: 3.1.3
       file-entry-cache: 8.0.0
@@ -9325,13 +9325,13 @@ snapshots:
 
   espree@10.1.0:
     dependencies:
-      acorn: 8.12.0
-      acorn-jsx: 5.3.2(acorn@8.12.0)
+      acorn: 8.12.1
+      acorn-jsx: 5.3.2(acorn@8.12.1)
       eslint-visitor-keys: 4.0.0
 
   esprima@4.0.1: {}
 
-  esquery@1.5.0:
+  esquery@1.6.0:
     dependencies:
       estraverse: 5.3.0
 
@@ -12885,6 +12885,6 @@ snapshots:
 
   yoctocolors@2.0.2: {}
 
-  zenroom@4.32.4: {}
+  zenroom@4.32.5: {}
 
   zod@3.23.8: {}
