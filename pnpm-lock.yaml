@@ -10,46 +10,46 @@ importers:
     dependencies:
       '@dyne/slangroom-chain':
         specifier: ^1.6.4
-        version: 1.6.4(@capacitor/core@6.1.0)(mariadb@3.3.1)(mysql2@3.10.1)(oracledb@6.5.1)(pg-hstore@2.3.4)(pg@8.12.0)(snowflake-sdk@1.11.0(asn1.js@5.4.1)(encoding@0.1.13))(tedious@18.2.0)(zenroom@4.32.5)
+        version: 1.6.4(@capacitor/core@6.1.0)(mariadb@3.3.1)(mysql2@3.10.1)(oracledb@6.5.1)(pg-hstore@2.3.4)(pg@8.12.0)(snowflake-sdk@1.11.0(asn1.js@5.4.1)(encoding@0.1.13))(tedious@18.2.0)(zenroom@4.32.6)
       '@slangroom/core':
         specifier: ^1.35.0
-        version: 1.35.0(zenroom@4.32.5)
+        version: 1.35.0(zenroom@4.32.6)
       '@slangroom/db':
         specifier: ^1.35.0
-        version: 1.35.0(mariadb@3.3.1)(mysql2@3.10.1)(oracledb@6.5.1)(pg-hstore@2.3.4)(pg@8.12.0)(snowflake-sdk@1.11.0(asn1.js@5.4.1)(encoding@0.1.13))(tedious@18.2.0)(zenroom@4.32.5)
+        version: 1.35.0(mariadb@3.3.1)(mysql2@3.10.1)(oracledb@6.5.1)(pg-hstore@2.3.4)(pg@8.12.0)(snowflake-sdk@1.11.0(asn1.js@5.4.1)(encoding@0.1.13))(tedious@18.2.0)(zenroom@4.32.6)
       '@slangroom/ethereum':
         specifier: ^1.35.0
-        version: 1.35.0(encoding@0.1.13)(typescript@5.4.5)(zenroom@4.32.5)(zod@3.23.8)
+        version: 1.35.0(encoding@0.1.13)(typescript@5.4.5)(zenroom@4.32.6)(zod@3.23.8)
       '@slangroom/fs':
         specifier: ^1.35.0
-        version: 1.35.0(zenroom@4.32.5)
+        version: 1.35.0(zenroom@4.32.6)
       '@slangroom/git':
         specifier: ^1.35.0
-        version: 1.35.0(zenroom@4.32.5)
+        version: 1.35.0(zenroom@4.32.6)
       '@slangroom/helpers':
         specifier: ^1.35.0
-        version: 1.35.0(zenroom@4.32.5)
+        version: 1.35.0(zenroom@4.32.6)
       '@slangroom/http':
         specifier: ^1.35.0
-        version: 1.35.0(zenroom@4.32.5)
+        version: 1.35.0(zenroom@4.32.6)
       '@slangroom/json-schema':
         specifier: ^1.35.0
-        version: 1.35.0(zenroom@4.32.5)
+        version: 1.35.0(zenroom@4.32.6)
       '@slangroom/oauth':
         specifier: ^1.35.0
-        version: 1.35.0(zenroom@4.32.5)
+        version: 1.35.0(zenroom@4.32.6)
       '@slangroom/pocketbase':
         specifier: ^1.35.0
-        version: 1.35.0(@capacitor/core@6.1.0)(zenroom@4.32.5)
+        version: 1.35.0(@capacitor/core@6.1.0)(zenroom@4.32.6)
       '@slangroom/timestamp':
         specifier: ^1.35.0
-        version: 1.35.0(zenroom@4.32.5)
+        version: 1.35.0(zenroom@4.32.6)
       '@slangroom/wallet':
         specifier: ^1.35.0
-        version: 1.35.0(zenroom@4.32.5)
+        version: 1.35.0(zenroom@4.32.6)
       '@slangroom/zencode':
         specifier: ^1.35.0
-        version: 1.35.0(zenroom@4.32.5)
+        version: 1.35.0(zenroom@4.32.6)
       '@tgwf/co2':
         specifier: ^0.16.0
         version: 0.16.0
@@ -112,10 +112,10 @@ importers:
         version: 18.2.0
       uWebSockets.js:
         specifier: https://github.com/uNetworking/uWebSockets.js#semver:^20
-        version: https://codeload.github.com/uNetworking/uWebSockets.js/tar.gz/1977b5039938ad863d42fc4958d48c17e5a1fa06
+        version: git+https://git@github.com:uNetworking/uWebSockets.js.git#8fa05571bf6ea95be8966ad313d9d39453e381ae
       zenroom:
-        specifier: ^4.32.5
-        version: 4.32.5
+        specifier: ^4.32.6
+        version: 4.32.6
     devDependencies:
       '@rollup/plugin-commonjs':
         specifier: ^25.0.7
@@ -155,13 +155,13 @@ importers:
         version: 0.32.31
       '@slangroom/qrcode':
         specifier: ^1.35.0
-        version: 1.35.0(zenroom@4.32.5)
+        version: 1.35.0(zenroom@4.32.6)
       '@slangroom/redis':
         specifier: ^1.35.0
-        version: 1.35.0(zenroom@4.32.5)
+        version: 1.35.0(zenroom@4.32.6)
       '@slangroom/shell':
         specifier: ^1.35.0
-        version: 1.35.0(zenroom@4.32.5)
+        version: 1.35.0(zenroom@4.32.6)
       '@swc/core':
         specifier: ^1.4.8
         version: 1.5.24(@swc/helpers@0.5.11)
@@ -5445,9 +5445,9 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
-  uWebSockets.js@https://codeload.github.com/uNetworking/uWebSockets.js/tar.gz/1977b5039938ad863d42fc4958d48c17e5a1fa06:
-    resolution: {tarball: https://codeload.github.com/uNetworking/uWebSockets.js/tar.gz/1977b5039938ad863d42fc4958d48c17e5a1fa06}
-    version: 20.43.0
+  uWebSockets.js@git+https://git@github.com:uNetworking/uWebSockets.js.git#8fa05571bf6ea95be8966ad313d9d39453e381ae:
+    resolution: {commit: 8fa05571bf6ea95be8966ad313d9d39453e381ae, repo: git@github.com:uNetworking/uWebSockets.js.git, type: git}
+    version: 20.44.0
 
   uglify-js@3.17.4:
     resolution: {integrity: sha512-T9q82TJI9e/C1TAxYvfb16xO120tMVFZrGA3f9/P4424DNu6ypK103y0GPFVa17yotwSyZW5iYXgjYHkGrJW/g==}
@@ -5764,8 +5764,8 @@ packages:
     resolution: {integrity: sha512-Ct97huExsu7cWeEjmrXlofevF8CvzUglJ4iGUet5B8xn1oumtAZBpHU4GzYuoE6PVqcZ5hghtBrSlhwHuR1Jmw==}
     engines: {node: '>=18'}
 
-  zenroom@4.32.5:
-    resolution: {integrity: sha512-mejxHsyOgDvF/kYdIe3E5iHQpDRn7BV0vbRrDxayC6OzgKLm5ZMwW6d5KB62R9nXeTx9YFrFhd2PL3CjYhgx5w==}
+  zenroom@4.32.6:
+    resolution: {integrity: sha512-xEgLfnPkI7Z36fxtmpFLdqb4i7KPqHQJyN1imoREfAFQK44/ztwQa9AMtIrKcGQLXMkCAYRWzj9AKUrikx7xMQ==}
 
   zod@3.23.8:
     resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
@@ -5859,10 +5859,10 @@ snapshots:
       '@aws-crypto/sha1-browser': 5.2.0
       '@aws-crypto/sha256-browser': 5.2.0
       '@aws-crypto/sha256-js': 5.2.0
-      '@aws-sdk/client-sso-oidc': 3.600.0(@aws-sdk/client-sts@3.600.0)
-      '@aws-sdk/client-sts': 3.600.0
+      '@aws-sdk/client-sso-oidc': 3.600.0
+      '@aws-sdk/client-sts': 3.600.0(@aws-sdk/client-sso-oidc@3.600.0)
       '@aws-sdk/core': 3.598.0
-      '@aws-sdk/credential-provider-node': 3.600.0(@aws-sdk/client-sso-oidc@3.600.0(@aws-sdk/client-sts@3.600.0))(@aws-sdk/client-sts@3.600.0)
+      '@aws-sdk/credential-provider-node': 3.600.0(@aws-sdk/client-sso-oidc@3.600.0)(@aws-sdk/client-sts@3.600.0(@aws-sdk/client-sso-oidc@3.600.0))
       '@aws-sdk/middleware-bucket-endpoint': 3.598.0
       '@aws-sdk/middleware-expect-continue': 3.598.0
       '@aws-sdk/middleware-flexible-checksums': 3.598.0
@@ -5917,13 +5917,13 @@ snapshots:
     transitivePeerDependencies:
       - aws-crt
 
-  '@aws-sdk/client-sso-oidc@3.600.0(@aws-sdk/client-sts@3.600.0)':
+  '@aws-sdk/client-sso-oidc@3.600.0':
     dependencies:
       '@aws-crypto/sha256-browser': 5.2.0
       '@aws-crypto/sha256-js': 5.2.0
-      '@aws-sdk/client-sts': 3.600.0
+      '@aws-sdk/client-sts': 3.600.0(@aws-sdk/client-sso-oidc@3.600.0)
       '@aws-sdk/core': 3.598.0
-      '@aws-sdk/credential-provider-node': 3.600.0(@aws-sdk/client-sso-oidc@3.600.0(@aws-sdk/client-sts@3.600.0))(@aws-sdk/client-sts@3.600.0)
+      '@aws-sdk/credential-provider-node': 3.600.0(@aws-sdk/client-sso-oidc@3.600.0)(@aws-sdk/client-sts@3.600.0(@aws-sdk/client-sso-oidc@3.600.0))
       '@aws-sdk/middleware-host-header': 3.598.0
       '@aws-sdk/middleware-logger': 3.598.0
       '@aws-sdk/middleware-recursion-detection': 3.598.0
@@ -5960,7 +5960,6 @@ snapshots:
       '@smithy/util-utf8': 3.0.0
       tslib: 2.6.3
     transitivePeerDependencies:
-      - '@aws-sdk/client-sts'
       - aws-crt
 
   '@aws-sdk/client-sso@3.598.0':
@@ -6006,13 +6005,13 @@ snapshots:
     transitivePeerDependencies:
       - aws-crt
 
-  '@aws-sdk/client-sts@3.600.0':
+  '@aws-sdk/client-sts@3.600.0(@aws-sdk/client-sso-oidc@3.600.0)':
     dependencies:
       '@aws-crypto/sha256-browser': 5.2.0
       '@aws-crypto/sha256-js': 5.2.0
-      '@aws-sdk/client-sso-oidc': 3.600.0(@aws-sdk/client-sts@3.600.0)
+      '@aws-sdk/client-sso-oidc': 3.600.0
       '@aws-sdk/core': 3.598.0
-      '@aws-sdk/credential-provider-node': 3.600.0(@aws-sdk/client-sso-oidc@3.600.0(@aws-sdk/client-sts@3.600.0))(@aws-sdk/client-sts@3.600.0)
+      '@aws-sdk/credential-provider-node': 3.600.0(@aws-sdk/client-sso-oidc@3.600.0)(@aws-sdk/client-sts@3.600.0(@aws-sdk/client-sso-oidc@3.600.0))
       '@aws-sdk/middleware-host-header': 3.598.0
       '@aws-sdk/middleware-logger': 3.598.0
       '@aws-sdk/middleware-recursion-detection': 3.598.0
@@ -6049,6 +6048,7 @@ snapshots:
       '@smithy/util-utf8': 3.0.0
       tslib: 2.6.3
     transitivePeerDependencies:
+      - '@aws-sdk/client-sso-oidc'
       - aws-crt
 
   '@aws-sdk/core@3.598.0':
@@ -6080,14 +6080,14 @@ snapshots:
       '@smithy/util-stream': 3.0.4
       tslib: 2.6.3
 
-  '@aws-sdk/credential-provider-ini@3.598.0(@aws-sdk/client-sso-oidc@3.600.0(@aws-sdk/client-sts@3.600.0))(@aws-sdk/client-sts@3.600.0)':
+  '@aws-sdk/credential-provider-ini@3.598.0(@aws-sdk/client-sso-oidc@3.600.0)(@aws-sdk/client-sts@3.600.0(@aws-sdk/client-sso-oidc@3.600.0))':
     dependencies:
-      '@aws-sdk/client-sts': 3.600.0
+      '@aws-sdk/client-sts': 3.600.0(@aws-sdk/client-sso-oidc@3.600.0)
       '@aws-sdk/credential-provider-env': 3.598.0
       '@aws-sdk/credential-provider-http': 3.598.0
       '@aws-sdk/credential-provider-process': 3.598.0
-      '@aws-sdk/credential-provider-sso': 3.598.0(@aws-sdk/client-sso-oidc@3.600.0(@aws-sdk/client-sts@3.600.0))
-      '@aws-sdk/credential-provider-web-identity': 3.598.0(@aws-sdk/client-sts@3.600.0)
+      '@aws-sdk/credential-provider-sso': 3.598.0(@aws-sdk/client-sso-oidc@3.600.0)
+      '@aws-sdk/credential-provider-web-identity': 3.598.0(@aws-sdk/client-sts@3.600.0(@aws-sdk/client-sso-oidc@3.600.0))
       '@aws-sdk/types': 3.598.0
       '@smithy/credential-provider-imds': 3.1.2
       '@smithy/property-provider': 3.1.2
@@ -6098,14 +6098,14 @@ snapshots:
       - '@aws-sdk/client-sso-oidc'
       - aws-crt
 
-  '@aws-sdk/credential-provider-node@3.600.0(@aws-sdk/client-sso-oidc@3.600.0(@aws-sdk/client-sts@3.600.0))(@aws-sdk/client-sts@3.600.0)':
+  '@aws-sdk/credential-provider-node@3.600.0(@aws-sdk/client-sso-oidc@3.600.0)(@aws-sdk/client-sts@3.600.0(@aws-sdk/client-sso-oidc@3.600.0))':
     dependencies:
       '@aws-sdk/credential-provider-env': 3.598.0
       '@aws-sdk/credential-provider-http': 3.598.0
-      '@aws-sdk/credential-provider-ini': 3.598.0(@aws-sdk/client-sso-oidc@3.600.0(@aws-sdk/client-sts@3.600.0))(@aws-sdk/client-sts@3.600.0)
+      '@aws-sdk/credential-provider-ini': 3.598.0(@aws-sdk/client-sso-oidc@3.600.0)(@aws-sdk/client-sts@3.600.0(@aws-sdk/client-sso-oidc@3.600.0))
       '@aws-sdk/credential-provider-process': 3.598.0
-      '@aws-sdk/credential-provider-sso': 3.598.0(@aws-sdk/client-sso-oidc@3.600.0(@aws-sdk/client-sts@3.600.0))
-      '@aws-sdk/credential-provider-web-identity': 3.598.0(@aws-sdk/client-sts@3.600.0)
+      '@aws-sdk/credential-provider-sso': 3.598.0(@aws-sdk/client-sso-oidc@3.600.0)
+      '@aws-sdk/credential-provider-web-identity': 3.598.0(@aws-sdk/client-sts@3.600.0(@aws-sdk/client-sso-oidc@3.600.0))
       '@aws-sdk/types': 3.598.0
       '@smithy/credential-provider-imds': 3.1.2
       '@smithy/property-provider': 3.1.2
@@ -6125,10 +6125,10 @@ snapshots:
       '@smithy/types': 3.2.0
       tslib: 2.6.3
 
-  '@aws-sdk/credential-provider-sso@3.598.0(@aws-sdk/client-sso-oidc@3.600.0(@aws-sdk/client-sts@3.600.0))':
+  '@aws-sdk/credential-provider-sso@3.598.0(@aws-sdk/client-sso-oidc@3.600.0)':
     dependencies:
       '@aws-sdk/client-sso': 3.598.0
-      '@aws-sdk/token-providers': 3.598.0(@aws-sdk/client-sso-oidc@3.600.0(@aws-sdk/client-sts@3.600.0))
+      '@aws-sdk/token-providers': 3.598.0(@aws-sdk/client-sso-oidc@3.600.0)
       '@aws-sdk/types': 3.598.0
       '@smithy/property-provider': 3.1.2
       '@smithy/shared-ini-file-loader': 3.1.2
@@ -6138,9 +6138,9 @@ snapshots:
       - '@aws-sdk/client-sso-oidc'
       - aws-crt
 
-  '@aws-sdk/credential-provider-web-identity@3.598.0(@aws-sdk/client-sts@3.600.0)':
+  '@aws-sdk/credential-provider-web-identity@3.598.0(@aws-sdk/client-sts@3.600.0(@aws-sdk/client-sso-oidc@3.600.0))':
     dependencies:
-      '@aws-sdk/client-sts': 3.600.0
+      '@aws-sdk/client-sts': 3.600.0(@aws-sdk/client-sso-oidc@3.600.0)
       '@aws-sdk/types': 3.598.0
       '@smithy/property-provider': 3.1.2
       '@smithy/types': 3.2.0
@@ -6259,9 +6259,9 @@ snapshots:
       '@smithy/types': 3.2.0
       tslib: 2.6.3
 
-  '@aws-sdk/token-providers@3.598.0(@aws-sdk/client-sso-oidc@3.600.0(@aws-sdk/client-sts@3.600.0))':
+  '@aws-sdk/token-providers@3.598.0(@aws-sdk/client-sso-oidc@3.600.0)':
     dependencies:
-      '@aws-sdk/client-sso-oidc': 3.600.0(@aws-sdk/client-sts@3.600.0)
+      '@aws-sdk/client-sso-oidc': 3.600.0
       '@aws-sdk/types': 3.598.0
       '@smithy/property-provider': 3.1.2
       '@smithy/shared-ini-file-loader': 3.1.2
@@ -6699,23 +6699,23 @@ snapshots:
       enabled: 2.0.0
       kuler: 2.0.0
 
-  '@dyne/slangroom-chain@1.6.4(@capacitor/core@6.1.0)(mariadb@3.3.1)(mysql2@3.10.1)(oracledb@6.5.1)(pg-hstore@2.3.4)(pg@8.12.0)(snowflake-sdk@1.11.0(asn1.js@5.4.1)(encoding@0.1.13))(tedious@18.2.0)(zenroom@4.32.5)':
+  '@dyne/slangroom-chain@1.6.4(@capacitor/core@6.1.0)(mariadb@3.3.1)(mysql2@3.10.1)(oracledb@6.5.1)(pg-hstore@2.3.4)(pg@8.12.0)(snowflake-sdk@1.11.0(asn1.js@5.4.1)(encoding@0.1.13))(tedious@18.2.0)(zenroom@4.32.6)':
     dependencies:
-      '@slangroom/core': 1.35.0(zenroom@4.32.5)
-      '@slangroom/db': 1.35.0(mariadb@3.3.1)(mysql2@3.10.1)(oracledb@6.5.1)(pg-hstore@2.3.4)(pg@8.12.0)(snowflake-sdk@1.11.0(asn1.js@5.4.1)(encoding@0.1.13))(tedious@18.2.0)(zenroom@4.32.5)
-      '@slangroom/fs': 1.35.0(zenroom@4.32.5)
-      '@slangroom/git': 1.35.0(zenroom@4.32.5)
-      '@slangroom/helpers': 1.35.0(zenroom@4.32.5)
-      '@slangroom/http': 1.35.0(zenroom@4.32.5)
-      '@slangroom/json-schema': 1.35.0(zenroom@4.32.5)
-      '@slangroom/oauth': 1.35.0(zenroom@4.32.5)
-      '@slangroom/pocketbase': 1.35.0(@capacitor/core@6.1.0)(zenroom@4.32.5)
-      '@slangroom/qrcode': 1.35.0(zenroom@4.32.5)
-      '@slangroom/redis': 1.35.0(zenroom@4.32.5)
-      '@slangroom/shell': 1.35.0(zenroom@4.32.5)
-      '@slangroom/timestamp': 1.35.0(zenroom@4.32.5)
-      '@slangroom/wallet': 1.35.0(zenroom@4.32.5)
-      '@slangroom/zencode': 1.35.0(zenroom@4.32.5)
+      '@slangroom/core': 1.35.0(zenroom@4.32.6)
+      '@slangroom/db': 1.35.0(mariadb@3.3.1)(mysql2@3.10.1)(oracledb@6.5.1)(pg-hstore@2.3.4)(pg@8.12.0)(snowflake-sdk@1.11.0(asn1.js@5.4.1)(encoding@0.1.13))(tedious@18.2.0)(zenroom@4.32.6)
+      '@slangroom/fs': 1.35.0(zenroom@4.32.6)
+      '@slangroom/git': 1.35.0(zenroom@4.32.6)
+      '@slangroom/helpers': 1.35.0(zenroom@4.32.6)
+      '@slangroom/http': 1.35.0(zenroom@4.32.6)
+      '@slangroom/json-schema': 1.35.0(zenroom@4.32.6)
+      '@slangroom/oauth': 1.35.0(zenroom@4.32.6)
+      '@slangroom/pocketbase': 1.35.0(@capacitor/core@6.1.0)(zenroom@4.32.6)
+      '@slangroom/qrcode': 1.35.0(zenroom@4.32.6)
+      '@slangroom/redis': 1.35.0(zenroom@4.32.6)
+      '@slangroom/shell': 1.35.0(zenroom@4.32.6)
+      '@slangroom/timestamp': 1.35.0(zenroom@4.32.6)
+      '@slangroom/wallet': 1.35.0(zenroom@4.32.6)
+      '@slangroom/zencode': 1.35.0(zenroom@4.32.6)
     transitivePeerDependencies:
       - '@capacitor/core'
       - bluebird
@@ -7433,18 +7433,18 @@ snapshots:
     dependencies:
       '@sinonjs/commons': 3.0.1
 
-  '@slangroom/core@1.35.0(zenroom@4.32.5)':
+  '@slangroom/core@1.35.0(zenroom@4.32.6)':
     dependencies:
-      '@slangroom/deps': 1.35.0(zenroom@4.32.5)
-      '@slangroom/ignored': 1.35.0(zenroom@4.32.5)
-      '@slangroom/shared': 1.35.0(zenroom@4.32.5)
+      '@slangroom/deps': 1.35.0(zenroom@4.32.6)
+      '@slangroom/ignored': 1.35.0(zenroom@4.32.6)
+      '@slangroom/shared': 1.35.0(zenroom@4.32.6)
     transitivePeerDependencies:
       - zenroom
 
-  '@slangroom/db@1.35.0(mariadb@3.3.1)(mysql2@3.10.1)(oracledb@6.5.1)(pg-hstore@2.3.4)(pg@8.12.0)(snowflake-sdk@1.11.0(asn1.js@5.4.1)(encoding@0.1.13))(tedious@18.2.0)(zenroom@4.32.5)':
+  '@slangroom/db@1.35.0(mariadb@3.3.1)(mysql2@3.10.1)(oracledb@6.5.1)(pg-hstore@2.3.4)(pg@8.12.0)(snowflake-sdk@1.11.0(asn1.js@5.4.1)(encoding@0.1.13))(tedious@18.2.0)(zenroom@4.32.6)':
     dependencies:
-      '@slangroom/core': 1.35.0(zenroom@4.32.5)
-      '@slangroom/shared': 1.35.0(zenroom@4.32.5)
+      '@slangroom/core': 1.35.0(zenroom@4.32.6)
+      '@slangroom/shared': 1.35.0(zenroom@4.32.6)
       sequelize: 6.37.3(mariadb@3.3.1)(mysql2@3.10.1)(oracledb@6.5.1)(pg-hstore@2.3.4)(pg@8.12.0)(snowflake-sdk@1.11.0(asn1.js@5.4.1)(encoding@0.1.13))(sqlite3@5.1.7)(tedious@18.2.0)
       sqlite3: 5.1.7
     transitivePeerDependencies:
@@ -7460,16 +7460,16 @@ snapshots:
       - tedious
       - zenroom
 
-  '@slangroom/deps@1.35.0(zenroom@4.32.5)':
+  '@slangroom/deps@1.35.0(zenroom@4.32.6)':
     dependencies:
       chalk: 5.3.0
       chevrotain: 10.5.0
-      zenroom: 4.32.5
+      zenroom: 4.32.6
 
-  '@slangroom/ethereum@1.35.0(encoding@0.1.13)(typescript@5.4.5)(zenroom@4.32.5)(zod@3.23.8)':
+  '@slangroom/ethereum@1.35.0(encoding@0.1.13)(typescript@5.4.5)(zenroom@4.32.6)(zod@3.23.8)':
     dependencies:
-      '@slangroom/core': 1.35.0(zenroom@4.32.5)
-      '@slangroom/shared': 1.35.0(zenroom@4.32.5)
+      '@slangroom/core': 1.35.0(zenroom@4.32.6)
+      '@slangroom/shared': 1.35.0(zenroom@4.32.6)
       axios: 1.7.2(debug@4.3.4)
       web3: 4.10.0(encoding@0.1.13)(typescript@5.4.5)(zod@3.23.8)
       web3-validator: 2.0.6
@@ -7482,10 +7482,10 @@ snapshots:
       - zenroom
       - zod
 
-  '@slangroom/fs@1.35.0(zenroom@4.32.5)':
+  '@slangroom/fs@1.35.0(zenroom@4.32.6)':
     dependencies:
-      '@slangroom/core': 1.35.0(zenroom@4.32.5)
-      '@slangroom/shared': 1.35.0(zenroom@4.32.5)
+      '@slangroom/core': 1.35.0(zenroom@4.32.6)
+      '@slangroom/shared': 1.35.0(zenroom@4.32.6)
       axios: 1.7.2(debug@4.3.4)
       extract-zip: 2.0.1
     transitivePeerDependencies:
@@ -7493,61 +7493,61 @@ snapshots:
       - supports-color
       - zenroom
 
-  '@slangroom/git@1.35.0(zenroom@4.32.5)':
+  '@slangroom/git@1.35.0(zenroom@4.32.6)':
     dependencies:
-      '@slangroom/core': 1.35.0(zenroom@4.32.5)
+      '@slangroom/core': 1.35.0(zenroom@4.32.6)
       isomorphic-git: 1.26.3
     transitivePeerDependencies:
       - zenroom
 
-  '@slangroom/helpers@1.35.0(zenroom@4.32.5)':
+  '@slangroom/helpers@1.35.0(zenroom@4.32.6)':
     dependencies:
-      '@slangroom/core': 1.35.0(zenroom@4.32.5)
-      '@slangroom/shared': 1.35.0(zenroom@4.32.5)
+      '@slangroom/core': 1.35.0(zenroom@4.32.6)
+      '@slangroom/shared': 1.35.0(zenroom@4.32.6)
       '@types/lodash': 4.17.5
       lodash: 4.17.21
     transitivePeerDependencies:
       - zenroom
 
-  '@slangroom/http@1.35.0(zenroom@4.32.5)':
+  '@slangroom/http@1.35.0(zenroom@4.32.6)':
     dependencies:
-      '@slangroom/core': 1.35.0(zenroom@4.32.5)
-      '@slangroom/shared': 1.35.0(zenroom@4.32.5)
+      '@slangroom/core': 1.35.0(zenroom@4.32.6)
+      '@slangroom/shared': 1.35.0(zenroom@4.32.6)
       axios: 1.7.2(debug@4.3.4)
     transitivePeerDependencies:
       - debug
       - zenroom
 
-  '@slangroom/ignored@1.35.0(zenroom@4.32.5)':
+  '@slangroom/ignored@1.35.0(zenroom@4.32.6)':
     dependencies:
-      '@slangroom/deps': 1.35.0(zenroom@4.32.5)
-      '@slangroom/shared': 1.35.0(zenroom@4.32.5)
+      '@slangroom/deps': 1.35.0(zenroom@4.32.6)
+      '@slangroom/shared': 1.35.0(zenroom@4.32.6)
     transitivePeerDependencies:
       - zenroom
 
-  '@slangroom/json-schema@1.35.0(zenroom@4.32.5)':
+  '@slangroom/json-schema@1.35.0(zenroom@4.32.6)':
     dependencies:
-      '@slangroom/core': 1.35.0(zenroom@4.32.5)
-      '@slangroom/shared': 1.35.0(zenroom@4.32.5)
+      '@slangroom/core': 1.35.0(zenroom@4.32.6)
+      '@slangroom/shared': 1.35.0(zenroom@4.32.6)
       ajv: 8.14.0
     transitivePeerDependencies:
       - zenroom
 
-  '@slangroom/oauth@1.35.0(zenroom@4.32.5)':
+  '@slangroom/oauth@1.35.0(zenroom@4.32.6)':
     dependencies:
       '@node-oauth/oauth2-server': 5.1.0
-      '@slangroom/core': 1.35.0(zenroom@4.32.5)
-      '@slangroom/shared': 1.35.0(zenroom@4.32.5)
+      '@slangroom/core': 1.35.0(zenroom@4.32.6)
+      '@slangroom/shared': 1.35.0(zenroom@4.32.6)
       bs58: 5.0.0
       jose: 5.6.2
     transitivePeerDependencies:
       - zenroom
 
-  '@slangroom/pocketbase@1.35.0(@capacitor/core@6.1.0)(zenroom@4.32.5)':
+  '@slangroom/pocketbase@1.35.0(@capacitor/core@6.1.0)(zenroom@4.32.6)':
     dependencies:
       '@capacitor/preferences': 6.0.1(@capacitor/core@6.1.0)
-      '@slangroom/core': 1.35.0(zenroom@4.32.5)
-      '@slangroom/shared': 1.35.0(zenroom@4.32.5)
+      '@slangroom/core': 1.35.0(zenroom@4.32.6)
+      '@slangroom/shared': 1.35.0(zenroom@4.32.6)
       dotenv: 16.4.5
       pocketbase: 0.19.0
       zod: 3.23.8
@@ -7555,56 +7555,56 @@ snapshots:
       - '@capacitor/core'
       - zenroom
 
-  '@slangroom/qrcode@1.35.0(zenroom@4.32.5)':
+  '@slangroom/qrcode@1.35.0(zenroom@4.32.6)':
     dependencies:
-      '@slangroom/core': 1.35.0(zenroom@4.32.5)
+      '@slangroom/core': 1.35.0(zenroom@4.32.6)
       qrcode: 1.5.3
     transitivePeerDependencies:
       - zenroom
 
-  '@slangroom/redis@1.35.0(zenroom@4.32.5)':
+  '@slangroom/redis@1.35.0(zenroom@4.32.6)':
     dependencies:
       '@redis/client': 1.5.16
-      '@slangroom/core': 1.35.0(zenroom@4.32.5)
-      '@slangroom/shared': 1.35.0(zenroom@4.32.5)
+      '@slangroom/core': 1.35.0(zenroom@4.32.6)
+      '@slangroom/shared': 1.35.0(zenroom@4.32.6)
     transitivePeerDependencies:
       - zenroom
 
-  '@slangroom/shared@1.35.0(zenroom@4.32.5)':
+  '@slangroom/shared@1.35.0(zenroom@4.32.6)':
     dependencies:
-      '@slangroom/deps': 1.35.0(zenroom@4.32.5)
+      '@slangroom/deps': 1.35.0(zenroom@4.32.6)
     transitivePeerDependencies:
       - zenroom
 
-  '@slangroom/shell@1.35.0(zenroom@4.32.5)':
+  '@slangroom/shell@1.35.0(zenroom@4.32.6)':
     dependencies:
-      '@slangroom/core': 1.35.0(zenroom@4.32.5)
+      '@slangroom/core': 1.35.0(zenroom@4.32.6)
       execa: 8.0.1
     transitivePeerDependencies:
       - zenroom
 
-  '@slangroom/timestamp@1.35.0(zenroom@4.32.5)':
+  '@slangroom/timestamp@1.35.0(zenroom@4.32.6)':
     dependencies:
-      '@slangroom/core': 1.35.0(zenroom@4.32.5)
-      '@slangroom/shared': 1.35.0(zenroom@4.32.5)
+      '@slangroom/core': 1.35.0(zenroom@4.32.6)
+      '@slangroom/shared': 1.35.0(zenroom@4.32.6)
     transitivePeerDependencies:
       - zenroom
 
-  '@slangroom/wallet@1.35.0(zenroom@4.32.5)':
+  '@slangroom/wallet@1.35.0(zenroom@4.32.6)':
     dependencies:
       '@meeco/sd-jwt': 0.0.3
       '@meeco/sd-jwt-vc': 0.0.4
-      '@slangroom/core': 1.35.0(zenroom@4.32.5)
-      '@slangroom/shared': 1.35.0(zenroom@4.32.5)
+      '@slangroom/core': 1.35.0(zenroom@4.32.6)
+      '@slangroom/shared': 1.35.0(zenroom@4.32.6)
       bs58: 5.0.0
       jose: 5.6.2
     transitivePeerDependencies:
       - zenroom
 
-  '@slangroom/zencode@1.35.0(zenroom@4.32.5)':
+  '@slangroom/zencode@1.35.0(zenroom@4.32.6)':
     dependencies:
-      '@slangroom/core': 1.35.0(zenroom@4.32.5)
-      '@slangroom/shared': 1.35.0(zenroom@4.32.5)
+      '@slangroom/core': 1.35.0(zenroom@4.32.6)
+      '@slangroom/shared': 1.35.0(zenroom@4.32.6)
     transitivePeerDependencies:
       - zenroom
 
@@ -12397,7 +12397,7 @@ snapshots:
 
   typescript@5.4.5: {}
 
-  uWebSockets.js@https://codeload.github.com/uNetworking/uWebSockets.js/tar.gz/1977b5039938ad863d42fc4958d48c17e5a1fa06: {}
+  uWebSockets.js@git+https://git@github.com:uNetworking/uWebSockets.js.git#8fa05571bf6ea95be8966ad313d9d39453e381ae: {}
 
   uglify-js@3.17.4:
     optional: true
@@ -12885,6 +12885,6 @@ snapshots:
 
   yoctocolors@2.0.2: {}
 
-  zenroom@4.32.5: {}
+  zenroom@4.32.6: {}
 
   zod@3.23.8: {}
