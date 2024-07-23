@@ -105,5 +105,7 @@ export class Directory {
 
 	public onChange(cb: (...args: any[]) => void) {
 		this.liveDirectory.on('add', cb);
+		this.liveDirectory.on('update', cb);
+		this.liveDirectory.on('delete', cb);
 	}
 }
