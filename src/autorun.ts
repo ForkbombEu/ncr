@@ -51,7 +51,6 @@ async function getContractPathsInDirectory(directoryPath: string): Promise<strin
 			.filter((name) => isZencodeFile(name))
 			.map((name) => join(directoryPath, name));
 	} catch (e) {
-		L.error(e);
 		return [];
 	}
 }
@@ -67,8 +66,7 @@ async function runContractData({ contract, keys, conf, data, path }: ContractDat
 	try {
 		const s = SlangroomManager.getInstance();
 		const { result } = await s.execute(contract, { keys, data, conf });
-		L.info('Run contract');
-		L.info(path);
+		L.info(`Running autorun contract ${path}`);
 		L.info(result);
 	} catch (e) {
 		L.error(e);
