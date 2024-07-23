@@ -1,6 +1,6 @@
 {
 	"name": "ncr",
-	"version": "1.36.1",
+	"version": "1.36.2",
 	"description": "No code REST API server based on zencode natural language smart contracts",
 	"repository": "https://github.com/forkbombeu/ncr",
 	"author": {
@@ -73,7 +73,7 @@
 		"snowflake-sdk": "^1.11.0",
 		"sqlite3": "^5.1.7",
 		"tedious": "^18.2.0",
-		"uWebSockets.js": "https://github.com/uNetworking/uWebSockets.js#semver:^20",
+		"uWebSockets.js": "github:uNetworking/uWebSockets.js#semver:^20",
 		"zenroom": "^4.32.6"
 	},
 	"devDependencies": {

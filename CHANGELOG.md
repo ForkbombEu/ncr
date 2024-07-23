@@ -1,3 +1,10 @@
+## [1.36.2](https://github.com/forkbombeu/ncr/compare/v1.36.1...v1.36.2) (2024-07-23)
+
+
+### Bug Fixes
+
+* oas.json handle correctly promises ([#290](https://github.com/forkbombeu/ncr/issues/290)) ([7f9aed2](https://github.com/forkbombeu/ncr/commit/7f9aed22a4b7683cd76edd05bb8eb9d09be00b05))
+
 ## [1.36.1](https://github.com/forkbombeu/ncr/compare/v1.36.0...v1.36.1) (2024-07-15)
 
 # [1.36.0](https://github.com/forkbombeu/ncr/compare/v1.35.6...v1.36.0) (2024-07-12)
