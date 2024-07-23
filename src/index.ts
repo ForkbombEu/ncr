@@ -88,9 +88,9 @@ const ncrApp = async () => {
 			res.writeStatus('200 OK').writeHeader('Content-Type', 'text/html').end(openapiTemplate);
 		})
 		.get('/oas.json', async (res, req) => {
+			definition.paths = {};
 			await Promise.all(
 				Dir.files.map(async (endpoints) => {
-					definition.paths = {};
 					const { path, metadata } = endpoints;
 					if (definition.paths && !metadata.hidden && !metadata.hideFromOpenapi) {
 						const schema = await getSchema(endpoints);
