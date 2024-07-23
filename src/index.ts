@@ -87,21 +87,24 @@ const ncrApp = async () => {
 		.get(config.openapiPath, (res, req) => {
 			res.writeStatus('200 OK').writeHeader('Content-Type', 'text/html').end(openapiTemplate);
 		})
-		.get('/oas.json', (res, req) => {
-			Dir.files.map(async (endpoints) => {
-				const { path, metadata } = endpoints;
-				if (definition.paths && !metadata.hidden && !metadata.hideFromOpenapi) {
-					const schema = await getSchema(endpoints);
-					if (schema) definition.paths[path] = generatePath(
-						endpoints.contract ?? prettyChain(endpoints.chain),
-						schema,
-						metadata
-					);
-					definition.paths[path + '/raw'] = generateRawPath();
-					definition.paths[path + '/app'] = generateAppletPath();
-				}
-			});
-
+		.get('/oas.json', async (res, req) => {
+			await Promise.all(
+				Dir.files.map(async (endpoints) => {
+					definition.paths = {};
+					const { path, metadata } = endpoints;
+					if (definition.paths && !metadata.hidden && !metadata.hideFromOpenapi) {
+						const schema = await getSchema(endpoints);
+						console.log(path, schema);
+						if (schema) definition.paths[path] = generatePath(
+							endpoints.contract ?? prettyChain(endpoints.chain),
+							schema,
+							metadata
+						);
+						definition.paths[path + '/raw'] = generateRawPath();
+						definition.paths[path + '/app'] = generateAppletPath();
+					}
+				})
+			);
 			res.cork(() => {
 				res
 					.writeStatus('200 OK')
