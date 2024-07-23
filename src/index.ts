@@ -94,7 +94,6 @@ const ncrApp = async () => {
 					const { path, metadata } = endpoints;
 					if (definition.paths && !metadata.hidden && !metadata.hideFromOpenapi) {
 						const schema = await getSchema(endpoints);
-						console.log(path, schema);
 						if (schema) definition.paths[path] = generatePath(
 							endpoints.contract ?? prettyChain(endpoints.chain),
 							schema,
