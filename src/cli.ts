@@ -56,7 +56,7 @@ program
 	.addOption(
 		new Option(
 			'-p, --port <number>',
-			'specify port number; if unspecified restroom will listen to a random free port'
+			'specify port number; if unspecified ncr will listen to a random free port'
 		)
 			.env('PORT')
 			.default(0)
