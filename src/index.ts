@@ -162,15 +162,7 @@ const runPrecondition = async (preconditionPath: string, data: Record<string, an
 	await s.execute(zen, {data, keys});
 };
 
-Dir.ready(async () => {
-	let listen_socket: us_listen_socket;
-
-	const app = await ncrApp();
-
-	await autorunContracts();
-
-	generateRoutes(app);
-
+const generatePublicDirectory = (app: TemplatedApp) => {
 	const { publicDirectory } = config;
 	if (publicDirectory) {
 		app.get('/*', async (res, req) => {
@@ -210,6 +202,18 @@ Dir.ready(async () => {
 			}
 		});
 	}
+}
+
+Dir.ready(async () => {
+	let listen_socket: us_listen_socket;
+
+	const app = await ncrApp();
+
+	await autorunContracts();
+
+	generateRoutes(app);
+
+	generatePublicDirectory(app);
 
 	app.listen(config.port, LIBUS_LISTEN_EXCLUSIVE_PORT, (socket) => {
 		if (socket) {
@@ -228,7 +232,8 @@ Dir.ready(async () => {
 			us_listen_socket_close(listen_socket);
 			const app = await ncrApp();
 			generateRoutes(app);
-			app.listen(port, (socket) => {
+			generatePublicDirectory(app);
+			app.listen(port, LIBUS_LISTEN_EXCLUSIVE_PORT, (socket) => {
 				listen_socket = socket;
 				L.info(`Swagger UI is running on http://${config.hostname}:${port}/docs`);
 			});
