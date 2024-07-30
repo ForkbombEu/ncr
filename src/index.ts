@@ -227,19 +227,20 @@ Dir.ready(async () => {
 	});
 
 	Dir.onChange(async () => {
-		try {
-			const port = us_socket_local_port(listen_socket);
-			us_listen_socket_close(listen_socket);
-			const app = await ncrApp();
-			generateRoutes(app);
-			generatePublicDirectory(app);
-			app.listen(port, LIBUS_LISTEN_EXCLUSIVE_PORT, (socket) => {
+		const port = us_socket_local_port(listen_socket);
+		us_listen_socket_close(listen_socket);
+		const app = await ncrApp();
+		generateRoutes(app);
+		generatePublicDirectory(app);
+		app.listen(port, LIBUS_LISTEN_EXCLUSIVE_PORT, (socket) => {
+			if (socket) {
 				listen_socket = socket;
 				L.info(`Swagger UI is running on http://${config.hostname}:${port}/docs`);
-			});
-		} catch (error) {
-			L.error(error);
-		}
+			} else {
+				L.error(`Not able to reload the server`);
+				throw new Error('Not able to reload the server');
+			}
+		});
 	});
 });
 
