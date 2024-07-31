@@ -103,9 +103,19 @@ export class Directory {
 		this.liveDirectory.once('ready', cb);
 	}
 
-	public onChange(cb: (...args: any[]) => void) {
-		this.liveDirectory.on('add', cb);
-		this.liveDirectory.on('update', cb);
-		this.liveDirectory.on('delete', cb);
+	private onChange(event: string, cb: (...args: any[]) => void) {
+		this.liveDirectory.on(event, cb);
+	}
+
+	public onAdd(cb: (path: string, file: LiveFile) => void) {
+		this.onChange('add', cb);
+	}
+
+	public onUpdate(cb: (path: string, file: LiveFile) => void) {
+		this.onChange('update', cb);
+	}
+
+	public onDelete(cb: (path: string) => void) {
+		this.onChange('delete', cb);
 	}
 }
