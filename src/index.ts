@@ -32,6 +32,13 @@ import {
 import { SlangroomManager } from './slangroom.js';
 import { getSchema, validateData, getQueryParams, prettyChain } from './utils.js';
 import { readFileContent, readJsonObject } from './fileUtils.js';
+import {
+	forbidden,
+	methodNotAllowed,
+	notFound,
+	unprocessableEntity,
+	internalServerError
+} from './responseUtils.js';
 import { execute as slangroomChainExecute } from '@dyne/slangroom-chain';
 dotenv.config();
 
@@ -136,13 +143,7 @@ Then print the 'result'
 						.end(JSON.stringify(result));
 				});
 			} catch (e) {
-				L.error(e);
-				res.cork(() =>
-					res
-						.writeStatus('500')
-						.writeHeader('Content-Type', 'application/json')
-						.end((e as Error).message)
-				);
+				internalServerError(res, L, e as Error);
 			}
 		})
 		.get('/sayhi', (res, _) => {
@@ -171,8 +172,10 @@ const generatePublicDirectory = (app: TemplatedApp) => {
 			res.onAborted(() => {
 				res.writeStatus('500').end('Aborted');
 			});
-			if (req.getUrl().split('/').pop().startsWith('.'))
-				return res.writeStatus('404 Not Found').end('Not found');
+			if (req.getUrl().split('/').pop().startsWith('.')) {
+				notFound(res, L, new Error('Try to access hidden file'));
+				return;
+			}
 			let file = path.join(publicDirectory, req.getUrl());
 			if (fs.existsSync(file)) {
 				let contentType = mime.getType(file) || 'application/json';
@@ -181,8 +184,7 @@ const generatePublicDirectory = (app: TemplatedApp) => {
 					try {
 						publicMetadata = JSON.parse(fs.readFileSync(file + '.metadata.json'));
 					} catch (e) {
-						L.fatal(e);
-						res.writeStatus('422 UNPROCESSABLE ENTITY').end('Malformed metadata file');
+						unprocessableEntity(res, L, new Error(`Malformed metadata file: ${(e as Error).message}`));
 						return;
 					}
 					if (publicMetadata.contentType) contentType = publicMetadata.contentType;
@@ -191,8 +193,7 @@ const generatePublicDirectory = (app: TemplatedApp) => {
 							const data: Record<string, any> = getQueryParams(req);
 							await runPrecondition(path.join(publicDirectory, publicMetadata.precondition), data);
 						} catch (e) {
-							L.fatal(e);
-							res.writeStatus('403 FORBIDDEN').end();
+							forbidden(res, L, e as Error);
 							return;
 						}
 					}
@@ -202,7 +203,7 @@ const generatePublicDirectory = (app: TemplatedApp) => {
 					.writeHeader('Content-Type', contentType);
 				res.end(fs.readFileSync(file));
 			} else {
-				res.writeStatus('404 Not Found').end('Not found');
+				notFound(res, L, new Error(`File not found: ${file}`));
 			}
 		});
 	}
@@ -287,14 +288,7 @@ const generateRoutes = (app: TemplatedApp) => {
 						}
 						data['http_headers'] = headers;
 					} catch (e) {
-						if (!res.aborted) {
-							LOG.fatal(e);
-							res
-								.writeStatus('422 UNPROCESSABLE ENTITY')
-								.writeHeader('Content-Type', 'application/json')
-								.writeHeader('Access-Control-Allow-Origin', '*')
-								.end((e as Error).message);
-						}
+						unprocessableEntity(res, LOG, e as Error);
 						return;
 					}
 				}
@@ -302,8 +296,7 @@ const generateRoutes = (app: TemplatedApp) => {
 					try {
 						await runPrecondition(metadata.precondition, data);
 					} catch (e) {
-						LOG.fatal(e);
-						res.writeStatus('403 FORBIDDEN').end((e as Error).message);
+						forbidden(res, LOG, e as Error);
 						return;
 					}
 				}
@@ -311,16 +304,7 @@ const generateRoutes = (app: TemplatedApp) => {
 				try {
 					validateData(schema, data);
 				} catch (e) {
-					if (!res.aborted) {
-						LOG.fatal((e as Error).message);
-						res.cork(() => {
-							res
-								.writeStatus('422 UNPROCESSABLE ENTITY')
-								.writeHeader('Content-Type', 'application/json')
-								.writeHeader('Access-Control-Allow-Origin', '*')
-								.end((e as Error).message);
-						});
-					}
+					unprocessableEntity(res, LOG, e as Error);
 					return;
 				}
 
@@ -395,12 +379,7 @@ const generateRoutes = (app: TemplatedApp) => {
 
 		app.post(path, (res, req) => {
 			if (metadata.disablePost) {
-				res.cork(() => {
-					res
-						.writeStatus('405 METHOD NOT ALLOWED')
-						.writeHeader('Access-Control-Allow-Origin', '*')
-						.end('Method not allowed');
-				});
+				methodNotAllowed(res, LOG, new Error(`Post method not allowed on ${path}`));
 				return;
 			}
 			let headers: Record<string, Record<string, string>> = {};
@@ -443,12 +422,7 @@ const generateRoutes = (app: TemplatedApp) => {
 		});
 		app.get(path, async (res, req) => {
 			if (metadata.disableGet) {
-				res.cork(() => {
-					res
-						.writeStatus('405 METHOD NOT ALLOWED')
-						.writeHeader('Access-Control-Allow-Origin', '*')
-						.end('Method not allowed');
-				});
+				methodNotAllowed(res, LOG, new Error(`Get method not allowed on ${path}`));
 				return;
 			}
 			let headers: Record<string, Record<string, string>> = {};
