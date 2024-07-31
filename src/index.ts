@@ -40,8 +40,8 @@ const Dir = Directory.getInstance();
 
 const PROM = process.env.PROM == 'true';
 
-if (typeof process.env.FILES_DIR == "undefined") {
-	process.env.FILES_DIR = config.zencodeDir
+if (typeof process.env.FILES_DIR == 'undefined') {
+	process.env.FILES_DIR = config.zencodeDir;
 }
 
 const setupProm = async (app: TemplatedApp) => {
@@ -94,11 +94,12 @@ const ncrApp = async () => {
 					const { path, metadata } = endpoints;
 					if (definition.paths && !metadata.hidden && !metadata.hideFromOpenapi) {
 						const schema = await getSchema(endpoints);
-						if (schema) definition.paths[path] = generatePath(
-							endpoints.contract ?? prettyChain(endpoints.chain),
-							schema,
-							metadata
-						);
+						if (schema)
+							definition.paths[path] = generatePath(
+								endpoints.contract ?? prettyChain(endpoints.chain),
+								schema,
+								metadata
+							);
 						definition.paths[path + '/raw'] = generateRawPath();
 						definition.paths[path + '/app'] = generateAppletPath();
 					}
@@ -156,10 +157,11 @@ Then print the 'result'
 
 const runPrecondition = async (preconditionPath: string, data: Record<string, any>) => {
 	const s = SlangroomManager.getInstance();
-	const zen = fs.readFileSync(preconditionPath+".slang").toString();
-	const keys = fs.existsSync(preconditionPath+".keys.json") ?
-		JSON.parse(fs.readFileSync(preconditionPath+".keys.json")) : null;
-	await s.execute(zen, {data, keys});
+	const zen = fs.readFileSync(preconditionPath + '.slang').toString();
+	const keys = fs.existsSync(preconditionPath + '.keys.json')
+		? JSON.parse(fs.readFileSync(preconditionPath + '.keys.json'))
+		: null;
+	await s.execute(zen, { data, keys });
 };
 
 const generatePublicDirectory = (app: TemplatedApp) => {
@@ -169,32 +171,34 @@ const generatePublicDirectory = (app: TemplatedApp) => {
 			res.onAborted(() => {
 				res.writeStatus('500').end('Aborted');
 			});
-			if (req.getUrl().split('/').pop().startsWith('.')) return res.writeStatus('404 Not Found').end('Not found');
+			if (req.getUrl().split('/').pop().startsWith('.'))
+				return res.writeStatus('404 Not Found').end('Not found');
 			let file = path.join(publicDirectory, req.getUrl());
 			if (fs.existsSync(file)) {
 				let contentType = mime.getType(file) || 'application/json';
-				if(fs.existsSync(file+'.metadata.json')) {
-					let publicMetadata
+				if (fs.existsSync(file + '.metadata.json')) {
+					let publicMetadata;
 					try {
-						publicMetadata = JSON.parse(fs.readFileSync(file+'.metadata.json'));
+						publicMetadata = JSON.parse(fs.readFileSync(file + '.metadata.json'));
 					} catch (e) {
 						L.fatal(e);
 						res.writeStatus('422 UNPROCESSABLE ENTITY').end('Malformed metadata file');
 						return;
 					}
-					if(publicMetadata.contentType) contentType = publicMetadata.contentType
-					if(publicMetadata.precondition) {
-						try{
+					if (publicMetadata.contentType) contentType = publicMetadata.contentType;
+					if (publicMetadata.precondition) {
+						try {
 							const data: Record<string, any> = getQueryParams(req);
 							await runPrecondition(path.join(publicDirectory, publicMetadata.precondition), data);
-						} catch(e) {
+						} catch (e) {
 							L.fatal(e);
-							res.writeStatus('403 FORBIDDEN').end()
+							res.writeStatus('403 FORBIDDEN').end();
 							return;
 						}
 					}
 				}
-				res.writeHeader('Access-Control-Allow-Origin', '*')
+				res
+					.writeHeader('Access-Control-Allow-Origin', '*')
 					.writeHeader('Content-Type', contentType);
 				res.end(fs.readFileSync(file));
 			} else {
@@ -202,7 +206,7 @@ const generatePublicDirectory = (app: TemplatedApp) => {
 			}
 		});
 	}
-}
+};
 
 Dir.ready(async () => {
 	let listen_socket: us_listen_socket;
@@ -240,7 +244,7 @@ const setCorsHeaders = (res: HttpResponse) => {
 
 const generateRoutes = (app: TemplatedApp) => {
 	Dir.files.forEach(async (endpoints) => {
-		const { contract, chain , path, keys, conf, metadata } = endpoints;
+		const { contract, chain, path, keys, conf, metadata } = endpoints;
 		if (metadata.hidden) return;
 
 		const LOG = L.getSubLogger({
@@ -299,7 +303,7 @@ const generateRoutes = (app: TemplatedApp) => {
 						await runPrecondition(metadata.precondition, data);
 					} catch (e) {
 						LOG.fatal(e);
-						res.writeStatus('403 FORBIDDEN').end((e as Error).message)
+						res.writeStatus('403 FORBIDDEN').end((e as Error).message);
 						return;
 					}
 				}
@@ -320,12 +324,12 @@ const generateRoutes = (app: TemplatedApp) => {
 					return;
 				}
 
-				let jsonResult: Record <string, unknown>;
+				let jsonResult: Record<string, unknown>;
 				try {
 					if (chain) {
-            const dataFormatted = data ? JSON.stringify(data) : undefined;
-            const parsedChain = eval(chain)();
-            const res = await slangroomChainExecute(parsedChain, dataFormatted);
+						const dataFormatted = data ? JSON.stringify(data) : undefined;
+						const parsedChain = eval(chain)();
+						const res = await slangroomChainExecute(parsedChain, dataFormatted);
 						jsonResult = JSON.parse(res);
 					} else {
 						({ result: jsonResult } = await s.execute(contract, { keys, data, conf }));
@@ -343,8 +347,11 @@ const generateRoutes = (app: TemplatedApp) => {
 					}
 				}
 				if (metadata.httpHeaders) {
-					if(jsonResult.http_headers !== undefined && jsonResult.http_headers.response !== undefined) {
-						headers.response = jsonResult.http_headers.response
+					if (
+						jsonResult.http_headers !== undefined &&
+						jsonResult.http_headers.response !== undefined
+					) {
+						headers.response = jsonResult.http_headers.response;
 					}
 					delete jsonResult.http_headers;
 				}
@@ -352,7 +359,7 @@ const generateRoutes = (app: TemplatedApp) => {
 				res.cork(() => {
 					if (metadata.httpHeaders && headers.response !== undefined) {
 						for (const [k, v] of Object.entries(headers.response)) {
-							res.writeHeader(k, v)
+							res.writeHeader(k, v);
 						}
 					}
 					res
@@ -387,17 +394,17 @@ const generateRoutes = (app: TemplatedApp) => {
 		});
 
 		app.post(path, (res, req) => {
-			if(metadata.disablePost) {
+			if (metadata.disablePost) {
 				res.cork(() => {
 					res
 						.writeStatus('405 METHOD NOT ALLOWED')
 						.writeHeader('Access-Control-Allow-Origin', '*')
 						.end('Method not allowed');
-				})
+				});
 				return;
 			}
 			let headers: Record<string, Record<string, string>> = {};
-			headers.request = {}
+			headers.request = {};
 			req.forEach((k, v) => {
 				headers.request[k] = v;
 			});
@@ -435,17 +442,17 @@ const generateRoutes = (app: TemplatedApp) => {
 			});
 		});
 		app.get(path, async (res, req) => {
-			if(metadata.disableGet) {
+			if (metadata.disableGet) {
 				res.cork(() => {
 					res
 						.writeStatus('405 METHOD NOT ALLOWED')
 						.writeHeader('Access-Control-Allow-Origin', '*')
 						.end('Method not allowed');
-				})
+				});
 				return;
 			}
 			let headers: Record<string, Record<string, string>> = {};
-			headers.request = {}
+			headers.request = {};
 			req.forEach((k, v) => {
 				headers.request[k] = v;
 			});
