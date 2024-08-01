@@ -13,6 +13,7 @@ import { config } from './cli.js';
 import { SlangroomManager } from './slangroom.js';
 import { forbidden, methodNotAllowed, notFound, unprocessableEntity } from './responseUtils.js';
 import { getSchema, validateData, getQueryParams } from './utils.js';
+import { template as proctoroom } from './applets.js';
 
 const L = config.logger;
 const emoji = {
@@ -293,7 +294,7 @@ export const generateRoute = async (
 			schema: JSON.stringify(schema),
 			title: path || 'Welcome 🥳 to ',
 			description: contract,
-			endpoint: `//${config.hostname}:${config.port}${path}`
+			endpoint: `${path}`
 		});
 
 		res.writeStatus('200 OK').writeHeader('Content-Type', 'text/html').end(result);

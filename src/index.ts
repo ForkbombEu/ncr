@@ -17,7 +17,6 @@ import {
 	us_socket_local_port,
 	LIBUS_LISTEN_EXCLUSIVE_PORT
 } from 'uWebSockets.js';
-import { template as proctoroom } from './applets.js';
 import { autorunContracts } from './autorun.js';
 import { config } from './cli.js';
 import { Directory } from './directory.js';
