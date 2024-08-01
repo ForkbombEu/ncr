@@ -163,7 +163,7 @@ const generatePublicDirectory = (app: TemplatedApp) => {
 				return;
 			}
 			let file = path.join(publicDirectory, req.getUrl());
-			if (fs.existsSync(file)) {
+			if (fs.existsSync(file) && fs.statSync(file).isFile()) {
 				let contentType = mime.getType(file) || 'application/json';
 				if (fs.existsSync(file + '.metadata.json')) {
 					let publicMetadata;
