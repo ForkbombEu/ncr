@@ -187,10 +187,13 @@ const generatePublicDirectory = (app: TemplatedApp) => {
 						}
 					}
 				}
-				res
-					.writeHeader('Access-Control-Allow-Origin', '*')
-					.writeHeader('Content-Type', contentType);
-				res.end(fs.readFileSync(file));
+				res.cork(() => {
+					res
+						.writeStatus('200 OK')
+						.writeHeader('Access-Control-Allow-Origin', '*')
+						.writeHeader('Content-Type', contentType);
+						.end(fs.readFileSync(file));
+				})
 			} else {
 				notFound(res, L, new Error(`File not found: ${file}`));
 			}
