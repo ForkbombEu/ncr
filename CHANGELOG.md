@@ -1,3 +1,10 @@
+## [1.36.4](https://github.com/forkbombeu/ncr/compare/v1.36.3...v1.36.4) (2024-08-01)
+
+
+### Bug Fixes
+
+* use relative urls in applets endpoints ([#297](https://github.com/forkbombeu/ncr/issues/297)) ([be4484b](https://github.com/forkbombeu/ncr/commit/be4484bc5e2869146f9f27b68aefdbfaa9756049))
+
 ## [1.36.3](https://github.com/forkbombeu/ncr/compare/v1.36.2...v1.36.3) (2024-08-01)
 
 
