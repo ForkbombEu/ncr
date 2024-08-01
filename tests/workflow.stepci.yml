@@ -91,7 +91,7 @@ tests:
           method: GET
           check:
             status: 404
-            body: Not found
+            body: Not Found
 
   broken:
     steps:
@@ -313,7 +313,7 @@ tests:
           method: GET
           check:
             status: 405
-            body: Method not allowed
+            body: Method Not Allowed
       - name: GET request
         http:
           url: http://${{env.host}}/meta/content_type

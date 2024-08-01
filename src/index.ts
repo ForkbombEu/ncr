@@ -21,7 +21,6 @@ import { template as proctoroom } from './applets.js';
 import { autorunContracts } from './autorun.js';
 import { config } from './cli.js';
 import { Directory } from './directory.js';
-import { reportZenroomError } from './error.js';
 import {
 	definition,
 	generateAppletPath,
@@ -30,8 +29,11 @@ import {
 	openapiTemplate
 } from './openapi.js';
 import { SlangroomManager } from './slangroom.js';
-import { getSchema, validateData, getQueryParams, prettyChain } from './utils.js';
-import { readFileContent, readJsonObject } from './fileUtils.js';
+import { formatContract } from './fileUtils.js';
+import { getSchema, getQueryParams, prettyChain, newMetadata } from './utils.js';
+import { forbidden, notFound, unprocessableEntity, internalServerError } from './responseUtils.js';
+import { generateRoute, runPrecondition } from './routeUtils.js';
+
 import { execute as slangroomChainExecute } from '@dyne/slangroom-chain';
 dotenv.config();
 
@@ -40,8 +42,8 @@ const Dir = Directory.getInstance();
 
 const PROM = process.env.PROM == 'true';
 
-if (typeof process.env.FILES_DIR == "undefined") {
-	process.env.FILES_DIR = config.zencodeDir
+if (typeof process.env.FILES_DIR == 'undefined') {
+	process.env.FILES_DIR = config.zencodeDir;
 }
 
 const setupProm = async (app: TemplatedApp) => {
@@ -94,11 +96,12 @@ const ncrApp = async () => {
 					const { path, metadata } = endpoints;
 					if (definition.paths && !metadata.hidden && !metadata.hideFromOpenapi) {
 						const schema = await getSchema(endpoints);
-						if (schema) definition.paths[path] = generatePath(
-							endpoints.contract ?? prettyChain(endpoints.chain),
-							schema,
-							metadata
-						);
+						if (schema)
+							definition.paths[path] = generatePath(
+								endpoints.contract ?? prettyChain(endpoints.chain),
+								schema,
+								metadata
+							);
 						definition.paths[path + '/raw'] = generateRawPath();
 						definition.paths[path + '/app'] = generateAppletPath();
 					}
@@ -135,13 +138,7 @@ Then print the 'result'
 						.end(JSON.stringify(result));
 				});
 			} catch (e) {
-				L.error(e);
-				res.cork(() =>
-					res
-						.writeStatus('500')
-						.writeHeader('Content-Type', 'application/json')
-						.end((e as Error).message)
-				);
+				internalServerError(res, L, e as Error);
 			}
 		})
 		.get('/sayhi', (res, _) => {
@@ -154,12 +151,73 @@ Then print the 'result'
 	return app;
 };
 
-const runPrecondition = async (preconditionPath: string, data: Record<string, any>) => {
-	const s = SlangroomManager.getInstance();
-	const zen = fs.readFileSync(preconditionPath+".slang").toString();
-	const keys = fs.existsSync(preconditionPath+".keys.json") ?
-		JSON.parse(fs.readFileSync(preconditionPath+".keys.json")) : null;
-	await s.execute(zen, {data, keys});
+const generatePublicDirectory = (app: TemplatedApp) => {
+	const { publicDirectory } = config;
+	if (publicDirectory) {
+		app.get('/*', async (res, req) => {
+			res.onAborted(() => {
+				res.writeStatus('500').end('Aborted');
+			});
+			if (req.getUrl().split('/').pop().startsWith('.')) {
+				notFound(res, L, new Error('Try to access hidden file'));
+				return;
+			}
+			let file = path.join(publicDirectory, req.getUrl());
+			if (fs.existsSync(file)) {
+				let contentType = mime.getType(file) || 'application/json';
+				if (fs.existsSync(file + '.metadata.json')) {
+					let publicMetadata;
+					try {
+						publicMetadata = JSON.parse(fs.readFileSync(file + '.metadata.json'));
+					} catch (e) {
+						unprocessableEntity(
+							res,
+							L,
+							new Error(`Malformed metadata file: ${(e as Error).message}`)
+						);
+						return;
+					}
+					if (publicMetadata.contentType) contentType = publicMetadata.contentType;
+					if (publicMetadata.precondition) {
+						try {
+							const data: Record<string, any> = getQueryParams(req);
+							await runPrecondition(path.join(publicDirectory, publicMetadata.precondition), data);
+						} catch (e) {
+							forbidden(res, L, e as Error);
+							return;
+						}
+					}
+				}
+				res
+					.writeHeader('Access-Control-Allow-Origin', '*')
+					.writeHeader('Content-Type', contentType);
+				res.end(fs.readFileSync(file));
+			} else {
+				notFound(res, L, new Error(`File not found: ${file}`));
+			}
+		});
+	}
+};
+
+const generateEndpoint = (basePath: string): Endpoints | undefined => {
+	if (Dir.getContent(basePath + '.zen') !== undefined) {
+		return {
+			path: basePath,
+			contract: formatContract(Dir.getContent(basePath + '.zen')),
+			keys: Dir.getJSON(basePath, 'keys'),
+			conf: Dir.getContent(basePath + '.conf') || '',
+			schema: Dir.getJSONSchema(basePath),
+			metadata: newMetadata(Dir.getJSON(basePath, 'metadata') || {})
+		};
+	} else if (Dir.getContent(basePath + '.chain.js') !== undefined) {
+		return {
+			path: basePath,
+			chain: Dir.getContent(basePath + '.chain.js'),
+			schema: Dir.getJSONSchema(basePath),
+			metadata: newMetadata(Dir.getJSON(basePath, 'metadata') || {})
+		};
+	}
+	return;
 };
 
 Dir.ready(async () => {
@@ -169,47 +227,13 @@ Dir.ready(async () => {
 
 	await autorunContracts();
 
-	generateRoutes(app);
+	await Promise.all(
+		Dir.files.map(async (endpoint) => {
+			await generateRoute(app, endpoint, 'add');
+		})
+	);
 
-	const { publicDirectory } = config;
-	if (publicDirectory) {
-		app.get('/*', async (res, req) => {
-			res.onAborted(() => {
-				res.writeStatus('500').end('Aborted');
-			});
-			if (req.getUrl().split('/').pop().startsWith('.')) return res.writeStatus('404 Not Found').end('Not found');
-			let file = path.join(publicDirectory, req.getUrl());
-			if (fs.existsSync(file)) {
-				let contentType = mime.getType(file) || 'application/json';
-				if(fs.existsSync(file+'.metadata.json')) {
-					let publicMetadata
-					try {
-						publicMetadata = JSON.parse(fs.readFileSync(file+'.metadata.json'));
-					} catch (e) {
-						L.fatal(e);
-						res.writeStatus('422 UNPROCESSABLE ENTITY').end('Malformed metadata file');
-						return;
-					}
-					if(publicMetadata.contentType) contentType = publicMetadata.contentType
-					if(publicMetadata.precondition) {
-						try{
-							const data: Record<string, any> = getQueryParams(req);
-							await runPrecondition(path.join(publicDirectory, publicMetadata.precondition), data);
-						} catch(e) {
-							L.fatal(e);
-							res.writeStatus('403 FORBIDDEN').end()
-							return;
-						}
-					}
-				}
-				res.writeHeader('Access-Control-Allow-Origin', '*')
-					.writeHeader('Content-Type', contentType);
-				res.end(fs.readFileSync(file));
-			} else {
-				res.writeStatus('404 Not Found').end('Not found');
-			}
-		});
-	}
+	generatePublicDirectory(app);
 
 	app.listen(config.port, LIBUS_LISTEN_EXCLUSIVE_PORT, (socket) => {
 		if (socket) {
@@ -222,274 +246,43 @@ Dir.ready(async () => {
 		}
 	});
 
-	Dir.onChange(async () => {
-		try {
-			const port = us_socket_local_port(listen_socket);
-			us_listen_socket_close(listen_socket);
-			const app = await ncrApp();
-			generateRoutes(app);
-			app.listen(port, (socket) => {
-				listen_socket = socket;
-				L.info(`Swagger UI is running on http://${config.hostname}:${port}/docs`);
-			});
-		} catch (error) {
-			L.error(error);
+	Dir.onAdd(async (path: string, file: LiveFile) => {
+		const [baseName, ext, json] = path.split('.');
+		const endpoint = generateEndpoint(baseName);
+		if (!endpoint) return;
+		let event: string;
+		if (ext === 'zen' || (ext === 'chain' && json === 'js')) {
+			event = 'add';
+		} else {
+			event = 'update';
 		}
+		await generateRoute(app, endpoint, event);
+	});
+
+	Dir.onUpdate(async (path: string, file: LiveFile) => {
+		const endpoint = generateEndpoint(path.split('.')[0]);
+		if (!endpoint) return;
+		await generateRoute(app, endpoint, 'update');
+	});
+
+	Dir.onDelete(async (path: string) => {
+		const [baseName, ext, json] = path.split('.');
+		let endpoint: Endpoints;
+		let event: string;
+		if (ext === 'zen' || (ext === 'chain' && json === 'js')) {
+			endpoint = {
+				path: baseName,
+				contract: null,
+				chain: null,
+				conf: '',
+				metadata: {}
+			};
+			event = 'delete';
+		} else {
+			endpoint = generateEndpoint(baseName);
+			event = 'update';
+		}
+		if (!endpoint) return;
+		await generateRoute(app, endpoint, event);
 	});
 });
-
-const setCorsHeaders = (res: HttpResponse) => {
-	res
-		.writeHeader('Access-Control-Allow-Origin', '*')
-		.writeHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
-		.writeHeader('Access-Control-Allow-Headers', 'content-type, authorization');
-};
-
-const generateRoutes = (app: TemplatedApp) => {
-	Dir.files.forEach(async (endpoints) => {
-		const { contract, chain , path, keys, conf, metadata } = endpoints;
-		if (metadata.hidden) return;
-
-		const LOG = L.getSubLogger({
-			stylePrettyLogs: true,
-			prettyLogTemplate:
-				'{{logLevelName}}\t📜 {{zencode}}.zen \t🕙 {{dateIsoStr}} \t📁 {{filePathWithLine}}\t\t',
-			overwrite: {
-				addPlaceholders: (
-					logObjMeta: IMeta,
-					placeholderValues: Record<string, string | number>
-				) => {
-					placeholderValues['zencode'] = path;
-				}
-			}
-		});
-
-		let schema = await getSchema(endpoints);
-		if (!schema) {
-			L.warn(`🛟 ${path} 🚧 Please provide a valide schema`);
-			schema = { type: 'object', properties: {} };
-		}
-
-		const s = SlangroomManager.getInstance();
-
-		const execZencodeAndReply = async (
-			res: HttpResponse,
-			data: JSON | Record<string, unknown>,
-			headers: Record<string, Record<string, string>>
-		) => {
-			res.onAborted(() => {
-				res.aborted = true;
-				res.cork(() => res.writeStatus('400').end());
-				return;
-			});
-			try {
-				if (metadata.httpHeaders) {
-					try {
-						if (data['http_headers'] !== undefined) {
-							throw new Error('Name clash on input key http_headers');
-						}
-						data['http_headers'] = headers;
-					} catch (e) {
-						if (!res.aborted) {
-							LOG.fatal(e);
-							res
-								.writeStatus('422 UNPROCESSABLE ENTITY')
-								.writeHeader('Content-Type', 'application/json')
-								.writeHeader('Access-Control-Allow-Origin', '*')
-								.end((e as Error).message);
-						}
-						return;
-					}
-				}
-				if (metadata.precondition) {
-					try {
-						await runPrecondition(metadata.precondition, data);
-					} catch (e) {
-						LOG.fatal(e);
-						res.writeStatus('403 FORBIDDEN').end((e as Error).message)
-						return;
-					}
-				}
-
-				try {
-					validateData(schema, data);
-				} catch (e) {
-					if (!res.aborted) {
-						LOG.fatal((e as Error).message);
-						res.cork(() => {
-							res
-								.writeStatus('422 UNPROCESSABLE ENTITY')
-								.writeHeader('Content-Type', 'application/json')
-								.writeHeader('Access-Control-Allow-Origin', '*')
-								.end((e as Error).message);
-						});
-					}
-					return;
-				}
-
-				let jsonResult: Record <string, unknown>;
-				try {
-					if (chain) {
-            const dataFormatted = data ? JSON.stringify(data) : undefined;
-            const parsedChain = eval(chain)();
-            const res = await slangroomChainExecute(parsedChain, dataFormatted);
-						jsonResult = JSON.parse(res);
-					} else {
-						({ result: jsonResult } = await s.execute(contract, { keys, data, conf }));
-					}
-				} catch (e) {
-					if (!res.aborted) {
-						res.cork(() => {
-							const report = reportZenroomError(e as Error, LOG, endpoints);
-							res
-								.writeStatus(metadata.errorCode)
-								.writeHeader('Access-Control-Allow-Origin', '*')
-								.end(report);
-						});
-						return;
-					}
-				}
-				if (metadata.httpHeaders) {
-					if(jsonResult.http_headers !== undefined && jsonResult.http_headers.response !== undefined) {
-						headers.response = jsonResult.http_headers.response
-					}
-					delete jsonResult.http_headers;
-				}
-				const slangroomResult = JSON.stringify(jsonResult);
-				res.cork(() => {
-					if (metadata.httpHeaders && headers.response !== undefined) {
-						for (const [k, v] of Object.entries(headers.response)) {
-							res.writeHeader(k, v)
-						}
-					}
-					res
-						.writeStatus(metadata.successCode)
-						.writeHeader('Content-Type', metadata.successContentType)
-						.writeHeader('Access-Control-Allow-Origin', '*')
-						.end(slangroomResult);
-					return;
-				});
-			} catch (e) {
-				LOG.fatal(e);
-				res.cork(() =>
-					res
-						.writeStatus(metadata.errorCode)
-						.writeHeader('Access-Control-Allow-Origin', '*')
-						.end((e as Error).message)
-				);
-				return;
-			}
-		};
-		app.options(path, (res) => {
-			res.onAborted(() => {
-				res
-					.writeStatus('500')
-					.writeHeader('Access-Control-Allow-Origin', '*')
-					.writeHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
-					.writeHeader('Access-Control-Allow-Headers', 'content-type')
-					.end('Aborted');
-			});
-			setCorsHeaders(res);
-			res.end();
-		});
-
-		app.post(path, (res, req) => {
-			if(metadata.disablePost) {
-				res.cork(() => {
-					res
-						.writeStatus('405 METHOD NOT ALLOWED')
-						.writeHeader('Access-Control-Allow-Origin', '*')
-						.end('Method not allowed');
-				})
-				return;
-			}
-			let headers: Record<string, Record<string, string>> = {};
-			headers.request = {}
-			req.forEach((k, v) => {
-				headers.request[k] = v;
-			});
-			/**
-			 * Code may break on `slangroom.execute`
-			 * so it's important to attach the `onAborted` handler before everything else
-			 */
-			res.onAborted(() => {
-				res.writeStatus(metadata.errorCode ? metadata.errorCode : '500').end('Aborted');
-			});
-			let buffer: Buffer;
-			res.onData((d, isLast) => {
-				let chunk = Buffer.from(d);
-				if (isLast) {
-					let data;
-					try {
-						data = JSON.parse(buffer ? Buffer.concat([buffer, chunk]) : chunk);
-					} catch (e) {
-						L.error(e);
-						res
-							.writeStatus(metadata.errorCode)
-							.writeHeader('Access-Control-Allow-Origin', '*')
-							.end((e as Error).message);
-						return;
-					}
-					execZencodeAndReply(res, data, headers);
-					return;
-				} else {
-					if (buffer) {
-						buffer = Buffer.concat([buffer, chunk]);
-					} else {
-						buffer = Buffer.concat([chunk]);
-					}
-				}
-			});
-		});
-		app.get(path, async (res, req) => {
-			if(metadata.disableGet) {
-				res.cork(() => {
-					res
-						.writeStatus('405 METHOD NOT ALLOWED')
-						.writeHeader('Access-Control-Allow-Origin', '*')
-						.end('Method not allowed');
-				})
-				return;
-			}
-			let headers: Record<string, Record<string, string>> = {};
-			headers.request = {}
-			req.forEach((k, v) => {
-				headers.request[k] = v;
-			});
-			/**
-			 * Code may break on `slangroom.execute`
-			 * so it's important to attach the `onAborted` handler before everything else
-			 */
-			res.onAborted(() => {
-				res.writeStatus(metadata.errorCode).end('Aborted');
-			});
-
-			try {
-				const data: Record<string, unknown> = getQueryParams(req);
-				execZencodeAndReply(res, data, headers);
-			} catch (e) {
-				LOG.fatal(e);
-				res.writeStatus(metadata.errorCode).end((e as Error).message);
-				return;
-			}
-		});
-
-		app.get(path + '/raw', (res, req) => {
-			res.writeStatus('200 OK').writeHeader('Content-Type', 'text/plain').end(contract);
-		});
-
-		app.get(path + '/app', async (res, req) => {
-			const result = _.template(proctoroom)({
-				contract: contract,
-				schema: JSON.stringify(schema),
-				title: path || 'Welcome 🥳 to ',
-				description: contract,
-				endpoint: `//${config.hostname}:${config.port}${path}`
-			});
-
-			res.writeStatus('200 OK').writeHeader('Content-Type', 'text/html').end(result);
-		});
-
-		L.info(`📜 ${path}`);
-	});
-};

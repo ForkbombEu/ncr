@@ -165,7 +165,7 @@ export const openapiTemplate = `
 		<div id="swagger-ui"></div>
 		<script src="https://unpkg.com/swagger-ui-dist@latest/swagger-ui-bundle.js" crossorigin></script>
 		<script>
-			window.onload = async () => {
+			window.onload = () => {
 				window.ui = SwaggerUIBundle({
 					url: '/oas.json',
 					dom_id: '#swagger-ui'
