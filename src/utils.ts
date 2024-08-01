@@ -17,8 +17,8 @@ const L = config.logger;
 export async function getSchema(endpoints: Endpoints): Promise<JSONSchema | undefined> {
 	const { contract, chain, keys } = endpoints;
 	let schema = endpoints.schema;
-	if (typeof(chain) !== 'undefined') return schema;
-	schema = schema ?? await getSchemaFromIntrospection(contract);
+	if (typeof chain !== 'undefined') return schema;
+	schema = schema ?? (await getSchemaFromIntrospection(contract));
 	if (!keys) return schema;
 	else if (schema) return removeKeysFromSchema(schema, keys);
 }
@@ -115,7 +115,8 @@ export const newMetadata = (configRaw: JSON): Metadata => {
 		httpHeaders: configRaw['http_headers'] || false,
 		errorCode: configRaw['error_code'] || '500',
 		successCode: configRaw['success_code'] || '200',
-		successDescription: configRaw['success_description'] || 'The zencode execution output, splitted by newline',
+		successDescription:
+			configRaw['success_description'] || 'The zencode execution output, splitted by newline',
 		errorDescription: configRaw['error_description'] || 'Zenroom execution error',
 		contentType: configRaw['content_type'] || 'application/json',
 		disableGet: configRaw['disable_get'] || false,
@@ -126,7 +127,7 @@ export const newMetadata = (configRaw: JSON): Metadata => {
 		tags: configRaw['tags'] || ['📑 Zencodes'],
 		hidden: configRaw['hidden'] || false,
 		hideFromOpenapi: configRaw['hide_from_openapi'] || false,
-		precondition: configRaw['precondition'] || false,
+		precondition: configRaw['precondition'] || false
 	};
 };
 
@@ -146,8 +147,8 @@ export const getQueryParams = (req): Record<string, unknown> => {
 		});
 	}
 	return data;
-}
+};
 
 export const prettyChain = (chain: string): string => {
-  return "";
-}
+	return '';
+};
