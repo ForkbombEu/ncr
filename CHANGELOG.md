@@ -1,3 +1,10 @@
+## [1.36.3](https://github.com/forkbombeu/ncr/compare/v1.36.2...v1.36.3) (2024-08-01)
+
+
+### Bug Fixes
+
+* create or reload API on addition, modification or deletion of related files in zencodeDir ([#295](https://github.com/forkbombeu/ncr/issues/295)) ([3ae89e9](https://github.com/forkbombeu/ncr/commit/3ae89e9515e4140751fffe586cf72700bf93d2a5))
+
 ## [1.36.2](https://github.com/forkbombeu/ncr/compare/v1.36.1...v1.36.2) (2024-07-23)
 
 
