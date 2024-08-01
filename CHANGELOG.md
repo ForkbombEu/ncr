@@ -1,3 +1,10 @@
+## [1.36.5](https://github.com/forkbombeu/ncr/compare/v1.36.4...v1.36.5) (2024-08-01)
+
+
+### Bug Fixes
+
+* trying to read folder under public directory now return 404 Not Found ([#298](https://github.com/forkbombeu/ncr/issues/298)) ([8a2726f](https://github.com/forkbombeu/ncr/commit/8a2726f90c42f8deadf39c817e6582dd6585d4bf))
+
 ## [1.36.4](https://github.com/forkbombeu/ncr/compare/v1.36.3...v1.36.4) (2024-08-01)
 
 
