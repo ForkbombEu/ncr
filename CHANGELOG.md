@@ -1,3 +1,10 @@
+## [1.36.6](https://github.com/forkbombeu/ncr/compare/v1.36.5...v1.36.6) (2024-08-01)
+
+
+### Bug Fixes
+
+* cork success response of reading from public directory ([#299](https://github.com/forkbombeu/ncr/issues/299)) ([ca35e49](https://github.com/forkbombeu/ncr/commit/ca35e49c5af1b7035668a48927588ea5e082fcd2))
+
 ## [1.36.5](https://github.com/forkbombeu/ncr/compare/v1.36.4...v1.36.5) (2024-08-01)
 
 
