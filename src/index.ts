@@ -191,7 +191,7 @@ const generatePublicDirectory = (app: TemplatedApp) => {
 					res
 						.writeStatus('200 OK')
 						.writeHeader('Access-Control-Allow-Origin', '*')
-						.writeHeader('Content-Type', contentType);
+						.writeHeader('Content-Type', contentType)
 						.end(fs.readFileSync(file));
 				})
 			} else {
