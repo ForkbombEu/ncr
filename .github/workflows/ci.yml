@@ -19,14 +19,14 @@ jobs:
     name: 🔍 Get pnpm version to use
     runs-on: ubuntu-latest
     outputs:
-      version: ${{ steps.ver.outputs.pnpm-version }}
+      version: ${{ steps.ver.outputs.version }}
     steps:
       - name: 🛎️ Checkout
         uses: actions/checkout@v4
       - name: 🔍 Get pnpm version from pacakgeManager field
         id: ver
         run: |
-          echo "version=$( grep -oP 'pnpm \K.*' .tool-versions )" >> $GITHUB_OUTPUT
+          echo "version=$( grep -oP --color=never 'pnpm \K.*' .tool-versions )" >> $GITHUB_OUTPUT
 
   test:
     name: 🧪 Pnpm test
