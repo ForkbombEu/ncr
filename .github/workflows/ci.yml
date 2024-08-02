@@ -32,11 +32,16 @@ jobs:
     name: 🧪 Pnpm test
     needs: [packageManager]
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      max-parallel: 1
+      matrix:
+        node: [ lts/*, current ]
     steps:
       - name: 🛠️ Prepare pnpm workspace
         uses: dyne/pnpm@main
         with:
-          node-version: 20
+          node-version: ${{ matrix.node }}
           pnpm-version: ${{ needs.packageManager.outputs.version }}
       - name: 🧪 Run tests
         run: |
