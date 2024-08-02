@@ -193,7 +193,7 @@ const generatePublicDirectory = (app: TemplatedApp) => {
 						.writeHeader('Access-Control-Allow-Origin', '*')
 						.writeHeader('Content-Type', contentType)
 						.end(fs.readFileSync(file));
-				})
+				});
 			} else {
 				notFound(res, L, new Error(`File not found: ${file}`));
 			}

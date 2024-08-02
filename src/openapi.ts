@@ -35,7 +35,11 @@ export function generateAppletPath(): OpenAPIV3_1.PathItemObject {
 	};
 }
 
-export function generatePath(contract: string, schema: JSONSchema, metadata: Metadata): OpenAPIV3_1.PathItemObject {
+export function generatePath(
+	contract: string,
+	schema: JSONSchema,
+	metadata: Metadata
+): OpenAPIV3_1.PathItemObject {
 	const getParams = schema.required?.map((n: string) => {
 		return {
 			name: n,
@@ -61,7 +65,7 @@ export function generatePath(contract: string, schema: JSONSchema, metadata: Met
 			description: metadata.errorDescription as string,
 			content: { [metadata.contentType as string]: { schema: Type.Array(Type.String()) } }
 		}
-	}
+	};
 
 	let result = {} as OpenAPIV3_1.PathItemObject;
 
@@ -87,12 +91,10 @@ export function generatePath(contract: string, schema: JSONSchema, metadata: Met
 			tags: metadata.tags,
 			parameters: getParams,
 			responses: responses
-	};
-}
+		};
+	}
 
 	return result;
-
-
 }
 
 export const definition: Partial<OpenAPIV3_1.Document> = {
