@@ -42,7 +42,7 @@
 		"@dyne/slangroom-chain": "^1.6.4",
 		"@slangroom/core": "^1.35.0",
 		"@slangroom/db": "^1.35.0",
-		"@slangroom/ethereum": "^1.35.0",
+		"@slangroom/ethereum": "^1.38.1",
 		"@slangroom/fs": "^1.35.0",
 		"@slangroom/git": "^1.35.0",
 		"@slangroom/helpers": "^1.35.0",
