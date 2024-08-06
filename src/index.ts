@@ -21,6 +21,8 @@ import { autorunContracts } from './autorun.js';
 import { config } from './cli.js';
 import { Directory } from './directory.js';
 import {
+	defaultTags,
+	defaultTagsName,
 	definition,
 	generateAppletPath,
 	generatePath,
@@ -90,9 +92,11 @@ const ncrApp = async () => {
 		})
 		.get('/oas.json', async (res, req) => {
 			definition.paths = {};
+			const tags = [];
 			await Promise.all(
 				Dir.files.map(async (endpoints) => {
 					const { path, metadata } = endpoints;
+					if (metadata.tags) tags.push(...metadata.tags);
 					if (definition.paths && !metadata.hidden && !metadata.hideFromOpenapi) {
 						const schema = await getSchema(endpoints);
 						if (schema)
@@ -106,6 +110,13 @@ const ncrApp = async () => {
 					}
 				})
 			);
+			const customTags = tags.reduce((acc, tag) => {
+				if (tag === defaultTagsName.zen) return acc;
+				const t = { name: tag };
+				if (!acc.includes(t)) acc.push(t);
+				return acc;
+			}, []);
+			definition.tags = [...customTags, ...defaultTags];
 			res.cork(() => {
 				res
 					.writeStatus('200 OK')
