@@ -4,7 +4,7 @@
 
 ARG NODE_VERSION=20
 
-FROM node:${NODE_VERSION}-bullseye as ncr
+FROM node:${NODE_VERSION}-bullseye AS ncr
 RUN apt update && apt install curl git make
 
 ## Tried alpine...
@@ -20,8 +20,11 @@ RUN make build && chmod +x ncr
 FROM debian:bullseye
 WORKDIR /app
 ARG PORT=3000
-ENV PORT $PORT
+ENV PORT=$PORT
+ARG ZENCODE_DIR=/app/contracts
+ENV ZENCODE_DIR=$ZENCODE_DIR
+ARG PUBLIC_DIR=/app/public
+ENV PUBLIC_DIR=$PUBLIC_DIR
 COPY --from=ncr /ncr-app/ncr .
-COPY --from=ncr /ncr-app/templates/proctoroom.html templates/proctoroom.html
 EXPOSE $PORT
-ENTRYPOINT ["./ncr", "-z", "."]
+ENTRYPOINT ["./ncr"]
