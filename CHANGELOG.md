@@ -1,3 +1,10 @@
+## [1.36.7](https://github.com/forkbombeu/ncr/compare/v1.36.6...v1.36.7) (2024-08-08)
+
+
+### Bug Fixes
+
+* **Dockerfile:** add env variables for zencode and public directories ([#314](https://github.com/forkbombeu/ncr/issues/314)) ([708adfe](https://github.com/forkbombeu/ncr/commit/708adfe7b674eebd666869434c76558f57695815))
+
 ## [1.36.6](https://github.com/forkbombeu/ncr/compare/v1.36.5...v1.36.6) (2024-08-01)
 
 
