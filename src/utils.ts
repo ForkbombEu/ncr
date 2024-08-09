@@ -10,6 +10,7 @@ import _ from 'lodash';
 import { introspect } from 'zenroom';
 import { config } from './cli.js';
 import { Codec, Endpoints, JSONSchema, Metadata } from './types';
+import { defaultTagsName } from './openapi.js';
 const L = config.logger;
 
 //
@@ -124,7 +125,7 @@ export const newMetadata = (configRaw: JSON): Metadata => {
 		successContentType: configRaw['success_content_type'] || 'application/json',
 		errorContentType: configRaw['error_content_type'] || 'plain/text',
 		examples: configRaw['examples'] || {},
-		tags: configRaw['tags'] || ['📑 Zencodes'],
+		tags: configRaw['tags'] || [defaultTagsName.zen],
 		hidden: configRaw['hidden'] || false,
 		hideFromOpenapi: configRaw['hide_from_openapi'] || false,
 		precondition: configRaw['precondition'] || false
