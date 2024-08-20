@@ -4,7 +4,7 @@
 
 import fs from 'fs';
 import _ from 'lodash';
-import { HttpResponse, TemplatedApp } from 'uWebSockets.js';
+import { HttpRequest, HttpResponse, TemplatedApp } from 'uWebSockets.js';
 import { execute as slangroomChainExecute } from '@dyne/slangroom-chain';
 
 import { reportZenroomError } from './error.js';
@@ -14,6 +14,87 @@ import { SlangroomManager } from './slangroom.js';
 import { forbidden, methodNotAllowed, notFound, unprocessableEntity } from './responseUtils.js';
 import { getSchema, validateData, getQueryParams } from './utils.js';
 import { template as proctoroom } from './applets.js';
+
+//
+
+export class PrefixedApp {
+	app: TemplatedApp;
+	basePath: string;
+
+	constructor(app: TemplatedApp, basePath: string) {
+		this.app = app;
+		this.basePath = basePath;
+	}
+
+	get(path: string, handler: (res: HttpResponse, req: HttpRequest) => void): PrefixedApp {
+		this.app.get(`${this.basePath}${path}`, (res, req) => {
+			handler(res, req);
+		});
+		return this;
+	}
+
+	post(path: string, handler: (res: HttpResponse, req: HttpRequest) => void): PrefixedApp {
+		this.app.post(`${this.basePath}${path}`, (res, req) => {
+			handler(res, req);
+		});
+		return this;
+	}
+
+	put(path: string, handler: (res: HttpResponse, req: HttpRequest) => void): PrefixedApp {
+		this.app.put(`${this.basePath}${path}`, (res, req) => {
+			handler(res, req);
+		});
+		return this;
+	}
+
+	delete(path: string, handler: (res: HttpResponse, req: HttpRequest) => void): PrefixedApp {
+		this.app.delete(`${this.basePath}${path}`, (res, req) => {
+			handler(res, req);
+		});
+		return this;
+	}
+
+	patch(path: string, handler: (res: HttpResponse, req: HttpRequest) => void): PrefixedApp {
+		this.app.patch(`${this.basePath}${path}`, (res, req) => {
+			handler(res, req);
+		});
+		return this;
+	}
+
+	head(path: string, handler: (res: HttpResponse, req: HttpRequest) => void): PrefixedApp {
+		this.app.head(`${this.basePath}${path}`, (res, req) => {
+			handler(res, req);
+		});
+		return this;
+	}
+
+	options(path: string, handler: (res: HttpResponse, req: HttpRequest) => void): PrefixedApp {
+		this.app.options(`${this.basePath}${path}`, (res, req) => {
+			handler(res, req);
+		});
+		return this;
+	}
+
+	connect(path: string, handler: (res: HttpResponse, req: HttpRequest) => void): PrefixedApp {
+		this.app.connect(`${this.basePath}${path}`, (res, req) => {
+			handler(res, req);
+		});
+		return this;
+	}
+
+	trace(path: string, handler: (res: HttpResponse, req: HttpRequest) => void): PrefixedApp {
+		this.app.trace(`${this.basePath}${path}`, (res, req) => {
+			handler(res, req);
+		});
+		return this;
+	}
+
+	listen(...args: Parameters<TemplatedApp['listen']>): ReturnType<TemplatedApp['listen']> {
+		return this.app.listen(...args);
+	}
+}
+
+//
 
 const L = config.logger;
 const emoji = {
@@ -136,7 +217,7 @@ const execZencodeAndReply = async (
 };
 
 const generatePost = (
-	app: TemplatedApp,
+	app: PrefixedApp,
 	endpoint: Endpoints,
 	schema: JSONSchema,
 	LOG: Logger<ILogObj>,
@@ -193,7 +274,7 @@ const generatePost = (
 };
 
 const generateGet = (
-	app: TemplatedApp,
+	app: PrefixedApp,
 	endpoint: Record<string, any>,
 	schema: JSONSchema,
 	LOG: Logger<ILogObj>,
@@ -234,7 +315,7 @@ const generateGet = (
 };
 
 export const generateRoute = async (
-	app: TemplatedApp,
+	app: PrefixedApp,
 	endpoint: Endpoints,
 	action: 'add' | 'update' | 'delete'
 ) => {
@@ -294,10 +375,10 @@ export const generateRoute = async (
 			schema: JSON.stringify(schema),
 			title: path || 'Welcome 🥳 to ',
 			description: contract,
-			endpoint: `${path}`
+			endpoint: `${config.basepath}${path}`
 		});
 
 		res.writeStatus('200 OK').writeHeader('Content-Type', 'text/html').end(result);
 	});
-	L.info(`${emoji[action]} ${path}`);
+	L.info(`${emoji[action]} ${config.basepath}${path}`);
 };
