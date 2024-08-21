@@ -186,6 +186,9 @@ importers:
       '@types/tgwf__co2':
         specifier: ^0.14.1
         version: 0.14.2
+      fsevents:
+        specifier: ^2.3.3
+        version: 2.3.3
       jest:
         specifier: ^29.7.0
         version: 29.7.0(@types/node@20.14.2)(ts-node@10.9.2(@swc/core@1.5.24(@swc/helpers@0.5.11))(@types/node@20.14.2)(typescript@5.4.5))
@@ -9594,8 +9597,7 @@ snapshots:
 
   fs.realpath@1.0.0: {}
 
-  fsevents@2.3.3:
-    optional: true
+  fsevents@2.3.3: {}
 
   function-bind@1.1.2: {}
 
