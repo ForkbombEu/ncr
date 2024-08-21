@@ -9,6 +9,10 @@ import json from '@rollup/plugin-json';
 import copy from 'rollup-plugin-copy';
 import path from 'path';
 
+console.log('**************************************************************************')
+console.log('Building: ' + process.platform + ' ' + process.arch + ' ' + process.versions.modules)
+console.log('**************************************************************************')
+
 // const uws = 'uws_' + process.platform + '_' + process.arch + '_' + process.versions.modules + '.node';
 const uws = 'uws_' + process.platform + '_' + process.arch + '_108.node';
 const src = path.join('node_modules', 'uWebSockets.js', uws);

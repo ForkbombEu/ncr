@@ -45,6 +45,25 @@ jobs:
         run: |
           pnpm test
 
+  test_exec:
+    name: 🏗️  Build and test executable
+    needs: [packageManager]
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    steps:
+      - name: 🛠️  Prepare pnpm workspace
+        uses: dyne/pnpm@main
+        with:
+          node-version: 20
+          pnpm-version: ${{ needs.packageManager.outputs.version }}
+      - name: 🏗️  Build and start executable
+        run: |
+          make build
+          ls -al
+          ./ncr --help
+
   semantic-release:
     name: 🤖 Semantic release
     permissions:
