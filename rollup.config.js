@@ -14,7 +14,7 @@ console.log('Building: ' + process.platform + ' ' + process.arch + ' ' + process
 console.log('**************************************************************************')
 
 // const uws = 'uws_' + process.platform + '_' + process.arch + '_' + process.versions.modules + '.node';
-const uws = 'uws_' + process.platform + '_' + process.arch + '_108.node';
+const uws = 'uws_' + process.platform + '_' + process.arch + '_' + process.versions.modules + '.node';
 const src = path.join('node_modules', 'uWebSockets.js', uws);
 
 export default {
