@@ -4,7 +4,7 @@
 
 import fs from 'fs';
 import _ from 'lodash';
-import { HttpRequest, HttpResponse, TemplatedApp } from 'uWebSockets.js';
+import { App, HttpRequest, HttpResponse, TemplatedApp } from 'uWebSockets.js';
 import { execute as slangroomChainExecute } from '@dyne/slangroom-chain';
 
 import { reportZenroomError } from './error.js';
@@ -17,81 +17,70 @@ import { template as proctoroom } from './applets.js';
 
 //
 
-export class PrefixedApp {
-	app: TemplatedApp;
-	basePath: string;
+type MethodNames =
+  | 'get'
+  | 'post'
+  | 'options'
+  | 'del'
+  | 'patch'
+  | 'put'
+  | 'head'
+  | 'connect'
+  | 'trace'
+  | 'any'
+  | 'ws';
 
-	constructor(app: TemplatedApp, basePath: string) {
-		this.app = app;
-		this.basePath = basePath;
-	}
+// type MethodNames = 'get' | 'post' | 'options' | 'del' | 'patch' | 'put' | 'head' | 'connect' | 'trace' | 'any' | 'ws';
 
-	get(path: string, handler: (res: HttpResponse, req: HttpRequest) => void): PrefixedApp {
-		this.app.get(`${this.basePath}${path}`, (res, req) => {
-			handler(res, req);
-		});
-		return this;
-	}
+export const createAppWithBasePath = (basepath: string): TemplatedApp => {
+	const app = App();
 
-	post(path: string, handler: (res: HttpResponse, req: HttpRequest) => void): PrefixedApp {
-		this.app.post(`${this.basePath}${path}`, (res, req) => {
-			handler(res, req);
-		});
-		return this;
-	}
+	const wrapPatternMethod = (methodName: MethodNames) => {
+		const originalMethod = app[methodName].bind(app);
+		return (pattern: string, ...args: any[]): TemplatedApp => {
+			const prefixedPattern = `${basepath}${pattern}`;
+			originalMethod(prefixedPattern, ...args);
+			return wrappedApp; // Return the wrapped app instance for chaining
+		};
+	};
 
-	put(path: string, handler: (res: HttpResponse, req: HttpRequest) => void): PrefixedApp {
-		this.app.put(`${this.basePath}${path}`, (res, req) => {
-			handler(res, req);
-		});
-		return this;
-	}
+	const wrapMethod = (methodName: keyof TemplatedApp) => {
+		return (...args: any[]): TemplatedApp => {
+			(app as any)[methodName](...args);
+			return wrappedApp;
+		};
+	};
 
-	delete(path: string, handler: (res: HttpResponse, req: HttpRequest) => void): PrefixedApp {
-		this.app.delete(`${this.basePath}${path}`, (res, req) => {
-			handler(res, req);
-		});
-		return this;
-	}
+	const wrappedApp: TemplatedApp = {
+		numSubscribers: app.numSubscribers.bind(app),
+		publish: app.publish.bind(app),
 
-	patch(path: string, handler: (res: HttpResponse, req: HttpRequest) => void): PrefixedApp {
-		this.app.patch(`${this.basePath}${path}`, (res, req) => {
-			handler(res, req);
-		});
-		return this;
-	}
+		listen: (...args: any[]) => wrapMethod('listen')(...args),
+		listen_unix: (...args: any[]) => wrapMethod('listen_unix')(...args),
+		publish: (...args: any[]) => wrapMethod('publish')(...args),
+		numSubscribers: (...args: any[]) => wrapMethod('numSubscribers')(...args),
+		addServerName: (...args: any[]) => wrapMethod('addServerName')(...args),
+		domain: (...args: any[]) => wrapMethod('domain')(...args),
+		removeServerName: (...args: any[]) => wrapMethod('removeServerName')(...args),
+		missingServerName: (...args: any[]) => wrapMethod('missingServerName')(...args),
+		filter: (...args: any[]) => wrapMethod('filter')(...args),
+		close: (...args: any[]) => wrapMethod('close')(...args),
 
-	head(path: string, handler: (res: HttpResponse, req: HttpRequest) => void): PrefixedApp {
-		this.app.head(`${this.basePath}${path}`, (res, req) => {
-			handler(res, req);
-		});
-		return this;
-	}
+		// Pattern-based methods with basepath wrapping
+		get: wrapPatternMethod('get'),
+		post: wrapPatternMethod('post'),
+		options: wrapPatternMethod('options'),
+		del: wrapPatternMethod('del'),
+		patch: wrapPatternMethod('patch'),
+		put: wrapPatternMethod('put'),
+		head: wrapPatternMethod('head'),
+		connect: wrapPatternMethod('connect'),
+		trace: wrapPatternMethod('trace'),
+		any: wrapPatternMethod('any'),
+		ws: wrapPatternMethod('ws'),
+	  };
 
-	options(path: string, handler: (res: HttpResponse, req: HttpRequest) => void): PrefixedApp {
-		this.app.options(`${this.basePath}${path}`, (res, req) => {
-			handler(res, req);
-		});
-		return this;
-	}
-
-	connect(path: string, handler: (res: HttpResponse, req: HttpRequest) => void): PrefixedApp {
-		this.app.connect(`${this.basePath}${path}`, (res, req) => {
-			handler(res, req);
-		});
-		return this;
-	}
-
-	trace(path: string, handler: (res: HttpResponse, req: HttpRequest) => void): PrefixedApp {
-		this.app.trace(`${this.basePath}${path}`, (res, req) => {
-			handler(res, req);
-		});
-		return this;
-	}
-
-	listen(...args: Parameters<TemplatedApp['listen']>): ReturnType<TemplatedApp['listen']> {
-		return this.app.listen(...args);
-	}
+	return wrappedApp;
 }
 
 //
@@ -217,7 +206,7 @@ const execZencodeAndReply = async (
 };
 
 const generatePost = (
-	app: PrefixedApp,
+	app: TemplatedApp,
 	endpoint: Endpoints,
 	schema: JSONSchema,
 	LOG: Logger<ILogObj>,
@@ -274,7 +263,7 @@ const generatePost = (
 };
 
 const generateGet = (
-	app: PrefixedApp,
+	app: TemplatedApp,
 	endpoint: Record<string, any>,
 	schema: JSONSchema,
 	LOG: Logger<ILogObj>,
@@ -315,7 +304,7 @@ const generateGet = (
 };
 
 export const generateRoute = async (
-	app: PrefixedApp,
+	app: TemplatedApp,
 	endpoint: Endpoints,
 	action: 'add' | 'update' | 'delete'
 ) => {

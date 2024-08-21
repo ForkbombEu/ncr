@@ -9,7 +9,7 @@ import mime from 'mime';
 import path from 'path';
 import { IMeta } from 'tslog';
 import {
-	App,
+	TemplatedApp,
 	us_listen_socket,
 	us_socket_local_port,
 	LIBUS_LISTEN_EXCLUSIVE_PORT
@@ -28,7 +28,7 @@ import { SlangroomManager } from './slangroom.js';
 import { formatContract } from './fileUtils.js';
 import { getSchema, getQueryParams, prettyChain, newMetadata } from './utils.js';
 import { forbidden, notFound, unprocessableEntity, internalServerError } from './responseUtils.js';
-import { PrefixedApp, generateRoute, runPrecondition } from './routeUtils.js';
+import { createAppWithBasePath, generateRoute, runPrecondition } from './routeUtils.js';
 
 import { execute as slangroomChainExecute } from '@dyne/slangroom-chain';
 dotenv.config();
@@ -42,7 +42,7 @@ if (typeof process.env.FILES_DIR == 'undefined') {
 	process.env.FILES_DIR = config.zencodeDir;
 }
 
-const setupProm = async (app: PrefixedApp) => {
+const setupProm = async (app: TemplatedApp) => {
 	const client = await import('prom-client');
 	const register = new client.Registry();
 	register.setDefaultLabels({
@@ -74,7 +74,7 @@ const setupProm = async (app: PrefixedApp) => {
 };
 
 const ncrApp = async () => {
-	const app = new PrefixedApp(App(), config.basepath)
+	const app = createAppWithBasePath(config.basepath)
 		.get('/', (res, req) => {
 			const files = Dir.paths.map((f) => `http://${req.getHeader('host')}${f}`);
 			res
@@ -148,7 +148,7 @@ Then print the 'result'
 	return app;
 };
 
-const generatePublicDirectory = (app: PrefixedApp) => {
+const generatePublicDirectory = (app: TemplatedApp) => {
 	const { publicDirectory } = config;
 	if (publicDirectory) {
 		app.get('/*', async (res, req) => {
