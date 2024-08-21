@@ -31,7 +31,10 @@ jobs:
   test:
     name: 🧪 Pnpm test
     needs: [packageManager]
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
     steps:
       - name: 🛠️ Prepare pnpm workspace
         uses: dyne/pnpm@main
