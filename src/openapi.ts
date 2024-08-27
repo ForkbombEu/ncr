@@ -6,6 +6,7 @@ import { Type } from '@sinclair/typebox';
 import { OpenAPIV3_1 } from 'openapi-types';
 import p from '../package.json' with { type: 'json' };
 import { JSONSchema, Metadata } from './types.js';
+import { config } from './cli.js';
 
 export const defaultTagsName = {
 	zen: '📑 Zencodes',
@@ -177,7 +178,7 @@ export const openapiTemplate = `
 		<script>
 			window.onload = () => {
 				window.ui = SwaggerUIBundle({
-					url: '/oas.json',
+					url: '${config.basepath}/oas.json',
 					dom_id: '#swagger-ui'
 				});
 			};

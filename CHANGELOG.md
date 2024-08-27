@@ -1,3 +1,17 @@
+# [1.37.0](https://github.com/forkbombeu/ncr/compare/v1.36.7...v1.37.0) (2024-08-27)
+
+
+### Features
+
+* add basepath option ([#316](https://github.com/forkbombeu/ncr/issues/316)) ([23416d1](https://github.com/forkbombeu/ncr/commit/23416d186ec7220145242bdb8b020d4d9fcd460d))
+
+## [1.36.7](https://github.com/forkbombeu/ncr/compare/v1.36.6...v1.36.7) (2024-08-08)
+
+
+### Bug Fixes
+
+* **Dockerfile:** add env variables for zencode and public directories ([#314](https://github.com/forkbombeu/ncr/issues/314)) ([708adfe](https://github.com/forkbombeu/ncr/commit/708adfe7b674eebd666869434c76558f57695815))
+
 ## [1.36.6](https://github.com/forkbombeu/ncr/compare/v1.36.5...v1.36.6) (2024-08-01)
 
 
