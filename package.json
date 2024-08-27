@@ -52,7 +52,7 @@
 		"@slangroom/oauth": "^1.35.0",
 		"@slangroom/pocketbase": "^1.35.0",
 		"@slangroom/timestamp": "^1.35.0",
-		"@slangroom/wallet": "^1.35.0",
+		"@slangroom/wallet": "^1.39.0",
 		"@slangroom/zencode": "^1.35.0",
 		"@tgwf/co2": "^0.16.0",
 		"ajv": "^8.12.0",
