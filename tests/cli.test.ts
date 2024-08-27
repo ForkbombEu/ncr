@@ -5,6 +5,7 @@
 import { program } from '../src/cli';
 
 const res = {
+	basepath: '',
 	debug: false,
 	hostname: '0.0.0.0',
 	openapiPath: '/docs',

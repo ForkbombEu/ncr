@@ -9,11 +9,8 @@ import mime from 'mime';
 import path from 'path';
 import { IMeta } from 'tslog';
 import {
-	App,
-	HttpResponse,
 	TemplatedApp,
 	us_listen_socket,
-	us_listen_socket_close,
 	us_socket_local_port,
 	LIBUS_LISTEN_EXCLUSIVE_PORT
 } from 'uWebSockets.js';
@@ -21,6 +18,8 @@ import { autorunContracts } from './autorun.js';
 import { config } from './cli.js';
 import { Directory } from './directory.js';
 import {
+	defaultTags,
+	defaultTagsName,
 	definition,
 	generateAppletPath,
 	generatePath,
@@ -31,7 +30,7 @@ import { SlangroomManager } from './slangroom.js';
 import { formatContract } from './fileUtils.js';
 import { getSchema, getQueryParams, prettyChain, newMetadata } from './utils.js';
 import { forbidden, notFound, unprocessableEntity, internalServerError } from './responseUtils.js';
-import { generateRoute, runPrecondition } from './routeUtils.js';
+import { createAppWithBasePath, generateRoute, runPrecondition } from './routeUtils.js';
 
 import { execute as slangroomChainExecute } from '@dyne/slangroom-chain';
 dotenv.config();
@@ -77,7 +76,7 @@ const setupProm = async (app: TemplatedApp) => {
 };
 
 const ncrApp = async () => {
-	const app = App()
+	const app = createAppWithBasePath(config.basepath)
 		.get('/', (res, req) => {
 			const files = Dir.paths.map((f) => `http://${req.getHeader('host')}${f}`);
 			res
@@ -90,22 +89,32 @@ const ncrApp = async () => {
 		})
 		.get('/oas.json', async (res, req) => {
 			definition.paths = {};
+			const tags = [];
 			await Promise.all(
 				Dir.files.map(async (endpoints) => {
 					const { path, metadata } = endpoints;
-					if (definition.paths && !metadata.hidden && !metadata.hideFromOpenapi) {
+					if (metadata.tags) tags.push(...metadata.tags);					
+          if (definition.paths && !metadata.hidden && !metadata.hideFromOpenapi) {
+            const prefixedPath = config.basepath + path;
 						const schema = await getSchema(endpoints);
 						if (schema)
-							definition.paths[path] = generatePath(
+							definition.paths[prefixedPath] = generatePath(
 								endpoints.contract ?? prettyChain(endpoints.chain),
 								schema,
 								metadata
 							);
-						definition.paths[path + '/raw'] = generateRawPath();
-						definition.paths[path + '/app'] = generateAppletPath();
+						definition.paths[prefixedPath + '/raw'] = generateRawPath();
+						definition.paths[prefixedPath + '/app'] = generateAppletPath();
 					}
 				})
 			);
+			const customTags = tags.reduce((acc, tag) => {
+				if (tag === defaultTagsName.zen) return acc;
+				const t = { name: tag };
+				if (!acc.includes(t)) acc.push(t);
+				return acc;
+			}, []);
+			definition.tags = [...customTags, ...defaultTags];
 			res.cork(() => {
 				res
 					.writeStatus('200 OK')
@@ -193,7 +202,7 @@ const generatePublicDirectory = (app: TemplatedApp) => {
 						.writeHeader('Access-Control-Allow-Origin', '*')
 						.writeHeader('Content-Type', contentType)
 						.end(fs.readFileSync(file));
-				})
+				});
 			} else {
 				notFound(res, L, new Error(`File not found: ${file}`));
 			}
@@ -241,7 +250,7 @@ Dir.ready(async () => {
 		if (socket) {
 			const port = us_socket_local_port(socket);
 			listen_socket = socket;
-			L.info(`Swagger UI is running on http://${config.hostname}:${port}/docs`);
+			L.info(`Swagger UI is running on http://${config.hostname}:${port}${config.basepath}${config.openapiPath}`);
 		} else {
 			L.error('Port already in use ' + config.port);
 			throw new Error('Port already in use ' + config.port);

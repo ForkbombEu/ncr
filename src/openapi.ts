@@ -6,11 +6,18 @@ import { Type } from '@sinclair/typebox';
 import { OpenAPIV3_1 } from 'openapi-types';
 import p from '../package.json' with { type: 'json' };
 import { JSONSchema, Metadata } from './types.js';
+import { config } from './cli.js';
+
+export const defaultTagsName = {
+	zen: '📑 Zencodes',
+	applet: '📱 Generated applets',
+	raw: '📜 Raw contracts'
+};
 
 export function generateRawPath(): OpenAPIV3_1.PathItemObject {
 	return {
 		get: {
-			tags: ['📜 Raw contracts'],
+			tags: [defaultTagsName.raw],
 			responses: {
 				'200': {
 					description: 'Succesful response will output the zencode verbatim contract',
@@ -24,7 +31,7 @@ export function generateRawPath(): OpenAPIV3_1.PathItemObject {
 export function generateAppletPath(): OpenAPIV3_1.PathItemObject {
 	return {
 		get: {
-			tags: ['📱 Generated applets'],
+			tags: [defaultTagsName.applet],
 			responses: {
 				'200': {
 					description: 'Generated applet on the fly based on the contract introspection',
@@ -35,7 +42,11 @@ export function generateAppletPath(): OpenAPIV3_1.PathItemObject {
 	};
 }
 
-export function generatePath(contract: string, schema: JSONSchema, metadata: Metadata): OpenAPIV3_1.PathItemObject {
+export function generatePath(
+	contract: string,
+	schema: JSONSchema,
+	metadata: Metadata
+): OpenAPIV3_1.PathItemObject {
 	const getParams = schema.required?.map((n: string) => {
 		return {
 			name: n,
@@ -61,7 +72,7 @@ export function generatePath(contract: string, schema: JSONSchema, metadata: Met
 			description: metadata.errorDescription as string,
 			content: { [metadata.contentType as string]: { schema: Type.Array(Type.String()) } }
 		}
-	}
+	};
 
 	let result = {} as OpenAPIV3_1.PathItemObject;
 
@@ -87,13 +98,26 @@ export function generatePath(contract: string, schema: JSONSchema, metadata: Met
 			tags: metadata.tags,
 			parameters: getParams,
 			responses: responses
-	};
-}
+		};
+	}
 
 	return result;
-
-
 }
+
+export const defaultTags = [
+	{
+		name: defaultTagsName.zen,
+		description: 'Endpoints generated over the zencode smart contracts'
+	},
+	{
+		name: defaultTagsName.applet,
+		description: 'The generated UI app of your contracts introspection'
+	},
+	{
+		name: defaultTagsName.raw,
+		description: 'Sometimes you just need to see the contract you are executing'
+	}
+];
 
 export const definition: Partial<OpenAPIV3_1.Document> = {
 	openapi: '3.1.0',
@@ -119,20 +143,7 @@ To add new endpoints you should add new zencode contracts in the directory.
 			url: 'https://www.gnu.org/licenses/agpl-3.0'
 		}
 	},
-	tags: [
-		{
-			name: '📑 Zencodes',
-			description: 'Endpoints generated over the zencode smart contracts'
-		},
-		{
-			name: '📱 Generated applets',
-			description: 'The generated UI app of your contracts introspection'
-		},
-		{
-			name: '📜 Raw contracts',
-			description: 'Sometimes you just need to see the contract you are executing'
-		}
-	]
+	tags: []
 };
 
 export const openapiTemplate = `
@@ -167,7 +178,7 @@ export const openapiTemplate = `
 		<script>
 			window.onload = () => {
 				window.ui = SwaggerUIBundle({
-					url: '/oas.json',
+					url: '${config.basepath}/oas.json',
 					dom_id: '#swagger-ui'
 				});
 			};

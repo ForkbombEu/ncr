@@ -4,7 +4,7 @@
 
 import fs from 'fs';
 import _ from 'lodash';
-import { HttpResponse, TemplatedApp } from 'uWebSockets.js';
+import { App, HttpRequest, HttpResponse, TemplatedApp } from 'uWebSockets.js';
 import { execute as slangroomChainExecute } from '@dyne/slangroom-chain';
 
 import { reportZenroomError } from './error.js';
@@ -14,6 +14,76 @@ import { SlangroomManager } from './slangroom.js';
 import { forbidden, methodNotAllowed, notFound, unprocessableEntity } from './responseUtils.js';
 import { getSchema, validateData, getQueryParams } from './utils.js';
 import { template as proctoroom } from './applets.js';
+
+//
+
+type MethodNames =
+  | 'get'
+  | 'post'
+  | 'options'
+  | 'del'
+  | 'patch'
+  | 'put'
+  | 'head'
+  | 'connect'
+  | 'trace'
+  | 'any'
+  | 'ws';
+
+// type MethodNames = 'get' | 'post' | 'options' | 'del' | 'patch' | 'put' | 'head' | 'connect' | 'trace' | 'any' | 'ws';
+
+export const createAppWithBasePath = (basepath: string): TemplatedApp => {
+	const app = App();
+
+	const wrapPatternMethod = (methodName: MethodNames) => {
+		const originalMethod = app[methodName].bind(app);
+		return (pattern: string, ...args: any[]): TemplatedApp => {
+			const prefixedPattern = `${basepath}${pattern}`;
+			originalMethod(prefixedPattern, ...args);
+			return wrappedApp; // Return the wrapped app instance for chaining
+		};
+	};
+
+	const wrapMethod = (methodName: keyof TemplatedApp) => {
+		return (...args: any[]): TemplatedApp => {
+			(app as any)[methodName](...args);
+			return wrappedApp;
+		};
+	};
+
+	const wrappedApp: TemplatedApp = {
+		numSubscribers: app.numSubscribers.bind(app),
+		publish: app.publish.bind(app),
+
+		listen: (...args: any[]) => wrapMethod('listen')(...args),
+		listen_unix: (...args: any[]) => wrapMethod('listen_unix')(...args),
+		publish: (...args: any[]) => wrapMethod('publish')(...args),
+		numSubscribers: (...args: any[]) => wrapMethod('numSubscribers')(...args),
+		addServerName: (...args: any[]) => wrapMethod('addServerName')(...args),
+		domain: (...args: any[]) => wrapMethod('domain')(...args),
+		removeServerName: (...args: any[]) => wrapMethod('removeServerName')(...args),
+		missingServerName: (...args: any[]) => wrapMethod('missingServerName')(...args),
+		filter: (...args: any[]) => wrapMethod('filter')(...args),
+		close: (...args: any[]) => wrapMethod('close')(...args),
+
+		// Pattern-based methods with basepath wrapping
+		get: wrapPatternMethod('get'),
+		post: wrapPatternMethod('post'),
+		options: wrapPatternMethod('options'),
+		del: wrapPatternMethod('del'),
+		patch: wrapPatternMethod('patch'),
+		put: wrapPatternMethod('put'),
+		head: wrapPatternMethod('head'),
+		connect: wrapPatternMethod('connect'),
+		trace: wrapPatternMethod('trace'),
+		any: wrapPatternMethod('any'),
+		ws: wrapPatternMethod('ws'),
+	  };
+
+	return wrappedApp;
+}
+
+//
 
 const L = config.logger;
 const emoji = {
@@ -294,10 +364,10 @@ export const generateRoute = async (
 			schema: JSON.stringify(schema),
 			title: path || 'Welcome 🥳 to ',
 			description: contract,
-			endpoint: `${path}`
+			endpoint: `${config.basepath}${path}`
 		});
 
 		res.writeStatus('200 OK').writeHeader('Content-Type', 'text/html').end(result);
 	});
-	L.info(`${emoji[action]} ${path}`);
+	L.info(`${emoji[action]} ${config.basepath}${path}`);
 };

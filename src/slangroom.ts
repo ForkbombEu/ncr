@@ -21,12 +21,28 @@ import { timestamp } from '@slangroom/timestamp';
 import { wallet } from '@slangroom/wallet';
 import { zencode } from '@slangroom/zencode';
 
-const SLANGROOM_PLUGINS = [db, ethereum, fs, git, helpers, http, JSONSchema, oauth, pocketbase, qrcode, redis, shell, timestamp, wallet, zencode];
+const SLANGROOM_PLUGINS = [
+	db,
+	ethereum,
+	fs,
+	git,
+	helpers,
+	http,
+	JSONSchema,
+	oauth,
+	pocketbase,
+	qrcode,
+	redis,
+	shell,
+	timestamp,
+	wallet,
+	zencode
+];
 
 export class SlangroomManager {
 	private static instance: SlangroomType;
 
-	private constructor() { }
+	private constructor() {}
 
 	public static getInstance(): SlangroomType {
 		if (!SlangroomManager.instance) {
