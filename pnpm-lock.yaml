@@ -154,8 +154,8 @@ importers:
         specifier: ^0.32.15
         version: 0.32.35
       '@slangroom/qrcode':
-        specifier: ^1.35.0
-        version: 1.39.0(zenroom@4.37.0)
+        specifier: ^1.39.2
+        version: 1.39.2(zenroom@4.37.0)
       '@slangroom/redis':
         specifier: ^1.35.0
         version: 1.39.0(zenroom@4.37.0)
@@ -1378,8 +1378,8 @@ packages:
     resolution: {integrity: sha512-D2hHAoDC1PvGvCY+JAtLrZWqzIMJkgySq8UiXJmrRD14oIcoaGjJ5proWY/UGE/6c7uxTukY+SdQyDRUHSVZtw==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
-  '@slangroom/qrcode@1.39.0':
-    resolution: {integrity: sha512-fjCPuMXeP4X2H1SoIMboEmlgmkLmqzkmBrYbGUnTBmizOusau4lLRBadBID6T5pkZKTL+NiyQlyOrr6ugwzn3w==}
+  '@slangroom/qrcode@1.39.2':
+    resolution: {integrity: sha512-F+hm9H47Wx4Jo1fTi6mnYq6uau4k8sJlzB8F0hxdCKoh8R8Lag6KCUyyPOG2xS8vX0pAqAwCoBt5j/j/PG4E4A==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
   '@slangroom/redis@1.39.0':
@@ -6755,7 +6755,7 @@ snapshots:
       '@slangroom/json-schema': 1.39.2(zenroom@4.37.0)
       '@slangroom/oauth': 1.39.0(zenroom@4.37.0)
       '@slangroom/pocketbase': 1.39.0(@capacitor/core@6.1.2)(zenroom@4.37.0)
-      '@slangroom/qrcode': 1.39.0(zenroom@4.37.0)
+      '@slangroom/qrcode': 1.39.2(zenroom@4.37.0)
       '@slangroom/redis': 1.39.0(zenroom@4.37.0)
       '@slangroom/shell': 1.39.0(zenroom@4.37.0)
       '@slangroom/timestamp': 1.39.0(zenroom@4.37.0)
@@ -7623,9 +7623,9 @@ snapshots:
       - '@capacitor/core'
       - zenroom
 
-  '@slangroom/qrcode@1.39.0(zenroom@4.37.0)':
+  '@slangroom/qrcode@1.39.2(zenroom@4.37.0)':
     dependencies:
-      '@slangroom/core': 1.39.0(zenroom@4.37.0)
+      '@slangroom/core': 1.39.2(zenroom@4.37.0)
       qrcode: 1.5.4
     transitivePeerDependencies:
       - zenroom
