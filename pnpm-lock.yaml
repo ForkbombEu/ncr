@@ -21,8 +21,8 @@ importers:
         specifier: ^1.35.0
         version: 1.39.0(encoding@0.1.13)(typescript@5.5.4)(zenroom@4.37.0)(zod@3.23.8)
       '@slangroom/fs':
-        specifier: ^1.35.0
-        version: 1.39.0(zenroom@4.37.0)
+        specifier: ^1.39.2
+        version: 1.39.2(zenroom@4.37.0)
       '@slangroom/git':
         specifier: ^1.35.0
         version: 1.39.0(zenroom@4.37.0)
@@ -1342,8 +1342,8 @@ packages:
     resolution: {integrity: sha512-O4aCeCvdQF2APWWQH4E8hnk3jB5MIY5+Tye2Bk0hqyR9nPrXgqbf8r2F9qg+peKKKsNCovrXIzAJs+qSukLObA==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
-  '@slangroom/fs@1.39.0':
-    resolution: {integrity: sha512-zsOV+u5NuvPlIxm5SxPc+mPbAdtEalaUuR4aF3eSV8WtEhr6c4wry4l7OGKR8ZnvtcNSRODG/g2x0G0yig7y9w==}
+  '@slangroom/fs@1.39.2':
+    resolution: {integrity: sha512-jIkDQ1/7tcMmAWnCHcFIV5M5r8g8N2XGiGd6fq/84fpL1B627Sjq5dzvDAQYv1SYUGdt9KXVrs/XBWrgjFZZGA==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
   '@slangroom/git@1.39.0':
@@ -6748,7 +6748,7 @@ snapshots:
     dependencies:
       '@slangroom/core': 1.39.0(zenroom@4.37.0)
       '@slangroom/db': 1.39.0(mariadb@3.3.1)(mysql2@3.11.0)(oracledb@6.6.0)(pg-hstore@2.3.4)(pg@8.12.0)(snowflake-sdk@1.12.0(asn1.js@5.4.1)(encoding@0.1.13))(tedious@18.6.1)(zenroom@4.37.0)
-      '@slangroom/fs': 1.39.0(zenroom@4.37.0)
+      '@slangroom/fs': 1.39.2(zenroom@4.37.0)
       '@slangroom/git': 1.39.0(zenroom@4.37.0)
       '@slangroom/helpers': 1.39.0(zenroom@4.37.0)
       '@slangroom/http': 1.39.0(zenroom@4.37.0)
@@ -7543,10 +7543,10 @@ snapshots:
       - zenroom
       - zod
 
-  '@slangroom/fs@1.39.0(zenroom@4.37.0)':
+  '@slangroom/fs@1.39.2(zenroom@4.37.0)':
     dependencies:
-      '@slangroom/core': 1.39.0(zenroom@4.37.0)
-      '@slangroom/shared': 1.39.0(zenroom@4.37.0)
+      '@slangroom/core': 1.39.2(zenroom@4.37.0)
+      '@slangroom/shared': 1.39.2(zenroom@4.37.0)
       axios: 1.7.5(debug@4.3.6)
       extract-zip: 2.0.1
     transitivePeerDependencies:
