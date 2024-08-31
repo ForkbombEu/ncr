@@ -48,8 +48,8 @@ importers:
         specifier: ^1.35.0
         version: 1.39.0(zenroom@4.37.0)
       '@slangroom/zencode':
-        specifier: ^1.35.0
-        version: 1.39.0(zenroom@4.37.0)
+        specifier: ^1.39.2
+        version: 1.39.2(zenroom@4.37.0)
       '@tgwf/co2':
         specifier: ^0.16.0
         version: 0.16.0
@@ -1406,8 +1406,8 @@ packages:
     resolution: {integrity: sha512-dCqzfAtV3nIjfX0xyJQVZzZr2EIzshTPxA1Rv95eAnX4boxdfIuupkGWOnMRrT0K3z1P/BS6sRhJEKnjaxZs2w==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
-  '@slangroom/zencode@1.39.0':
-    resolution: {integrity: sha512-CdxjLqY5fSopUFDLvtcXQY98Vafk52N+oI84zruEbZuPLBRGWFcF6scOnICf3xF6taZdNHXar7hbG59jgMgr4g==}
+  '@slangroom/zencode@1.39.2':
+    resolution: {integrity: sha512-r8vkooYRKuTfJjOshk3anSeU/2k78CqUbgqJz4Fh2qSqWXeDiGh2Wcme0zPtrM+04C76k6Kraa2B9fIFC6+qhw==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
 
   '@smithy/abort-controller@1.1.0':
@@ -6760,7 +6760,7 @@ snapshots:
       '@slangroom/shell': 1.39.0(zenroom@4.37.0)
       '@slangroom/timestamp': 1.39.0(zenroom@4.37.0)
       '@slangroom/wallet': 1.39.0(zenroom@4.37.0)
-      '@slangroom/zencode': 1.39.0(zenroom@4.37.0)
+      '@slangroom/zencode': 1.39.2(zenroom@4.37.0)
     transitivePeerDependencies:
       - '@capacitor/core'
       - bluebird
@@ -7675,10 +7675,10 @@ snapshots:
     transitivePeerDependencies:
       - zenroom
 
-  '@slangroom/zencode@1.39.0(zenroom@4.37.0)':
+  '@slangroom/zencode@1.39.2(zenroom@4.37.0)':
     dependencies:
-      '@slangroom/core': 1.39.0(zenroom@4.37.0)
-      '@slangroom/shared': 1.39.0(zenroom@4.37.0)
+      '@slangroom/core': 1.39.2(zenroom@4.37.0)
+      '@slangroom/shared': 1.39.2(zenroom@4.37.0)
     transitivePeerDependencies:
       - zenroom
 
