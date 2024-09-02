@@ -130,12 +130,11 @@ const ncrApp = async () => {
 			const contract = `
 Rule unknown ignore
 Given I connect to 'hi_endpoint' and do get and output into 'hi_result'
-and debug
 Given I have a 'string' named 'result' in 'hi result'
 Then print the 'result'
 `;
 			const keys = {
-				hi_endpoint: `http://localhost:${config.port}/sayhi`
+				hi_endpoint: `http://${config.hostname}:${config.port}${config.basepath}/sayhi`
 			};
 			try {
 				const { result } = await s.execute(contract, { keys });
