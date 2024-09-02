@@ -30,8 +30,6 @@ type MethodNames =
   | 'any'
   | 'ws';
 
-// type MethodNames = 'get' | 'post' | 'options' | 'del' | 'patch' | 'put' | 'head' | 'connect' | 'trace' | 'any' | 'ws';
-
 export const createAppWithBasePath = (basepath: string): TemplatedApp => {
 	const app = App();
 
