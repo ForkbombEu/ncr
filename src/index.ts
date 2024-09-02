@@ -130,12 +130,11 @@ const ncrApp = async () => {
 			const contract = `
 Rule unknown ignore
 Given I connect to 'hi_endpoint' and do get and output into 'hi_result'
-and debug
 Given I have a 'string' named 'result' in 'hi result'
 Then print the 'result'
 `;
 			const keys = {
-				hi_endpoint: `http://localhost:${config.port}/sayhi`
+				hi_endpoint: `http://${config.hostname}:${config.port}${config.basepath}/sayhi`
 			};
 			try {
 				const { result } = await s.execute(contract, { keys });
@@ -160,17 +159,23 @@ Then print the 'result'
 };
 
 const generatePublicDirectory = (app: TemplatedApp) => {
-	const { publicDirectory } = config;
+	const { publicDirectory, basepath } = config;
 	if (publicDirectory) {
 		app.get('/*', async (res, req) => {
 			res.onAborted(() => {
 				res.writeStatus('500').end('Aborted');
 			});
-			if (req.getUrl().split('/').pop().startsWith('.')) {
+			let url = req.getUrl();
+			if (url.split('/').pop().startsWith('.')) {
 				notFound(res, L, new Error('Try to access hidden file'));
 				return;
 			}
-			let file = path.join(publicDirectory, req.getUrl());
+			//remove basepath from the beginning of the url if it is present
+			if (basepath !== '' && url.startsWith(basepath)) {
+				const re = new RegExp(`^${basepath}`);
+				url = url.replace(re, '');
+			}
+			let file = path.join(publicDirectory, url);
 			if (fs.existsSync(file) && fs.statSync(file).isFile()) {
 				let contentType = mime.getType(file) || 'application/json';
 				if (fs.existsSync(file + '.metadata.json')) {

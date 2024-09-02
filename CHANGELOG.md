@@ -1,3 +1,10 @@
+## [1.37.2](https://github.com/forkbombeu/ncr/compare/v1.37.1...v1.37.2) (2024-09-02)
+
+
+### Bug Fixes
+
+* correctly hanlde and use basepath for static files and health api ([#331](https://github.com/forkbombeu/ncr/issues/331)) ([8601c63](https://github.com/forkbombeu/ncr/commit/8601c6380b64da8f3f8aa4f258acf43537dd7660))
+
 ## [1.37.1](https://github.com/forkbombeu/ncr/compare/v1.37.0...v1.37.1) (2024-08-31)
 
 # [1.37.0](https://github.com/forkbombeu/ncr/compare/v1.36.7...v1.37.0) (2024-08-27)
