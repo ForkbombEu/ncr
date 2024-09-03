@@ -26,7 +26,7 @@ jobs:
       - name: 🔍 Get pnpm version from pacakgeManager field
         id: ver
         run: |
-          echo "version=$( grep -oP --color=never 'pnpm \K.*' .tool-versions )" >> $GITHUB_OUTPUT
+          echo "version=$( jq -r '.packageManager' package.json | cut -d@ -f2 )" >> $GITHUB_OUTPUT
 
   test:
     name: 🧪 Pnpm test
