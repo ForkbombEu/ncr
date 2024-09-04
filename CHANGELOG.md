@@ -1,3 +1,10 @@
+## [1.37.4](https://github.com/forkbombeu/ncr/compare/v1.37.3...v1.37.4) (2024-09-04)
+
+
+### Bug Fixes
+
+* **Dockerfile:** non-interactively dependency installation ([#332](https://github.com/forkbombeu/ncr/issues/332)) ([7289893](https://github.com/forkbombeu/ncr/commit/72898937be3484f706887ff71440d2251bd1e725))
+
 ## [1.37.3](https://github.com/forkbombeu/ncr/compare/v1.37.2...v1.37.3) (2024-09-04)
 
 
