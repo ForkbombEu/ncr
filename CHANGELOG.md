@@ -1,3 +1,10 @@
+## [1.37.3](https://github.com/forkbombeu/ncr/compare/v1.37.2...v1.37.3) (2024-09-04)
+
+
+### Bug Fixes
+
+* improve adoption of pnpm@8 and node@20 ([#330](https://github.com/forkbombeu/ncr/issues/330)) ([6f2afaf](https://github.com/forkbombeu/ncr/commit/6f2afaf93b51b100d400eac29614c43f936afb83))
+
 ## [1.37.2](https://github.com/forkbombeu/ncr/compare/v1.37.1...v1.37.2) (2024-09-02)
 
 
