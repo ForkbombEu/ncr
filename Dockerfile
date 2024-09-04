@@ -5,7 +5,7 @@
 ARG NODE_VERSION=20
 
 FROM node:${NODE_VERSION}-bullseye AS ncr
-RUN apt update && apt install curl git make
+RUN apt update && apt install -y curl git make
 
 ## Tried alpine...
 # RUN apk update && apk add curl git make
