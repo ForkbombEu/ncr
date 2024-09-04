@@ -11,7 +11,7 @@ RUN apt update && apt install curl git make
 # RUN apk update && apk add curl git make
 # RUN wget -qO- https://get.pnpm.io/install.sh | ENV="$HOME/.shrc" SHELL="$(which sh)" sh - && source /root/.shrc && \
  # git clone https://github.com/ForkbombEu/ncr.git /ncr-app && cd /ncr-app && make build && chmod +x ncr
-RUN corepack enable && corepack prepare pnpm@latest --activate
+RUN corepack enable && corepack prepare pnpm@8 --activate
 COPY . /ncr-app/
 WORKDIR /ncr-app
 RUN make build && chmod +x ncr
