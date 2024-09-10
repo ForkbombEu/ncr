@@ -33,8 +33,8 @@ dependencies:
     specifier: ^1.39.2
     version: 1.39.2(zenroom@4.38.1)
   '@slangroom/oauth':
-    specifier: ^1.35.0
-    version: 1.39.2(zenroom@4.38.1)
+    specifier: ^1.39.3
+    version: 1.39.3(zenroom@4.38.1)
   '@slangroom/pocketbase':
     specifier: ^1.35.0
     version: 1.39.2(@capacitor/core@6.1.2)(zenroom@4.38.1)
@@ -1573,7 +1573,7 @@ packages:
       '@slangroom/helpers': 1.39.2(zenroom@4.38.1)
       '@slangroom/http': 1.39.3(zenroom@4.38.1)
       '@slangroom/json-schema': 1.39.2(zenroom@4.38.1)
-      '@slangroom/oauth': 1.39.2(zenroom@4.38.1)
+      '@slangroom/oauth': 1.39.3(zenroom@4.38.1)
       '@slangroom/pocketbase': 1.39.2(@capacitor/core@6.1.2)(zenroom@4.38.1)
       '@slangroom/qrcode': 1.39.2(zenroom@4.38.1)
       '@slangroom/redis': 1.39.2(zenroom@4.38.1)
@@ -2910,13 +2910,13 @@ packages:
       - zenroom
     dev: false
 
-  /@slangroom/oauth@1.39.2(zenroom@4.38.1):
-    resolution: {integrity: sha512-yyT3VW1KX0QkzFSh2fnJM20VOrejt+XJJvSvB8/BR1SOixRyAu85BEI9REKc83cBF1idVrtBC9XodvNwo9rKpw==}
+  /@slangroom/oauth@1.39.3(zenroom@4.38.1):
+    resolution: {integrity: sha512-mBNmbDYhZMwglWl1mmrm8HMZef+hO0cTzguhmo7egXAJUe4VMmmZlzlPu8vloKwsO0hk0JtnU1L8wflehnlstw==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
     dependencies:
       '@node-oauth/oauth2-server': 5.2.0
-      '@slangroom/core': 1.39.2(zenroom@4.38.1)
-      '@slangroom/shared': 1.39.2(zenroom@4.38.1)
+      '@slangroom/core': 1.39.3(zenroom@4.38.1)
+      '@slangroom/shared': 1.39.3(zenroom@4.38.1)
       bs58: 5.0.0
       jose: 5.8.0
     transitivePeerDependencies:
