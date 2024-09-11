@@ -36,8 +36,8 @@ dependencies:
     specifier: ^1.35.0
     version: 1.39.2(zenroom@4.38.1)
   '@slangroom/pocketbase':
-    specifier: ^1.35.0
-    version: 1.39.2(@capacitor/core@6.1.2)(zenroom@4.38.1)
+    specifier: ^1.39.3
+    version: 1.39.3(@capacitor/core@6.1.2)(zenroom@4.38.1)
   '@slangroom/timestamp':
     specifier: ^1.35.0
     version: 1.39.2(zenroom@4.38.1)
@@ -1574,7 +1574,7 @@ packages:
       '@slangroom/http': 1.39.3(zenroom@4.38.1)
       '@slangroom/json-schema': 1.39.2(zenroom@4.38.1)
       '@slangroom/oauth': 1.39.2(zenroom@4.38.1)
-      '@slangroom/pocketbase': 1.39.2(@capacitor/core@6.1.2)(zenroom@4.38.1)
+      '@slangroom/pocketbase': 1.39.3(@capacitor/core@6.1.2)(zenroom@4.38.1)
       '@slangroom/qrcode': 1.39.2(zenroom@4.38.1)
       '@slangroom/redis': 1.39.2(zenroom@4.38.1)
       '@slangroom/shell': 1.39.2(zenroom@4.38.1)
@@ -2923,13 +2923,13 @@ packages:
       - zenroom
     dev: false
 
-  /@slangroom/pocketbase@1.39.2(@capacitor/core@6.1.2)(zenroom@4.38.1):
-    resolution: {integrity: sha512-ak44Onk7k+tXW+XMdRRBMpBsrKVT0YTfl1WbtrU7vD9GKcDbEH6WD0PRPoxqgtFdze76zgwrRFCBB7k+34h4uw==}
+  /@slangroom/pocketbase@1.39.3(@capacitor/core@6.1.2)(zenroom@4.38.1):
+    resolution: {integrity: sha512-UBZEo/ZqPKEi0EmBJxYMvDPPefjK4K6UCnlLNLAnz2Tl5v1TyK52cOu0+xtzTqpvRe1OfdmEthCx2jJSfrLH3w==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
     dependencies:
       '@capacitor/preferences': 6.0.2(@capacitor/core@6.1.2)
-      '@slangroom/core': 1.39.2(zenroom@4.38.1)
-      '@slangroom/shared': 1.39.2(zenroom@4.38.1)
+      '@slangroom/core': 1.39.3(zenroom@4.38.1)
+      '@slangroom/shared': 1.39.3(zenroom@4.38.1)
       dotenv: 16.4.5
       pocketbase: 0.19.0
       zod: 3.23.8
