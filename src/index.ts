@@ -74,7 +74,12 @@ const setupProm = async (app: TemplatedApp) => {
 const ncrApp = async () => {
 	const app = createAppWithBasePath(config.basepath)
 		.get('/', (res, req) => {
-			const files = Dir.paths.map((f) => `http://${req.getHeader('host')}${config.basepath}${f}`);
+			const files = Dir.files.reduce((acc, f) => {
+				const { path, metadata } = f;
+				if (!metadata.hidden && !metadata.hideFromOpenapi)
+					acc.push(`http://${req.getHeader('host')}${config.basepath}${path}`);
+				return acc;
+			}, []);
 			res
 				.writeStatus('200 OK')
 				.writeHeader('Content-Type', 'application/json')
