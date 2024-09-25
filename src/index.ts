@@ -78,7 +78,7 @@ const setupProm = async (app: TemplatedApp) => {
 const ncrApp = async () => {
 	const app = createAppWithBasePath(config.basepath)
 		.get('/', (res, req) => {
-			const files = Dir.paths.map((f) => `http://${req.getHeader('host')}${f}`);
+			const files = Dir.paths.map((f) => `http://${req.getHeader('host')}${config.basepath}${f}`);
 			res
 				.writeStatus('200 OK')
 				.writeHeader('Content-Type', 'application/json')
