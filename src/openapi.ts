@@ -74,7 +74,7 @@ export function generatePath(
 		}
 	};
 
-	let result = {} as OpenAPIV3_1.PathItemObject;
+	const result = {} as OpenAPIV3_1.PathItemObject;
 
 	if (!metadata.disablePost) {
 		result['post'] = {

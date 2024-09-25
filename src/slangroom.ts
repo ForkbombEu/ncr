@@ -2,7 +2,6 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-//@ts-nocheck
 import { Slangroom } from '@slangroom/core';
 import { type Slangroom as SlangroomType } from '@slangroom/core/build/esm/src/slangroom';
 import { db } from '@slangroom/db';

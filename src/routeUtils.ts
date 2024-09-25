@@ -4,7 +4,8 @@
 
 import fs from 'fs';
 import _ from 'lodash';
-import { App, HttpRequest, HttpResponse, TemplatedApp } from 'uWebSockets.js';
+import { IMeta } from 'tslog';
+import { App, HttpResponse, TemplatedApp } from 'uWebSockets.js';
 import { execute as slangroomChainExecute } from '@dyne/slangroom-chain';
 
 import { reportZenroomError } from './error.js';
@@ -119,7 +120,7 @@ const execZencodeAndReply = async (
 		res.cork(() => res.writeStatus('400').end());
 		return;
 	});
-	const { contract, chain, path, keys, conf, metadata } = endpoint;
+	const { contract, chain, keys, conf, metadata } = endpoint;
 	try {
 		if (metadata.httpHeaders) {
 			try {
@@ -220,7 +221,7 @@ const generatePost = (
 			methodNotAllowed(res, LOG, new Error(`Post method not allowed on ${path}`));
 			return;
 		}
-		let headers: Record<string, Record<string, string>> = {};
+		const headers: Record<string, Record<string, string>> = {};
 		headers.request = {};
 		req.forEach((k, v) => {
 			headers.request[k] = v;
@@ -234,7 +235,7 @@ const generatePost = (
 		});
 		let buffer: Buffer;
 		res.onData((d, isLast) => {
-			let chunk = Buffer.from(d);
+			const chunk = Buffer.from(d);
 			if (isLast) {
 				let data;
 				try {
@@ -262,7 +263,7 @@ const generatePost = (
 
 const generateGet = (
 	app: TemplatedApp,
-	endpoint: Record<string, any>,
+	endpoint: Endpoints,
 	schema: JSONSchema,
 	LOG: Logger<ILogObj>,
 	action: 'add' | 'update' | 'delete'
@@ -277,7 +278,7 @@ const generateGet = (
 			methodNotAllowed(res, LOG, new Error(`Get method not allowed on ${path}`));
 			return;
 		}
-		let headers: Record<string, Record<string, string>> = {};
+		const headers: Record<string, Record<string, string>> = {};
 		headers.request = {};
 		req.forEach((k, v) => {
 			headers.request[k] = v;
@@ -344,7 +345,7 @@ export const generateRoute = async (
 	generateGet(app, endpoint, schema, LOG, action);
 	generatePost(app, endpoint, schema, LOG, action);
 
-	app.get(path + '/raw', (res, req) => {
+	app.get(path + '/raw', (res) => {
 		if (action === 'delete') {
 			notFound(res, LOG, new Error(`Not found on ${path}/raw`));
 			return;
@@ -352,7 +353,7 @@ export const generateRoute = async (
 		res.writeStatus('200 OK').writeHeader('Content-Type', 'text/plain').end(contract);
 	});
 
-	app.get(path + '/app', async (res, req) => {
+	app.get(path + '/app', async (res) => {
 		if (action === 'delete') {
 			notFound(res, LOG, new Error(`Not found on ${path}/app`));
 			return;

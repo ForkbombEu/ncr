@@ -3,7 +3,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 import { Type } from '@sinclair/typebox';
-import Ajv, { type ValidateFunction } from 'ajv';
+import Ajv from 'ajv';
 import addFormats from 'ajv-formats';
 import betterAjvErrors from 'better-ajv-errors';
 import _ from 'lodash';
@@ -151,5 +151,5 @@ export const getQueryParams = (req): Record<string, unknown> => {
 };
 
 export const prettyChain = (chain: string): string => {
-	return '';
+	return chain;
 };

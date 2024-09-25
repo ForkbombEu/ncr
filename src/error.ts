@@ -3,12 +3,10 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 import { Logger, type ILogObj } from 'tslog';
-import { Endpoints } from './types';
 
 export const reportZenroomError = (
 	error: Error,
-	l: Logger<ILogObj>,
-	endpoints: Endpoints
+	l: Logger<ILogObj>
 ): string => {
 	if (error.name === 'ZenroomError') {
 		debugZen('J64 HEAP: ', l, error);

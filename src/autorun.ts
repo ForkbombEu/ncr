@@ -6,7 +6,6 @@ import { join, parse } from 'node:path';
 import fs from 'fs-extra';
 import { Type as T, Static } from '@sinclair/typebox';
 import { Value } from '@sinclair/typebox/value';
-import _ from 'lodash';
 import {
 	formatContract,
 	readFileContent,
@@ -50,7 +49,7 @@ async function getContractPathsInDirectory(directoryPath: string): Promise<strin
 			.map((entry) => entry[1])
 			.filter((name) => isZencodeFile(name))
 			.map((name) => join(directoryPath, name));
-	} catch (e) {
+	} catch {
 		return [];
 	}
 }
@@ -165,7 +164,7 @@ function isInstallContract(contractData: ContractData): contractData is InstallC
 }
 
 function isInstallContractNotExecuted(contractData: InstallContractData): boolean {
-	return !Boolean(contractData.metadata.executed);
+	return !contractData.metadata.executed;
 }
 
 async function decommissionInstallContract(contractData: InstallContractData) {
