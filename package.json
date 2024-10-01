@@ -74,7 +74,7 @@
 		"sqlite3": "^5.1.7",
 		"tedious": "^18.2.0",
 		"uWebSockets.js": "github:uNetworking/uWebSockets.js#semver:^20",
-		"zenroom": "^4.38.1"
+		"zenroom": "^4.42.0"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.9.0",
