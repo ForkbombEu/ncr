@@ -1,3 +1,10 @@
+## [1.37.8](https://github.com/forkbombeu/ncr/compare/v1.37.7...v1.37.8) (2024-10-01)
+
+
+### Bug Fixes
+
+* add basepath to list of apis and do not show hidden apis ([#351](https://github.com/forkbombeu/ncr/issues/351)) ([ee0ebc3](https://github.com/forkbombeu/ncr/commit/ee0ebc3ad01c6cf207ce6edd55a3d9c0fcc5047d))
+
 ## [1.37.7](https://github.com/forkbombeu/ncr/compare/v1.37.6...v1.37.7) (2024-10-01)
 
 ## [1.37.6](https://github.com/forkbombeu/ncr/compare/v1.37.5...v1.37.6) (2024-09-10)
