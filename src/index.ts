@@ -4,13 +4,10 @@
 
 import dotenv from 'dotenv';
 import fs from 'fs';
-import _ from 'lodash';
 import mime from 'mime';
 import path from 'path';
-import { IMeta } from 'tslog';
 import {
 	TemplatedApp,
-	us_listen_socket,
 	us_socket_local_port,
 	LIBUS_LISTEN_EXCLUSIVE_PORT
 } from 'uWebSockets.js';
@@ -32,7 +29,6 @@ import { getSchema, getQueryParams, prettyChain, newMetadata } from './utils.js'
 import { forbidden, notFound, unprocessableEntity, internalServerError } from './responseUtils.js';
 import { createAppWithBasePath, generateRoute, runPrecondition } from './routeUtils.js';
 
-import { execute as slangroomChainExecute } from '@dyne/slangroom-chain';
 dotenv.config();
 
 const L = config.logger;
@@ -66,7 +62,7 @@ const setupProm = async (app: TemplatedApp) => {
 
 	register.registerMetric(co2_emission);
 
-	app.get('/metrics', (res, req) => {
+	app.get('/metrics', (res) => {
 		register
 			.metrics()
 			.then((metrics) =>
@@ -78,16 +74,21 @@ const setupProm = async (app: TemplatedApp) => {
 const ncrApp = async () => {
 	const app = createAppWithBasePath(config.basepath)
 		.get('/', (res, req) => {
-			const files = Dir.paths.map((f) => `http://${req.getHeader('host')}${f}`);
+			const files = Dir.files.reduce((acc, f) => {
+				const { path, metadata } = f;
+				if (!metadata.hidden && !metadata.hideFromOpenapi)
+					acc.push(`http://${req.getHeader('host')}${config.basepath}${path}`);
+				return acc;
+			}, []);
 			res
 				.writeStatus('200 OK')
 				.writeHeader('Content-Type', 'application/json')
 				.end(JSON.stringify(files));
 		})
-		.get(config.openapiPath, (res, req) => {
+		.get(config.openapiPath, (res) => {
 			res.writeStatus('200 OK').writeHeader('Content-Type', 'text/html').end(openapiTemplate);
 		})
-		.get('/oas.json', async (res, req) => {
+		.get('/oas.json', async (res) => {
 			definition.paths = {};
 			const tags = [];
 			await Promise.all(
@@ -122,7 +123,7 @@ const ncrApp = async () => {
 					.end(JSON.stringify(definition));
 			});
 		})
-		.get('/health', async (res, _) => {
+		.get('/health', async (res) => {
 			res.onAborted(() => {
 				res.writeStatus('500').writeHeader('Content-Type', 'application/json').end('Aborted');
 			});
@@ -148,7 +149,7 @@ Then print the 'result'
 				internalServerError(res, L, e as Error);
 			}
 		})
-		.get('/sayhi', (res, _) => {
+		.get('/sayhi', (res) => {
 			res.writeStatus('200 OK').writeHeader('Content-Type', 'text/plain').end('Hi');
 		});
 
@@ -175,7 +176,7 @@ const generatePublicDirectory = (app: TemplatedApp) => {
 				const re = new RegExp(`^${basepath}`);
 				url = url.replace(re, '');
 			}
-			let file = path.join(publicDirectory, url);
+			const file = path.join(publicDirectory, url);
 			if (fs.existsSync(file) && fs.statSync(file).isFile()) {
 				let contentType = mime.getType(file) || 'application/json';
 				if (fs.existsSync(file + '.metadata.json')) {
@@ -193,7 +194,7 @@ const generatePublicDirectory = (app: TemplatedApp) => {
 					if (publicMetadata.contentType) contentType = publicMetadata.contentType;
 					if (publicMetadata.precondition) {
 						try {
-							const data: Record<string, any> = getQueryParams(req);
+							const data: Record<string, unknown> = getQueryParams(req);
 							await runPrecondition(path.join(publicDirectory, publicMetadata.precondition), data);
 						} catch (e) {
 							forbidden(res, L, e as Error);
@@ -237,8 +238,6 @@ const generateEndpoint = (basePath: string): Endpoints | undefined => {
 };
 
 Dir.ready(async () => {
-	let listen_socket: us_listen_socket;
-
 	const app = await ncrApp();
 
 	await autorunContracts();
@@ -254,7 +253,6 @@ Dir.ready(async () => {
 	app.listen(config.port, LIBUS_LISTEN_EXCLUSIVE_PORT, (socket) => {
 		if (socket) {
 			const port = us_socket_local_port(socket);
-			listen_socket = socket;
 			L.info(`Swagger UI is running on http://${config.hostname}:${port}${config.basepath}${config.openapiPath}`);
 		} else {
 			L.error('Port already in use ' + config.port);
@@ -262,7 +260,7 @@ Dir.ready(async () => {
 		}
 	});
 
-	Dir.onAdd(async (path: string, file: LiveFile) => {
+	Dir.onAdd(async (path: string) => {
 		const [baseName, ext, json] = path.split('.');
 		const endpoint = generateEndpoint(baseName);
 		if (!endpoint) return;
@@ -275,7 +273,7 @@ Dir.ready(async () => {
 		await generateRoute(app, endpoint, event);
 	});
 
-	Dir.onUpdate(async (path: string, file: LiveFile) => {
+	Dir.onUpdate(async (path: string) => {
 		const endpoint = generateEndpoint(path.split('.')[0]);
 		if (!endpoint) return;
 		await generateRoute(app, endpoint, 'update');

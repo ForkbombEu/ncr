@@ -20,7 +20,7 @@ export async function readFileContent(
 ): Promise<string | undefined> {
 	try {
 		return (await fs.readFile(path)).toString(encoding);
-	} catch (e) {
+	} catch {
 		return undefined;
 	}
 }

@@ -35,7 +35,7 @@ program
 			.argParser((d) => {
 				try {
 					if (statSync(d).isDirectory()) return d;
-				} catch (e) {
+				} catch {
 					L.error(`${bad} ${d} is not a valid directory`);
 					process.exit(0);
 				}
@@ -47,7 +47,7 @@ program
 			.argParser((d) => {
 				try {
 					if (statSync(d).isDirectory()) return d;
-				} catch (e) {
+				} catch {
 					L.error(`${bad} ${d} is not a valid directory`);
 					process.exit(0);
 				}

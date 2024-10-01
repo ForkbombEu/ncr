@@ -17,7 +17,7 @@ export class Directory {
 		this.liveDirectory = new LiveDirectory(config.zencodeDirectory, {
 			static: false,
 			filter: {
-				keep: (path, stats) => {
+				keep: (path) => {
 					return (
 						path.endsWith('.zen') ||
 						path.endsWith('.conf') ||
@@ -83,20 +83,16 @@ export class Directory {
 			const k = this.getContent(`${path}.${type}.json`);
 			if (!k) return undefined;
 			else return JSON.parse(k);
-		} catch (_e) {
+		} catch {
 			throw new Error(`${path}.${type}.json: malformed JSON`);
 		}
 	}
 
 	private getJSONSchema(path: string) {
-		try {
-			const schema = this.getJSON(path, 'schema');
-			if (!schema) return undefined;
-			validateJSONSchema(schema);
-			return schema;
-		} catch (e) {
-			throw e;
-		}
+		const schema = this.getJSON(path, 'schema');
+		if (!schema) return undefined;
+		validateJSONSchema(schema);
+		return schema;
 	}
 
 	public ready(cb: (...args: any[]) => void) {
