@@ -32,10 +32,6 @@ const Dir = Directory.getInstance();
 
 const PROM = process.env.PROM == 'true';
 
-if (typeof process.env.FILES_DIR == 'undefined') {
-	process.env.FILES_DIR = config.zencodeDirectory;
-}
-
 const setupProm = async (app: TemplatedApp) => {
 	const client = await import('prom-client');
 	const register = new client.Registry();
