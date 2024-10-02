@@ -1,3 +1,10 @@
+# [1.38.0](https://github.com/forkbombeu/ncr/compare/v1.37.8...v1.38.0) (2024-10-02)
+
+
+### Features
+
+* Increase the redability of openapi by changing UI ([#358](https://github.com/forkbombeu/ncr/issues/358)) ([eeff49c](https://github.com/forkbombeu/ncr/commit/eeff49c99022edf194f348386c6566740e31ded1))
+
 ## [1.37.8](https://github.com/forkbombeu/ncr/compare/v1.37.7...v1.37.8) (2024-10-01)
 
 
