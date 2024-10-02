@@ -158,8 +158,8 @@ devDependencies:
     specifier: ^1.40.2
     version: 1.40.2(zenroom@4.42.0)
   '@slangroom/shell':
-    specifier: ^1.40.2
-    version: 1.40.2(zenroom@4.42.0)
+    specifier: ^1.41.0
+    version: 1.41.0(zenroom@4.42.0)
   '@swc/core':
     specifier: ^1.7.26
     version: 1.7.26(@swc/helpers@0.5.13)
@@ -1577,7 +1577,7 @@ packages:
       '@slangroom/pocketbase': 1.40.2(@capacitor/core@6.1.2)(zenroom@4.42.0)
       '@slangroom/qrcode': 1.40.2(zenroom@4.42.0)
       '@slangroom/redis': 1.40.2(zenroom@4.42.0)
-      '@slangroom/shell': 1.40.2(zenroom@4.42.0)
+      '@slangroom/shell': 1.41.0(zenroom@4.42.0)
       '@slangroom/timestamp': 1.40.2(zenroom@4.42.0)
       '@slangroom/wallet': 1.40.2(zenroom@4.42.0)
       '@slangroom/zencode': 1.40.2(zenroom@4.42.0)
@@ -2847,6 +2847,16 @@ packages:
     transitivePeerDependencies:
       - zenroom
 
+  /@slangroom/core@1.41.0(zenroom@4.42.0):
+    resolution: {integrity: sha512-jS3RnDTvBpIXEga2MDstwc+xGQrkl9h6ddVfnd90+1rQwGdxyOv1TshDy974qsOBFcgJkBW3mQYi4zXi/FGhdA==}
+    engines: {node: ^18.20.0 || ^20.10.0 || ^22}
+    dependencies:
+      '@slangroom/deps': 1.41.0(zenroom@4.42.0)
+      '@slangroom/ignored': 1.41.0(zenroom@4.42.0)
+      '@slangroom/shared': 1.41.0(zenroom@4.42.0)
+    transitivePeerDependencies:
+      - zenroom
+
   /@slangroom/db@1.40.2(mariadb@3.3.1)(mysql2@3.11.0)(oracledb@6.6.0)(pg-hstore@2.3.4)(pg@8.12.0)(snowflake-sdk@1.12.0)(tedious@18.6.1)(zenroom@4.42.0):
     resolution: {integrity: sha512-ZBGOLb1OoxTmS9d6jkrgBQFUtClLtNKkS/8VwHfRFMiDaj2H/pmcT/sbhBoyeuITJ5yp6lcKzsq6d3iRmk0zCw==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
@@ -2871,6 +2881,16 @@ packages:
 
   /@slangroom/deps@1.40.2(zenroom@4.42.0):
     resolution: {integrity: sha512-cbltYtuQADLY8iPilduLM5q/7vuaO2K1PKeKlfZEL6vP6LcR4nCKxfPXtXrdBzVyYcan1/7WeHkaaKgmJLitXA==}
+    engines: {node: ^18.20.0 || ^20.10.0 || ^22}
+    peerDependencies:
+      zenroom: ^4.31.2
+    dependencies:
+      chalk: 5.3.0
+      chevrotain: 10.5.0
+      zenroom: 4.42.0
+
+  /@slangroom/deps@1.41.0(zenroom@4.42.0):
+    resolution: {integrity: sha512-jAWj/tk6/NR88IjIuW0dvRDOzxVabgE26GJmUDrJ/vjhdc1kdsNW4eJOKVhx6Pu/nq2AlPy6aLc+8/uMdLdYFQ==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
     peerDependencies:
       zenroom: ^4.31.2
@@ -2955,6 +2975,15 @@ packages:
     transitivePeerDependencies:
       - zenroom
 
+  /@slangroom/ignored@1.41.0(zenroom@4.42.0):
+    resolution: {integrity: sha512-pK3O/T4aemZjvvKnUbf+wZ23qsQfqIn1stcXd2iMMTx9zqS0mmW0Ri8Rzs6I/o7AXzjxzd6Gv5Ii+zxay87PMg==}
+    engines: {node: ^18.20.0 || ^20.10.0 || ^22}
+    dependencies:
+      '@slangroom/deps': 1.41.0(zenroom@4.42.0)
+      '@slangroom/shared': 1.41.0(zenroom@4.42.0)
+    transitivePeerDependencies:
+      - zenroom
+
   /@slangroom/json-schema@1.40.2(zenroom@4.42.0):
     resolution: {integrity: sha512-4cW1Msmhj2+zOricMCCagQRJA7yODTgw6NG+hhzSZy5CgAle3psAyk4auQq7hFSYJZ8oPfrSJ0MwEYtXqCjNdw==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
@@ -3021,11 +3050,19 @@ packages:
     transitivePeerDependencies:
       - zenroom
 
-  /@slangroom/shell@1.40.2(zenroom@4.42.0):
-    resolution: {integrity: sha512-Kyw7eYtK5TzWdI8z/m1+0T3KGwX+QTdxsw0hL/eXoVGpClVLM8VH8GanAyCrscbURRVpuQixqEbroyfrhqKh0g==}
+  /@slangroom/shared@1.41.0(zenroom@4.42.0):
+    resolution: {integrity: sha512-Q0YEAmqAoR8JRQe8HwRGb1VgxhAw2ZPMUbZ2zxmHa2P2HYn15jtHx/dd8fcTX+q0xdFsq+3d/uNbIZU9r604eQ==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
     dependencies:
-      '@slangroom/core': 1.40.2(zenroom@4.42.0)
+      '@slangroom/deps': 1.41.0(zenroom@4.42.0)
+    transitivePeerDependencies:
+      - zenroom
+
+  /@slangroom/shell@1.41.0(zenroom@4.42.0):
+    resolution: {integrity: sha512-6fi9VapgMddvvOt09t2xe7Vv/9h9EzOVopXBFgbATVpN6ePy4bzdcz27ICxCJazpIvyOMzDFcRvjS9FiQAf8Qg==}
+    engines: {node: ^18.20.0 || ^20.10.0 || ^22}
+    dependencies:
+      '@slangroom/core': 1.41.0(zenroom@4.42.0)
       execa: 8.0.1
     transitivePeerDependencies:
       - zenroom
@@ -10088,9 +10125,6 @@ packages:
   /sqlite3@5.1.7:
     resolution: {integrity: sha512-GGIyOiFaG+TUra3JIfkI/zGP8yZYLPQ0pl1bH+ODjiX57sPhrLU5sQJn1y9bDKZUFYkX1crlrPfSYt0BKKdkog==}
     requiresBuild: true
-    peerDependenciesMeta:
-      node-gyp:
-        optional: true
     dependencies:
       bindings: 1.5.0
       node-addon-api: 7.1.1
