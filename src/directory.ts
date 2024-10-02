@@ -27,10 +27,10 @@ export class Directory {
 						path.endsWith('.metadata.json') ||
 						path.endsWith('.chain.js')
 					);
+				},
+				ignore: {
+					// extensions: ['keys']
 				}
-			},
-			ignore: {
-				// extensions: ['keys']
 			}
 		});
 	}
@@ -53,29 +53,40 @@ export class Directory {
 		return this.files.map(({ path }) => path);
 	}
 
+	private getEndpoint (name: string) {
+		const [path, ext, json] = name.split('.');
+		if (ext === 'zen') {
+			return {
+				path: path,
+				contract: formatContract(this.getContent(name) || ''),
+				keys: this.getJSON(path, 'keys'),
+				conf: this.getContent(path + '.conf') || '',
+				schema: this.getJSONSchema(path),
+				metadata: newMetadata(this.getJSON(path, 'metadata') || {})
+			};
+		} else if (ext == 'chain' && json == 'js') {
+			return {
+				path: path,
+				chain: this.getContent(name) || '',
+				schema: this.getJSONSchema(path),
+				metadata: newMetadata(this.getJSON(path, 'metadata') || {}),
+				conf: ''
+			};
+		}
+		return;
+	}
+
 	get files() {
 		const result: Endpoints[] = [];
 		this.liveDirectory.files.forEach((c, f) => {
-			const [path, ext, json] = f.split('.');
-			if (ext === 'zen') {
-				result.push({
-					path: path,
-					contract: formatContract(this.getContent(f)),
-					keys: this.getJSON(path, 'keys'),
-					conf: this.getContent(path + '.conf') || '',
-					schema: this.getJSONSchema(path),
-					metadata: newMetadata(this.getJSON(path, 'metadata') || {})
-				});
-			} else if (ext == 'chain' && json == 'js') {
-				result.push({
-					path: path,
-					chain: this.getContent(f),
-					schema: this.getJSONSchema(path),
-					metadata: newMetadata(this.getJSON(path, 'metadata') || {})
-				});
-			}
+			const res = this.getEndpoint(f);
+			if (res) result.push(res);
 		});
 		return result;
+	}
+
+	public endpoint(path: string): Endpoints | undefined {
+		return this.getEndpoint(path);
 	}
 
 	private getJSON(path: string, type: 'schema' | 'keys' | 'metadata' | 'chain') {
@@ -103,11 +114,11 @@ export class Directory {
 		this.liveDirectory.on(event, cb);
 	}
 
-	public onAdd(cb: (path: string, file: LiveFile) => void) {
+	public onAdd(cb: (path: string) => void) {
 		this.onChange('add', cb);
 	}
 
-	public onUpdate(cb: (path: string, file: LiveFile) => void) {
+	public onUpdate(cb: (path: string) => void) {
 		this.onChange('update', cb);
 	}
 

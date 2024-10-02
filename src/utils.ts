@@ -9,17 +9,18 @@ import betterAjvErrors from 'better-ajv-errors';
 import _ from 'lodash';
 import { introspect } from 'zenroom';
 import { config } from './cli.js';
-import { Codec, Endpoints, JSONSchema, Metadata } from './types';
+import { Codec, Endpoints, JSONSchema, Metadata, MetadataRaw } from './types';
 import { defaultTagsName } from './openapi.js';
+import { HttpRequest } from 'uWebSockets.js';
 const L = config.logger;
 
 //
 
 export async function getSchema(endpoints: Endpoints): Promise<JSONSchema | undefined> {
-	const { contract, chain, keys } = endpoints;
+	const { keys } = endpoints;
 	let schema = endpoints.schema;
-	if (typeof chain !== 'undefined') return schema;
-	schema = schema ?? (await getSchemaFromIntrospection(contract));
+	if ( 'chain' in endpoints ) return schema;
+	schema = schema ?? (await getSchemaFromIntrospection(endpoints.contract));
 	if (!keys) return schema;
 	else if (schema) return removeKeysFromSchema(schema, keys);
 }
@@ -79,7 +80,8 @@ export const validateData = (schema: JSONSchema, data: JSON | Record<string, unk
 	const ajv = createAjv();
 	try {
 		const validate = ajv.compile(schema);
-		if (!validate(data)) throw new Error(betterAjvErrors(schema, data, validate.errors));
+		const valid = validate(data);
+		if (!valid && validate.errors) throw new Error(betterAjvErrors(schema, data, validate.errors));
 	} catch (e) {
 		L.error(e);
 		throw e;
@@ -111,7 +113,7 @@ export function validateJSONSchema(schema: JSON): void {
  * The reason is that Metadata uses the convention of javascript,
  * while the input JSON the one from zenroom
  */
-export const newMetadata = (configRaw: JSON): Metadata => {
+export const newMetadata = (configRaw: MetadataRaw): Metadata => {
 	return {
 		httpHeaders: configRaw['http_headers'] || false,
 		errorCode: configRaw['error_code'] || '500',
@@ -128,7 +130,7 @@ export const newMetadata = (configRaw: JSON): Metadata => {
 		tags: configRaw['tags'] || [defaultTagsName.zen],
 		hidden: configRaw['hidden'] || false,
 		hideFromOpenapi: configRaw['hide_from_openapi'] || false,
-		precondition: configRaw['precondition'] || false
+		precondition: configRaw['precondition']
 	};
 };
 
@@ -138,11 +140,11 @@ function createAjv(): Ajv {
 	return ajv;
 }
 
-export const getQueryParams = (req): Record<string, unknown> => {
+export const getQueryParams = (req: HttpRequest): Record<string, unknown> => {
 	const data: Record<string, unknown> = {};
 	const q = req.getQuery();
 	if (q) {
-		q.split('&').map((r) => {
+		q.split('&').map((r: string) => {
 			const [k, v] = r.split('=');
 			data[k] = v;
 		});
