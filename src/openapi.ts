@@ -149,40 +149,15 @@ To add new endpoints you should add new zencode contracts in the directory.
 export const openapiTemplate = `
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="description" content="SwaggerUI" />
-		<title>noˑcodeˑroom documentation</title>
-		<link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@latest/swagger-ui.css" />
-		<style>
-			.swagger-ui h1:before {
-				content: '# ';
-			}
-			.swagger-ui h1 {
-				font-size: 14px;
-				margin: 0 0;
-				font-style: italic;
-				color: #888;
-				font-weight: 100;
-			}
-			.swagger-ui .renderedMarkdown p {
-				margin: 10px 0px;
-				font-weight: 600;
-			}
-		</style>
-	</head>
-	<body>
-		<div id="swagger-ui"></div>
-		<script src="https://unpkg.com/swagger-ui-dist@latest/swagger-ui-bundle.js" crossorigin></script>
-		<script>
-			window.onload = () => {
-				window.ui = SwaggerUIBundle({
-					url: '${config.basepath}/oas.json',
-					dom_id: '#swagger-ui'
-				});
-			};
-		</script>
-	</body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>noˑcodeˑroom documentation</title>
+    <script src="https://unpkg.com/@stoplight/elements/web-components.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/@stoplight/elements/styles.min.css">
+  </head>
+  <body>
+    <elements-api layout="sidebar" router="hash" apiDescriptionUrl="${config.basepath}/oas.json" />
+  </body>
 </html>
 `;
