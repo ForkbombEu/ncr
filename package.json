@@ -42,7 +42,7 @@
 	"dependencies": {
 		"@dyne/slangroom-chain": "^1.6.4",
 		"@slangroom/core": "^1.40.2",
-		"@slangroom/db": "^1.40.2",
+		"@slangroom/db": "^1.41.1",
 		"@slangroom/ethereum": "^1.40.2",
 		"@slangroom/fs": "^1.40.2",
 		"@slangroom/git": "^1.40.2",
