@@ -48,7 +48,8 @@ const setupProm = async (app: TemplatedApp) => {
 		help: 'Emissions for 1GB',
 		collect() {
 			const emissions = swd.perByte(1000000000);
-			this.set(emissions);
+			const emissionValue = typeof emissions === 'number' ? emissions : emissions.total;
+			this.set(emissionValue);
 		}
 	});
 

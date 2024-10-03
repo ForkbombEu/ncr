@@ -5,11 +5,11 @@
 import { Command, Option } from 'commander';
 import 'dotenv/config';
 import { statSync } from 'node:fs';
-import { Logger } from 'tslog';
+import { Logger, type ILogObj } from 'tslog';
 import p from '../package.json' with { type: 'json' };
 import { Config } from './types';
 export const program = new Command();
-const L = new Logger({
+const L: Logger<ILogObj> = new Logger({
 	name: p.name,
 	type: 'pretty',
 	prettyLogTemplate:

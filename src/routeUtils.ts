@@ -147,7 +147,9 @@ const execZencodeAndReply = async (
 			return;
 		}
 
-		let jsonResult: Record<string, unknown> = {};
+		let jsonResult: {
+			http_headers?: { response?: Record<string, string> }
+		} & Record<string, unknown> = {};
 		try {
 			if ('chain' in endpoint) {
 				const dataFormatted = data ? JSON.stringify(data) : undefined;
@@ -312,12 +314,13 @@ export const generateRoute = async (app: TemplatedApp, endpoint: Endpoints, acti
 		raw = endpoint.chain;
 	}
 
-	let schema;
+	let schema: JSONSchema = { type: 'object', properties: {} };
 	if (action !== 'delete') {
-		schema = await getSchema(endpoint);
-		if (!schema) {
+		const s = await getSchema(endpoint);
+		if (!s) {
 			L.warn(`🛟  ${path} 🚧 Please provide a valide schema`);
-			schema = { type: 'object', properties: {} };
+		} else {
+			schema = s;
 		}
 	}
 
