@@ -19,7 +19,7 @@ const L = config.logger;
 export async function getSchema(endpoints: Endpoints): Promise<JSONSchema | undefined> {
 	const { keys } = endpoints;
 	let schema = endpoints.schema;
-	if ( 'chain' in endpoints ) return schema;
+	if ('chain' in endpoints) return schema;
 	schema = schema ?? (await getSchemaFromIntrospection(endpoints.contract));
 	if (!keys) return schema;
 	else if (schema) return removeKeysFromSchema(schema, keys);
@@ -81,7 +81,12 @@ export const validateData = (schema: JSONSchema, data: JSON | Record<string, unk
 	try {
 		const validate = ajv.compile(schema);
 		const valid = validate(data);
-		if (!valid && validate.errors) throw new Error(betterAjvErrors(schema, data, validate.errors));
+		if (!valid)
+			throw new Error(
+				validate.errors
+					? betterAjvErrors(schema, data, validate.errors)
+					: 'Unexpected error on data validation'
+			);
 	} catch (e) {
 		L.error(e);
 		throw e;
