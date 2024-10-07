@@ -4,12 +4,12 @@
 
 import fs from 'fs';
 import _ from 'lodash';
-import { IMeta } from 'tslog';
+import { IMeta, Logger, type ILogObj } from 'tslog';
 import { App, HttpResponse, TemplatedApp } from 'uWebSockets.js';
 import { execute as slangroomChainExecute } from '@dyne/slangroom-chain';
 
 import { reportZenroomError } from './error.js';
-import { Endpoints, JSONSchema, Logger, ILogObj } from './types.js';
+import { Endpoints, JSONSchema, Events } from './types.js';
 import { config } from './cli.js';
 import { SlangroomManager } from './slangroom.js';
 import { forbidden, methodNotAllowed, notFound, unprocessableEntity } from './responseUtils.js';
@@ -19,17 +19,17 @@ import { template as proctoroom } from './applets.js';
 //
 
 type MethodNames =
-  | 'get'
-  | 'post'
-  | 'options'
-  | 'del'
-  | 'patch'
-  | 'put'
-  | 'head'
-  | 'connect'
-  | 'trace'
-  | 'any'
-  | 'ws';
+	| 'get'
+	| 'post'
+	| 'options'
+	| 'del'
+	| 'patch'
+	| 'put'
+	| 'head'
+	| 'connect'
+	| 'trace'
+	| 'any'
+	| 'ws';
 
 export const createAppWithBasePath = (basepath: string): TemplatedApp => {
 	const app = App();
@@ -56,8 +56,6 @@ export const createAppWithBasePath = (basepath: string): TemplatedApp => {
 
 		listen: (...args: any[]) => wrapMethod('listen')(...args),
 		listen_unix: (...args: any[]) => wrapMethod('listen_unix')(...args),
-		publish: (...args: any[]) => wrapMethod('publish')(...args),
-		numSubscribers: (...args: any[]) => wrapMethod('numSubscribers')(...args),
 		addServerName: (...args: any[]) => wrapMethod('addServerName')(...args),
 		domain: (...args: any[]) => wrapMethod('domain')(...args),
 		removeServerName: (...args: any[]) => wrapMethod('removeServerName')(...args),
@@ -76,11 +74,11 @@ export const createAppWithBasePath = (basepath: string): TemplatedApp => {
 		connect: wrapPatternMethod('connect'),
 		trace: wrapPatternMethod('trace'),
 		any: wrapPatternMethod('any'),
-		ws: wrapPatternMethod('ws'),
-	  };
+		ws: wrapPatternMethod('ws')
+	};
 
 	return wrappedApp;
-}
+};
 
 //
 
@@ -100,9 +98,9 @@ const setCorsHeaders = (res: HttpResponse) => {
 
 export const runPrecondition = async (preconditionPath: string, data: Record<string, any>) => {
 	const s = SlangroomManager.getInstance();
-	const zen = fs.readFileSync(preconditionPath + '.slang').toString();
+	const zen = fs.readFileSync(preconditionPath + '.slang').toString('utf-8');
 	const keys = fs.existsSync(preconditionPath + '.keys.json')
-		? JSON.parse(fs.readFileSync(preconditionPath + '.keys.json'))
+		? JSON.parse(fs.readFileSync(preconditionPath + '.keys.json').toString('utf-8'))
 		: null;
 	await s.execute(zen, { data, keys });
 };
@@ -110,7 +108,7 @@ export const runPrecondition = async (preconditionPath: string, data: Record<str
 const execZencodeAndReply = async (
 	res: HttpResponse,
 	endpoint: Endpoints,
-	data: JSON | Record<string, unknown>,
+	data: Record<string, unknown>,
 	headers: Record<string, Record<string, string>>,
 	schema: JSONSchema,
 	LOG: Logger<ILogObj>
@@ -120,11 +118,11 @@ const execZencodeAndReply = async (
 		res.cork(() => res.writeStatus('400').end());
 		return;
 	});
-	const { contract, chain, keys, conf, metadata } = endpoint;
+	const { keys, conf, metadata } = endpoint;
 	try {
 		if (metadata.httpHeaders) {
 			try {
-				if (data['http_headers'] !== undefined) {
+				if ('http_headers' in data) {
 					throw new Error('Name clash on input key http_headers');
 				}
 				data['http_headers'] = headers;
@@ -149,21 +147,23 @@ const execZencodeAndReply = async (
 			return;
 		}
 
-		let jsonResult: Record<string, unknown>;
+		let jsonResult: {
+			http_headers?: { response?: Record<string, string> }
+		} & Record<string, unknown> = {};
 		try {
-			if (chain) {
+			if ('chain' in endpoint) {
 				const dataFormatted = data ? JSON.stringify(data) : undefined;
-				const parsedChain = eval(chain)();
+				const parsedChain = eval(endpoint.chain)();
 				const res = await slangroomChainExecute(parsedChain, dataFormatted);
 				jsonResult = JSON.parse(res);
 			} else {
 				const s = SlangroomManager.getInstance();
-				({ result: jsonResult } = await s.execute(contract, { keys, data, conf }));
+				({ result: jsonResult } = await s.execute(endpoint.contract, { keys, data, conf }));
 			}
 		} catch (e) {
 			if (!res.aborted) {
 				res.cork(() => {
-					const report = reportZenroomError(e as Error, LOG, endpoint);
+					const report = reportZenroomError(e as Error, LOG);
 					res
 						.writeStatus(metadata.errorCode)
 						.writeHeader('Access-Control-Allow-Origin', '*')
@@ -173,7 +173,7 @@ const execZencodeAndReply = async (
 			}
 		}
 		if (metadata.httpHeaders) {
-			if (jsonResult.http_headers !== undefined && jsonResult.http_headers.response !== undefined) {
+			if (jsonResult.http_headers?.response !== undefined) {
 				headers.response = jsonResult.http_headers.response;
 			}
 			delete jsonResult.http_headers;
@@ -209,7 +209,7 @@ const generatePost = (
 	endpoint: Endpoints,
 	schema: JSONSchema,
 	LOG: Logger<ILogObj>,
-	action: 'add' | 'update' | 'delete'
+	action: Events
 ) => {
 	const { path, metadata } = endpoint;
 	app.post(path, (res, req) => {
@@ -239,7 +239,9 @@ const generatePost = (
 			if (isLast) {
 				let data;
 				try {
-					data = JSON.parse(buffer ? Buffer.concat([buffer, chunk]) : chunk);
+					data = JSON.parse(
+						buffer ? Buffer.concat([buffer, chunk]).toString('utf-8') : chunk.toString('utf-8')
+					);
 				} catch (e) {
 					L.error(e);
 					res
@@ -266,7 +268,7 @@ const generateGet = (
 	endpoint: Endpoints,
 	schema: JSONSchema,
 	LOG: Logger<ILogObj>,
-	action: 'add' | 'update' | 'delete'
+	action: Events
 ) => {
 	const { path, metadata } = endpoint;
 	app.get(path, async (res, req) => {
@@ -302,20 +304,23 @@ const generateGet = (
 	});
 };
 
-export const generateRoute = async (
-	app: TemplatedApp,
-	endpoint: Endpoints,
-	action: 'add' | 'update' | 'delete'
-) => {
-	const { contract, path, metadata } = endpoint;
+export const generateRoute = async (app: TemplatedApp, endpoint: Endpoints, action: Events) => {
+	const { path, metadata } = endpoint;
 	if (metadata.hidden) return;
+	let raw: string;
+	if ('contract' in endpoint) {
+		raw = endpoint.contract;
+	} else {
+		raw = endpoint.chain;
+	}
 
-	let schema = null;
+	let schema: JSONSchema = { type: 'object', properties: {} };
 	if (action !== 'delete') {
-		schema = await getSchema(endpoint);
-		if (!schema) {
+		const s = await getSchema(endpoint);
+		if (!s) {
 			L.warn(`🛟  ${path} 🚧 Please provide a valide schema`);
-			schema = { type: 'object', properties: {} };
+		} else {
+			schema = s;
 		}
 	}
 
@@ -350,7 +355,7 @@ export const generateRoute = async (
 			notFound(res, LOG, new Error(`Not found on ${path}/raw`));
 			return;
 		}
-		res.writeStatus('200 OK').writeHeader('Content-Type', 'text/plain').end(contract);
+		res.writeStatus('200 OK').writeHeader('Content-Type', 'text/plain').end(raw);
 	});
 
 	app.get(path + '/app', async (res) => {
@@ -359,10 +364,10 @@ export const generateRoute = async (
 			return;
 		}
 		const result = _.template(proctoroom)({
-			contract: contract,
+			contract: raw,
 			schema: JSON.stringify(schema),
 			title: path || 'Welcome 🥳 to ',
-			description: contract,
+			description: raw,
 			endpoint: `${config.basepath}${path}`
 		});
 

@@ -27,15 +27,16 @@ export interface Config {
 	basepath: string;
 }
 
-export interface Endpoints {
+export type Endpoints = {
 	path: string;
-	contract?: string | undefined;
-	chain?: JSON | undefined;
-	keys?: JSON | undefined;
+	keys?: JSON;
 	conf: string;
-	schema?: JSONSchema | undefined;
+	schema?: JSONSchema;
 	metadata: Metadata;
-}
+} & (
+	| { contract: string }
+	| { chain: string }
+)
 
 interface CodecAttr {
 	encoding: 'string' | 'float';
@@ -66,4 +67,36 @@ export interface Metadata {
 
 	examples: {};
 	tags: Array<string>;
+
+	precondition?: string
+}
+
+export interface MetadataRaw {
+	hidden?: boolean;
+	hide_from_openapi?: boolean;
+	disable_get?: boolean;
+	disable_post?: boolean;
+
+	content_type?: RecognizedString;
+	http_headers?: boolean;
+
+	success_code?: RecognizedString;
+	success_content_type?: RecognizedString;
+	success_description?: RecognizedString;
+
+	error_code?: RecognizedString;
+	error_description?: RecognizedString;
+	error_content_type?: RecognizedString;
+
+	examples?: {};
+	tags?: Array<string>;
+
+	precondition?: string
+}
+
+
+export enum Events {
+	Add = "add",
+	Update = "update",
+	Delete = "delete"
 }

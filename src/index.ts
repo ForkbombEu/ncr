@@ -6,11 +6,7 @@ import dotenv from 'dotenv';
 import fs from 'fs';
 import mime from 'mime';
 import path from 'path';
-import {
-	TemplatedApp,
-	us_socket_local_port,
-	LIBUS_LISTEN_EXCLUSIVE_PORT
-} from 'uWebSockets.js';
+import { TemplatedApp, us_socket_local_port } from 'uWebSockets.js';
 import { autorunContracts } from './autorun.js';
 import { config } from './cli.js';
 import { Directory } from './directory.js';
@@ -24,10 +20,10 @@ import {
 	openapiTemplate
 } from './openapi.js';
 import { SlangroomManager } from './slangroom.js';
-import { formatContract } from './fileUtils.js';
 import { getSchema, getQueryParams, prettyChain, newMetadata } from './utils.js';
 import { forbidden, notFound, unprocessableEntity, internalServerError } from './responseUtils.js';
 import { createAppWithBasePath, generateRoute, runPrecondition } from './routeUtils.js';
+import { Endpoints, Events } from './types.js';
 
 dotenv.config();
 
@@ -35,10 +31,6 @@ const L = config.logger;
 const Dir = Directory.getInstance();
 
 const PROM = process.env.PROM == 'true';
-
-if (typeof process.env.FILES_DIR == 'undefined') {
-	process.env.FILES_DIR = config.zencodeDir;
-}
 
 const setupProm = async (app: TemplatedApp) => {
 	const client = await import('prom-client');
@@ -56,7 +48,8 @@ const setupProm = async (app: TemplatedApp) => {
 		help: 'Emissions for 1GB',
 		collect() {
 			const emissions = swd.perByte(1000000000);
-			this.set(emissions);
+			const emissionValue = typeof emissions === 'number' ? emissions : emissions.total;
+			this.set(emissionValue);
 		}
 	});
 
@@ -79,7 +72,7 @@ const ncrApp = async () => {
 				if (!metadata.hidden && !metadata.hideFromOpenapi)
 					acc.push(`http://${req.getHeader('host')}${config.basepath}${path}`);
 				return acc;
-			}, []);
+			}, [] as string[]);
 			res
 				.writeStatus('200 OK')
 				.writeHeader('Content-Type', 'application/json')
@@ -90,17 +83,17 @@ const ncrApp = async () => {
 		})
 		.get('/oas.json', async (res) => {
 			definition.paths = {};
-			const tags = [];
+			const tags: string[] = [];
 			await Promise.all(
 				Dir.files.map(async (endpoints) => {
 					const { path, metadata } = endpoints;
-					if (metadata.tags) tags.push(...metadata.tags);					
-          if (definition.paths && !metadata.hidden && !metadata.hideFromOpenapi) {
-            const prefixedPath = config.basepath + path;
+					if (metadata.tags) tags.push(...metadata.tags);
+					if (definition.paths && !metadata.hidden && !metadata.hideFromOpenapi) {
+						const prefixedPath = config.basepath + path;
 						const schema = await getSchema(endpoints);
 						if (schema)
 							definition.paths[prefixedPath] = generatePath(
-								endpoints.contract ?? prettyChain(endpoints.chain),
+								'contract' in endpoints ? endpoints.contract : prettyChain(endpoints.chain),
 								schema,
 								metadata
 							);
@@ -109,12 +102,15 @@ const ncrApp = async () => {
 					}
 				})
 			);
-			const customTags = tags.reduce((acc, tag) => {
-				if (tag === defaultTagsName.zen) return acc;
-				const t = { name: tag };
-				if (!acc.includes(t)) acc.push(t);
-				return acc;
-			}, []);
+			const customTags = tags.reduce(
+				(acc, tag) => {
+					if (tag === defaultTagsName.zen) return acc;
+					const t = { name: tag };
+					if (!acc.includes(t)) acc.push(t);
+					return acc;
+				},
+				[] as { name: string }[]
+			);
 			definition.tags = [...customTags, ...defaultTags];
 			res.cork(() => {
 				res
@@ -167,7 +163,7 @@ const generatePublicDirectory = (app: TemplatedApp) => {
 				res.writeStatus('500').end('Aborted');
 			});
 			let url = req.getUrl();
-			if (url.split('/').pop().startsWith('.')) {
+			if (url.split('/').pop()?.startsWith('.')) {
 				notFound(res, L, new Error('Try to access hidden file'));
 				return;
 			}
@@ -182,7 +178,7 @@ const generatePublicDirectory = (app: TemplatedApp) => {
 				if (fs.existsSync(file + '.metadata.json')) {
 					let publicMetadata;
 					try {
-						publicMetadata = JSON.parse(fs.readFileSync(file + '.metadata.json'));
+						publicMetadata = JSON.parse(fs.readFileSync(file + '.metadata.json').toString('utf-8'));
 					} catch (e) {
 						unprocessableEntity(
 							res,
@@ -207,34 +203,13 @@ const generatePublicDirectory = (app: TemplatedApp) => {
 						.writeStatus('200 OK')
 						.writeHeader('Access-Control-Allow-Origin', '*')
 						.writeHeader('Content-Type', contentType)
-						.end(fs.readFileSync(file));
+						.end(fs.readFileSync(file).toString('utf-8'));
 				});
 			} else {
 				notFound(res, L, new Error(`File not found: ${file}`));
 			}
 		});
 	}
-};
-
-const generateEndpoint = (basePath: string): Endpoints | undefined => {
-	if (Dir.getContent(basePath + '.zen') !== undefined) {
-		return {
-			path: basePath,
-			contract: formatContract(Dir.getContent(basePath + '.zen')),
-			keys: Dir.getJSON(basePath, 'keys'),
-			conf: Dir.getContent(basePath + '.conf') || '',
-			schema: Dir.getJSONSchema(basePath),
-			metadata: newMetadata(Dir.getJSON(basePath, 'metadata') || {})
-		};
-	} else if (Dir.getContent(basePath + '.chain.js') !== undefined) {
-		return {
-			path: basePath,
-			chain: Dir.getContent(basePath + '.chain.js'),
-			schema: Dir.getJSONSchema(basePath),
-			metadata: newMetadata(Dir.getJSON(basePath, 'metadata') || {})
-		};
-	}
-	return;
 };
 
 Dir.ready(async () => {
@@ -244,16 +219,18 @@ Dir.ready(async () => {
 
 	await Promise.all(
 		Dir.files.map(async (endpoint) => {
-			await generateRoute(app, endpoint, 'add');
+			await generateRoute(app, endpoint, Events.Add);
 		})
 	);
 
 	generatePublicDirectory(app);
-
-	app.listen(config.port, LIBUS_LISTEN_EXCLUSIVE_PORT, (socket) => {
+	const listenOption = 1;
+	app.listen(config.port, listenOption, (socket) => {
 		if (socket) {
 			const port = us_socket_local_port(socket);
-			L.info(`Swagger UI is running on http://${config.hostname}:${port}${config.basepath}${config.openapiPath}`);
+			L.info(
+				`Swagger UI is running on http://${config.hostname}:${port}${config.basepath}${config.openapiPath}`
+			);
 		} else {
 			L.error('Port already in use ' + config.port);
 			throw new Error('Port already in use ' + config.port);
@@ -262,39 +239,39 @@ Dir.ready(async () => {
 
 	Dir.onAdd(async (path: string) => {
 		const [baseName, ext, json] = path.split('.');
-		const endpoint = generateEndpoint(baseName);
+		const endpoint = Dir.endpoint(baseName);
 		if (!endpoint) return;
-		let event: string;
+		let event: Events;
 		if (ext === 'zen' || (ext === 'chain' && json === 'js')) {
-			event = 'add';
+			event = Events.Add;
 		} else {
-			event = 'update';
+			event = Events.Update;
 		}
 		await generateRoute(app, endpoint, event);
 	});
 
 	Dir.onUpdate(async (path: string) => {
-		const endpoint = generateEndpoint(path.split('.')[0]);
+		const endpoint = Dir.endpoint(path.split('.')[0]);
 		if (!endpoint) return;
-		await generateRoute(app, endpoint, 'update');
+		await generateRoute(app, endpoint, Events.Update);
 	});
 
 	Dir.onDelete(async (path: string) => {
 		const [baseName, ext, json] = path.split('.');
-		let endpoint: Endpoints;
-		let event: string;
+		let endpoint: Endpoints | undefined;
+		let event: Events;
 		if (ext === 'zen' || (ext === 'chain' && json === 'js')) {
 			endpoint = {
 				path: baseName,
-				contract: null,
-				chain: null,
+				contract: '',
+				chain: '',
 				conf: '',
-				metadata: {}
+				metadata: newMetadata({})
 			};
-			event = 'delete';
+			event = Events.Delete;
 		} else {
-			endpoint = generateEndpoint(baseName);
-			event = 'update';
+			endpoint = Dir.endpoint(baseName);
+			event = Events.Update;
 		}
 		if (!endpoint) return;
 		await generateRoute(app, endpoint, event);
