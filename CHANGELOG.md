@@ -1,3 +1,10 @@
+## [1.38.1](https://github.com/forkbombeu/ncr/compare/v1.38.0...v1.38.1) (2024-10-07)
+
+
+### Bug Fixes
+
+* some errors and warning coming from rollup build output ([#365](https://github.com/forkbombeu/ncr/issues/365)) ([207e9db](https://github.com/forkbombeu/ncr/commit/207e9db209c88dd354e9a038c3cc863f6c6aa2ac))
+
 # [1.38.0](https://github.com/forkbombeu/ncr/compare/v1.37.8...v1.38.0) (2024-10-02)
 
 
