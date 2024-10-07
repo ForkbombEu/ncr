@@ -314,7 +314,7 @@ const generateGet = (
 ) => {
 	const { path, metadata } = endpoint;
 	app.get(path, async (res, req) => {
-		const headers = checkAndGetHeaders(res, req, LOG, action, path, metadata, metadata.disbaleGet);
+		const headers = checkAndGetHeaders(res, req, LOG, action, path, metadata, metadata.disableGet);
 		if (!headers) return;
 		/**
 		 * Code may break on `slangroom.execute`
