@@ -5,62 +5,44 @@
 import { Logger, type ILogObj } from 'tslog';
 import { HttpResponse } from 'uWebSockets.js';
 
-export const forbidden = (res: HttpResponse, LOG: Logger<ILogObj>, e: Error) => {
+const response = (
+	res: HttpResponse,
+	LOG: Logger<ILogObj>,
+	e: Error,
+	statusCode: string,
+	msg: string | undefined = undefined
+) => {
 	if (res.aborted) return;
-	LOG.fatal(e.message);
+	LOG.error(e);
 	res.cork(() => {
 		res
-			.writeStatus('403 FORBIDDEN')
+			.writeStatus(statusCode)
 			.writeHeader('Content-Type', 'application/json')
 			.writeHeader('Access-Control-Allow-Origin', '*')
-			.end('Forbidden');
+			.end(msg || e.message);
 	});
+};
+
+export const forbidden = (res: HttpResponse, LOG: Logger<ILogObj>, e: Error) => {
+	response(res, LOG, e, '403 FORBIDDEN', 'Forbidden');
 };
 
 export const notFound = (res: HttpResponse, LOG: Logger<ILogObj>, e: Error) => {
-	if (res.aborted) return;
-	LOG.fatal(e.message);
-	res.cork(() => {
-		res
-			.writeStatus('404 NOT FOUND')
-			.writeHeader('Content-Type', 'application/json')
-			.writeHeader('Access-Control-Allow-Origin', '*')
-			.end('Not Found');
-	});
+	response(res, LOG, e, '404 NOT FOUND', 'Not Found');
 };
 
 export const methodNotAllowed = (res: HttpResponse, LOG: Logger<ILogObj>, e: Error) => {
-	if (res.aborted) return;
-	LOG.warn(e.message);
-	res.cork(() => {
-		res
-			.writeStatus('405 METHOD NOT ALLOWED')
-			.writeHeader('Content-Type', 'application/json')
-			.writeHeader('Access-Control-Allow-Origin', '*')
-			.end('Method Not Allowed');
-	});
+	response(res, LOG, e, '405 METHOD NOT ALLOWED', 'Method Not Allowed');
 };
 
 export const unprocessableEntity = (res: HttpResponse, LOG: Logger<ILogObj>, e: Error) => {
-	if (res.aborted) return;
-	LOG.fatal(e.message);
-	res.cork(() => {
-		res
-			.writeStatus('422 UNPROCESSABLE ENTITY')
-			.writeHeader('Content-Type', 'application/json')
-			.writeHeader('Access-Control-Allow-Origin', '*')
-			.end(e.message);
-	});
+	response(res, LOG, e, '422 UNPROCESSABLE ENTITY');
+};
+
+export const unsupportedMediaType = (res: HttpResponse, LOG: Logger<ILogObj>, e: Error) => {
+	response(res, LOG, e, '415 UNSUPPORTED MEDIA TYPE', 'Unsupported Media Type');
 };
 
 export const internalServerError = (res: HttpResponse, LOG: Logger<ILogObj>, e: Error) => {
-	if (res.aborted) return;
-	LOG.fatal(e.message);
-	res.cork(() => {
-		res
-			.writeStatus('500 INTERNAL SERVER ERROR')
-			.writeHeader('Content-Type', 'application/json')
-			.writeHeader('Access-Control-Allow-Origin', '*')
-			.end(e.message);
-	});
+	response(res, LOG, e, '500 INTERNAL SERVER ERROR');
 };
