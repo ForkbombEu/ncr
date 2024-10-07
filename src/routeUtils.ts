@@ -9,10 +9,16 @@ import { App, HttpResponse, TemplatedApp } from 'uWebSockets.js';
 import { execute as slangroomChainExecute } from '@dyne/slangroom-chain';
 
 import { reportZenroomError } from './error.js';
-import { Endpoints, JSONSchema, Events } from './types.js';
+import { Endpoints, JSONSchema, Events, Headers } from './types.js';
 import { config } from './cli.js';
 import { SlangroomManager } from './slangroom.js';
-import { forbidden, methodNotAllowed, notFound, unprocessableEntity } from './responseUtils.js';
+import {
+	forbidden,
+	methodNotAllowed,
+	notFound,
+	unprocessableEntity,
+	unsupportedMediaType
+} from './responseUtils.js';
 import { getSchema, validateData, getQueryParams } from './utils.js';
 import { template as proctoroom } from './applets.js';
 
@@ -105,6 +111,45 @@ export const runPrecondition = async (preconditionPath: string, data: Record<str
 	await s.execute(zen, { data, keys });
 };
 
+const parseDataFunctions = {
+	'application/json': (data: string) => JSON.parse(data),
+	'application/x-www-form-urlencoded': (data: string) => {
+		const res: Record<string, unknown> = {};
+		decodeURIComponent(data)
+			.split('&')
+			.map((r: string) => {
+				const [k, v] = r.split('=');
+				res[k] = v;
+			});
+		return res;
+	}
+};
+
+const checkAndGetHeaders = (
+	res: HttpResponse,
+	req: HttpRequest,
+	LOG: Logger<ILogObj>,
+	action: Events,
+	path: string,
+	metadata: JSONSchema,
+	notAllowed: boolean
+): Headers | undefined => {
+	if (action === 'delete') {
+		notFound(res, LOG, new Error(`Not found on ${path}`));
+		return;
+	}
+	if (notAllowed) {
+		methodNotAllowed(res, LOG, new Error(`Post method not allowed on ${path}`));
+		return;
+	}
+	const headers: Headers = {};
+	headers.request = {};
+	req.forEach((k, v) => {
+		headers.request[k] = v;
+	});
+	return headers;
+};
+
 const execZencodeAndReply = async (
 	res: HttpResponse,
 	endpoint: Endpoints,
@@ -148,7 +193,7 @@ const execZencodeAndReply = async (
 		}
 
 		let jsonResult: {
-			http_headers?: { response?: Record<string, string> }
+			http_headers?: { response?: Record<string, string> };
 		} & Record<string, unknown> = {};
 		try {
 			if ('chain' in endpoint) {
@@ -213,19 +258,12 @@ const generatePost = (
 ) => {
 	const { path, metadata } = endpoint;
 	app.post(path, (res, req) => {
-		if (action === 'delete') {
-			notFound(res, LOG, new Error(`Not found on ${path}`));
+		const headers = checkAndGetHeaders(res, req, LOG, action, path, metadata, metadata.disablePost);
+		if (!headers) return;
+		if (headers.request?.['content-type'] !== metadata.contentType) {
+			unsupportedMediaType(res, LOG, new Error(`Unsupported media type on ${path}`));
 			return;
 		}
-		if (metadata.disablePost) {
-			methodNotAllowed(res, LOG, new Error(`Post method not allowed on ${path}`));
-			return;
-		}
-		const headers: Record<string, Record<string, string>> = {};
-		headers.request = {};
-		req.forEach((k, v) => {
-			headers.request[k] = v;
-		});
 		/**
 		 * Code may break on `slangroom.execute`
 		 * so it's important to attach the `onAborted` handler before everything else
@@ -239,7 +277,11 @@ const generatePost = (
 			if (isLast) {
 				let data;
 				try {
-					data = JSON.parse(
+					const parseFun = parseDataFunctions[metadata.contentType];
+					if (!parseFun) {
+						unsupportedMediaType(res, LOG, new Error(`Unsupported media type ${metadata.contentType}`));
+					}
+					data = parseFun(
 						buffer ? Buffer.concat([buffer, chunk]).toString('utf-8') : chunk.toString('utf-8')
 					);
 				} catch (e) {
@@ -272,19 +314,8 @@ const generateGet = (
 ) => {
 	const { path, metadata } = endpoint;
 	app.get(path, async (res, req) => {
-		if (action === 'delete') {
-			notFound(res, LOG, new Error(`Not found on ${path}`));
-			return;
-		}
-		if (metadata.disableGet) {
-			methodNotAllowed(res, LOG, new Error(`Get method not allowed on ${path}`));
-			return;
-		}
-		const headers: Record<string, Record<string, string>> = {};
-		headers.request = {};
-		req.forEach((k, v) => {
-			headers.request[k] = v;
-		});
+		const headers = checkAndGetHeaders(res, req, LOG, action, path, metadata, metadata.disbaleGet);
+		if (!headers) return;
 		/**
 		 * Code may break on `slangroom.execute`
 		 * so it's important to attach the `onAborted` handler before everything else
