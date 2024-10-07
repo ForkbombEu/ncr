@@ -307,20 +307,36 @@ tests:
             json: 
               output:
                 - JUST_POST
-      - name: JUST POST 
+      - name: JUST POST fails on GET
         http:
           url: http://${{env.host}}/meta/just_post
           method: GET
           check:
             status: 405
             body: Method Not Allowed
-      - name: GET request
+      - name: POST with correct content type
         http:
           url: http://${{env.host}}/meta/content_type
-          method: GET
+          method: POST
+          headers:
+            Content-Type: application/x-www-form-urlencoded
+          body: "&data1=code&data2=https%3A%2F%2Fclient.example.org%2F"
           check:
             status: 200
             contentType: text/plain
+            json:
+              data1: code
+              data2: https://client.example.org/
+      - name: POST with wrong content type
+        http:
+          url: http://${{env.host}}/meta/content_type
+          method: POST
+          headers:
+            Content-Type: application/json
+          body: "&data1=code&data2=https%3A%2F%2Fclient.example.org%2F"
+          check:
+            status: 415
+            body: Unsupported Media Type
 
       - name: GET status code
         http:
