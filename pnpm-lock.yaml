@@ -12,8 +12,8 @@ dependencies:
     specifier: ^1.40.2
     version: 1.40.2(zenroom@4.42.0)
   '@slangroom/db':
-    specifier: ^1.40.2
-    version: 1.40.2(mariadb@3.3.1)(mysql2@3.11.0)(oracledb@6.6.0)(pg-hstore@2.3.4)(pg@8.12.0)(snowflake-sdk@1.12.0)(tedious@18.6.1)(zenroom@4.42.0)
+    specifier: ^1.42.0
+    version: 1.42.0(mariadb@3.3.1)(mysql2@3.11.0)(oracledb@6.6.0)(pg-hstore@2.3.4)(pg@8.12.0)(snowflake-sdk@1.12.0)(tedious@18.6.1)(zenroom@4.42.0)
   '@slangroom/ethereum':
     specifier: ^1.40.2
     version: 1.40.2(typescript@5.6.2)(zenroom@4.42.0)
@@ -1567,7 +1567,7 @@ packages:
     engines: {node: '>=18'}
     dependencies:
       '@slangroom/core': 1.40.2(zenroom@4.42.0)
-      '@slangroom/db': 1.40.2(mariadb@3.3.1)(mysql2@3.11.0)(oracledb@6.6.0)(pg-hstore@2.3.4)(pg@8.12.0)(snowflake-sdk@1.12.0)(tedious@18.6.1)(zenroom@4.42.0)
+      '@slangroom/db': 1.42.0(mariadb@3.3.1)(mysql2@3.11.0)(oracledb@6.6.0)(pg-hstore@2.3.4)(pg@8.12.0)(snowflake-sdk@1.12.0)(tedious@18.6.1)(zenroom@4.42.0)
       '@slangroom/fs': 1.40.2(zenroom@4.42.0)
       '@slangroom/git': 1.40.2(zenroom@4.42.0)
       '@slangroom/helpers': 1.40.2(zenroom@4.42.0)
@@ -2847,12 +2847,23 @@ packages:
     transitivePeerDependencies:
       - zenroom
 
-  /@slangroom/db@1.40.2(mariadb@3.3.1)(mysql2@3.11.0)(oracledb@6.6.0)(pg-hstore@2.3.4)(pg@8.12.0)(snowflake-sdk@1.12.0)(tedious@18.6.1)(zenroom@4.42.0):
-    resolution: {integrity: sha512-ZBGOLb1OoxTmS9d6jkrgBQFUtClLtNKkS/8VwHfRFMiDaj2H/pmcT/sbhBoyeuITJ5yp6lcKzsq6d3iRmk0zCw==}
+  /@slangroom/core@1.42.0(zenroom@4.42.0):
+    resolution: {integrity: sha512-rof33Q23QnECyfwV+4yefqGguklnEzDS/mEXMRjHxbjo499BcrjNbzrRG3mwufREi2LsP5m+8n+BmCqRw0LIqg==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
     dependencies:
-      '@slangroom/core': 1.40.2(zenroom@4.42.0)
-      '@slangroom/shared': 1.40.2(zenroom@4.42.0)
+      '@slangroom/deps': 1.42.0(zenroom@4.42.0)
+      '@slangroom/ignored': 1.42.0(zenroom@4.42.0)
+      '@slangroom/shared': 1.42.0(zenroom@4.42.0)
+    transitivePeerDependencies:
+      - zenroom
+    dev: false
+
+  /@slangroom/db@1.42.0(mariadb@3.3.1)(mysql2@3.11.0)(oracledb@6.6.0)(pg-hstore@2.3.4)(pg@8.12.0)(snowflake-sdk@1.12.0)(tedious@18.6.1)(zenroom@4.42.0):
+    resolution: {integrity: sha512-ZkriMNH4XWpXxKSxcGgRYZSKg5tyZ/+gxh6vxFVHdiAAC1ygtoJNIvUv41EJ2FiQGO6X+ZeLJYlSq9xwSeJGxw==}
+    engines: {node: ^18.20.0 || ^20.10.0 || ^22}
+    dependencies:
+      '@slangroom/core': 1.42.0(zenroom@4.42.0)
+      '@slangroom/shared': 1.42.0(zenroom@4.42.0)
       sequelize: 6.37.3(mariadb@3.3.1)(mysql2@3.11.0)(oracledb@6.6.0)(pg-hstore@2.3.4)(pg@8.12.0)(snowflake-sdk@1.12.0)(sqlite3@5.1.7)(tedious@18.6.1)
       sqlite3: 5.1.7
     transitivePeerDependencies:
@@ -2878,6 +2889,17 @@ packages:
       chalk: 5.3.0
       chevrotain: 10.5.0
       zenroom: 4.42.0
+
+  /@slangroom/deps@1.42.0(zenroom@4.42.0):
+    resolution: {integrity: sha512-rfT/sxSaYVrJMGaeh2Rg7+6an/O3ZqcSKL6UiVh9KZbQGibxW9f0h/lyMi3L9BsLEi+Nz+E0PdgaPGplH5LDDw==}
+    engines: {node: ^18.20.0 || ^20.10.0 || ^22}
+    peerDependencies:
+      zenroom: ^4.31.2
+    dependencies:
+      chalk: 5.3.0
+      chevrotain: 10.5.0
+      zenroom: 4.42.0
+    dev: false
 
   /@slangroom/ethereum@1.40.2(typescript@5.6.2)(zenroom@4.42.0):
     resolution: {integrity: sha512-sRD9pCw3PvKP5iwkgTkOjdji+vOrpQnRH5ioN3d4HCYbA5n3wW2qIvoR4QV+W8v0Qrie6SsJAUqihQug0d0prg==}
@@ -2955,6 +2977,16 @@ packages:
     transitivePeerDependencies:
       - zenroom
 
+  /@slangroom/ignored@1.42.0(zenroom@4.42.0):
+    resolution: {integrity: sha512-oGYStnahrppG4rJcN2YI5JfAkxdXN36XDYUNH1eLec84vThIzNV5q/ynZ5LZf6y7e4RMGDGMouxKRnrpvZ7PyQ==}
+    engines: {node: ^18.20.0 || ^20.10.0 || ^22}
+    dependencies:
+      '@slangroom/deps': 1.42.0(zenroom@4.42.0)
+      '@slangroom/shared': 1.42.0(zenroom@4.42.0)
+    transitivePeerDependencies:
+      - zenroom
+    dev: false
+
   /@slangroom/json-schema@1.40.2(zenroom@4.42.0):
     resolution: {integrity: sha512-4cW1Msmhj2+zOricMCCagQRJA7yODTgw6NG+hhzSZy5CgAle3psAyk4auQq7hFSYJZ8oPfrSJ0MwEYtXqCjNdw==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
@@ -3020,6 +3052,15 @@ packages:
       '@slangroom/deps': 1.40.2(zenroom@4.42.0)
     transitivePeerDependencies:
       - zenroom
+
+  /@slangroom/shared@1.42.0(zenroom@4.42.0):
+    resolution: {integrity: sha512-EFwhl/IYDzcQsO5C6vn4rbh8ZfMkameCY/II2ZPW67gjvmURkdlo0W+SwAPxAq6hcDr+anUwjJNCvlONATylQA==}
+    engines: {node: ^18.20.0 || ^20.10.0 || ^22}
+    dependencies:
+      '@slangroom/deps': 1.42.0(zenroom@4.42.0)
+    transitivePeerDependencies:
+      - zenroom
+    dev: false
 
   /@slangroom/shell@1.40.2(zenroom@4.42.0):
     resolution: {integrity: sha512-Kyw7eYtK5TzWdI8z/m1+0T3KGwX+QTdxsw0hL/eXoVGpClVLM8VH8GanAyCrscbURRVpuQixqEbroyfrhqKh0g==}
@@ -4265,7 +4306,7 @@ packages:
     resolution: {integrity: sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==}
     engines: {node: '>= 6.0.0'}
     dependencies:
-      debug: 4.3.6
+      debug: 4.3.7(supports-color@5.5.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -4273,7 +4314,7 @@ packages:
     resolution: {integrity: sha512-H0TSyFNDMomMNJQBn8wFV5YC/2eJ+VXECwOadZJT554xP6cODZHPX3H9QMQECxvrgiSOP1pHjy1sMWQVYJOUOA==}
     engines: {node: '>= 14'}
     dependencies:
-      debug: 4.3.6
+      debug: 4.3.7(supports-color@5.5.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -6681,7 +6722,7 @@ packages:
     dependencies:
       '@tootallnate/once': 2.0.0
       agent-base: 6.0.2
-      debug: 4.3.6
+      debug: 4.3.7(supports-color@5.5.0)
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -6708,7 +6749,7 @@ packages:
     engines: {node: '>= 6'}
     dependencies:
       agent-base: 6.0.2
-      debug: 4.3.6
+      debug: 4.3.7(supports-color@5.5.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -10088,9 +10129,6 @@ packages:
   /sqlite3@5.1.7:
     resolution: {integrity: sha512-GGIyOiFaG+TUra3JIfkI/zGP8yZYLPQ0pl1bH+ODjiX57sPhrLU5sQJn1y9bDKZUFYkX1crlrPfSYt0BKKdkog==}
     requiresBuild: true
-    peerDependenciesMeta:
-      node-gyp:
-        optional: true
     dependencies:
       bindings: 1.5.0
       node-addon-api: 7.1.1
