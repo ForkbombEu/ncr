@@ -15,8 +15,8 @@ dependencies:
     specifier: ^1.40.2
     version: 1.40.2(mariadb@3.3.1)(mysql2@3.11.0)(oracledb@6.6.0)(pg-hstore@2.3.4)(pg@8.12.0)(snowflake-sdk@1.12.0)(tedious@18.6.1)(zenroom@4.42.0)
   '@slangroom/ethereum':
-    specifier: ^1.40.2
-    version: 1.40.2(typescript@5.6.2)(zenroom@4.42.0)
+    specifier: ^1.42.0
+    version: 1.42.0(typescript@5.6.2)(zenroom@4.42.0)
   '@slangroom/fs':
     specifier: ^1.40.2
     version: 1.40.2(zenroom@4.42.0)
@@ -2847,6 +2847,17 @@ packages:
     transitivePeerDependencies:
       - zenroom
 
+  /@slangroom/core@1.42.0(zenroom@4.42.0):
+    resolution: {integrity: sha512-rof33Q23QnECyfwV+4yefqGguklnEzDS/mEXMRjHxbjo499BcrjNbzrRG3mwufREi2LsP5m+8n+BmCqRw0LIqg==}
+    engines: {node: ^18.20.0 || ^20.10.0 || ^22}
+    dependencies:
+      '@slangroom/deps': 1.42.0(zenroom@4.42.0)
+      '@slangroom/ignored': 1.42.0(zenroom@4.42.0)
+      '@slangroom/shared': 1.42.0(zenroom@4.42.0)
+    transitivePeerDependencies:
+      - zenroom
+    dev: false
+
   /@slangroom/db@1.40.2(mariadb@3.3.1)(mysql2@3.11.0)(oracledb@6.6.0)(pg-hstore@2.3.4)(pg@8.12.0)(snowflake-sdk@1.12.0)(tedious@18.6.1)(zenroom@4.42.0):
     resolution: {integrity: sha512-ZBGOLb1OoxTmS9d6jkrgBQFUtClLtNKkS/8VwHfRFMiDaj2H/pmcT/sbhBoyeuITJ5yp6lcKzsq6d3iRmk0zCw==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
@@ -2879,12 +2890,23 @@ packages:
       chevrotain: 10.5.0
       zenroom: 4.42.0
 
-  /@slangroom/ethereum@1.40.2(typescript@5.6.2)(zenroom@4.42.0):
-    resolution: {integrity: sha512-sRD9pCw3PvKP5iwkgTkOjdji+vOrpQnRH5ioN3d4HCYbA5n3wW2qIvoR4QV+W8v0Qrie6SsJAUqihQug0d0prg==}
+  /@slangroom/deps@1.42.0(zenroom@4.42.0):
+    resolution: {integrity: sha512-rfT/sxSaYVrJMGaeh2Rg7+6an/O3ZqcSKL6UiVh9KZbQGibxW9f0h/lyMi3L9BsLEi+Nz+E0PdgaPGplH5LDDw==}
+    engines: {node: ^18.20.0 || ^20.10.0 || ^22}
+    peerDependencies:
+      zenroom: ^4.31.2
+    dependencies:
+      chalk: 5.3.0
+      chevrotain: 10.5.0
+      zenroom: 4.42.0
+    dev: false
+
+  /@slangroom/ethereum@1.42.0(typescript@5.6.2)(zenroom@4.42.0):
+    resolution: {integrity: sha512-J7s4kTqyYi3Hau3ZnUcFFAIw55qYoXUATZkAKAiPIFrM5X+I7OC9w99n63uF6mKLpJqxmUabDLq7JqxRslFZ7g==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
     dependencies:
-      '@slangroom/core': 1.40.2(zenroom@4.42.0)
-      '@slangroom/shared': 1.40.2(zenroom@4.42.0)
+      '@slangroom/core': 1.42.0(zenroom@4.42.0)
+      '@slangroom/shared': 1.42.0(zenroom@4.42.0)
       axios: 1.7.7(debug@4.3.7)
       web3: 4.13.0(typescript@5.6.2)
       web3-validator: 2.0.6
@@ -2955,6 +2977,16 @@ packages:
     transitivePeerDependencies:
       - zenroom
 
+  /@slangroom/ignored@1.42.0(zenroom@4.42.0):
+    resolution: {integrity: sha512-oGYStnahrppG4rJcN2YI5JfAkxdXN36XDYUNH1eLec84vThIzNV5q/ynZ5LZf6y7e4RMGDGMouxKRnrpvZ7PyQ==}
+    engines: {node: ^18.20.0 || ^20.10.0 || ^22}
+    dependencies:
+      '@slangroom/deps': 1.42.0(zenroom@4.42.0)
+      '@slangroom/shared': 1.42.0(zenroom@4.42.0)
+    transitivePeerDependencies:
+      - zenroom
+    dev: false
+
   /@slangroom/json-schema@1.40.2(zenroom@4.42.0):
     resolution: {integrity: sha512-4cW1Msmhj2+zOricMCCagQRJA7yODTgw6NG+hhzSZy5CgAle3psAyk4auQq7hFSYJZ8oPfrSJ0MwEYtXqCjNdw==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22}
@@ -3020,6 +3052,15 @@ packages:
       '@slangroom/deps': 1.40.2(zenroom@4.42.0)
     transitivePeerDependencies:
       - zenroom
+
+  /@slangroom/shared@1.42.0(zenroom@4.42.0):
+    resolution: {integrity: sha512-EFwhl/IYDzcQsO5C6vn4rbh8ZfMkameCY/II2ZPW67gjvmURkdlo0W+SwAPxAq6hcDr+anUwjJNCvlONATylQA==}
+    engines: {node: ^18.20.0 || ^20.10.0 || ^22}
+    dependencies:
+      '@slangroom/deps': 1.42.0(zenroom@4.42.0)
+    transitivePeerDependencies:
+      - zenroom
+    dev: false
 
   /@slangroom/shell@1.40.2(zenroom@4.42.0):
     resolution: {integrity: sha512-Kyw7eYtK5TzWdI8z/m1+0T3KGwX+QTdxsw0hL/eXoVGpClVLM8VH8GanAyCrscbURRVpuQixqEbroyfrhqKh0g==}
@@ -4527,7 +4568,7 @@ packages:
   /axios@0.27.2:
     resolution: {integrity: sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==}
     dependencies:
-      follow-redirects: 1.15.6
+      follow-redirects: 1.15.9(debug@4.3.7)
       form-data: 4.0.0
     transitivePeerDependencies:
       - debug
@@ -4536,7 +4577,7 @@ packages:
   /axios@1.7.6:
     resolution: {integrity: sha512-Ekur6XDwhnJ5RgOCaxFnXyqlPALI3rVeukZMwOdfghW7/wGz784BYKiQq+QD8NPcr91KRo30KfHOchyijwWw7g==}
     dependencies:
-      follow-redirects: 1.15.6
+      follow-redirects: 1.15.9(debug@4.3.7)
       form-data: 4.0.0
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
@@ -6136,15 +6177,6 @@ packages:
 
   /fn.name@1.1.0:
     resolution: {integrity: sha512-GRnmB5gPyJpAhTQdSZTSp9uaPSvl09KoYcMQtsB9rQoOmzs9dH6ffeccH+Z+cv6P68Hu5bC6JjRh4Ah/mHSNRw==}
-
-  /follow-redirects@1.15.6:
-    resolution: {integrity: sha512-wWN62YITEaOpSK584EZXJafH1AGpO8RVgElfkuXbTOrPX4fIfOyEpW/CsiNd8JdYrAoOvafRTOEnvsO++qCqFA==}
-    engines: {node: '>=4.0'}
-    peerDependencies:
-      debug: '*'
-    peerDependenciesMeta:
-      debug:
-        optional: true
 
   /follow-redirects@1.15.9(debug@4.3.7):
     resolution: {integrity: sha512-gew4GsXizNgdoRyqmyfMHyAmXsZDk6mHkSxZFCzW9gwlbtOW44CDtYavM+y+72qD/Vq2l550kMF52DT8fOLJqQ==}
@@ -10088,9 +10120,6 @@ packages:
   /sqlite3@5.1.7:
     resolution: {integrity: sha512-GGIyOiFaG+TUra3JIfkI/zGP8yZYLPQ0pl1bH+ODjiX57sPhrLU5sQJn1y9bDKZUFYkX1crlrPfSYt0BKKdkog==}
     requiresBuild: true
-    peerDependenciesMeta:
-      node-gyp:
-        optional: true
     dependencies:
       bindings: 1.5.0
       node-addon-api: 7.1.1
