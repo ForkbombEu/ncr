@@ -91,7 +91,7 @@
 		"@semantic-release/release-notes-generator": "^14.0.0",
 		"@sinclair/typebox": "^0.32.15",
 		"@slangroom/qrcode": "^1.40.2",
-		"@slangroom/redis": "^1.40.2",
+		"@slangroom/redis": "^1.42.0",
 		"@slangroom/shell": "^1.40.2",
 		"@swc/core": "^1.7.26",
 		"@swc/helpers": "^0.5.13",
