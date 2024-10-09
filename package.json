@@ -49,7 +49,7 @@
 		"@slangroom/helpers": "^1.40.2",
 		"@slangroom/http": "^1.40.2",
 		"@slangroom/json-schema": "^1.40.2",
-		"@slangroom/oauth": "^1.40.2",
+		"@slangroom/oauth": "^1.42.0",
 		"@slangroom/pocketbase": "^1.40.2",
 		"@slangroom/timestamp": "^1.40.2",
 		"@slangroom/wallet": "^1.40.2",
