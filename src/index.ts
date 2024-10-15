@@ -238,8 +238,8 @@ Dir.ready(async () => {
 	});
 
 	Dir.onAdd(async (path: string) => {
-		const [baseName, ext, json] = path.split('.');
-		const endpoint = Dir.endpoint(baseName);
+		const [, ext, json] = path.split('.');
+		const endpoint = Dir.endpoint(path);
 		if (!endpoint) return;
 		let event: Events;
 		if (ext === 'zen' || (ext === 'chain' && json === 'js')) {
@@ -251,7 +251,7 @@ Dir.ready(async () => {
 	});
 
 	Dir.onUpdate(async (path: string) => {
-		const endpoint = Dir.endpoint(path.split('.')[0]);
+		const endpoint = Dir.endpoint(path);
 		if (!endpoint) return;
 		await generateRoute(app, endpoint, Events.Update);
 	});
@@ -270,7 +270,7 @@ Dir.ready(async () => {
 			};
 			event = Events.Delete;
 		} else {
-			endpoint = Dir.endpoint(baseName);
+			endpoint = Dir.endpoint(path);
 			event = Events.Update;
 		}
 		if (!endpoint) return;

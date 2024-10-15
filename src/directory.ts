@@ -86,7 +86,14 @@ export class Directory {
 	}
 
 	public endpoint(path: string): Endpoints | undefined {
-		return this.getEndpoint(path);
+		if (path.endsWith('.zen') || path.endsWith('.chain.js')) {
+			return this.getEndpoint(path);
+		} else {
+			const basePath = path.split('.')[0]
+			if (this.getContent(basePath + '.zen')) return this.getEndpoint(basePath + '.zen');
+			if (this.getContent(basePath + '.chain.js')) return this.getEndpoint(basePath + '.chain.js');
+		}
+		return undefined;
 	}
 
 	private getJSON(path: string, type: 'schema' | 'keys' | 'metadata' | 'chain') {
