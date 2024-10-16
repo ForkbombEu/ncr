@@ -1,3 +1,10 @@
+# [1.39.0](https://github.com/forkbombeu/ncr/compare/v1.38.1...v1.39.0) (2024-10-16)
+
+
+### Features
+
+* handle application/x-www-form-urlencoded format on POSTS ([#371](https://github.com/forkbombeu/ncr/issues/371)) ([aaaf48b](https://github.com/forkbombeu/ncr/commit/aaaf48b96f3f378796ed7b5b22b69b1c94738250))
+
 ## [1.38.1](https://github.com/forkbombeu/ncr/compare/v1.38.0...v1.38.1) (2024-10-07)
 
 
