@@ -2,47 +2,118 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-import { Logger, type ILogObj } from 'tslog';
+import { config } from './cli.js';
 import { HttpResponse } from 'uWebSockets.js';
 
-const response = (
+// from RFC9110
+enum HttpStatusCode {
+	CONTINUE_100 = '100 CONTINUE',
+	SWITCHING_PROTOCOLS_101 = '101 SWITCHING PROTOCOLS',
+	PROCESSING_102 = '102 PROCESSING',
+	EARLY_HINTS_103 = '103 EARLY HINTS',
+
+	OK_200 = '200 OK',
+	CREATED_201 = '201 CREATED',
+	ACCEPTED_202 = '202 ACCEPTED',
+	NON_AUTHORITATIVE_INFORMATION_203 = '203 NON AUTHORITATIVE INFORMATION',
+	NO_CONTENT_204 = '204 NO CONTENT',
+	RESET_CONTENT_205 = '205 RESET CONTENT',
+	PARTIAL_CONTENT_206 = '206 PARTIAL CONTENT',
+
+	MULTIPLE_CHOICES_300 = '300 MULTIPLE CHOICES',
+	MOVED_PERMANENTLY_301 = '301 MOVED PERMANENTLY',
+	FOUND_302 = '302 FOUND',
+	SEE_OTHER_303 = '303 SEE OTHER',
+	NOT_MODIFIED_304 = '304 NOT MODIFIED',
+	USE_PROXY_305 = '305 USE PROXY',
+	SWITCH_PROXY_306 = '306 SWITCH PROXY',
+	TEMPORARY_REDIRECT_307 = '307 TEMPORARY REDIRECT',
+	PERMANENT_REDIRECT_308 = '308 PERMANENT REDIRECT',
+
+	BAD_REQUEST_400 = '400 BAD REQUEST',
+	UNAUTHORIZED_401 = '401 UNAUTHORIZED',
+	PAYMENT_REQUIRED_402 = '402 PAYMENT REQUIRED',
+	FORBIDDEN_403 = '403 FORBIDDEN',
+	NOT_FOUND_404 = '404 NOT FOUND',
+	METHOD_NOT_ALLOWED_405 = '405 METHOD NOT ALLOWED',
+	NOT_ACCEPTABLE_406 = '406 NOT ACCEPTABLE',
+	PROXY_AUTHENTICATION_REQUIRED_407 = '407 PROXY AUTHENTICATION REQUIRED',
+	REQUEST_TIMEOUT_408 = '408 REQUEST TIMEOUT',
+	CONFLICT_409 = '409 CONFLICT',
+	GONE_410 = '410 GONE',
+	LENGTH_REQUIRED_411 = '411 LENGTH REQUIRED',
+	PRECONDITION_FAILED_412 = '412 PRECONDITION FAILED',
+	PAYLOAD_TOO_LARGE_413 = '413 PAYLOAD TOO LARGE',
+	URI_TOO_LONG_414 = '414 URI TOO LONG',
+	UNSUPPORTED_MEDIA_TYPE_415 = '415 UNSUPPORTED MEDIA TYPE',
+	RANGE_NOT_SATISFIABLE_416 = '416 RANGE NOT SATISFIABLE',
+	EXPECTATION_FAILED_417 = '417 EXPECTATION FAILED',
+	TEAPOT_418 = '418 TEAPOT',
+	MISDIRECTED_REQUEST_421 = '421 MISDIRECTED REQUEST',
+	UNPROCESSABLE_ENTITY_422 = '422 UNPROCESSABLE ENTITY',
+	LOCKED_423 = '423 LOCKED',
+	FAILED_DEPENDENCY_424 = '424 FAILED_DEPENDENCY',
+	TOO_EARLY_425 = '425 TOO EARLY',
+	UPGRADE_REQUIRED_426 = '426 UPGRADE REQUIRED',
+	PRECONDITION_REQUIRED_428 = '428 PRECONDITION REQUIRED',
+	TOO_MANY_REQUESTS_429 = '429 TOO MANY REQUESTS',
+	REQUEST_HEADER_FIELDS_TOO_LARGE_431 = '431 REQUEST HEADER FIELDS TOO LARGE',
+	UNAVAILABLE_FOR_LEGAL_REASONS_451 = '451 UNAVAILABLE FOR LEGAL REASONS',
+
+	INTERNAL_SERVER_ERROR_500 = '500 INTERNAL SERVER ERROR',
+	NOT_IMPLEMENTED_501 = '501 NOT IMPLEMENTED',
+	BAD_GATEWAY_502 = '502 BAD GATEWAY',
+	SERVICE_UNAVAILABLE_503 = '503 SERVICE UNAVAILABLE',
+	GATEWAY_TIMEOUT_504 = '504 GATEWAY TIMEOUT',
+	HTTP_VERSION_NOT_SUPPORTED_505 = '505 HTTP VERSION NOT SUPPORTED',
+	VARIANT_ALSO_NEGOTIATES_506 = '506 VARIANT ALSO NEGOTIATES',
+	INSUFFICIENT_STORAGE_507 = '507 INSUFFICIENT STORAGE',
+	LOOP_DETECTED_508 = '508 LOOP DETECTED',
+	NOT_EXTENDED_510 = '510 NOT EXTENDED',
+	NETWORK_AUTHENTICATION_REQUIRED_511 = '511 NETWORK AUTHENTICATION REQUIRED',
+}
+
+//
+
+const L = config.logger;
+
+export const httpResponse = (
 	res: HttpResponse,
-	LOG: Logger<ILogObj>,
-	e: Error,
-	statusCode: string,
-	msg: string | undefined = undefined
+	statusCode: HttpStatusCode,
+	msg: string,
+	error: Error | undefined
 ) => {
 	if (res.aborted) return;
-	LOG.error(e);
+	if (error) L.error(error);
 	res.cork(() => {
 		res
 			.writeStatus(statusCode)
 			.writeHeader('Content-Type', 'application/json')
 			.writeHeader('Access-Control-Allow-Origin', '*')
-			.end(msg || e.message);
+			.end(msg);
 	});
 };
 
-export const forbidden = (res: HttpResponse, LOG: Logger<ILogObj>, e: Error) => {
-	response(res, LOG, e, '403 FORBIDDEN', 'Forbidden');
+export const forbidden = (res: HttpResponse, e: Error) => {
+	httpResponse(res, HttpStatusCode.FORBIDDEN_403, 'Forbidden', e);
 };
 
-export const notFound = (res: HttpResponse, LOG: Logger<ILogObj>, e: Error) => {
-	response(res, LOG, e, '404 NOT FOUND', 'Not Found');
+export const notFound = (res: HttpResponse, e: Error) => {
+	httpResponse(res, HttpStatusCode.NOT_FOUND_404, 'Not Found', e);
 };
 
-export const methodNotAllowed = (res: HttpResponse, LOG: Logger<ILogObj>, e: Error) => {
-	response(res, LOG, e, '405 METHOD NOT ALLOWED', 'Method Not Allowed');
+export const methodNotAllowed = (res: HttpResponse, e: Error) => {
+	httpResponse(res, HttpStatusCode.METHOD_NOT_ALLOWED_405, 'Method Not Allowed', e);
 };
 
-export const unprocessableEntity = (res: HttpResponse, LOG: Logger<ILogObj>, e: Error) => {
-	response(res, LOG, e, '422 UNPROCESSABLE ENTITY');
+export const unsupportedMediaType = (res: HttpResponse, e: Error) => {
+	httpResponse(res, HttpStatusCode.UNSUPPORTED_MEDIA_TYPE_415, 'Unsupported Media Type', e);
 };
 
-export const unsupportedMediaType = (res: HttpResponse, LOG: Logger<ILogObj>, e: Error) => {
-	response(res, LOG, e, '415 UNSUPPORTED MEDIA TYPE', 'Unsupported Media Type');
+export const unprocessableEntity = (res: HttpResponse, e: Error) => {
+	httpResponse(res, HttpStatusCode.UNPROCESSABLE_ENTITY_422, e.message, e);
 };
 
-export const internalServerError = (res: HttpResponse, LOG: Logger<ILogObj>, e: Error) => {
-	response(res, LOG, e, '500 INTERNAL SERVER ERROR');
+export const internalServerError = (res: HttpResponse, e: Error) => {
+	httpResponse(res, HttpStatusCode.INTERNAL_SERVER_ERROR_500, e.message, e);
 };

@@ -135,11 +135,11 @@ const checkAndGetHeaders = (
 	notAllowed: boolean
 ): Headers | undefined => {
 	if (action === 'delete') {
-		notFound(res, LOG, new Error(`Not found on ${path}`));
+		notFound(res, new Error(`Not found on ${path}`));
 		return;
 	}
 	if (notAllowed) {
-		methodNotAllowed(res, LOG, new Error(`Post method not allowed on ${path}`));
+		methodNotAllowed(res, new Error(`Post method not allowed on ${path}`));
 		return;
 	}
 	const headers: Headers = {};
@@ -172,7 +172,7 @@ const execZencodeAndReply = async (
 				}
 				data['http_headers'] = headers;
 			} catch (e) {
-				unprocessableEntity(res, LOG, e as Error);
+				unprocessableEntity(res, e as Error);
 				return;
 			}
 		}
@@ -180,7 +180,7 @@ const execZencodeAndReply = async (
 			try {
 				await runPrecondition(metadata.precondition, data);
 			} catch (e) {
-				forbidden(res, LOG, e as Error);
+				forbidden(res, e as Error);
 				return;
 			}
 		}
@@ -188,7 +188,7 @@ const execZencodeAndReply = async (
 		try {
 			validateData(schema, data);
 		} catch (e) {
-			unprocessableEntity(res, LOG, e as Error);
+			unprocessableEntity(res, e as Error);
 			return;
 		}
 
@@ -261,7 +261,7 @@ const generatePost = (
 		const headers = checkAndGetHeaders(res, req, LOG, action, path, metadata, metadata.disablePost);
 		if (!headers) return;
 		if (headers.request?.['content-type'] !== metadata.contentType) {
-			unsupportedMediaType(res, LOG, new Error(`Unsupported media type on ${path}`));
+			unsupportedMediaType(res, new Error(`Unsupported media type on ${path}`));
 			return;
 		}
 		/**
@@ -279,7 +279,7 @@ const generatePost = (
 				try {
 					const parseFun = parseDataFunctions[metadata.contentType];
 					if (!parseFun) {
-						unsupportedMediaType(res, LOG, new Error(`Unsupported media type ${metadata.contentType}`));
+						unsupportedMediaType(res, new Error(`Unsupported media type ${metadata.contentType}`));
 					}
 					data = parseFun(
 						buffer ? Buffer.concat([buffer, chunk]).toString('utf-8') : chunk.toString('utf-8')
@@ -383,7 +383,7 @@ export const generateRoute = async (app: TemplatedApp, endpoint: Endpoints, acti
 
 	app.get(path + '/raw', (res) => {
 		if (action === 'delete') {
-			notFound(res, LOG, new Error(`Not found on ${path}/raw`));
+			notFound(res, new Error(`Not found on ${path}/raw`));
 			return;
 		}
 		res.writeStatus('200 OK').writeHeader('Content-Type', 'text/plain').end(raw);
@@ -391,7 +391,7 @@ export const generateRoute = async (app: TemplatedApp, endpoint: Endpoints, acti
 
 	app.get(path + '/app', async (res) => {
 		if (action === 'delete') {
-			notFound(res, LOG, new Error(`Not found on ${path}/app`));
+			notFound(res, new Error(`Not found on ${path}/app`));
 			return;
 		}
 		const result = _.template(proctoroom)({

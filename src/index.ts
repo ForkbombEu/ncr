@@ -142,7 +142,7 @@ Then print the 'result'
 						.end(JSON.stringify(result));
 				});
 			} catch (e) {
-				internalServerError(res, L, e as Error);
+				internalServerError(res, e as Error);
 			}
 		})
 		.get('/sayhi', (res) => {
@@ -164,7 +164,7 @@ const generatePublicDirectory = (app: TemplatedApp) => {
 			});
 			let url = req.getUrl();
 			if (url.split('/').pop()?.startsWith('.')) {
-				notFound(res, L, new Error('Try to access hidden file'));
+				notFound(res, new Error('Try to access hidden file'));
 				return;
 			}
 			//remove basepath from the beginning of the url if it is present
@@ -182,7 +182,6 @@ const generatePublicDirectory = (app: TemplatedApp) => {
 					} catch (e) {
 						unprocessableEntity(
 							res,
-							L,
 							new Error(`Malformed metadata file: ${(e as Error).message}`)
 						);
 						return;
@@ -193,7 +192,7 @@ const generatePublicDirectory = (app: TemplatedApp) => {
 							const data: Record<string, unknown> = getQueryParams(req);
 							await runPrecondition(path.join(publicDirectory, publicMetadata.precondition), data);
 						} catch (e) {
-							forbidden(res, L, e as Error);
+							forbidden(res, e as Error);
 							return;
 						}
 					}
@@ -206,7 +205,7 @@ const generatePublicDirectory = (app: TemplatedApp) => {
 						.end(fs.readFileSync(file).toString('utf-8'));
 				});
 			} else {
-				notFound(res, L, new Error(`File not found: ${file}`));
+				notFound(res, new Error(`File not found: ${file}`));
 			}
 		});
 	}
