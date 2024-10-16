@@ -100,3 +100,8 @@ export enum Events {
 	Update = "update",
 	Delete = "delete"
 }
+
+export type Headers = {
+	request?: Record<string, string>;
+	response?: Record<string, string>;
+};
