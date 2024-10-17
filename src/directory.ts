@@ -9,6 +9,13 @@ import { formatContract } from './fileUtils.js';
 import { Endpoints } from './types.js';
 import { newMetadata, validateJSONSchema } from './utils.js';
 
+const CONTRACT_EXTENSIONS = ['zen'];
+const CHAIN_EXTENSIONS = ['chain'];
+const JSON_DOUBLE_EXTENSION = ['data', 'keys', 'schema', 'metadata'];
+const JS = 'js';
+const JSON_EXTENSION = 'json';
+const CONF = 'conf';
+
 export class Directory {
 	private static instance: Directory;
 	private liveDirectory: LiveDirectory;
@@ -18,14 +25,15 @@ export class Directory {
 			static: false,
 			filter: {
 				keep: (path) => {
+					const pathArray = path.split('.');
+					if (pathArray.length < 2) return false;
+					const ext = pathArray.pop();
+					const secondExt = pathArray.pop();
 					return (
-						path.endsWith('.zen') ||
-						path.endsWith('.conf') ||
-						path.endsWith('.keys.json') ||
-						path.endsWith('.data.json') ||
-						path.endsWith('.schema.json') ||
-						path.endsWith('.metadata.json') ||
-						path.endsWith('.chain.js')
+						CONTRACT_EXTENSIONS.includes(ext) ||
+						(ext === JS && CHAIN_EXTENSIONS.includes(secondExt)) ||
+						(ext === JSON_EXTENSION && JSON_DOUBLE_EXTENSION.includes(secondExt)) ||
+						ext === CONF
 					);
 				},
 				ignore: {
@@ -53,18 +61,21 @@ export class Directory {
 		return this.files.map(({ path }) => path);
 	}
 
-	private getEndpoint (name: string) {
-		const [path, ext, json] = name.split('.');
-		if (ext === 'zen') {
+	private getEndpoint(name: string) {
+		const pathArray = name.split('.');
+		const ext = pathArray.pop();
+		if (CONTRACT_EXTENSIONS.includes(ext)) {
+			const path = pathArray.pop();
 			return {
 				path: path,
 				contract: formatContract(this.getContent(name) || ''),
 				keys: this.getJSON(path, 'keys'),
-				conf: this.getContent(path + '.conf') || '',
+				conf: this.getContent(`${path}.${CONF}`) || '',
 				schema: this.getJSONSchema(path),
 				metadata: newMetadata(this.getJSON(path, 'metadata') || {})
 			};
-		} else if (ext == 'chain' && json == 'js') {
+		} else if (ext === JS && CHAIN_EXTENSIONS.includes(pathArray.pop())) {
+			const path = pathArray.pop();
 			return {
 				path: path,
 				chain: this.getContent(name) || '',
@@ -86,23 +97,33 @@ export class Directory {
 	}
 
 	public endpoint(path: string): Endpoints | undefined {
-		if (path.endsWith('.zen') || path.endsWith('.chain.js')) {
+		const pathArray = path.split('.');
+		const ext = pathArray.pop();
+		if (
+			CONTRACT_EXTENSIONS.includes(ext) ||
+			(ext === JS && CHAIN_EXTENSIONS.includes(pathArray.pop()))
+		) {
 			return this.getEndpoint(path);
 		} else {
-			const basePath = path.split('.')[0]
-			if (this.getContent(basePath + '.zen')) return this.getEndpoint(basePath + '.zen');
-			if (this.getContent(basePath + '.chain.js')) return this.getEndpoint(basePath + '.chain.js');
+			const basePath = pathArray.shift();
+			const correctExtenstion = [
+				...CONTRACT_EXTENSIONS,
+				...CHAIN_EXTENSIONS.map((e) => `${e}.${JS}`)
+			].find((e) => this.getContent(`${basePath}.${e}`));
+			if (correctExtenstion) {
+				return this.getEndpoint(`${basePath}.${correctExtenstion}`);
+			}
 		}
 		return undefined;
 	}
 
 	private getJSON(path: string, type: 'schema' | 'keys' | 'metadata' | 'chain') {
 		try {
-			const k = this.getContent(`${path}.${type}.json`);
+			const k = this.getContent(`${path}.${type}.${JSON_EXTENSION}`);
 			if (!k) return undefined;
 			else return JSON.parse(k);
 		} catch {
-			throw new Error(`${path}.${type}.json: malformed JSON`);
+			throw new Error(`${path}.${type}.${JSON_EXTENSION}: malformed JSON`);
 		}
 	}
 
