@@ -27,8 +27,8 @@ export class Directory {
 				keep: (path) => {
 					const pathArray = path.split('.');
 					if (pathArray.length < 2) return false;
-					const ext = pathArray.pop();
-					const secondExt = pathArray.pop();
+					const ext = pathArray.pop() as string;
+					const secondExt = pathArray.pop() as string;
 					return (
 						CONTRACT_EXTENSIONS.includes(ext) ||
 						(ext === JS && CHAIN_EXTENSIONS.includes(secondExt)) ||
@@ -63,9 +63,9 @@ export class Directory {
 
 	private getEndpoint(name: string) {
 		const pathArray = name.split('.');
-		const ext = pathArray.pop();
+		const ext = pathArray.pop() as string;
 		if (CONTRACT_EXTENSIONS.includes(ext)) {
-			const path = pathArray.pop();
+			const path = pathArray.pop() as string;
 			return {
 				path: path,
 				contract: formatContract(this.getContent(name) || ''),
@@ -74,8 +74,8 @@ export class Directory {
 				schema: this.getJSONSchema(path),
 				metadata: newMetadata(this.getJSON(path, 'metadata') || {})
 			};
-		} else if (ext === JS && CHAIN_EXTENSIONS.includes(pathArray.pop())) {
-			const path = pathArray.pop();
+		} else if (ext === JS && CHAIN_EXTENSIONS.includes(pathArray.pop() as string)) {
+			const path = pathArray.pop() as string;
 			return {
 				path: path,
 				chain: this.getContent(name) || '',
@@ -98,10 +98,10 @@ export class Directory {
 
 	public endpoint(path: string): Endpoints | undefined {
 		const pathArray = path.split('.');
-		const ext = pathArray.pop();
+		const ext = pathArray.pop() as string;
 		if (
 			CONTRACT_EXTENSIONS.includes(ext) ||
-			(ext === JS && CHAIN_EXTENSIONS.includes(pathArray.pop()))
+			(ext === JS && CHAIN_EXTENSIONS.includes(pathArray.pop() as string))
 		) {
 			return this.getEndpoint(path);
 		} else {
