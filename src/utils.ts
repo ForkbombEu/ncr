@@ -14,6 +14,15 @@ import { defaultTagsName } from './openapi.js';
 import { HttpRequest } from 'uWebSockets.js';
 const L = config.logger;
 
+export const FILE_EXTENSIONS = {
+	contract: ['zen'],
+	chain: ['chain'],
+	jsonDouble: ['data', 'keys', 'schema', 'metadata'],
+	js: 'js',
+	json: 'json',
+	conf: 'conf',
+}
+
 //
 
 export async function getSchema(endpoints: Endpoints): Promise<JSONSchema | undefined> {
