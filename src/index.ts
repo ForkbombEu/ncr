@@ -20,7 +20,7 @@ import {
 	openapiTemplate
 } from './openapi.js';
 import { SlangroomManager } from './slangroom.js';
-import { getSchema, getQueryParams, prettyChain, newMetadata } from './utils.js';
+import { FILE_EXTENSIONS, getSchema, getQueryParams, prettyChain, newMetadata } from './utils.js';
 import { forbidden, notFound, unprocessableEntity, internalServerError } from './responseUtils.js';
 import { createAppWithBasePath, generateRoute, runPrecondition } from './routeUtils.js';
 import { Endpoints, Events } from './types.js';
@@ -180,10 +180,7 @@ const generatePublicDirectory = (app: TemplatedApp) => {
 					try {
 						publicMetadata = JSON.parse(fs.readFileSync(file + '.metadata.json').toString('utf-8'));
 					} catch (e) {
-						unprocessableEntity(
-							res,
-							new Error(`Malformed metadata file: ${(e as Error).message}`)
-						);
+						unprocessableEntity(res, new Error(`Malformed metadata file: ${(e as Error).message}`));
 						return;
 					}
 					if (publicMetadata.contentType) contentType = publicMetadata.contentType;
@@ -237,11 +234,16 @@ Dir.ready(async () => {
 	});
 
 	Dir.onAdd(async (path: string) => {
-		const [, ext, json] = path.split('.');
 		const endpoint = Dir.endpoint(path);
 		if (!endpoint) return;
+		const pathArray = path.split('.');
+		ext = pathArray.pop() as string;
+		secondExt = pathArray.pop() as string;
 		let event: Events;
-		if (ext === 'zen' || (ext === 'chain' && json === 'js')) {
+		if (
+			ext === FILE_EXTENSIONS.contract ||
+			(ext === FILE_EXTENSIONS.js && FILE_EXTENSIONS.chain.includes(secondExt))
+		) {
 			event = Events.Add;
 		} else {
 			event = Events.Update;
@@ -256,10 +258,15 @@ Dir.ready(async () => {
 	});
 
 	Dir.onDelete(async (path: string) => {
-		const [baseName, ext, json] = path.split('.');
+		const pathArray = path.split('.');
+		ext = pathArray.pop() as string;
+		secondExt = pathArray.pop() as string;
 		let endpoint: Endpoints | undefined;
 		let event: Events;
-		if (ext === 'zen' || (ext === 'chain' && json === 'js')) {
+		if (
+			ext === FILE_EXTENSIONS.contract ||
+			(ext === FILE_EXTENSIONS.js && FILE_EXTENSIONS.chain.includes(secondExt))
+		) {
 			endpoint = {
 				path: baseName,
 				contract: '',
