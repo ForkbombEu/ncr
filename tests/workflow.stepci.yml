@@ -474,3 +474,17 @@ tests:
           check:
             status: 200
             body: This should be reachable!
+      - name: get images
+        http:
+          url: http://${{env.host}}/screenshot.png
+          method: GET
+          check:
+            status: 200
+            sha256: 87e26d176cea2f7465c52a4e7e186d6f7f15e61a8658e7b84420474883f073d3
+      - name: get audio
+        http:
+          url: http://${{env.host}}/file_example_MP3_700KB.mp3
+          method: GET
+          check:
+            status: 200
+            sha256: 9a2270d5964f64981fb1e91dd13e5941262817bdce873cf357c92adbef906b5d
