@@ -134,11 +134,11 @@ export class Directory {
 		return schema;
 	}
 
-	public ready(cb: (...args: any[]) => void) {
+	public ready(cb: () => void) {
 		this.liveDirectory.once('ready', cb);
 	}
 
-	private onChange(event: string, cb: (...args: any[]) => void) {
+	private onChange(event: string, cb: (path: string) => void) {
 		this.liveDirectory.on(event, cb);
 	}
 
