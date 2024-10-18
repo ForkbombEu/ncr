@@ -24,8 +24,12 @@ export class Directory {
 					const secondExt = pathArray.pop() as string;
 					return (
 						FILE_EXTENSIONS.contract.includes(ext) ||
-						(ext === FILE_EXTENSIONS.js && FILE_EXTENSIONS.chain.includes(secondExt)) ||
-						(ext === FILE_EXTENSIONS.json && FILE_EXTENSIONS.jsonDouble.includes(secondExt)) ||
+						(ext === FILE_EXTENSIONS.js &&
+							FILE_EXTENSIONS.chain.includes(secondExt) &&
+							pathArray.pop()) ||
+						(ext === FILE_EXTENSIONS.json &&
+							FILE_EXTENSIONS.jsonDouble.includes(secondExt) &&
+							pathArray.pop()) ||
 						ext === FILE_EXTENSIONS.conf
 					);
 				},
@@ -67,7 +71,10 @@ export class Directory {
 				schema: this.getJSONSchema(path),
 				metadata: newMetadata(this.getJSON(path, 'metadata') || {})
 			};
-		} else if (ext === FILE_EXTENSIONS.js && FILE_EXTENSIONS.chain.includes(pathArray.pop() as string)) {
+		} else if (
+			ext === FILE_EXTENSIONS.js &&
+			FILE_EXTENSIONS.chain.includes(pathArray.pop() as string)
+		) {
 			const path = pathArray.pop() as string;
 			return {
 				path: path,
