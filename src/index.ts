@@ -202,7 +202,7 @@ const generatePublicDirectory = (app: TemplatedApp) => {
 						.writeStatus('200 OK')
 						.writeHeader('Access-Control-Allow-Origin', '*')
 						.writeHeader('Content-Type', contentType)
-						.end(fs.readFileSync(file).toString('utf-8'));
+						.end(fs.readFileSync(file));
 				});
 			} else {
 				notFound(res, new Error(`File not found: ${file}`));
