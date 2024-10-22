@@ -1,3 +1,11 @@
+## [1.39.1](https://github.com/forkbombeu/ncr/compare/v1.39.0...v1.39.1) (2024-10-22)
+
+
+### Bug Fixes
+
+* correctly handle when a file, that is not a .zen or .chain.js, is created, modified or deleted in the contracts folder ([#377](https://github.com/forkbombeu/ncr/issues/377)) ([9ea1609](https://github.com/forkbombeu/ncr/commit/9ea160989b38457c8268d3532ef6376b44589226))
+* do not convert public file to strings ([#379](https://github.com/forkbombeu/ncr/issues/379)) ([a274eef](https://github.com/forkbombeu/ncr/commit/a274eef3e40ea931f703b1b50e897833dcc3bcc3))
+
 # [1.39.0](https://github.com/forkbombeu/ncr/compare/v1.38.1...v1.39.0) (2024-10-16)
 
 
