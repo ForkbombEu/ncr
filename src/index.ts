@@ -241,7 +241,7 @@ Dir.ready(async () => {
 		secondExt = pathArray.pop() as string;
 		let event: Events;
 		if (
-			ext === FILE_EXTENSIONS.contract ||
+			FILE_EXTENSIONS.contract.includes(ext) ||
 			(ext === FILE_EXTENSIONS.js && FILE_EXTENSIONS.chain.includes(secondExt))
 		) {
 			event = Events.Add;
@@ -264,7 +264,7 @@ Dir.ready(async () => {
 		let endpoint: Endpoints | undefined;
 		let event: Events;
 		if (
-			ext === FILE_EXTENSIONS.contract ||
+			FILE_EXTENSIONS.contract.includes(ext) ||
 			(ext === FILE_EXTENSIONS.js && FILE_EXTENSIONS.chain.includes(secondExt))
 		) {
 			endpoint = {
