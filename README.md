@@ -117,9 +117,15 @@ Options:
    Provide the hostname to serve the server (default: "0.0.0.0")
  * `--template <file>`  
    Provide the html template for the applets (default: "./applet_template.html")
+ * `--basepath <string>`  
+   env: **BASEPATH**  
+   specify the basepath for all APIs (default: "")
  * `-D, --debug`  
    env: **DEBUG**  
    debug (default: false)
+ * `-v, --version`  
+   show version number
+
 
 **[🔝 back to top](#toc)**
 
