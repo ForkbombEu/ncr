@@ -7,7 +7,7 @@ import LiveDirectory from 'live-directory';
 import { config } from './cli.js';
 import { formatContract } from './fileUtils.js';
 import { Endpoints } from './types.js';
-import { newMetadata, validateJSONSchema } from './utils.js';
+import { FILE_EXTENSIONS, newMetadata, validateJSONSchema } from './utils.js';
 
 export class Directory {
 	private static instance: Directory;
@@ -18,14 +18,19 @@ export class Directory {
 			static: false,
 			filter: {
 				keep: (path) => {
+					const pathArray = path.split('.');
+					if (pathArray.length < 2) return false;
+					const ext = pathArray.pop() as string;
+					const secondExt = pathArray.pop() as string;
 					return (
-						path.endsWith('.zen') ||
-						path.endsWith('.conf') ||
-						path.endsWith('.keys.json') ||
-						path.endsWith('.data.json') ||
-						path.endsWith('.schema.json') ||
-						path.endsWith('.metadata.json') ||
-						path.endsWith('.chain.js')
+						FILE_EXTENSIONS.contract.includes(ext) ||
+						(ext === FILE_EXTENSIONS.js &&
+							FILE_EXTENSIONS.chain.includes(secondExt) &&
+							pathArray.pop()) ||
+						(ext === FILE_EXTENSIONS.json &&
+							FILE_EXTENSIONS.jsonDouble.includes(secondExt) &&
+							pathArray.pop()) ||
+						ext === FILE_EXTENSIONS.conf
 					);
 				},
 				ignore: {
@@ -53,18 +58,24 @@ export class Directory {
 		return this.files.map(({ path }) => path);
 	}
 
-	private getEndpoint (name: string) {
-		const [path, ext, json] = name.split('.');
-		if (ext === 'zen') {
+	private getEndpoint(name: string) {
+		const pathArray = name.split('.');
+		const ext = pathArray.pop() as string;
+		if (FILE_EXTENSIONS.contract.includes(ext)) {
+			const path = pathArray.pop() as string;
 			return {
 				path: path,
 				contract: formatContract(this.getContent(name) || ''),
 				keys: this.getJSON(path, 'keys'),
-				conf: this.getContent(path + '.conf') || '',
+				conf: this.getContent(`${path}.${FILE_EXTENSIONS.conf}`) || '',
 				schema: this.getJSONSchema(path),
 				metadata: newMetadata(this.getJSON(path, 'metadata') || {})
 			};
-		} else if (ext == 'chain' && json == 'js') {
+		} else if (
+			ext === FILE_EXTENSIONS.js &&
+			FILE_EXTENSIONS.chain.includes(pathArray.pop() as string)
+		) {
+			const path = pathArray.pop() as string;
 			return {
 				path: path,
 				chain: this.getContent(name) || '',
@@ -86,16 +97,33 @@ export class Directory {
 	}
 
 	public endpoint(path: string): Endpoints | undefined {
-		return this.getEndpoint(path);
+		const pathArray = path.split('.');
+		const ext = pathArray.pop() as string;
+		if (
+			FILE_EXTENSIONS.contract.includes(ext) ||
+			(ext === FILE_EXTENSIONS.js && FILE_EXTENSIONS.chain.includes(pathArray.pop() as string))
+		) {
+			return this.getEndpoint(path);
+		} else {
+			const basePath = pathArray.shift();
+			const correctExtenstion = [
+				...FILE_EXTENSIONS.contract,
+				...FILE_EXTENSIONS.chain.map((e) => `${e}.${FILE_EXTENSIONS.js}`)
+			].find((e) => this.getContent(`${basePath}.${e}`));
+			if (correctExtenstion) {
+				return this.getEndpoint(`${basePath}.${correctExtenstion}`);
+			}
+		}
+		return undefined;
 	}
 
 	private getJSON(path: string, type: 'schema' | 'keys' | 'metadata' | 'chain') {
 		try {
-			const k = this.getContent(`${path}.${type}.json`);
+			const k = this.getContent(`${path}.${type}.${FILE_EXTENSIONS.json}`);
 			if (!k) return undefined;
 			else return JSON.parse(k);
 		} catch {
-			throw new Error(`${path}.${type}.json: malformed JSON`);
+			throw new Error(`${path}.${type}.${FILE_EXTENSIONS.json}: malformed JSON`);
 		}
 	}
 
@@ -106,11 +134,11 @@ export class Directory {
 		return schema;
 	}
 
-	public ready(cb: (...args: any[]) => void) {
+	public ready(cb: () => void) {
 		this.liveDirectory.once('ready', cb);
 	}
 
-	private onChange(event: string, cb: (...args: any[]) => void) {
+	private onChange(event: string, cb: (path: string) => void) {
 		this.liveDirectory.on(event, cb);
 	}
 
