@@ -81,7 +81,9 @@ program
 			.default('0.0.0.0')
 			.argParser((h) => {
 				if (h.includes('/')) {
-					L.error(`${bad} ${h} is not a valid hostname, subpath should be specified using --basepath option`);
+					L.error(
+						`${bad} ${h} is not a valid hostname, subpath should be specified using --basepath option`
+					);
 					process.exit(0);
 				}
 				return h;
@@ -93,21 +95,22 @@ program
 		)
 	)
 	.addOption(new Option('-D, --debug', 'debug').env('DEBUG').default(false).argParser(Boolean))
-	.addOption(new Option('--basepath <string>', 'specify the basepath for all APIs')
-		.env('BASEPATH')
-		.default('')
-		.argParser((b) => {
-			if ( b === '') return b;
-			if (!b.startsWith('/')) {
-				L.error(`${bad} ${b} is not a valid subpath, should start with a '/'`);
-				process.exit(0);
-			}
-			if(b.endsWith('/')) {
-				L.error(`${bad} ${b} is not a valid subpath, should not end with a '/'`);
-				process.exit(0);
-			}
-			return b;
-		})
+	.addOption(
+		new Option('--basepath <string>', 'specify the basepath for all APIs')
+			.env('BASEPATH')
+			.default('')
+			.argParser((b) => {
+				if (b === '') return b;
+				if (!b.startsWith('/')) {
+					L.error(`${bad} ${b} is not a valid subpath, should start with a '/'`);
+					process.exit(0);
+				}
+				if (b.endsWith('/')) {
+					L.error(`${bad} ${b} is not a valid subpath, should not end with a '/'`);
+					process.exit(0);
+				}
+				return b;
+			})
 	)
 	.version(data.version, '-v, --version')
 	.addHelpText(
