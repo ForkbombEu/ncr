@@ -197,8 +197,8 @@ const execZencodeAndReply = async (
 			if ('chain' in endpoint) {
 				const dataFormatted = data ? JSON.stringify(data) : undefined;
 				const parsedChain = eval(endpoint.chain)();
-				const res = await slangroomChainExecute(parsedChain, dataFormatted);
-				jsonResult = JSON.parse(res);
+				const slangRes = await slangroomChainExecute(parsedChain, dataFormatted);
+				jsonResult = JSON.parse(slangRes);
 			} else {
 				const s = SlangroomManager.getInstance();
 				({ result: jsonResult } = await s.execute(endpoint.contract, { keys, data, conf }));
@@ -223,16 +223,17 @@ const execZencodeAndReply = async (
 		}
 		const slangroomResult = JSON.stringify(jsonResult);
 		res.cork(() => {
+			res
+				.writeStatus(metadata.successCode)
+				.writeHeader('Content-Type', metadata.successContentType)
+				.writeHeader('Access-Control-Allow-Origin', '*')
+
 			if (metadata.httpHeaders && headers.response !== undefined) {
 				for (const [k, v] of Object.entries(headers.response)) {
 					res.writeHeader(k, v);
 				}
 			}
-			res
-				.writeStatus(metadata.successCode)
-				.writeHeader('Content-Type', metadata.successContentType)
-				.writeHeader('Access-Control-Allow-Origin', '*')
-				.end(slangroomResult);
+			res.end(slangroomResult);
 			return;
 		});
 	} catch (e) {
