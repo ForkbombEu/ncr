@@ -76,7 +76,7 @@ const ncrApp = async () => {
 			res
 				.writeStatus('200 OK')
 				.writeHeader('Content-Type', 'application/json')
-				.end(JSON.stringify(files));
+				.end(JSON.stringify(files.sort()));
 		})
 		.get(config.openapiPath, (res) => {
 			res.writeStatus('200 OK').writeHeader('Content-Type', 'text/html').end(openapiTemplate);
