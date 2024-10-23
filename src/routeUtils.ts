@@ -5,7 +5,7 @@
 import fs from 'fs';
 import _ from 'lodash';
 import { IMeta, Logger, type ILogObj } from 'tslog';
-import { App, HttpResponse, TemplatedApp } from 'uWebSockets.js';
+import { App, HttpRequest, HttpResponse, TemplatedApp } from 'uWebSockets.js';
 import { execute as slangroomChainExecute } from '@dyne/slangroom-chain';
 
 import { reportZenroomError } from './error.js';
@@ -111,7 +111,7 @@ export const runPrecondition = async (preconditionPath: string, data: Record<str
 	await s.execute(zen, { data, keys });
 };
 
-const parseDataFunctions = {
+const parseDataFunctions: Record<string, (data: string) => Record<string, unknown>> = {
 	'application/json': (data: string) => JSON.parse(data),
 	'application/x-www-form-urlencoded': (data: string) => {
 		const res: Record<string, unknown> = {};
@@ -128,10 +128,8 @@ const parseDataFunctions = {
 const checkAndGetHeaders = (
 	res: HttpResponse,
 	req: HttpRequest,
-	LOG: Logger<ILogObj>,
 	action: Events,
 	path: string,
-	metadata: JSONSchema,
 	notAllowed: boolean
 ): Headers | undefined => {
 	if (action === 'delete') {
@@ -144,8 +142,8 @@ const checkAndGetHeaders = (
 	}
 	const headers: Headers = {};
 	headers.request = {};
-	req.forEach((k, v) => {
-		headers.request[k] = v;
+	req.forEach((k: string, v: string) => {
+		headers.request![k] = v;
 	});
 	return headers;
 };
@@ -258,7 +256,7 @@ const generatePost = (
 ) => {
 	const { path, metadata } = endpoint;
 	app.post(path, (res, req) => {
-		const headers = checkAndGetHeaders(res, req, LOG, action, path, metadata, metadata.disablePost);
+		const headers = checkAndGetHeaders(res, req, action, path, metadata.disablePost);
 		if (!headers) return;
 		if (headers.request?.['content-type'] !== metadata.contentType) {
 			unsupportedMediaType(res, new Error(`Unsupported media type on ${path}`));
@@ -277,7 +275,8 @@ const generatePost = (
 			if (isLast) {
 				let data;
 				try {
-					const parseFun = parseDataFunctions[metadata.contentType];
+					const parseFun: (data: string) => Record<string, unknown> | undefined =
+						parseDataFunctions[metadata.contentType];
 					if (!parseFun) {
 						unsupportedMediaType(res, new Error(`Unsupported media type ${metadata.contentType}`));
 					}
@@ -314,7 +313,7 @@ const generateGet = (
 ) => {
 	const { path, metadata } = endpoint;
 	app.get(path, async (res, req) => {
-		const headers = checkAndGetHeaders(res, req, LOG, action, path, metadata, metadata.disableGet);
+		const headers = checkAndGetHeaders(res, req, action, path, metadata.disableGet);
 		if (!headers) return;
 		/**
 		 * Code may break on `slangroom.execute`
