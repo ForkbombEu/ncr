@@ -2,6 +2,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+import { join, resolve } from 'path';
 import fs from 'fs';
 import LiveDirectory from 'live-directory';
 import { config } from './cli.js';
@@ -14,6 +15,7 @@ export class Directory {
 	private liveDirectory: LiveDirectory;
 
 	private constructor() {
+		const autorunDir = join(resolve(config.zencodeDirectory), '.autorun');
 		this.liveDirectory = new LiveDirectory(config.zencodeDirectory, {
 			static: false,
 			filter: {
@@ -24,18 +26,20 @@ export class Directory {
 					const secondExt = pathArray.pop() as string;
 					return (
 						FILE_EXTENSIONS.contract.includes(ext) ||
-						(ext === FILE_EXTENSIONS.js &&
-							FILE_EXTENSIONS.chain.includes(secondExt) &&
-							pathArray.pop()) ||
-						(ext === FILE_EXTENSIONS.json &&
-							FILE_EXTENSIONS.jsonDouble.includes(secondExt) &&
-							pathArray.pop()) ||
+						Boolean(
+							ext === FILE_EXTENSIONS.js &&
+								FILE_EXTENSIONS.chain.includes(secondExt) &&
+								pathArray.pop()
+						) ||
+						Boolean(
+							ext === FILE_EXTENSIONS.json &&
+								FILE_EXTENSIONS.jsonDouble.includes(secondExt) &&
+								pathArray.pop()
+						) ||
 						ext === FILE_EXTENSIONS.conf
 					);
 				},
-				ignore: {
-					// extensions: ['keys']
-				}
+				ignore: (path) => path.startsWith(autorunDir)
 			}
 		});
 	}
