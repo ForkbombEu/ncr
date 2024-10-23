@@ -1,0 +1,9 @@
+Given I have a 'string dictionary' named 'http_headers'
+
+When I set 'location' to 'https://example.com/cb?code=aaaa' as 'string'
+When I create the 'string dictionary' named 'response'
+
+When I move 'location' in 'response'
+When I move 'response' in 'http headers'
+
+Then print the 'http_headers'
