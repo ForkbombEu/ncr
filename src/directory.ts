@@ -14,12 +14,18 @@ export class Directory {
 	private static instance: Directory;
 	private liveDirectory: LiveDirectory;
 
+	// This should keep track of file that ends up with:
+	// * .[zen]
+	// * .[chain].js
+	// * .[keys|data|metdata|schema].json
+	// * .conf
+	// that are present in the zencodeDirectory and outside of the autorun folder
 	private constructor() {
 		const autorunDir = join(resolve(config.zencodeDirectory), '.autorun');
 		this.liveDirectory = new LiveDirectory(config.zencodeDirectory, {
 			static: false,
 			filter: {
-				keep: (path) => {
+				keep: (path: string): boolean => {
 					const pathArray = path.split('.');
 					if (pathArray.length < 2) return false;
 					const ext = pathArray.pop() as string;
@@ -39,7 +45,7 @@ export class Directory {
 						ext === FILE_EXTENSIONS.conf
 					);
 				},
-				ignore: (path) => path.startsWith(autorunDir)
+				ignore: (path: string): boolean => path.startsWith(autorunDir)
 			}
 		});
 	}
