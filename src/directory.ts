@@ -2,6 +2,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+import { join, resolve } from 'path';
 import fs from 'fs';
 import LiveDirectory from 'live-directory';
 import { config } from './cli.js';
@@ -13,29 +14,38 @@ export class Directory {
 	private static instance: Directory;
 	private liveDirectory: LiveDirectory;
 
+	// This should keep track of file that ends up with:
+	// * .[zen]
+	// * .[chain].js
+	// * .[keys|data|metdata|schema].json
+	// * .conf
+	// that are present in the zencodeDirectory and outside of the autorun folder
 	private constructor() {
+		const autorunDir = join(resolve(config.zencodeDirectory), '.autorun');
 		this.liveDirectory = new LiveDirectory(config.zencodeDirectory, {
 			static: false,
 			filter: {
-				keep: (path) => {
+				keep: (path: string): boolean => {
 					const pathArray = path.split('.');
 					if (pathArray.length < 2) return false;
 					const ext = pathArray.pop() as string;
 					const secondExt = pathArray.pop() as string;
 					return (
 						FILE_EXTENSIONS.contract.includes(ext) ||
-						(ext === FILE_EXTENSIONS.js &&
-							FILE_EXTENSIONS.chain.includes(secondExt) &&
-							pathArray.pop()) ||
-						(ext === FILE_EXTENSIONS.json &&
-							FILE_EXTENSIONS.jsonDouble.includes(secondExt) &&
-							pathArray.pop()) ||
+						Boolean(
+							ext === FILE_EXTENSIONS.js &&
+								FILE_EXTENSIONS.chain.includes(secondExt) &&
+								pathArray.pop()
+						) ||
+						Boolean(
+							ext === FILE_EXTENSIONS.json &&
+								FILE_EXTENSIONS.jsonDouble.includes(secondExt) &&
+								pathArray.pop()
+						) ||
 						ext === FILE_EXTENSIONS.conf
 					);
 				},
-				ignore: {
-					// extensions: ['keys']
-				}
+				ignore: (path: string): boolean => path.startsWith(autorunDir)
 			}
 		});
 	}

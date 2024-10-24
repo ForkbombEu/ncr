@@ -1,0 +1,6 @@
+Given I have a 'string' named 'file_path'
+
+When I write the string 'yes' in 'result'
+
+Then print 'result'
+Then I send path 'file_path' and send content 'result' and store in file

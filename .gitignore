@@ -134,3 +134,7 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# produced by tests
+public/install.out.json
+public/startup.out.json
