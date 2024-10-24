@@ -70,6 +70,15 @@ tests:
               http_headers:
                 response:
                   Cache-Control: no-store
+      - name: set http_headers response
+        http:
+          url: http://${{env.host}}/meta/set_http_headers_response
+          method: GET
+          followRedirects: false
+          check:
+            headers:
+              Location: https://example.com/cb?code=aaaa
+            status: 302
 
   hello:
     steps:

@@ -237,8 +237,8 @@ Dir.ready(async () => {
 		const endpoint = Dir.endpoint(path);
 		if (!endpoint) return;
 		const pathArray = path.split('.');
-		ext = pathArray.pop() as string;
-		secondExt = pathArray.pop() as string;
+		const ext = pathArray.pop() as string;
+		const secondExt = pathArray.pop() as string;
 		let event: Events;
 		if (
 			FILE_EXTENSIONS.contract.includes(ext) ||
@@ -259,8 +259,8 @@ Dir.ready(async () => {
 
 	Dir.onDelete(async (path: string) => {
 		const pathArray = path.split('.');
-		ext = pathArray.pop() as string;
-		secondExt = pathArray.pop() as string;
+		const ext = pathArray.pop() as string;
+		const secondExt = pathArray.pop() as string;
 		let endpoint: Endpoints | undefined;
 		let event: Events;
 		if (
