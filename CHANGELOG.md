@@ -1,3 +1,10 @@
+## [1.39.2](https://github.com/forkbombeu/ncr/compare/v1.39.1...v1.39.2) (2024-10-24)
+
+
+### Bug Fixes
+
+* correct order of in which response status and headers are written ([#381](https://github.com/forkbombeu/ncr/issues/381)) ([80e6f18](https://github.com/forkbombeu/ncr/commit/80e6f1840d7190f65edc0f106e61f24bb728a369))
+
 ## [1.39.1](https://github.com/forkbombeu/ncr/compare/v1.39.0...v1.39.1) (2024-10-22)
 
 
