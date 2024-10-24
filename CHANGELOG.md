@@ -1,3 +1,10 @@
+## [1.39.3](https://github.com/forkbombeu/ncr/compare/v1.39.2...v1.39.3) (2024-10-24)
+
+
+### Bug Fixes
+
+* livedirectory ignores autorun folders ([#382](https://github.com/forkbombeu/ncr/issues/382)) ([c9fa6fa](https://github.com/forkbombeu/ncr/commit/c9fa6fa73818b10349c4ed4d7ebdf8bc1887b98f))
+
 ## [1.39.2](https://github.com/forkbombeu/ncr/compare/v1.39.1...v1.39.2) (2024-10-24)
 
 
