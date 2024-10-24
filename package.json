@@ -17,7 +17,7 @@
 		"sea": "pnpm b && pnpm p",
 		"dev": "nodemon -e ts -w ./src -x pnpm run watch -z ./contracts -p 3000",
 		"watch": "node --loader ts-node/esm src/index.ts",
-		"test": "cp .env.test .env && pnpm e2e && jest",
+		"test": "FILES_DIR=. pnpm e2e && jest",
 		"start": "node --loader ts-node/esm src/index.ts -z ./tests/fixtures -p 3000 --public-directory ./public",
 		"e2e": "start-server-and-test http-get://0.0.0.0:3000 'pnpm stepci run ./tests/workflow.stepci.yml'"
 	},
