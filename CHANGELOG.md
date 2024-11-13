@@ -1,3 +1,10 @@
+# [1.40.0](https://github.com/forkbombeu/ncr/compare/v1.39.8...v1.40.0) (2024-11-13)
+
+
+### Features
+
+* build on ARM32 ([#383](https://github.com/forkbombeu/ncr/issues/383)) ([c63a6ba](https://github.com/forkbombeu/ncr/commit/c63a6bac22383bf368da8e33256f570f92ce2da3))
+
 ## [1.39.8](https://github.com/forkbombeu/ncr/compare/v1.39.7...v1.39.8) (2024-11-05)
 
 ## [1.39.7](https://github.com/forkbombeu/ncr/compare/v1.39.6...v1.39.7) (2024-11-05)
