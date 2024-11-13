@@ -33,6 +33,10 @@ setup: ## ⬇️ Install deps
 build: setup clean ## 📦 Build the binary
 	@echo "📦 Building"
 	@pnpm sea
+	
+build-raspi32: setup clean ## 📦 Build the binary for Arm32
+	@echo "📦 Building"
+	@pnpm raspi32
 
 up: ## 🚀 Run the project in development mode
 	@pnpm dev $@
