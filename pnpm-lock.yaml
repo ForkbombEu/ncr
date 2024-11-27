@@ -48,8 +48,8 @@ dependencies:
     specifier: ^1.43.1
     version: 1.43.1(zenroom@4.46.0)
   '@slangroom/timestamp':
-    specifier: ^1.43.1
-    version: 1.43.1(zenroom@4.46.0)
+    specifier: ^1.43.2
+    version: 1.43.2(zenroom@4.46.0)
   '@slangroom/wallet':
     specifier: ^1.43.1
     version: 1.43.1(zenroom@4.46.0)
@@ -1612,7 +1612,7 @@ packages:
       '@slangroom/qrcode': 1.43.1(zenroom@4.46.0)
       '@slangroom/redis': 1.43.1(zenroom@4.46.0)
       '@slangroom/shell': 1.43.1(zenroom@4.46.0)
-      '@slangroom/timestamp': 1.43.1(zenroom@4.46.0)
+      '@slangroom/timestamp': 1.43.2(zenroom@4.46.0)
       '@slangroom/wallet': 1.43.1(zenroom@4.46.0)
       '@slangroom/zencode': 1.43.1(zenroom@4.46.0)
     transitivePeerDependencies:
@@ -3050,12 +3050,12 @@ packages:
       - zenroom
     dev: false
 
-  /@slangroom/timestamp@1.43.1(zenroom@4.46.0):
-    resolution: {integrity: sha512-XAUBUT5vvn27MUAJk0t9ZLCXyMDUN3eQf7to7H4m/rkldWlUK5/ScpcFmcrm5utHXrPraUWa5FGkU0dv2MySbA==}
+  /@slangroom/timestamp@1.43.2(zenroom@4.46.0):
+    resolution: {integrity: sha512-R0xBycyTgowwJdHL8p0K0gGIb3TMwwE/f1Y1lKumtYcrfQhO+4ofG41BwiozL27vY4yGPVHqCMOE0L0IkYgiLw==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22 || ^23}
     dependencies:
-      '@slangroom/core': 1.43.1(zenroom@4.46.0)
-      '@slangroom/shared': 1.43.1(zenroom@4.46.0)
+      '@slangroom/core': 1.43.2(zenroom@4.46.0)
+      '@slangroom/shared': 1.43.2(zenroom@4.46.0)
     transitivePeerDependencies:
       - zenroom
     dev: false
