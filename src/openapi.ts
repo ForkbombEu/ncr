@@ -9,9 +9,9 @@ import { JSONSchema, Metadata } from './types.js';
 import { config } from './cli.js';
 
 export const defaultTagsName = {
-	zen: '📑 Zencodes',
-	applet: '📱 Generated applets',
-	raw: '📜 Raw contracts'
+	zen: '📑 Zencode APIs',
+	applet: '📱 Zencode applets',
+	raw: '📜 Zencode (raw scripts)'
 };
 
 export function generateRawPath(): OpenAPIV3_1.PathItemObject {
