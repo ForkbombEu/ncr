@@ -28,13 +28,13 @@ export function generateRawPath(): OpenAPIV3_1.PathItemObject {
 	};
 }
 
-export function generateAppletPath(): OpenAPIV3_1.PathItemObject {
+export function generateAppletPath(appletUrl: string): OpenAPIV3_1.PathItemObject {
 	return {
 		get: {
 			tags: [defaultTagsName.applet],
 			responses: {
 				'200': {
-					description: 'Generated applet on the fly based on the contract introspection',
+					description: `[👉 Click here to open the applet](${appletUrl})`,
 					content: { 'text/html': { schema: Type.String() } }
 				}
 			}

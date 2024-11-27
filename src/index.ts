@@ -81,8 +81,9 @@ const ncrApp = async () => {
 		.get(config.openapiPath, (res) => {
 			res.writeStatus('200 OK').writeHeader('Content-Type', 'text/html').end(openapiTemplate);
 		})
-		.get('/oas.json', async (res) => {
+		.get('/oas.json', async (res, req) => {
 			definition.paths = {};
+			const hostPath = `http://${req.getHeader('host')}${config.basepath}`;
 			const tags: string[] = [];
 			await Promise.all(
 				Dir.files.map(async (endpoints) => {
@@ -98,7 +99,10 @@ const ncrApp = async () => {
 								metadata
 							);
 						definition.paths[prefixedPath + '/raw'] = generateRawPath();
-						definition.paths[prefixedPath + '/app'] = generateAppletPath();
+
+						definition.paths[prefixedPath + '/app'] = generateAppletPath(
+							hostPath + prefixedPath + '/app'
+						);
 					}
 				})
 			);
