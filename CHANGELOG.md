@@ -1,3 +1,10 @@
+# [1.41.0](https://github.com/forkbombeu/ncr/compare/v1.40.1...v1.41.0) (2024-11-27)
+
+
+### Features
+
+* show applet link in documentation ([#401](https://github.com/forkbombeu/ncr/issues/401)) ([5d1ce29](https://github.com/forkbombeu/ncr/commit/5d1ce292779d4cf46cc88cea5ef6af43c5045766)), closes [#397](https://github.com/forkbombeu/ncr/issues/397)
+
 ## [1.40.1](https://github.com/forkbombeu/ncr/compare/v1.40.0...v1.40.1) (2024-11-27)
 
 
