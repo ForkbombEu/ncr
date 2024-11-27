@@ -86,7 +86,13 @@ You also to set these flags to get it to work:
 export CXXFLAGS="-march=armv7-a -mfloat-abi=hard -mfpu=vfpv3 -mno-unaligned-access"
 export CFLAGS="-march=armv7-a -mfloat-abi=hard -mfpu=vfpv3 -mno-unaligned-access"
 ```
-The build will take a couple of hours...
+Then build using:
+
+```bash
+pnpm raspi32
+```
+
+The build will take a couple of hours 😎 
 
 **[🔝 back to top](#toc)**
 
