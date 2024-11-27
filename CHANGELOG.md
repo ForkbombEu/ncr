@@ -1,3 +1,10 @@
+## [1.40.1](https://github.com/forkbombeu/ncr/compare/v1.40.0...v1.40.1) (2024-11-27)
+
+
+### Bug Fixes
+
+* add build instructions for raspberry pi ([#400](https://github.com/forkbombeu/ncr/issues/400)) ([0ec52b2](https://github.com/forkbombeu/ncr/commit/0ec52b263f44bb849ecc4f4ae81bd2781ea33c91))
+
 # [1.40.0](https://github.com/forkbombeu/ncr/compare/v1.39.8...v1.40.0) (2024-11-13)
 
 
