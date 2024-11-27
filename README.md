@@ -76,7 +76,7 @@ and run it with the simple command
 
 that will serve the zencode contract under the folder `./tests/fixtures` and the public files under the folder `./public` on http://0.0.0.0:3000.
 
-### 💾🪫Build on ARM32
+### 💾🪫 Build on ARM32
 
 NCR builds on Raspberry Pi 4 and 5 (4GB and above) with Raspbian-ARM32. 
 
