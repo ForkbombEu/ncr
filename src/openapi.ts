@@ -78,7 +78,7 @@ export function generatePath(
 
 	if (!metadata.disablePost) {
 		result['post'] = {
-			description: contract.replaceAll('\n', '\n\n'),
+			description: contract,
 			tags: metadata.tags,
 			requestBody: {
 				content: {
@@ -94,7 +94,7 @@ export function generatePath(
 
 	if (!metadata.disableGet) {
 		result['get'] = {
-			description: contract.replaceAll('\n', '\n\n'),
+			description: contract,
 			tags: metadata.tags,
 			parameters: getParams,
 			responses: responses
@@ -146,18 +146,37 @@ To add new endpoints you should add new zencode contracts in the directory.
 	tags: []
 };
 
+const openapiCss = `
+<style>
+	.HttpOperation__Description h1:before {
+		content: "#";
+	}
+	.HttpOperation__Description h1 {
+		font-size: 16px;
+		margin: 0 0;
+		font-style: italic;
+		color: #444;
+		font-weight: 100;
+	}
+	.HttpOperation__Description p {
+		white-space: pre-line;
+	}
+</style>
+`;
+
 export const openapiTemplate = `
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>noˑcodeˑroom documentation</title>
-    <script src="https://unpkg.com/@stoplight/elements/web-components.min.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/@stoplight/elements/styles.min.css">
-  </head>
-  <body>
-    <elements-api layout="sidebar" router="hash" apiDescriptionUrl="${config.basepath}/oas.json" />
-  </body>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>noˑcodeˑroom documentation</title>
+		<script src="https://unpkg.com/@stoplight/elements/web-components.min.js"></script>
+		<link rel="stylesheet" href="https://unpkg.com/@stoplight/elements/styles.min.css">
+		${openapiCss}
+	</head>
+	<body>
+		<elements-api layout="sidebar" router="hash" apiDescriptionUrl="${config.basepath}/oas.json" />
+	</body>
 </html>
 `;
