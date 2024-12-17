@@ -1,3 +1,10 @@
+## [1.41.1](https://github.com/forkbombeu/ncr/compare/v1.41.0...v1.41.1) (2024-12-17)
+
+
+### Bug Fixes
+
+* correctly render comments and newlines on api description ([#406](https://github.com/forkbombeu/ncr/issues/406)) ([1187aca](https://github.com/forkbombeu/ncr/commit/1187acaaa0db1e5271b95bae4c4d3575094508ef))
+
 # [1.41.0](https://github.com/forkbombeu/ncr/compare/v1.40.1...v1.41.0) (2024-11-27)
 
 
