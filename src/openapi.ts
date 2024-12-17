@@ -78,7 +78,7 @@ export function generatePath(
 
 	if (!metadata.disablePost) {
 		result['post'] = {
-			description: contract.replaceAll('\n', '\n\n'),
+			description: contract,
 			tags: metadata.tags,
 			requestBody: {
 				content: {
@@ -94,7 +94,7 @@ export function generatePath(
 
 	if (!metadata.disableGet) {
 		result['get'] = {
-			description: contract.replaceAll('\n', '\n\n'),
+			description: contract,
 			tags: metadata.tags,
 			parameters: getParams,
 			responses: responses
@@ -157,6 +157,9 @@ const openapiCss = `
 		font-style: italic;
 		color: #444;
 		font-weight: 100;
+	}
+	.HttpOperation__Description p {
+		white-space: pre-line;
 	}
 </style>
 `;
