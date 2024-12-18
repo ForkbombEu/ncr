@@ -25,7 +25,8 @@ accessible, for example, http://localhost:3000/file_example_MP3_700KB.mp3.
 
 For customizing ncr's behavior, check out the [Configuration section](./conf).
 
-Moreover ncr comes with an easy way to:
-* check for valid input with [json schema](./../info/schema)
-* run automatically some setup contracts with the [.autorun folder](./../info/autorun)
+Moreover ncr comes with:
+* checks for valid input with [json schema](./../info/schema)
+* web interface with [openapi and applets](./../info/web)
+* the possibility to run automatically some setup contracts with the [.autorun folder](./../info/autorun)
 * set more information about the API with a [metadata file](./../info/metadata)

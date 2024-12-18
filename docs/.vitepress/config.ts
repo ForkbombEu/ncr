@@ -24,6 +24,7 @@ export default defineConfig({
         text: 'More info',
         items: [
           { text: 'Schema', link: '/info/schema' },
+          { text: 'Openapi and applets', link: '/info/web' },
           { text: 'Autorun', link: '/info/autorun' },
           { text: 'Metadata', link: '/info/metadata' }
         ]
