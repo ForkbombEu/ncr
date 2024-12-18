@@ -138,3 +138,6 @@ dist
 # produced by tests
 public/install.out.json
 public/startup.out.json
+
+# docs
+docs/.vitepress/cache
