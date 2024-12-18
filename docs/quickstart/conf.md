@@ -1,9 +1,12 @@
 
 # 🔧 Configuration
 
-Configuration can be done both via CLI or via .env file.
+Configuration can be done both via CLI or via a .env file.
 
-Usage: `ncr [options]`
+## Usage
+```bash
+ncr [options]
+```
 
 Options:
  * `-z, --zencode-directory <directory>`  
