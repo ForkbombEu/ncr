@@ -131,7 +131,7 @@ Options:
  * `--openapi-path <string>`  
    env: **OPENAPI_PATH**  
    specify where to mount the swagger docs (default: "/docs")
- * `--openapi-file <file>`  
+ * `--openapi-info <file>`  
    env: **OPENAPI_INFO**  
    provide the json info for the swagger docs (default: "./openapi_info.json")
  * `--hostname <string>`  
