@@ -76,6 +76,11 @@ program
 			.default('/docs')
 	)
 	.addOption(
+		new Option('--openapi-info <file>', 'Provide the json info for the swagger docs')
+			.env('OPENAPI_INFO')
+			.default('./openapi_info.json')
+	)
+	.addOption(
 		new Option('--hostname <string>', 'specify the hostname to serve the server')
 			.env('HOSTNAME')
 			.default('0.0.0.0')
