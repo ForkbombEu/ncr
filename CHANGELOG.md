@@ -1,3 +1,10 @@
+# [1.42.0](https://github.com/forkbombeu/ncr/compare/v1.41.1...v1.42.0) (2024-12-23)
+
+
+### Features
+
+* upload openapi info from external file ([#410](https://github.com/forkbombeu/ncr/issues/410)) ([c830ea2](https://github.com/forkbombeu/ncr/commit/c830ea25f3043491b1f46ca52b36a4a15a164d18))
+
 ## [1.41.1](https://github.com/forkbombeu/ncr/compare/v1.41.0...v1.41.1) (2024-12-17)
 
 
