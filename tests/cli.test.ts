@@ -8,6 +8,7 @@ const res = {
 	basepath: '',
 	debug: false,
 	hostname: '0.0.0.0',
+	openapiInfo: './openapi_info.json',
 	openapiPath: '/docs',
 	port: 0,
 	template: './applet_template.html',

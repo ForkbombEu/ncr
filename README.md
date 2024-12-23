@@ -17,6 +17,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 - [🎮 Quick start](#-quick-start)
 - [💾 Build](#-build)
+  - [💾🪫 Build on ARM32](#-build-on-arm32)
 - [🐋 Docker](#-docker)
 - [🔧 Configuration](#-configuration)
 - [📋 Testing](#-testing)
@@ -130,6 +131,9 @@ Options:
  * `--openapi-path <string>`  
    env: **OPENAPI_PATH**  
    specify where to mount the swagger docs (default: "/docs")
+ * `--openapi-info <file>`  
+   env: **OPENAPI_INFO**  
+   provide the json info for the swagger docs (default: "./openapi_info.json")
  * `--hostname <string>`  
    env: **HOSTNAME**  
    Provide the hostname to serve the server (default: "0.0.0.0")
