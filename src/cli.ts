@@ -117,6 +117,15 @@ program
 				return b;
 			})
 	)
+	.addOption(
+		new Option('--dev', 'Activate developer mode')
+			.default(false)
+	)
+	.addOption(
+		new Option('--dev-path <string>', 'specify where to mount the developer page')
+			.env('DEV_PATH')
+			.default('/dev')
+	)
 	.version(data.version, '-v, --version')
 	.addHelpText(
 		'after',

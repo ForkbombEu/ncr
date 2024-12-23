@@ -25,6 +25,8 @@ export interface Config {
 	logger: Logger<ILogObj>;
 	publicDirectory: string | undefined;
 	basepath: string;
+	dev: boolean;
+	devPath: string;
 }
 
 export type Endpoints = {

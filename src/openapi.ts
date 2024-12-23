@@ -46,7 +46,8 @@ export function generateAppletPath(appletUrl: string): OpenAPIV3_1.PathItemObjec
 export function generatePath(
 	contract: string,
 	schema: JSONSchema,
-	metadata: Metadata
+	metadata: Metadata,
+	keys?: JSON
 ): OpenAPIV3_1.PathItemObject {
 	const getParams = schema.required?.map((n: string) => {
 		return {
@@ -75,7 +76,7 @@ export function generatePath(
 		}
 	};
 
-	const result = {} as OpenAPIV3_1.PathItemObject;
+	const result = {} as (OpenAPIV3_1.PathItemObject & { post: { keys?: string }} & { get: { keys?: string }});
 
 	if (!metadata.disablePost) {
 		result['post'] = {
@@ -91,6 +92,7 @@ export function generatePath(
 			},
 			responses: responses
 		};
+		if (keys && config.dev) result['post'].keys = JSON.stringify(keys);
 	}
 
 	if (!metadata.disableGet) {
@@ -100,6 +102,7 @@ export function generatePath(
 			parameters: getParams,
 			responses: responses
 		};
+		if (keys && config.dev) result['get'].keys = JSON.stringify(keys);
 	}
 
 	return result;

@@ -24,6 +24,7 @@ import { FILE_EXTENSIONS, getSchema, getQueryParams, prettyChain, newMetadata } 
 import { forbidden, notFound, unprocessableEntity, internalServerError } from './responseUtils.js';
 import { createAppWithBasePath, generateRoute, runPrecondition } from './routeUtils.js';
 import { Endpoints, Events } from './types.js';
+import { devPage } from './developerMode.js';
 
 dotenv.config();
 
@@ -96,7 +97,8 @@ const ncrApp = async () => {
 							definition.paths[prefixedPath] = generatePath(
 								'contract' in endpoints ? endpoints.contract : prettyChain(endpoints.chain),
 								schema,
-								metadata
+								metadata,
+								endpoints.keys
 							);
 						definition.paths[prefixedPath + '/raw'] = generateRawPath();
 
@@ -153,6 +155,11 @@ Then print the 'result'
 			res.writeStatus('200 OK').writeHeader('Content-Type', 'text/plain').end('Hi');
 		});
 
+	  if (config.dev) {
+			app.get(config.devPath, (res) => {
+				res.writeStatus('200 OK').writeHeader('Content-Type', 'text/html').end(devPage);
+			})
+		}
 	if (PROM) {
 		await setupProm(app);
 	}
