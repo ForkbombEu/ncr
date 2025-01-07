@@ -51,8 +51,8 @@ dependencies:
     specifier: ^1.43.1
     version: 1.43.1(zenroom@4.46.0)
   '@slangroom/wallet':
-    specifier: ^1.43.1
-    version: 1.43.1(zenroom@4.46.0)
+    specifier: ^1.43.2
+    version: 1.43.2(zenroom@4.46.0)
   '@slangroom/zencode':
     specifier: ^1.43.1
     version: 1.43.1(zenroom@4.46.0)
@@ -1613,7 +1613,7 @@ packages:
       '@slangroom/redis': 1.43.1(zenroom@4.46.0)
       '@slangroom/shell': 1.43.1(zenroom@4.46.0)
       '@slangroom/timestamp': 1.43.1(zenroom@4.46.0)
-      '@slangroom/wallet': 1.43.1(zenroom@4.46.0)
+      '@slangroom/wallet': 1.43.2(zenroom@4.46.0)
       '@slangroom/zencode': 1.43.1(zenroom@4.46.0)
     transitivePeerDependencies:
       - '@capacitor/core'
@@ -3059,14 +3059,14 @@ packages:
       - zenroom
     dev: false
 
-  /@slangroom/wallet@1.43.1(zenroom@4.46.0):
-    resolution: {integrity: sha512-Mvu+Los0HQC5Mvo6v4gxSZDiA2m3uj9rSujMqlKFA/ouk62JVRMKpDFOzqPTIpadqr00MlHCTGJ+lGEIGlCmXg==}
+  /@slangroom/wallet@1.43.2(zenroom@4.46.0):
+    resolution: {integrity: sha512-HN7/brOBC5wFA7AZLm87BykXCIBpofOBDnZlfdw/1kiGmJDoUmUeCGHZfDY9o8d/WNNkInINVtdC2jXNtCnVIQ==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22 || ^23}
     dependencies:
       '@meeco/sd-jwt': 0.0.3
       '@meeco/sd-jwt-vc': 0.0.4
-      '@slangroom/core': 1.43.1(zenroom@4.46.0)
-      '@slangroom/shared': 1.43.1(zenroom@4.46.0)
+      '@slangroom/core': 1.43.2(zenroom@4.46.0)
+      '@slangroom/shared': 1.43.2(zenroom@4.46.0)
       bs58: 5.0.0
       jose: 5.9.4
     transitivePeerDependencies:
