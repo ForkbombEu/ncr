@@ -58,7 +58,7 @@
 		"@slangroom/shell": "^1.43.1",
 		"@slangroom/timestamp": "^1.43.1",
 		"@slangroom/wallet": "^1.43.1",
-		"@slangroom/zencode": "^1.43.1",
+		"@slangroom/zencode": "^1.43.2",
 		"@tgwf/co2": "^0.16.1",
 		"ajv": "^8.12.0",
 		"ajv-formats": "^2.1.1",
