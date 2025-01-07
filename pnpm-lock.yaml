@@ -24,8 +24,8 @@ dependencies:
     specifier: ^1.43.2
     version: 1.43.2(zenroom@4.46.0)
   '@slangroom/helpers':
-    specifier: ^1.43.1
-    version: 1.43.1(zenroom@4.46.0)
+    specifier: ^1.43.2
+    version: 1.43.2(zenroom@4.46.0)
   '@slangroom/http':
     specifier: ^1.43.1
     version: 1.43.1(zenroom@4.46.0)
@@ -1604,7 +1604,7 @@ packages:
       '@slangroom/db': 1.43.1(mariadb@3.3.2)(mysql2@3.11.3)(oracledb@6.6.0)(pg-hstore@2.3.4)(pg@8.13.0)(snowflake-sdk@1.14.0)(tedious@18.6.1)(zenroom@4.46.0)
       '@slangroom/fs': 1.43.1(zenroom@4.46.0)
       '@slangroom/git': 1.43.2(zenroom@4.46.0)
-      '@slangroom/helpers': 1.43.1(zenroom@4.46.0)
+      '@slangroom/helpers': 1.43.2(zenroom@4.46.0)
       '@slangroom/http': 1.43.1(zenroom@4.46.0)
       '@slangroom/json-schema': 1.43.1(zenroom@4.46.0)
       '@slangroom/oauth': 1.43.2(zenroom@4.46.0)
@@ -2918,12 +2918,12 @@ packages:
       - zenroom
     dev: false
 
-  /@slangroom/helpers@1.43.1(zenroom@4.46.0):
-    resolution: {integrity: sha512-t85HCLSRxkVRDNu/ntCO5sAyDSZjSMczQ9CY/AknlVG4g4xDt6rJqLeOJdDFs7QTaZdouLnNFGLf7Y9lYTOTPQ==}
+  /@slangroom/helpers@1.43.2(zenroom@4.46.0):
+    resolution: {integrity: sha512-u8Q7/LHUs4ydaUkntbnHGRFFCp28TjX5CErF8gHCp0HXinSsE5fOgnu2fcRlbFdkY1WD9av+b4wnkTz48A3KaA==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22 || ^23}
     dependencies:
-      '@slangroom/core': 1.43.1(zenroom@4.46.0)
-      '@slangroom/shared': 1.43.1(zenroom@4.46.0)
+      '@slangroom/core': 1.43.2(zenroom@4.46.0)
+      '@slangroom/shared': 1.43.2(zenroom@4.46.0)
       '@types/lodash': 4.17.10
       lodash: 4.17.21
     transitivePeerDependencies:
