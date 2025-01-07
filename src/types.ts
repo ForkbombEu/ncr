@@ -107,3 +107,16 @@ export type Headers = {
 	request?: Record<string, string>;
 	response?: Record<string, string>;
 };
+
+// dev
+
+type OasDevFields = {
+  keys?: string;
+  metadata?: string;
+  schema?: string
+}
+
+export type OasDev = {
+  post: OasDevFields;
+  get: OasDevFields;
+}

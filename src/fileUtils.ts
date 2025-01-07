@@ -44,6 +44,7 @@ export async function writeFile(path: string, content: string) {
 /* Contracts file handling */
 
 export function formatContract(baseContract: string): string {
+	if (config.dev) return baseContract;
 	return `Rule unknown ignore\nRule check version ${config.zenroomVersion}\n${baseContract}`;
 }
 

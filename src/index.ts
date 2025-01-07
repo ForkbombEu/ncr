@@ -24,7 +24,7 @@ import { FILE_EXTENSIONS, getSchema, getQueryParams, prettyChain, newMetadata } 
 import { forbidden, notFound, unprocessableEntity, internalServerError } from './responseUtils.js';
 import { createAppWithBasePath, generateRoute, runPrecondition } from './routeUtils.js';
 import { Endpoints, Events } from './types.js';
-import { devPage } from './developerMode.js';
+import { devApis } from './developerMode.js';
 
 dotenv.config();
 
@@ -98,7 +98,11 @@ const ncrApp = async () => {
 								'contract' in endpoints ? endpoints.contract : prettyChain(endpoints.chain),
 								schema,
 								metadata,
-								endpoints.keys
+								{
+									keys: JSON.stringify(endpoints.keys),
+									metadata: JSON.stringify(endpoints.metadata),
+									schema: JSON.stringify(endpoints.schema)
+								}
 							);
 						definition.paths[prefixedPath + '/raw'] = generateRawPath();
 
@@ -121,6 +125,7 @@ const ncrApp = async () => {
 			res.cork(() => {
 				res
 					.writeStatus('200 OK')
+					.writeHeader('Access-Control-Allow-Origin', '*')
 					.writeHeader('Content-Type', 'application/json')
 					.end(JSON.stringify(definition));
 			});
@@ -155,11 +160,9 @@ Then print the 'result'
 			res.writeStatus('200 OK').writeHeader('Content-Type', 'text/plain').end('Hi');
 		});
 
-	  if (config.dev) {
-			app.get(config.devPath, (res) => {
-				res.writeStatus('200 OK').writeHeader('Content-Type', 'text/html').end(devPage);
-			})
-		}
+	if (config.dev) {
+		devApis(app);
+	}
 	if (PROM) {
 		await setupProm(app);
 	}

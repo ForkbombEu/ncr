@@ -5,7 +5,7 @@
 import { Type } from '@sinclair/typebox';
 import { OpenAPIV3_1 } from 'openapi-types';
 import p from '../package.json' with { type: 'json' };
-import { JSONSchema, Metadata } from './types.js';
+import { JSONSchema, Metadata, MetadataRaw, OasDev } from './types.js';
 import { config } from './cli.js';
 import { readFileSync } from 'fs';
 
@@ -47,7 +47,7 @@ export function generatePath(
 	contract: string,
 	schema: JSONSchema,
 	metadata: Metadata,
-	keys?: JSON
+	dev?: {keys?: string, metadata?: string, schema?: string}
 ): OpenAPIV3_1.PathItemObject {
 	const getParams = schema.required?.map((n: string) => {
 		return {
@@ -76,7 +76,7 @@ export function generatePath(
 		}
 	};
 
-	const result = {} as (OpenAPIV3_1.PathItemObject & { post: { keys?: string }} & { get: { keys?: string }});
+	const result = {} as (OpenAPIV3_1.PathItemObject & OasDev);
 
 	if (!metadata.disablePost) {
 		result['post'] = {
@@ -92,7 +92,11 @@ export function generatePath(
 			},
 			responses: responses
 		};
-		if (keys && config.dev) result['post'].keys = JSON.stringify(keys);
+		if (config.dev && dev) {
+			result.post.keys = dev.keys;
+			result.post.metadata = dev.metadata;
+			result.post.schema = dev.schema;
+		}
 	}
 
 	if (!metadata.disableGet) {
@@ -102,7 +106,11 @@ export function generatePath(
 			parameters: getParams,
 			responses: responses
 		};
-		if (keys && config.dev) result['get'].keys = JSON.stringify(keys);
+		if (config.dev && dev) {
+			result.get.keys = dev.keys;
+			result.get.metadata = dev.metadata;
+			result.post.schema = dev.schema;
+		}
 	}
 
 	return result;
