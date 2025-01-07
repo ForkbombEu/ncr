@@ -54,8 +54,8 @@ dependencies:
     specifier: ^1.43.1
     version: 1.43.1(zenroom@4.46.0)
   '@slangroom/zencode':
-    specifier: ^1.43.1
-    version: 1.43.1(zenroom@4.46.0)
+    specifier: ^1.43.2
+    version: 1.43.2(zenroom@4.46.0)
   '@tgwf/co2':
     specifier: ^0.16.1
     version: 0.16.1
@@ -1614,7 +1614,7 @@ packages:
       '@slangroom/shell': 1.43.1(zenroom@4.46.0)
       '@slangroom/timestamp': 1.43.1(zenroom@4.46.0)
       '@slangroom/wallet': 1.43.1(zenroom@4.46.0)
-      '@slangroom/zencode': 1.43.1(zenroom@4.46.0)
+      '@slangroom/zencode': 1.43.2(zenroom@4.46.0)
     transitivePeerDependencies:
       - '@capacitor/core'
       - bluebird
@@ -3073,12 +3073,12 @@ packages:
       - zenroom
     dev: false
 
-  /@slangroom/zencode@1.43.1(zenroom@4.46.0):
-    resolution: {integrity: sha512-fZLAQV8TugEFtAsADHdud8S+mKfAs9Zj8mqf3cf/EovVQxNvMahBHmQiWpemFs+31aQ2J6eiknYC7yTS80CFqA==}
+  /@slangroom/zencode@1.43.2(zenroom@4.46.0):
+    resolution: {integrity: sha512-x0IrEwbD3qDXVMbo3jR0zfTTMc6MIYHBLxXue/4RohQoKdHlcBAuuLRkBzv94gOCfD8VJIpdRyYEYx7eoMkAng==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22 || ^23}
     dependencies:
-      '@slangroom/core': 1.43.1(zenroom@4.46.0)
-      '@slangroom/shared': 1.43.1(zenroom@4.46.0)
+      '@slangroom/core': 1.43.2(zenroom@4.46.0)
+      '@slangroom/shared': 1.43.2(zenroom@4.46.0)
     transitivePeerDependencies:
       - zenroom
     dev: false
