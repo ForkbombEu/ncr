@@ -9,8 +9,8 @@ dependencies:
     specifier: ^1.6.4
     version: 1.6.4(@capacitor/core@6.1.2)(mariadb@3.3.2)(mysql2@3.11.3)(oracledb@6.6.0)(pg-hstore@2.3.4)(pg@8.13.0)(snowflake-sdk@1.14.0)(tedious@18.6.1)(zenroom@4.46.0)
   '@slangroom/core':
-    specifier: ^1.43.1
-    version: 1.43.1(zenroom@4.46.0)
+    specifier: ^1.43.2
+    version: 1.43.2(zenroom@4.46.0)
   '@slangroom/db':
     specifier: ^1.43.1
     version: 1.43.1(mariadb@3.3.2)(mysql2@3.11.3)(oracledb@6.6.0)(pg-hstore@2.3.4)(pg@8.13.0)(snowflake-sdk@1.14.0)(tedious@18.6.1)(zenroom@4.46.0)
@@ -1600,7 +1600,7 @@ packages:
     resolution: {integrity: sha512-tfxpa70c9h6IwrXPYmzJybgkMjZn/FmfRp93zayJQHyrmxIIBV+wQlvRjiGLMvpZXhSGPGYjq59DABX5x9PJ8w==}
     engines: {node: '>=18'}
     dependencies:
-      '@slangroom/core': 1.43.1(zenroom@4.46.0)
+      '@slangroom/core': 1.43.2(zenroom@4.46.0)
       '@slangroom/db': 1.43.1(mariadb@3.3.2)(mysql2@3.11.3)(oracledb@6.6.0)(pg-hstore@2.3.4)(pg@8.13.0)(snowflake-sdk@1.14.0)(tedious@18.6.1)(zenroom@4.46.0)
       '@slangroom/fs': 1.43.1(zenroom@4.46.0)
       '@slangroom/git': 1.43.2(zenroom@4.46.0)
