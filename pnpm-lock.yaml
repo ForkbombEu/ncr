@@ -42,8 +42,8 @@ dependencies:
     specifier: ^1.43.1
     version: 1.43.1(zenroom@4.46.0)
   '@slangroom/redis':
-    specifier: ^1.43.1
-    version: 1.43.1(zenroom@4.46.0)
+    specifier: ^1.44.1
+    version: 1.44.1(zenroom@4.46.0)
   '@slangroom/shell':
     specifier: ^1.43.1
     version: 1.43.1(zenroom@4.46.0)
@@ -1610,7 +1610,7 @@ packages:
       '@slangroom/oauth': 1.44.1(zenroom@4.46.0)
       '@slangroom/pocketbase': 1.44.1(@capacitor/core@6.2.0)(zenroom@4.46.0)
       '@slangroom/qrcode': 1.43.1(zenroom@4.46.0)
-      '@slangroom/redis': 1.43.1(zenroom@4.46.0)
+      '@slangroom/redis': 1.44.1(zenroom@4.46.0)
       '@slangroom/shell': 1.43.1(zenroom@4.46.0)
       '@slangroom/timestamp': 1.43.1(zenroom@4.46.0)
       '@slangroom/wallet': 1.43.1(zenroom@4.46.0)
@@ -3042,13 +3042,13 @@ packages:
       - zenroom
     dev: false
 
-  /@slangroom/redis@1.43.1(zenroom@4.46.0):
-    resolution: {integrity: sha512-DsPYkD3wMIIsT05sCInXzvw0/thqb95Sl16wtREuj2aUkVFdu+bPZxJBUOZ5rekJt1YphKfdY4mM/RayHMJwBA==}
+  /@slangroom/redis@1.44.1(zenroom@4.46.0):
+    resolution: {integrity: sha512-DsNNd8mH3RaYvPwcj/bEuUyvGSs3r/uAOVxl4EFqmy85jW/Vq5hGhxoa/oz8XftgEtdlopIsV9GD+3LJixvd5w==}
     engines: {node: ^18.20.0 || ^20.10.0 || ^22 || ^23}
     dependencies:
       '@redis/client': 1.6.0
-      '@slangroom/core': 1.43.1(zenroom@4.46.0)
-      '@slangroom/shared': 1.43.1(zenroom@4.46.0)
+      '@slangroom/core': 1.44.1(zenroom@4.46.0)
+      '@slangroom/shared': 1.44.1(zenroom@4.46.0)
     transitivePeerDependencies:
       - zenroom
     dev: false
