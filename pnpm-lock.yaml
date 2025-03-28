@@ -9085,7 +9085,7 @@ packages:
       node-fetch: 2.7.0
       progress: 2.0.3
       semver: 7.7.1
-      tar-fs: 2.1.1
+      tar-fs: 2.1.2
       yargs: 16.2.0
     transitivePeerDependencies:
       - encoding
@@ -9186,7 +9186,7 @@ packages:
       pump: 3.0.2
       rc: 1.2.8
       simple-get: 4.0.1
-      tar-fs: 2.1.1
+      tar-fs: 2.1.2
       tunnel-agent: 0.6.0
     dev: true
 
@@ -9205,7 +9205,7 @@ packages:
       pump: 3.0.2
       rc: 1.2.8
       simple-get: 4.0.1
-      tar-fs: 2.1.1
+      tar-fs: 2.1.2
       tunnel-agent: 0.6.0
     dev: false
 
@@ -10309,8 +10309,8 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /tar-fs@2.1.1:
-    resolution: {integrity: sha512-V0r2Y9scmbDRLCNex/+hYzvp/zyYjvFbHPNgVTKfQvVrb6guiE/fxP+XblDNR011utopbkex2nM4dHNV6GDsng==}
+  /tar-fs@2.1.2:
+    resolution: {integrity: sha512-EsaAXwxmx8UB7FRKqeozqEPop69DXcmYwTQwXvyAPF352HJsPdkVhvTaDPYqfNgruveJIJy3TA2l+2zj8LJIJA==}
     dependencies:
       chownr: 1.1.4
       mkdirp-classic: 0.5.3
