@@ -53,7 +53,7 @@
 		"@slangroom/json-schema": "^1.43.1",
 		"@slangroom/oauth": "^1.44.1",
 		"@slangroom/pocketbase": "^1.44.1",
-		"@slangroom/qrcode": "^1.43.1",
+		"@slangroom/qrcode": "^1.45.1",
 		"@slangroom/redis": "^1.44.1",
 		"@slangroom/shell": "^1.43.1",
 		"@slangroom/timestamp": "^1.43.1",
