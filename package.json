@@ -56,7 +56,7 @@
 		"@slangroom/qrcode": "^1.43.1",
 		"@slangroom/redis": "^1.44.1",
 		"@slangroom/shell": "^1.43.1",
-		"@slangroom/timestamp": "^1.43.1",
+		"@slangroom/timestamp": "^1.45.2",
 		"@slangroom/wallet": "^1.43.1",
 		"@slangroom/zencode": "^1.43.1",
 		"@tgwf/co2": "^0.16.1",
