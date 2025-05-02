@@ -129,7 +129,6 @@ const ncrApp = async () => {
 			});
 			const s = SlangroomManager.getInstance();
 			const contract = `
-Rule unknown ignore
 Given I connect to 'hi_endpoint' and do get and output into 'hi_result'
 Given I have a 'string' named 'result' in 'hi result'
 Then print the 'result'
