@@ -44,7 +44,7 @@ export async function writeFile(path: string, content: string) {
 /* Contracts file handling */
 
 export function formatContract(baseContract: string): string {
-	return `Rule unknown ignore\nRule check version ${config.zenroomVersion}\n${baseContract}`;
+	return `Rule check version ${config.zenroomVersion}\n${baseContract}`;
 }
 
 /* Json files handling */
