@@ -42,7 +42,7 @@
 		"outputPath": "./"
 	},
 	"dependencies": {
-		"@dyne/slangroom-chain": "^1.6.4",
+		"@dyne/slangroom-chain": "1.9.15",
 		"@slangroom/core": "^1.46.0",
 		"@slangroom/db": "^1.46.0",
 		"@slangroom/ethereum": "^1.46.0",
@@ -79,7 +79,7 @@
 		"sqlite3": "^5.1.7",
 		"tedious": "^18.2.0",
 		"uWebSockets.js": "github:uNetworking/uWebSockets.js#semver:^20",
-		"zenroom": "^4.47.0"
+		"zenroom": "^5.17.0"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.12.0",

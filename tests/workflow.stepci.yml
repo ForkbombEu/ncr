@@ -129,7 +129,7 @@ tests:
                    - (.*)missing words(.*)
                    - (.*)extra words(.*)
                   
-                  ParseError @slangroom/core@(\d+)\.(\d+)\.(\d+): at 3:1-1
+                  ParseError @slangroom/core@(\d+)\.(\d+)\.(\d+): at 2:1-1
                    (.*)G(.*) may be (.*)given(.*) or (.*)then(.*)
                   (.|\n)*
       - name: POST /broken no body
@@ -154,7 +154,7 @@ tests:
                    - (.*)missing words(.*)
                    - (.*)extra words(.*)
                   
-                  ParseError @slangroom/core@(\d+)\.(\d+)\.(\d+): at 3:1-1
+                  ParseError @slangroom/core@(\d+)\.(\d+)\.(\d+): at 2:1-1
                    (.*)G(.*) may be (.*)given(.*) or (.*)then(.*)
                   (.|\n)*
       - name: POST /broken no body
@@ -259,7 +259,7 @@ tests:
           check:
             status: 500
             json:
-              - in: "[!] /zencode.lua:706: Zencode line 3: Given I have a 'string dictionary' named 'love'"
+              - in: "[!] /zencode.lua:798: Zencode line 3: Given I have a 'string dictionary' named 'love'"
 
   slangroom_fs:
     steps:
