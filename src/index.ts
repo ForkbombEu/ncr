@@ -244,8 +244,8 @@ Dir.ready(async () => {
 		const secondExt = pathArray.pop() as string;
 		let event: Events;
 		if (
-			FILE_EXTENSIONS.contract.includes(ext) ||
-			(ext === FILE_EXTENSIONS.js && FILE_EXTENSIONS.chain.includes(secondExt))
+			FILE_EXTENSIONS.contractExtension.includes(ext) ||
+			(FILE_EXTENSIONS.chainExtension.includes(ext) && FILE_EXTENSIONS.chainIntermediateExtension.includes(secondExt))
 		) {
 			event = Events.Add;
 		} else {
@@ -267,11 +267,11 @@ Dir.ready(async () => {
 		let endpoint: Endpoints | undefined;
 		let event: Events;
 		if (
-			FILE_EXTENSIONS.contract.includes(ext) ||
-			(ext === FILE_EXTENSIONS.js && FILE_EXTENSIONS.chain.includes(secondExt))
+			FILE_EXTENSIONS.contractExtension.includes(ext) ||
+			(FILE_EXTENSIONS.chainExtension.includes(ext) && FILE_EXTENSIONS.chainIntermediateExtension.includes(secondExt))
 		) {
 			endpoint = {
-				path: baseName,
+				path: pathArray.pop() as string,
 				contract: '',
 				chain: '',
 				conf: '',
