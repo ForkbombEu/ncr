@@ -16,7 +16,7 @@ export class Directory {
 
 	// This should keep track of file that ends up with:
 	// * .[zen]
-	// * .[chain].js
+	// * .[chain].[js|yaml|yml]
 	// * .[keys|data|metdata|schema].json
 	// * .conf
 	// that are present in the zencodeDirectory and outside of the autorun folder
