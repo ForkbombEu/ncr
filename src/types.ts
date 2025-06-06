@@ -35,7 +35,7 @@ export type Endpoints = {
 	metadata: Metadata;
 } & (
 	| { contract: string }
-	| { chain: string }
+	| { chain: string, chainExt: string }
 )
 
 interface CodecAttr {

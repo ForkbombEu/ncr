@@ -15,12 +15,12 @@ import { HttpRequest } from 'uWebSockets.js';
 const L = config.logger;
 
 export const FILE_EXTENSIONS = {
-	contract: ['zen'],
-	chain: ['chain'],
-	jsonDouble: ['data', 'keys', 'schema', 'metadata'],
-	js: 'js',
-	json: 'json',
-	conf: 'conf',
+	confExtension: 'conf',
+	contractExtension: ['zen'],
+	chainIntermediateExtension: ['chain'],
+	chainExtension: ['js', 'yaml', 'yml'],
+	jsonIntermediateExtension: ['data', 'keys', 'schema', 'metadata'],
+	jsonExtension: 'json',
 }
 
 //

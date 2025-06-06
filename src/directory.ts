@@ -16,7 +16,7 @@ export class Directory {
 
 	// This should keep track of file that ends up with:
 	// * .[zen]
-	// * .[chain].js
+	// * .[chain].[js|yaml|yml]
 	// * .[keys|data|metdata|schema].json
 	// * .conf
 	// that are present in the zencodeDirectory and outside of the autorun folder
@@ -29,20 +29,20 @@ export class Directory {
 					const pathArray = path.split('.');
 					if (pathArray.length < 2) return false;
 					const ext = pathArray.pop() as string;
-					const secondExt = pathArray.pop() as string;
+					const intermediateExtension = pathArray.pop() as string;
 					return (
-						FILE_EXTENSIONS.contract.includes(ext) ||
+						FILE_EXTENSIONS.contractExtension.includes(ext) ||
 						Boolean(
-							ext === FILE_EXTENSIONS.js &&
-								FILE_EXTENSIONS.chain.includes(secondExt) &&
-								pathArray.pop()
+							FILE_EXTENSIONS.chainExtension.includes(ext) &&
+							FILE_EXTENSIONS.chainIntermediateExtension.includes(intermediateExtension) &&
+							pathArray.pop()
 						) ||
 						Boolean(
-							ext === FILE_EXTENSIONS.json &&
-								FILE_EXTENSIONS.jsonDouble.includes(secondExt) &&
-								pathArray.pop()
+							ext === FILE_EXTENSIONS.jsonExtension &&
+							FILE_EXTENSIONS.jsonIntermediateExtension.includes(intermediateExtension) &&
+							pathArray.pop()
 						) ||
-						ext === FILE_EXTENSIONS.conf
+						ext === FILE_EXTENSIONS.confExtension
 					);
 				},
 				ignore: (path: string): boolean => path.startsWith(autorunDir)
@@ -71,24 +71,25 @@ export class Directory {
 	private getEndpoint(name: string) {
 		const pathArray = name.split('.');
 		const ext = pathArray.pop() as string;
-		if (FILE_EXTENSIONS.contract.includes(ext)) {
+		if (FILE_EXTENSIONS.contractExtension.includes(ext)) {
 			const path = pathArray.pop() as string;
 			return {
 				path: path,
 				contract: formatContract(this.getContent(name) || ''),
 				keys: this.getJSON(path, 'keys'),
-				conf: this.getContent(`${path}.${FILE_EXTENSIONS.conf}`) || '',
+				conf: this.getContent(`${path}.${FILE_EXTENSIONS.confExtension}`) || '',
 				schema: this.getJSONSchema(path),
 				metadata: newMetadata(this.getJSON(path, 'metadata') || {})
 			};
 		} else if (
-			ext === FILE_EXTENSIONS.js &&
-			FILE_EXTENSIONS.chain.includes(pathArray.pop() as string)
+			FILE_EXTENSIONS.chainExtension.includes(ext) &&
+			FILE_EXTENSIONS.chainIntermediateExtension.includes(pathArray.pop() as string)
 		) {
 			const path = pathArray.pop() as string;
 			return {
 				path: path,
 				chain: this.getContent(name) || '',
+				chainExt: ext,
 				schema: this.getJSONSchema(path),
 				metadata: newMetadata(this.getJSON(path, 'metadata') || {}),
 				conf: ''
@@ -110,15 +111,15 @@ export class Directory {
 		const pathArray = path.split('.');
 		const ext = pathArray.pop() as string;
 		if (
-			FILE_EXTENSIONS.contract.includes(ext) ||
-			(ext === FILE_EXTENSIONS.js && FILE_EXTENSIONS.chain.includes(pathArray.pop() as string))
+			FILE_EXTENSIONS.contractExtension.includes(ext) ||
+			(FILE_EXTENSIONS.chainExtension.includes(ext) && FILE_EXTENSIONS.chainIntermediateExtension.includes(pathArray.pop() as string))
 		) {
 			return this.getEndpoint(path);
 		} else {
 			const basePath = pathArray.shift();
 			const correctExtenstion = [
-				...FILE_EXTENSIONS.contract,
-				...FILE_EXTENSIONS.chain.map((e) => `${e}.${FILE_EXTENSIONS.js}`)
+				...FILE_EXTENSIONS.contractExtension,
+				...FILE_EXTENSIONS.chainIntermediateExtension.flatMap((i) => FILE_EXTENSIONS.chainExtension.map((e) => `${i}.${e}`)),
 			].find((e) => this.getContent(`${basePath}.${e}`));
 			if (correctExtenstion) {
 				return this.getEndpoint(`${basePath}.${correctExtenstion}`);
@@ -129,11 +130,11 @@ export class Directory {
 
 	private getJSON(path: string, type: 'schema' | 'keys' | 'metadata' | 'chain') {
 		try {
-			const k = this.getContent(`${path}.${type}.${FILE_EXTENSIONS.json}`);
+			const k = this.getContent(`${path}.${type}.${FILE_EXTENSIONS.jsonExtension}`);
 			if (!k) return undefined;
 			else return JSON.parse(k);
 		} catch {
-			throw new Error(`${path}.${type}.${FILE_EXTENSIONS.json}: malformed JSON`);
+			throw new Error(`${path}.${type}.${FILE_EXTENSIONS.jsonExtension}: malformed JSON`);
 		}
 	}
 
