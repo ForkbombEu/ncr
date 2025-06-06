@@ -1,3 +1,10 @@
+## [1.42.11](https://github.com/forkbombeu/ncr/compare/v1.42.10...v1.42.11) (2025-06-06)
+
+
+### Bug Fixes
+
+* support execution of yaml chains ([#467](https://github.com/forkbombeu/ncr/issues/467)) ([cbbf16a](https://github.com/forkbombeu/ncr/commit/cbbf16a024e08d0027a83c202859a1f1b76c1cc9))
+
 ## [1.42.10](https://github.com/forkbombeu/ncr/compare/v1.42.9...v1.42.10) (2025-06-05)
 
 ## [1.42.9](https://github.com/forkbombeu/ncr/compare/v1.42.8...v1.42.9) (2025-06-05)
