@@ -1,0 +1,11 @@
+steps:
+  - id: Print hello world
+    zencode: |
+      Given nothing
+      Then print the string 'Hello, world!'
+  - id: Print goodbye world
+    zencode: |
+      Given I have a 'string array' named 'output'
+      Then print the 'output'
+      Then print the string 'Goodbye, world!'
+    dataFromStep: Print hello world

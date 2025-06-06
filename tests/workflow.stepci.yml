@@ -451,6 +451,17 @@ tests:
             json:
               say_hi: Buen día
 
+      - name: yaml chain
+        http:
+          url: http://${{env.host}}/chain/yaml_chain
+          method: GET
+          check:
+            status: 200
+            json:
+              output:
+                - "Hello,_world!"
+                - "Goodbye,_world!"
+
   public_dir:
     steps:
       - name: public with wrong precondition
@@ -506,7 +517,7 @@ tests:
           method: GET
           check:
             status: 200
-            body: "[\"http://localhost:3000/broken\",\"http://localhost:3000/broken_contracts/exec\",\"http://localhost:3000/brokenschema\",\"http://localhost:3000/chain\",\"http://localhost:3000/chain/hello\",\"http://localhost:3000/chain/hello_with_input\",\"http://localhost:3000/hello\",\"http://localhost:3000/meta/after_precondition\",\"http://localhost:3000/meta/content_type\",\"http://localhost:3000/meta/create_http_headers_and_print\",\"http://localhost:3000/meta/get_http_headers_and_print\",\"http://localhost:3000/meta/http_headers\",\"http://localhost:3000/meta/http_headers_metadata_without_headers\",\"http://localhost:3000/meta/just_post\",\"http://localhost:3000/meta/set_http_headers_response\",\"http://localhost:3000/meta/status_code\",\"http://localhost:3000/my-keyring\",\"http://localhost:3000/valid-schema\"]"
+            body: "[\"http://localhost:3000/broken\",\"http://localhost:3000/broken_contracts/exec\",\"http://localhost:3000/brokenschema\",\"http://localhost:3000/chain\",\"http://localhost:3000/chain/hello\",\"http://localhost:3000/chain/hello_with_input\",\"http://localhost:3000/chain/yaml_chain\",\"http://localhost:3000/hello\",\"http://localhost:3000/meta/after_precondition\",\"http://localhost:3000/meta/content_type\",\"http://localhost:3000/meta/create_http_headers_and_print\",\"http://localhost:3000/meta/get_http_headers_and_print\",\"http://localhost:3000/meta/http_headers\",\"http://localhost:3000/meta/http_headers_metadata_without_headers\",\"http://localhost:3000/meta/just_post\",\"http://localhost:3000/meta/set_http_headers_response\",\"http://localhost:3000/meta/status_code\",\"http://localhost:3000/my-keyring\",\"http://localhost:3000/valid-schema\"]"
 
   autorun:
     steps:
