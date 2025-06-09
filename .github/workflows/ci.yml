@@ -42,6 +42,22 @@ jobs:
         run: |
           pnpm test
 
+  test-executable:
+    name: 🕹 Test executable
+    needs: [packageManager]
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛠️ Prepare pnpm workspace
+        uses: dyne/pnpm@main
+        with:
+          node-version: 20
+          pnpm-version: ${{ needs.packageManager.outputs.version }}
+          build: pnpm sea
+      - name: 🧪 Run tests
+        run: |
+          FILES_DIR=. ./ncr -z ./tests/fixtures -p 3000 --public-directory ./public &
+          pnpm stepci run ./tests/workflow.stepci.yml
+
   semantic-release:
     name: 🤖 Semantic release
     permissions:
@@ -49,7 +65,7 @@ jobs:
       issues: write
       pull-requests: write
       id-token: write
-    needs: [packageManager, test]
+    needs: [packageManager, test, test-executable]
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     steps:
