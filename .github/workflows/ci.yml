@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2024 The Forkbomb Company
+# SPDX-FileCopyrightText: 2024-2025 The Forkbomb Company
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -15,8 +15,16 @@ permissions:
   packages: write
 
 jobs:
+  reuse:
+    name: 🚨 reuse
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: fsfe/reuse-action@v5
+
   packageManager:
     name: 🔍 Get pnpm version to use
+    needs: [reuse]
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.ver.outputs.version }}
