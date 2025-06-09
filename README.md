@@ -1,5 +1,5 @@
 <!--
-SPDX-FileCopyrightText: 2024 The Forkbomb Company
+SPDX-FileCopyrightText: 2024-2025 The Forkbomb Company
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
@@ -208,7 +208,7 @@ https://dyne.org/
 ## 💼 License
 
     noˑcodeˑroom - No code REST API server based on zencode
-    Copyleft 🄯 2024 The Forkbomb Company, Amsterdam
+    Copyleft 🄯 2024-2025 The Forkbomb Company, Amsterdam
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as
