@@ -1,3 +1,10 @@
+## [1.42.13](https://github.com/forkbombeu/ncr/compare/v1.42.12...v1.42.13) (2025-06-09)
+
+
+### Bug Fixes
+
+* build of executable ([#468](https://github.com/forkbombeu/ncr/issues/468)) ([4bdd2df](https://github.com/forkbombeu/ncr/commit/4bdd2df695d80810013d965e1695f521e5a12af7))
+
 ## [1.42.12](https://github.com/forkbombeu/ncr/compare/v1.42.11...v1.42.12) (2025-06-06)
 
 ## [1.42.11](https://github.com/forkbombeu/ncr/compare/v1.42.10...v1.42.11) (2025-06-06)
