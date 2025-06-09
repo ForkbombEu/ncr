@@ -1,0 +1,22 @@
+version = 1
+SPDX-PackageName = "Ncr"
+SPDX-PackageSupplier = "Matteo Cristino <matteo@dyne.org>"
+SPDX-PackageDownloadLocation = "https://github.com/ForkbombEu/ncr"
+
+[[annotations]]
+path = ["contracts/**/**.json", "contracts/**.json", "contracts/**/**.zen", "contracts/**.zen"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2024 The Forkbomb Company"
+SPDX-License-Identifier = "AGPL-3.0-or-later"
+
+[[annotations]]
+path = ["tests/**/**.json", "tests/**/**.zen", "tests/**/**.js", "tests/**/**.slang", "tests/**/**.yaml"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2024 The Forkbomb Company"
+SPDX-License-Identifier = "AGPL-3.0-or-later"
+
+[[annotations]]
+path = "public/**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2024 The Forkbomb Company"
+SPDX-License-Identifier = "AGPL-3.0-or-later"
