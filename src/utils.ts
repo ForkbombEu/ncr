@@ -2,14 +2,15 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-import { Type } from '@sinclair/typebox';
+import { Type } from '@sinclair/typebox/type';
 import Ajv from 'ajv';
 import addFormats from 'ajv-formats';
+// @ts-expect-error typings missing in export
 import betterAjvErrors from 'better-ajv-errors';
 import _ from 'lodash';
 import { introspect } from 'zenroom';
 import { config } from './cli.js';
-import { Codec, Endpoints, JSONSchema, Metadata, MetadataRaw } from './types';
+import { Codec, Endpoints, JSONObject, JSONSchema, Metadata, MetadataRaw } from './types';
 import { defaultTagsName } from './openapi.js';
 import { HttpRequest } from 'uWebSockets.js';
 const L = config.logger;
@@ -66,7 +67,7 @@ export async function getSchemaFromIntrospection(
 	return schema;
 }
 
-export function removeKeysFromSchema(schema: JSONSchema, keys: JSON): JSONSchema {
+export function removeKeysFromSchema(schema: JSONSchema, keys: JSONObject): JSONSchema {
 	let { properties, required } = _.cloneDeep(schema);
 
 	Object.keys(keys).forEach((k) => {
