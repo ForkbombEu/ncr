@@ -258,8 +258,9 @@ tests:
             sole: 'puria'
           check:
             status: 500
-            json:
-              - in: "[!] /zencode.lua:798: Zencode line 3: Given I have a 'string dictionary' named 'love'"
+            body:
+              - match: |
+                  .*\[!\] \/zencode\.lua:(\d+): Zencode line 3: Given I have a 'string dictionary' named 'love'.*
 
   slangroom_fs:
     steps:
