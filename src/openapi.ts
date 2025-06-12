@@ -2,8 +2,8 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-import { Type } from '@sinclair/typebox';
-import { OpenAPIV3_1 } from 'openapi-types';
+import { Type } from '@sinclair/typebox/type';
+import type { OpenAPIV3_1, OpenAPIV3 } from 'openapi-types';
 import p from '../package.json' with { type: 'json' };
 import { JSONSchema, Metadata } from './types.js';
 import { config } from './cli.js';
@@ -84,7 +84,7 @@ export function generatePath(
 			requestBody: {
 				content: {
 					[metadata.contentType]: {
-						schema: schema,
+						schema: schema as OpenAPIV3.SchemaObject,
 						examples: metadata.examples
 					}
 				}

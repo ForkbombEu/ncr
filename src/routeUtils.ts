@@ -9,7 +9,7 @@ import { App, HttpRequest, HttpResponse, TemplatedApp } from 'uWebSockets.js';
 import { execute as slangroomChainExecute } from '@dyne/slangroom-chain';
 
 import { reportZenroomError } from './error.js';
-import { Endpoints, JSONSchema, Events, Headers } from './types.js';
+import { Endpoints, JSONSchema, Events, Headers, JSONObject } from './types.js';
 import { config } from './cli.js';
 import { SlangroomManager } from './slangroom.js';
 import {
@@ -102,7 +102,7 @@ const setCorsHeaders = (res: HttpResponse) => {
 		.writeHeader('Access-Control-Allow-Headers', 'content-type, authorization');
 };
 
-export const runPrecondition = async (preconditionPath: string, data: Record<string, any>) => {
+export const runPrecondition = async (preconditionPath: string, data: JSONObject) => {
 	const s = SlangroomManager.getInstance();
 	const zen = fs.readFileSync(preconditionPath + '.slang').toString('utf-8');
 	const keys = fs.existsSync(preconditionPath + '.keys.json')
@@ -151,7 +151,7 @@ const checkAndGetHeaders = (
 const execZencodeAndReply = async (
 	res: HttpResponse,
 	endpoint: Endpoints,
-	data: Record<string, unknown>,
+	data: JSONObject,
 	headers: Record<string, Record<string, string>>,
 	schema: JSONSchema,
 	LOG: Logger<ILogObj>
@@ -276,14 +276,14 @@ const generatePost = (
 			if (isLast) {
 				let data;
 				try {
-					const parseFun: (data: string) => Record<string, unknown> | undefined =
+					const parseFun: (data: string) => Record<string, unknown> =
 						parseDataFunctions[metadata.contentType];
 					if (!parseFun) {
 						unsupportedMediaType(res, new Error(`Unsupported media type ${metadata.contentType}`));
 					}
 					data = parseFun(
 						buffer ? Buffer.concat([buffer, chunk]).toString('utf-8') : chunk.toString('utf-8')
-					);
+					) as JSONObject;
 				} catch (e) {
 					L.error(e);
 					res
@@ -325,7 +325,7 @@ const generateGet = (
 		});
 
 		try {
-			const data: Record<string, unknown> = getQueryParams(req);
+			const data = getQueryParams(req) as JSONObject;
 			execZencodeAndReply(res, endpoint, data, headers, schema, LOG);
 		} catch (e) {
 			LOG.fatal(e);
