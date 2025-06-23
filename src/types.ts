@@ -15,12 +15,23 @@ export type JSONSchema = {
 	required?: Array<string>;
 };
 
+type JSONValue =
+  | string
+  | number
+  | boolean
+  | null
+  | JSONValue[]
+  | { [key: string]: JSONValue };
+
+export type JSONObject = { [key: string]: JSONValue };
+
 export interface Config {
 	port: number;
 	hostname: string;
 	zencodeDirectory: string;
 	zenroomVersion: string;
 	openapiPath: string;
+	openapiInfo: string;
 	template: string;
 	logger: Logger<ILogObj>;
 	publicDirectory: string | undefined;
@@ -29,7 +40,7 @@ export interface Config {
 
 export type Endpoints = {
 	path: string;
-	keys?: JSON;
+	keys?: JSONObject;
 	conf: string;
 	schema?: JSONSchema;
 	metadata: Metadata;
@@ -54,7 +65,7 @@ export interface Metadata {
 	disableGet: boolean;
 	disablePost: boolean;
 
-	contentType: RecognizedString;
+	contentType: string;
 	httpHeaders: boolean;
 
 	successCode: RecognizedString;
@@ -77,7 +88,7 @@ export interface MetadataRaw {
 	disable_get?: boolean;
 	disable_post?: boolean;
 
-	content_type?: RecognizedString;
+	content_type?: string;
 	http_headers?: boolean;
 
 	success_code?: RecognizedString;
