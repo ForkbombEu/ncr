@@ -37,8 +37,8 @@ export async function getSchema(endpoints: Endpoints): Promise<JSONSchema | unde
 export async function getSchemaFromIntrospection(
 	contract: string
 ): Promise<JSONSchema | undefined> {
-	const codec: Codec = await introspect(contract);
-	if (_.isEqual(codec, { CACHE: [], CODEC: [], GIVEN_data: [], THEN: [], WHEN: [] }))
+	const codec: Codec | string = await introspect(contract);
+	if (typeof codec === 'string')
 		return undefined;
 	const encodingToType = {
 		string: Type.String(),
