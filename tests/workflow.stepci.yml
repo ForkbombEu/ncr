@@ -122,13 +122,13 @@ tests:
                   (.*)(\d+)\s\|\s(.*)G(.*)
                   (\s+)(.*)\^(.*)
                   (.*)(\d+)\s\|\s(.*)
-                  
+
                   Error colors:
                    - (.*)error(.*)
                    - (.*)suggested words(.*)
                    - (.*)missing words(.*)
                    - (.*)extra words(.*)
-                  
+
                   ParseError @slangroom/core@(\d+)\.(\d+)\.(\d+): at 2:1-1
                    (.*)G(.*) may be (.*)given(.*) or (.*)then(.*)
                   (.|\n)*
@@ -147,13 +147,13 @@ tests:
                   (.*)(\d+)\s\|\s(.*)G(.*)
                   (\s+)(.*)\^(.*)
                   (.*)(\d+)\s\|\s(.*)
-                  
+
                   Error colors:
                    - (.*)error(.*)
                    - (.*)suggested words(.*)
                    - (.*)missing words(.*)
                    - (.*)extra words(.*)
-                  
+
                   ParseError @slangroom/core@(\d+)\.(\d+)\.(\d+): at 2:1-1
                    (.*)G(.*) may be (.*)given(.*) or (.*)then(.*)
                   (.|\n)*
@@ -304,17 +304,17 @@ tests:
 
   meta:
     steps:
-      - name: JUST POST has post 
+      - name: JUST POST has post
         http:
           url: http://${{env.host}}/meta/just_post
           method: POST
-          json: 
+          json:
             name: "meta just post"
             age: 20
             description: "this is a test"
           check:
             status: 200
-            json: 
+            json:
               output:
                 - JUST_POST
       - name: JUST POST fails on GET
@@ -528,11 +528,11 @@ tests:
           method: GET
           check:
             status: 200
-            body: "\"yes\""
+            body: yes
       - name: startup
         http:
           url: http://${{env.host}}/startup.out.json
           method: GET
           check:
             status: 200
-            body: "\"yes\""
+            body: yes
