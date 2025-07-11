@@ -163,6 +163,7 @@ const generatePublicDirectory = (app: TemplatedApp) => {
 	if (publicDirectory) {
 		app.get('/*', async (res, req) => {
 			res.onAborted(() => {
+				res.aborted = true;
 				res.writeStatus('500').end('Aborted');
 			});
 			let url = req.getUrl();
@@ -197,13 +198,15 @@ const generatePublicDirectory = (app: TemplatedApp) => {
 						}
 					}
 				}
-				res.cork(() => {
-					res
-						.writeStatus('200 OK')
-						.writeHeader('Access-Control-Allow-Origin', '*')
-						.writeHeader('Content-Type', contentType)
-						.end(fs.readFileSync(file));
-				});
+				if (!res.aborted) {
+					res.cork(() => {
+						res
+							.writeStatus('200 OK')
+							.writeHeader('Access-Control-Allow-Origin', '*')
+							.writeHeader('Content-Type', contentType)
+							.end(fs.readFileSync(file));
+					});
+				}
 			} else {
 				notFound(res, new Error(`File not found: ${file}`));
 			}
@@ -245,7 +248,8 @@ Dir.ready(async () => {
 		let event: Events;
 		if (
 			FILE_EXTENSIONS.contractExtension.includes(ext) ||
-			(FILE_EXTENSIONS.chainExtension.includes(ext) && FILE_EXTENSIONS.chainIntermediateExtension.includes(secondExt))
+			(FILE_EXTENSIONS.chainExtension.includes(ext) &&
+				FILE_EXTENSIONS.chainIntermediateExtension.includes(secondExt))
 		) {
 			event = Events.Add;
 		} else {
@@ -268,7 +272,8 @@ Dir.ready(async () => {
 		let event: Events;
 		if (
 			FILE_EXTENSIONS.contractExtension.includes(ext) ||
-			(FILE_EXTENSIONS.chainExtension.includes(ext) && FILE_EXTENSIONS.chainIntermediateExtension.includes(secondExt))
+			(FILE_EXTENSIONS.chainExtension.includes(ext) &&
+				FILE_EXTENSIONS.chainIntermediateExtension.includes(secondExt))
 		) {
 			endpoint = {
 				path: pathArray.pop() as string,
