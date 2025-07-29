@@ -528,11 +528,11 @@ tests:
           method: GET
           check:
             status: 200
-            body: "\"yes\""
+            body: yes
       - name: startup
         http:
           url: http://${{env.host}}/startup.out.json
           method: GET
           check:
             status: 200
-            body: "\"yes\""
+            body: yes

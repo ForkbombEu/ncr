@@ -9,7 +9,7 @@ import { App, HttpRequest, HttpResponse, TemplatedApp } from 'uWebSockets.js';
 import { execute as slangroomChainExecute } from '@dyne/slangroom-chain';
 
 import { reportZenroomError } from './error.js';
-import { Endpoints, JSONSchema, Events, Headers } from './types.js';
+import { Endpoints, JSONSchema, Events, Headers, JSONObject } from './types.js';
 import { config } from './cli.js';
 import { SlangroomManager } from './slangroom.js';
 import {
@@ -102,7 +102,7 @@ const setCorsHeaders = (res: HttpResponse) => {
 		.writeHeader('Access-Control-Allow-Headers', 'content-type, authorization');
 };
 
-export const runPrecondition = async (preconditionPath: string, data: Record<string, any>) => {
+export const runPrecondition = async (preconditionPath: string, data: JSONObject) => {
 	const s = SlangroomManager.getInstance();
 	const zen = fs.readFileSync(preconditionPath + '.slang').toString('utf-8');
 	const keys = fs.existsSync(preconditionPath + '.keys.json')
@@ -151,7 +151,7 @@ const checkAndGetHeaders = (
 const execZencodeAndReply = async (
 	res: HttpResponse,
 	endpoint: Endpoints,
-	data: Record<string, unknown>,
+	data: JSONObject,
 	headers: Record<string, Record<string, string>>,
 	schema: JSONSchema,
 	LOG: Logger<ILogObj>
@@ -204,16 +204,22 @@ const execZencodeAndReply = async (
 				({ result: jsonResult } = await s.execute(endpoint.contract, { keys, data, conf }));
 			}
 		} catch (e) {
+			LOG.error(e);
 			if (!res.aborted) {
 				res.cork(() => {
-					const report = reportZenroomError(e as Error, LOG);
+					let ze = e as string;
+					try {
+						ze = reportZenroomError(e as Error, LOG);
+					} catch (zenErr) {
+						LOG.error(zenErr);
+					}
 					res
 						.writeStatus(metadata.errorCode)
 						.writeHeader('Access-Control-Allow-Origin', '*')
-						.end(report);
+						.end(ze);
 				});
-				return;
 			}
+			return;
 		}
 		if (metadata.httpHeaders) {
 			if (jsonResult.http_headers?.response !== undefined) {
@@ -222,28 +228,32 @@ const execZencodeAndReply = async (
 			delete jsonResult.http_headers;
 		}
 		const slangroomResult = JSON.stringify(jsonResult);
-		res.cork(() => {
-			res
-				.writeStatus(metadata.successCode)
-				.writeHeader('Content-Type', metadata.successContentType)
-				.writeHeader('Access-Control-Allow-Origin', '*')
+		if (!res.aborted) {
+			res.cork(() => {
+				res
+					.writeStatus(metadata.successCode)
+					.writeHeader('Content-Type', metadata.successContentType)
+					.writeHeader('Access-Control-Allow-Origin', '*');
 
-			if (metadata.httpHeaders && headers.response !== undefined) {
-				for (const [k, v] of Object.entries(headers.response)) {
-					res.writeHeader(k, v);
+				if (metadata.httpHeaders && headers.response !== undefined) {
+					for (const [k, v] of Object.entries(headers.response)) {
+						res.writeHeader(k, v);
+					}
 				}
-			}
-			res.end(slangroomResult);
-			return;
-		});
+				res.end(slangroomResult);
+			});
+		}
+		return;
 	} catch (e) {
 		LOG.fatal(e);
-		res.cork(() =>
-			res
-				.writeStatus(metadata.errorCode)
-				.writeHeader('Access-Control-Allow-Origin', '*')
-				.end((e as Error).message)
-		);
+		if (!res.aborted) {
+			res.cork(() =>
+				res
+					.writeStatus(metadata.errorCode)
+					.writeHeader('Access-Control-Allow-Origin', '*')
+					.end((e as Error).message)
+			);
+		}
 		return;
 	}
 };
@@ -268,7 +278,11 @@ const generatePost = (
 		 * so it's important to attach the `onAborted` handler before everything else
 		 */
 		res.onAborted(() => {
-			res.writeStatus(metadata.errorCode ? metadata.errorCode : '500').end('Aborted');
+			res.aborted = true;
+			res.cork(() =>
+				res.writeStatus(metadata.errorCode ? metadata.errorCode : '500').end('Aborted')
+			);
+			return;
 		});
 		let buffer: Buffer;
 		res.onData((d, isLast) => {
@@ -276,20 +290,25 @@ const generatePost = (
 			if (isLast) {
 				let data;
 				try {
-					const parseFun: (data: string) => Record<string, unknown> | undefined =
+					const parseFun: (data: string) => Record<string, unknown> =
 						parseDataFunctions[metadata.contentType];
 					if (!parseFun) {
 						unsupportedMediaType(res, new Error(`Unsupported media type ${metadata.contentType}`));
+						return;
 					}
 					data = parseFun(
 						buffer ? Buffer.concat([buffer, chunk]).toString('utf-8') : chunk.toString('utf-8')
-					);
+					) as JSONObject;
 				} catch (e) {
 					L.error(e);
-					res
-						.writeStatus(metadata.errorCode)
-						.writeHeader('Access-Control-Allow-Origin', '*')
-						.end((e as Error).message);
+					if (!res.aborted) {
+						res.cork(() =>
+							res
+								.writeStatus(metadata.errorCode)
+								.writeHeader('Access-Control-Allow-Origin', '*')
+								.end((e as Error).message)
+						);
+					}
 					return;
 				}
 				execZencodeAndReply(res, endpoint, data, headers, schema, LOG);
@@ -321,15 +340,21 @@ const generateGet = (
 		 * so it's important to attach the `onAborted` handler before everything else
 		 */
 		res.onAborted(() => {
-			res.writeStatus(metadata.errorCode).end('Aborted');
+			res.aborted = true;
+			res.cork(() =>
+				res.writeStatus(metadata.errorCode ? metadata.errorCode : '500').end('Aborted')
+			);
+			return;
 		});
 
 		try {
-			const data: Record<string, unknown> = getQueryParams(req);
+			const data = getQueryParams(req) as JSONObject;
 			execZencodeAndReply(res, endpoint, data, headers, schema, LOG);
 		} catch (e) {
 			LOG.fatal(e);
-			res.writeStatus(metadata.errorCode).end((e as Error).message);
+			if (!res.aborted) {
+				res.cork(() => res.writeStatus(metadata.errorCode).end((e as Error).message));
+			}
 			return;
 		}
 	});
@@ -364,6 +389,7 @@ export const generateRoute = async (app: TemplatedApp, endpoint: Endpoints, acti
 				.writeHeader('Access-Control-Allow-Headers', 'content-type')
 				.end('Aborted');
 		});
+
 		setCorsHeaders(res);
 		res.end();
 	});
@@ -386,7 +412,9 @@ export const generateRoute = async (app: TemplatedApp, endpoint: Endpoints, acti
 			notFound(res, new Error(`Not found on ${path}/raw`));
 			return;
 		}
-		res.writeStatus('200 OK').writeHeader('Content-Type', 'text/plain').end(raw);
+		if (!res.aborted) {
+			res.cork(() => res.writeStatus('200 OK').writeHeader('Content-Type', 'text/plain').end(raw));
+		}
 	});
 
 	app.get(path + '/app', async (res) => {
@@ -402,7 +430,11 @@ export const generateRoute = async (app: TemplatedApp, endpoint: Endpoints, acti
 			endpoint: `${config.basepath}${path}`
 		});
 
-		res.writeStatus('200 OK').writeHeader('Content-Type', 'text/html').end(result);
+		if (!res.aborted) {
+			res.cork(() =>
+				res.writeStatus('200 OK').writeHeader('Content-Type', 'text/html').end(result)
+			);
+		}
 	});
 	L.info(`${emoji[action]} ${config.basepath}${path}`);
 };

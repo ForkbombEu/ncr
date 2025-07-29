@@ -1,3 +1,22 @@
+## [1.42.24](https://github.com/forkbombeu/ncr/compare/v1.42.23...v1.42.24) (2025-07-28)
+
+
+### Bug Fixes
+
+* more checks on aborted calls ([#487](https://github.com/forkbombeu/ncr/issues/487)) ([1077c16](https://github.com/forkbombeu/ncr/commit/1077c167bf98786d92a21332412eb70ea104f7ba))
+
+## [1.42.23](https://github.com/forkbombeu/ncr/compare/v1.42.22...v1.42.23) (2025-07-28)
+
+## [1.42.22](https://github.com/forkbombeu/ncr/compare/v1.42.21...v1.42.22) (2025-07-09)
+
+## [1.42.21](https://github.com/forkbombeu/ncr/compare/v1.42.20...v1.42.21) (2025-07-01)
+
+## [1.42.20](https://github.com/forkbombeu/ncr/compare/v1.42.19...v1.42.20) (2025-06-25)
+
+## [1.42.19](https://github.com/forkbombeu/ncr/compare/v1.42.18...v1.42.19) (2025-06-25)
+
+## [1.42.18](https://github.com/forkbombeu/ncr/compare/v1.42.17...v1.42.18) (2025-06-24)
+
 ## [1.42.17](https://github.com/forkbombeu/ncr/compare/v1.42.16...v1.42.17) (2025-06-23)
 
 ## [1.42.16](https://github.com/forkbombeu/ncr/compare/v1.42.15...v1.42.16) (2025-06-20)
