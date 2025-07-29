@@ -15,6 +15,7 @@ import {
 import { SlangroomManager } from './slangroom.js';
 
 import { config } from './cli.js';
+import { JSONObject } from './types.js';
 const L = config.logger;
 
 /* Main */
@@ -86,8 +87,8 @@ async function runInstallContractData(contractData: InstallContractData) {
 export interface ContractData {
 	path: string;
 	contract: string;
-	keys?: Record<string, unknown> | undefined;
-	data?: Record<string, unknown> | undefined;
+	keys?: JSONObject | undefined;
+	data?: JSONObject | undefined;
 	metadata?: Record<string, unknown> | undefined;
 	conf?: string | undefined;
 }
@@ -100,10 +101,10 @@ async function loadContractData(contractPath: string): Promise<ContractData | un
 		const { name: contractName, dir: directoryPath } = parse(contractPath);
 
 		const keysPath = join(directoryPath, `${contractName}.keys.json`);
-		const keys = await readJsonObject(keysPath);
+		const keys = await readJsonObject(keysPath) as JSONObject;
 
 		const dataPath = join(directoryPath, `${contractName}.data.json`);
-		const data = await readJsonObject(dataPath);
+		const data = await readJsonObject(dataPath) as JSONObject;
 
 		const metadataPath = join(directoryPath, `${contractName}.metadata.json`);
 		const metadata = await readJsonObject(metadataPath);

@@ -23,7 +23,7 @@ import { SlangroomManager } from './slangroom.js';
 import { FILE_EXTENSIONS, getSchema, getQueryParams, prettyChain, newMetadata } from './utils.js';
 import { forbidden, notFound, unprocessableEntity, internalServerError } from './responseUtils.js';
 import { createAppWithBasePath, generateRoute, runPrecondition } from './routeUtils.js';
-import { Endpoints, Events } from './types.js';
+import { Endpoints, Events, JSONObject } from './types.js';
 
 dotenv.config();
 
@@ -190,7 +190,7 @@ const generatePublicDirectory = (app: TemplatedApp) => {
 					if (publicMetadata.contentType) contentType = publicMetadata.contentType;
 					if (publicMetadata.precondition) {
 						try {
-							const data: Record<string, unknown> = getQueryParams(req);
+							const data = getQueryParams(req) as JSONObject;
 							await runPrecondition(path.join(publicDirectory, publicMetadata.precondition), data);
 						} catch (e) {
 							forbidden(res, e as Error);
