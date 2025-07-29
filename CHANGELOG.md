@@ -1,3 +1,10 @@
+## [1.42.25](https://github.com/forkbombeu/ncr/compare/v1.42.24...v1.42.25) (2025-07-29)
+
+
+### Bug Fixes
+
+* various fixes to warnings raised by rollup ([#470](https://github.com/forkbombeu/ncr/issues/470)) ([44b5abf](https://github.com/forkbombeu/ncr/commit/44b5abf5995e523bfb94ebea2fa95f98e424d526))
+
 ## [1.42.24](https://github.com/forkbombeu/ncr/compare/v1.42.23...v1.42.24) (2025-07-28)
 
 
