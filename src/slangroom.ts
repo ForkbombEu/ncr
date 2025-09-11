@@ -4,6 +4,7 @@
 
 import { Slangroom, type Slangroom as SlangroomType } from '@slangroom/core';
 import { db } from '@slangroom/db';
+import { did } from '@slangroom/did';
 import { ethereum } from '@slangroom/ethereum';
 import { fs } from '@slangroom/fs';
 import { git } from '@slangroom/git';
@@ -21,6 +22,7 @@ import { zencode } from '@slangroom/zencode';
 
 const SLANGROOM_PLUGINS = [
 	db,
+	did,
 	ethereum,
 	fs,
 	git,
