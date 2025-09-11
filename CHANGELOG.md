@@ -1,3 +1,10 @@
+# [1.43.0](https://github.com/forkbombeu/ncr/compare/v1.42.27...v1.43.0) (2025-09-11)
+
+
+### Features
+
+* add @slangroom/did plugin ([#496](https://github.com/forkbombeu/ncr/issues/496)) ([f131569](https://github.com/forkbombeu/ncr/commit/f131569fd3a52ebe904c8de7446972f3c8d6541f))
+
 ## [1.42.27](https://github.com/forkbombeu/ncr/compare/v1.42.26...v1.42.27) (2025-09-11)
 
 ## [1.42.26](https://github.com/forkbombeu/ncr/compare/v1.42.25...v1.42.26) (2025-08-06)
