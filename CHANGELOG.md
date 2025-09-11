@@ -1,3 +1,5 @@
+## [1.42.27](https://github.com/forkbombeu/ncr/compare/v1.42.26...v1.42.27) (2025-09-11)
+
 ## [1.42.26](https://github.com/forkbombeu/ncr/compare/v1.42.25...v1.42.26) (2025-08-06)
 
 ## [1.42.25](https://github.com/forkbombeu/ncr/compare/v1.42.24...v1.42.25) (2025-07-29)
