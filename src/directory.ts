@@ -89,6 +89,7 @@ export class Directory {
 			return {
 				path: path,
 				chain: this.getContent(name) || '',
+				keys: this.getJSON(path, 'keys'),
 				chainExt: ext,
 				schema: this.getJSONSchema(path),
 				metadata: newMetadata(this.getJSON(path, 'metadata') || {}),
