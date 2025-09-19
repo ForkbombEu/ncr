@@ -196,8 +196,9 @@ const execZencodeAndReply = async (
 		try {
 			if ('chain' in endpoint) {
 				const dataFormatted = data ? JSON.stringify(data) : undefined;
+				const keysFormatted = keys ? JSON.stringify(keys) : undefined;
 				const parsedChain = endpoint.chainExt === 'js' ? eval(endpoint.chain)() : endpoint.chain;
-				const slangRes = await slangroomChainExecute(parsedChain, dataFormatted);
+				const slangRes = await slangroomChainExecute(parsedChain, dataFormatted, keysFormatted);
 				jsonResult = JSON.parse(slangRes);
 			} else {
 				const s = SlangroomManager.getInstance();
