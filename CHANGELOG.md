@@ -1,3 +1,10 @@
+# [1.44.0](https://github.com/forkbombeu/ncr/compare/v1.43.1...v1.44.0) (2025-09-19)
+
+
+### Features
+
+* use also chain keys ([#501](https://github.com/forkbombeu/ncr/issues/501)) ([f0f6c1a](https://github.com/forkbombeu/ncr/commit/f0f6c1a768929b8fe87a81016ee1640067c7b0ac))
+
 ## [1.43.1](https://github.com/forkbombeu/ncr/compare/v1.43.0...v1.43.1) (2025-09-15)
 
 # [1.43.0](https://github.com/forkbombeu/ncr/compare/v1.42.27...v1.43.0) (2025-09-11)
