@@ -1,0 +1,9 @@
+{
+    "type": "object",
+    "properties": {
+        "hello_from_data": {
+            "type": "string"
+        }
+    },
+    "required": ["hello_from_data"]
+}

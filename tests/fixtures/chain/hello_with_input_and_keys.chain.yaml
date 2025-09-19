@@ -1,0 +1,6 @@
+steps:
+  - id: hello
+    zencode: |
+      Given I have a 'string' named 'hello_from_keys'
+      Given I have a 'string' named 'hello_from_data'
+      Then print the data
