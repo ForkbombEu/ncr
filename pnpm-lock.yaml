@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@dyne/slangroom-chain':
-    specifier: ^1.13.0
-    version: 1.13.0(@capacitor/core@6.2.1)(mariadb@3.3.2)(mysql2@3.11.3)(oracledb@6.6.0)(pg@8.13.0)(snowflake-sdk@2.0.2)(tedious@18.6.1)(typescript@5.6.3)(zenroom@5.25.4)
+    specifier: ^1.14.0
+    version: 1.14.0(@capacitor/core@6.2.1)(mariadb@3.3.2)(mysql2@3.11.3)(oracledb@6.6.0)(pg@8.13.0)(snowflake-sdk@2.0.2)(tedious@18.6.1)(typescript@5.6.3)(zenroom@5.25.4)
   '@slangroom/core':
     specifier: ^1.49.5
     version: 1.49.5(zenroom@5.25.4)
@@ -1528,8 +1528,8 @@ packages:
       - web-streams-polyfill
     dev: false
 
-  /@dyne/slangroom-chain@1.13.0(@capacitor/core@6.2.1)(mariadb@3.3.2)(mysql2@3.11.3)(oracledb@6.6.0)(pg@8.13.0)(snowflake-sdk@2.0.2)(tedious@18.6.1)(typescript@5.6.3)(zenroom@5.25.4):
-    resolution: {integrity: sha512-JGU3/mDkgH36n4ldYeQtE+JGiTxVrkY/daqvZROxChr9a7OHERxfZ9webhHeG408hUtGSzFBM0uAfrxLfEsAfA==}
+  /@dyne/slangroom-chain@1.14.0(@capacitor/core@6.2.1)(mariadb@3.3.2)(mysql2@3.11.3)(oracledb@6.6.0)(pg@8.13.0)(snowflake-sdk@2.0.2)(tedious@18.6.1)(typescript@5.6.3)(zenroom@5.25.4):
+    resolution: {integrity: sha512-rxQgJmicPXNkfJ12Mkn3OiOvk4BbGwu6EfsN1smef/ZI2exJZqRTu+3IH23+vCYNog9SysTD3kd5WjCLosgBMA==}
     engines: {node: '>=18'}
     dependencies:
       '@slangroom/core': 1.49.5(zenroom@5.25.4)
