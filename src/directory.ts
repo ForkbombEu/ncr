@@ -123,11 +123,11 @@ export class Directory {
 
 	private getJSON(path: string, type: 'schema' | 'keys' | 'metadata' | 'chain') {
 		try {
-			const k = this.getContent(`${path}.${type}.${FILE_EXTENSIONS.json}`);
+			const k = this.getContent(`${path}.${type}${FILE_EXTENSIONS.json}`);
 			if (!k) return undefined;
 			else return JSON.parse(k);
 		} catch {
-			throw new Error(`${path}.${type}.${FILE_EXTENSIONS.json}: malformed JSON`);
+			throw new Error(`${path}.${type}${FILE_EXTENSIONS.json}: malformed JSON`);
 		}
 	}
 
