@@ -173,8 +173,10 @@ function isInstallContractNotExecuted(contractData: InstallContractData): boolea
 }
 
 async function decommissionInstallContract(contractData: InstallContractData) {
-	const { dir, name } = parse(contractData.path);
+	let basePath;
+	if (isContractFile(contractData.path)) basePath = getContractPath(contractData.path);
+	else basePath = getChainPath(contractData.path);
 	const oldMetadata = contractData.metadata;
-	const metadataPath = join(dir, `${name}.metadata.json`);
+	const metadataPath = `${basePath}.metadata.json`;
 	await updateJsonObjectFile(metadataPath, { ...oldMetadata, executed: true });
 }
