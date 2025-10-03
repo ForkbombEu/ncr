@@ -6,12 +6,11 @@ import fs from 'fs';
 import _ from 'lodash';
 import { IMeta, Logger, type ILogObj } from 'tslog';
 import { App, HttpRequest, HttpResponse, TemplatedApp } from 'uWebSockets.js';
-import { execute as slangroomChainExecute } from '@dyne/slangroom-chain';
 
 import { reportZenroomError } from './error.js';
 import { Endpoints, JSONSchema, Events, Headers, JSONObject } from './types.js';
 import { config } from './cli.js';
-import { SlangroomManager } from './slangroom.js';
+import { slangroomChainExecute, SlangroomManager } from './slangroom.js';
 import {
 	forbidden,
 	methodNotAllowed,
@@ -195,11 +194,7 @@ const execZencodeAndReply = async (
 		} & Record<string, unknown> = {};
 		try {
 			if ('chain' in endpoint) {
-				const dataFormatted = data ? JSON.stringify(data) : undefined;
-				const keysFormatted = keys ? JSON.stringify(keys) : undefined;
-				const parsedChain = endpoint.chainExt === '.js' ? eval(endpoint.chain)() : endpoint.chain;
-				const slangRes = await slangroomChainExecute(parsedChain, dataFormatted, keysFormatted);
-				jsonResult = JSON.parse(slangRes);
+				jsonResult = await slangroomChainExecute(endpoint.chain, endpoint.chainExt, data, keys);
 			} else {
 				const s = SlangroomManager.getInstance();
 				({ result: jsonResult } = await s.execute(endpoint.contract, { keys, data, conf }));

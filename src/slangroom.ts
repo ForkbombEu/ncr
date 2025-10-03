@@ -19,6 +19,8 @@ import { shell } from '@slangroom/shell';
 import { timestamp } from '@slangroom/timestamp';
 import { wallet } from '@slangroom/wallet';
 import { zencode } from '@slangroom/zencode';
+import { execute } from '@dyne/slangroom-chain';
+import { JSONObject } from './types.js';
 
 const SLANGROOM_PLUGINS = [
 	db,
@@ -50,4 +52,17 @@ export class SlangroomManager {
 		}
 		return SlangroomManager.instance;
 	}
+}
+
+export async function slangroomChainExecute(
+	chain: string,
+	chainExt: string,
+	data?: JSONObject,
+	keys?: JSONObject
+) {
+	const dataFormatted = data ? JSON.stringify(data) : undefined;
+	const keysFormatted = keys ? JSON.stringify(keys) : undefined;
+	const parsedChain = chainExt === '.js' ? eval(chain)() : chain;
+	const slangRes = await execute(parsedChain, dataFormatted, keysFormatted);
+	return JSON.parse(slangRes);
 }
