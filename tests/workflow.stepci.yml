@@ -541,6 +541,13 @@ tests:
           check:
             status: 200
             body: yes
+      - name: chain on install
+        http:
+          url: http://${{env.host}}/install_chain.out.json
+          method: GET
+          check:
+            status: 200
+            body: yes
       - name: startup
         http:
           url: http://${{env.host}}/startup.out.json
