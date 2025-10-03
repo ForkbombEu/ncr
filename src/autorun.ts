@@ -12,6 +12,7 @@ import {
 	readJsonObject,
 	updateJsonObjectFile
 } from './fileUtils.js';
+import { isContractFile } from './pathUtils.js';
 import { SlangroomManager } from './slangroom.js';
 
 import { config } from './cli.js';
@@ -48,7 +49,7 @@ async function getContractPathsInDirectory(directoryPath: string): Promise<strin
 		const directory = await fs.readdir(directoryPath);
 		return Array.from(directory.entries())
 			.map((entry) => entry[1])
-			.filter((name) => isZencodeFile(name))
+			.filter((name) => isContractFile(name))
 			.map((name) => join(directoryPath, name));
 	} catch {
 		return [];
@@ -131,10 +132,6 @@ async function loadContractData(contractPath: string): Promise<ContractData | un
 async function readContract(path: string): Promise<string | undefined> {
 	const contract = await readFileContent(path);
 	return contract ? formatContract(contract) : undefined;
-}
-
-function isZencodeFile(filePath: string): boolean {
-	return parse(filePath).ext === '.zen';
 }
 
 /* Autorun checks */

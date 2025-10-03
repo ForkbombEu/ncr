@@ -15,15 +15,6 @@ import { defaultTagsName } from './openapi.js';
 import { HttpRequest } from 'uWebSockets.js';
 const L = config.logger;
 
-export const FILE_EXTENSIONS = {
-	confExtension: 'conf',
-	contractExtension: ['zen'],
-	chainIntermediateExtension: ['chain'],
-	chainExtension: ['js', 'yaml', 'yml'],
-	jsonIntermediateExtension: ['data', 'keys', 'schema', 'metadata'],
-	jsonExtension: 'json',
-}
-
 //
 
 export async function getSchema(endpoints: Endpoints): Promise<JSONSchema | undefined> {
@@ -39,8 +30,7 @@ export async function getSchemaFromIntrospection(
 	contract: string
 ): Promise<JSONSchema | undefined> {
 	const codec: Codec | string = await introspect(contract);
-	if (typeof codec === 'string')
-		return undefined;
+	if (typeof codec === 'string') return undefined;
 	const encodingToType = {
 		string: Type.String(),
 		float: Type.Number()
