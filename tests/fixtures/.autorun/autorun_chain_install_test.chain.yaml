@@ -1,0 +1,6 @@
+steps:
+  - id: write to file
+    zencode: |
+      Given I have a 'string' named 'result'
+      Then print 'result'
+      Then I send path 'file_path' and send content 'result' and store in file

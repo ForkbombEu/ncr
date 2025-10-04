@@ -137,4 +137,5 @@ dist
 
 # produced by tests
 public/install.out.json
+public/install_chain.out.json
 public/startup.out.json

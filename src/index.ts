@@ -20,9 +20,10 @@ import {
 	openapiTemplate
 } from './openapi.js';
 import { SlangroomManager } from './slangroom.js';
-import { FILE_EXTENSIONS, getSchema, getQueryParams, prettyChain, newMetadata } from './utils.js';
+import { getSchema, getQueryParams, prettyChain, newMetadata } from './utils.js';
 import { forbidden, notFound, unprocessableEntity, internalServerError } from './responseUtils.js';
 import { createAppWithBasePath, generateRoute, runPrecondition } from './routeUtils.js';
+import { getBasePath, isContractFile, isChainFile } from './pathUtils.js';
 import { Endpoints, Events, JSONObject } from './types.js';
 
 dotenv.config();
@@ -242,15 +243,8 @@ Dir.ready(async () => {
 	Dir.onAdd(async (path: string) => {
 		const endpoint = Dir.endpoint(path);
 		if (!endpoint) return;
-		const pathArray = path.split('.');
-		const ext = pathArray.pop() as string;
-		const secondExt = pathArray.pop() as string;
 		let event: Events;
-		if (
-			FILE_EXTENSIONS.contractExtension.includes(ext) ||
-			(FILE_EXTENSIONS.chainExtension.includes(ext) &&
-				FILE_EXTENSIONS.chainIntermediateExtension.includes(secondExt))
-		) {
+		if (isContractFile(path) || isChainFile(path)) {
 			event = Events.Add;
 		} else {
 			event = Events.Update;
@@ -265,18 +259,11 @@ Dir.ready(async () => {
 	});
 
 	Dir.onDelete(async (path: string) => {
-		const pathArray = path.split('.');
-		const ext = pathArray.pop() as string;
-		const secondExt = pathArray.pop() as string;
 		let endpoint: Endpoints | undefined;
 		let event: Events;
-		if (
-			FILE_EXTENSIONS.contractExtension.includes(ext) ||
-			(FILE_EXTENSIONS.chainExtension.includes(ext) &&
-				FILE_EXTENSIONS.chainIntermediateExtension.includes(secondExt))
-		) {
+		if (isContractFile(path) || isChainFile(path)) {
 			endpoint = {
-				path: pathArray.pop() as string,
+				path: getBasePath(path),
 				contract: '',
 				chain: '',
 				conf: '',

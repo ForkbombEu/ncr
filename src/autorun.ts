@@ -12,7 +12,8 @@ import {
 	readJsonObject,
 	updateJsonObjectFile
 } from './fileUtils.js';
-import { SlangroomManager } from './slangroom.js';
+import { getChainPath, getContractPath, isChainFile, isContractFile } from './pathUtils.js';
+import { slangroomChainExecute, SlangroomManager } from './slangroom.js';
 
 import { config } from './cli.js';
 import { JSONObject } from './types.js';
@@ -23,18 +24,17 @@ const L = config.logger;
 const AUTORUN_CONTRACTS_PATH = join(config.zencodeDirectory, '.autorun');
 
 export async function autorunContracts() {
-	await autorunInstallContracts();
-	await autorunStartupContracts();
-}
-export async function autorunStartupContracts() {
 	const contracts = await loadContractsData(AUTORUN_CONTRACTS_PATH);
+	await autorunInstallContracts(contracts);
+	await autorunStartupContracts(contracts);
+}
+export async function autorunStartupContracts(contracts: ContractData[]) {
 	const startupContracts = contracts.filter(isStartupContract);
 	const contractsPromises = startupContracts.map(runContractData);
 	await Promise.allSettled(contractsPromises);
 }
 
-export async function autorunInstallContracts() {
-	const contracts = await loadContractsData(AUTORUN_CONTRACTS_PATH);
+export async function autorunInstallContracts(contracts: ContractData[]) {
 	const installContracts = contracts.filter(isInstallContract);
 	const installContractsToRun = installContracts.filter(isInstallContractNotExecuted);
 	const contractsPromises = installContractsToRun.map(runInstallContractData);
@@ -48,7 +48,7 @@ async function getContractPathsInDirectory(directoryPath: string): Promise<strin
 		const directory = await fs.readdir(directoryPath);
 		return Array.from(directory.entries())
 			.map((entry) => entry[1])
-			.filter((name) => isZencodeFile(name))
+			.filter((name) => isContractFile(name) || isChainFile(name))
 			.map((name) => join(directoryPath, name));
 	} catch {
 		return [];
@@ -64,8 +64,13 @@ async function loadContractsData(directoryPath: string): Promise<ContractData[]>
 
 async function runContractData({ contract, keys, conf, data, path }: ContractData) {
 	try {
-		const s = SlangroomManager.getInstance();
-		const { result } = await s.execute(contract, { keys, data, conf });
+		let result;
+		if (isContractFile(path)) {
+			const s = SlangroomManager.getInstance();
+			({ result } = await s.execute(contract, { keys, data, conf }));
+		} else {
+			result = await slangroomChainExecute(contract, parse(path).ext, data, keys);
+		}
 		L.info(`Running autorun contract ${path}`);
 		L.info(result);
 	} catch (e) {
@@ -98,18 +103,20 @@ async function loadContractData(contractPath: string): Promise<ContractData | un
 		const contract = await readContract(contractPath);
 		if (!contract) throw new Error('Contract not found');
 
-		const { name: contractName, dir: directoryPath } = parse(contractPath);
+		let basePath;
+		if (isContractFile(contractPath)) basePath = getContractPath(contractPath);
+		else basePath = getChainPath(contractPath);
 
-		const keysPath = join(directoryPath, `${contractName}.keys.json`);
-		const keys = await readJsonObject(keysPath) as JSONObject;
+		const keysPath = `${basePath}.keys.json`;
+		const keys = (await readJsonObject(keysPath)) as JSONObject;
 
-		const dataPath = join(directoryPath, `${contractName}.data.json`);
-		const data = await readJsonObject(dataPath) as JSONObject;
+		const dataPath = `${basePath}.data.json`;
+		const data = (await readJsonObject(dataPath)) as JSONObject;
 
-		const metadataPath = join(directoryPath, `${contractName}.metadata.json`);
+		const metadataPath = `${basePath}.metadata.json`;
 		const metadata = await readJsonObject(metadataPath);
 
-		const confPath = join(directoryPath, `${contractName}.conf`);
+		const confPath = `${basePath}.conf`;
 		const conf = await readFileContent(confPath);
 
 		return {
@@ -130,11 +137,8 @@ async function loadContractData(contractPath: string): Promise<ContractData | un
 
 async function readContract(path: string): Promise<string | undefined> {
 	const contract = await readFileContent(path);
-	return contract ? formatContract(contract) : undefined;
-}
-
-function isZencodeFile(filePath: string): boolean {
-	return parse(filePath).ext === '.zen';
+	return contract;
+	// return contract ? formatContract(contract) : undefined;
 }
 
 /* Autorun checks */
@@ -169,8 +173,10 @@ function isInstallContractNotExecuted(contractData: InstallContractData): boolea
 }
 
 async function decommissionInstallContract(contractData: InstallContractData) {
-	const { dir, name } = parse(contractData.path);
+	let basePath;
+	if (isContractFile(contractData.path)) basePath = getContractPath(contractData.path);
+	else basePath = getChainPath(contractData.path);
 	const oldMetadata = contractData.metadata;
-	const metadataPath = join(dir, `${name}.metadata.json`);
+	const metadataPath = `${basePath}.metadata.json`;
 	await updateJsonObjectFile(metadataPath, { ...oldMetadata, executed: true });
 }

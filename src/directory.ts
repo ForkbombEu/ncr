@@ -2,13 +2,23 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-import { join, resolve } from 'path';
+import { join, resolve, parse } from 'path';
 import fs from 'fs';
 import LiveDirectory from 'live-directory';
 import { config } from './cli.js';
 import { formatContract } from './fileUtils.js';
 import { Endpoints } from './types.js';
-import { FILE_EXTENSIONS, newMetadata, validateJSONSchema } from './utils.js';
+import { newMetadata, validateJSONSchema } from './utils.js';
+import {
+	FILE_EXTENSIONS,
+	getBasePath,
+	getContractPath,
+	getChainPath,
+	isChainFile,
+	isConfigFile,
+	isContractFile,
+	isZencodeCompanionFile
+} from './pathUtils.js';
 
 export class Directory {
 	private static instance: Directory;
@@ -26,23 +36,11 @@ export class Directory {
 			static: false,
 			filter: {
 				keep: (path: string): boolean => {
-					const pathArray = path.split('.');
-					if (pathArray.length < 2) return false;
-					const ext = pathArray.pop() as string;
-					const intermediateExtension = pathArray.pop() as string;
 					return (
-						FILE_EXTENSIONS.contractExtension.includes(ext) ||
-						Boolean(
-							FILE_EXTENSIONS.chainExtension.includes(ext) &&
-							FILE_EXTENSIONS.chainIntermediateExtension.includes(intermediateExtension) &&
-							pathArray.pop()
-						) ||
-						Boolean(
-							ext === FILE_EXTENSIONS.jsonExtension &&
-							FILE_EXTENSIONS.jsonIntermediateExtension.includes(intermediateExtension) &&
-							pathArray.pop()
-						) ||
-						ext === FILE_EXTENSIONS.confExtension
+						isContractFile(path) ||
+						isChainFile(path) ||
+						isZencodeCompanionFile(path) ||
+						isConfigFile(path)
 					);
 				},
 				ignore: (path: string): boolean => path.startsWith(autorunDir)
@@ -69,30 +67,25 @@ export class Directory {
 	}
 
 	private getEndpoint(name: string) {
-		const pathArray = name.split('.');
-		const ext = pathArray.pop() as string;
-		if (FILE_EXTENSIONS.contractExtension.includes(ext)) {
-			const path = pathArray.pop() as string;
+		if (isContractFile(name)) {
+			const contractPath = getContractPath(name);
 			return {
-				path: path,
+				path: contractPath,
 				contract: formatContract(this.getContent(name) || ''),
-				keys: this.getJSON(path, 'keys'),
-				conf: this.getContent(`${path}.${FILE_EXTENSIONS.confExtension}`) || '',
-				schema: this.getJSONSchema(path),
-				metadata: newMetadata(this.getJSON(path, 'metadata') || {})
+				keys: this.getJSON(contractPath, 'keys'),
+				conf: this.getContent(`${contractPath}${FILE_EXTENSIONS.config}`) || '',
+				schema: this.getJSONSchema(contractPath),
+				metadata: newMetadata(this.getJSON(contractPath, 'metadata') || {})
 			};
-		} else if (
-			FILE_EXTENSIONS.chainExtension.includes(ext) &&
-			FILE_EXTENSIONS.chainIntermediateExtension.includes(pathArray.pop() as string)
-		) {
-			const path = pathArray.pop() as string;
+		} else if (isChainFile(name)) {
+			const chainPath = getChainPath(name);
 			return {
-				path: path,
+				path: chainPath,
 				chain: this.getContent(name) || '',
-				keys: this.getJSON(path, 'keys'),
-				chainExt: ext,
-				schema: this.getJSONSchema(path),
-				metadata: newMetadata(this.getJSON(path, 'metadata') || {}),
+				keys: this.getJSON(chainPath, 'keys'),
+				chainExt: parse(name).ext,
+				schema: this.getJSONSchema(chainPath),
+				metadata: newMetadata(this.getJSON(chainPath, 'metadata') || {}),
 				conf: ''
 			};
 		}
@@ -109,33 +102,32 @@ export class Directory {
 	}
 
 	public endpoint(path: string): Endpoints | undefined {
-		const pathArray = path.split('.');
-		const ext = pathArray.pop() as string;
-		if (
-			FILE_EXTENSIONS.contractExtension.includes(ext) ||
-			(FILE_EXTENSIONS.chainExtension.includes(ext) && FILE_EXTENSIONS.chainIntermediateExtension.includes(pathArray.pop() as string))
-		) {
+		// If the path is a zencode contract/chain, return its endpoint
+		if (isContractFile(path) || isChainFile(path)) {
 			return this.getEndpoint(path);
-		} else {
-			const basePath = pathArray.shift();
-			const correctExtenstion = [
-				...FILE_EXTENSIONS.contractExtension,
-				...FILE_EXTENSIONS.chainIntermediateExtension.flatMap((i) => FILE_EXTENSIONS.chainExtension.map((e) => `${i}.${e}`)),
-			].find((e) => this.getContent(`${basePath}.${e}`));
-			if (correctExtenstion) {
-				return this.getEndpoint(`${basePath}.${correctExtenstion}`);
-			}
+		}
+		// Otherwise, try to resolve by checking possible extensions
+		const basePath = getBasePath(path);
+		const possibleExtensions = [
+			...FILE_EXTENSIONS.contract,
+			...FILE_EXTENSIONS.chainQualifiers.flatMap((qualifier) =>
+				FILE_EXTENSIONS.chain.map((ext) => `${qualifier}${ext}`)
+			)
+		];
+		for (const ext of possibleExtensions) {
+			const candidate = `${basePath}${ext}`;
+			if (this.liveDirectory.get(candidate)) return this.getEndpoint(candidate);
 		}
 		return undefined;
 	}
 
 	private getJSON(path: string, type: 'schema' | 'keys' | 'metadata' | 'chain') {
 		try {
-			const k = this.getContent(`${path}.${type}.${FILE_EXTENSIONS.jsonExtension}`);
+			const k = this.getContent(`${path}.${type}${FILE_EXTENSIONS.json}`);
 			if (!k) return undefined;
 			else return JSON.parse(k);
 		} catch {
-			throw new Error(`${path}.${type}.${FILE_EXTENSIONS.jsonExtension}: malformed JSON`);
+			throw new Error(`${path}.${type}${FILE_EXTENSIONS.json}: malformed JSON`);
 		}
 	}
 
