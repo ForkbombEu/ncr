@@ -1,3 +1,10 @@
+# [1.45.0](https://github.com/forkbombeu/ncr/compare/v1.44.3...v1.45.0) (2025-10-04)
+
+
+### Features
+
+* **autorun:** run also slangroom chains as autorun contracts ([#505](https://github.com/forkbombeu/ncr/issues/505)) ([47cc84e](https://github.com/forkbombeu/ncr/commit/47cc84e312d27387e2b07b46c74070c912e5acf9))
+
 ## [1.44.3](https://github.com/forkbombeu/ncr/compare/v1.44.2...v1.44.3) (2025-09-29)
 
 ## [1.44.2](https://github.com/forkbombeu/ncr/compare/v1.44.1...v1.44.2) (2025-09-29)
