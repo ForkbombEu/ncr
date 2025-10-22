@@ -1,3 +1,10 @@
+# [1.46.0](https://github.com/forkbombeu/ncr/compare/v1.45.0...v1.46.0) (2025-10-22)
+
+
+### Features
+
+* add the @slangroom/rdf to the list of SLANGROOM_PLUGINS ([#478](https://github.com/forkbombeu/ncr/issues/478)) ([0230ce8](https://github.com/forkbombeu/ncr/commit/0230ce8072e81b81aba6cfa1e9c6e9e0e4dfcd0f))
+
 # [1.45.0](https://github.com/forkbombeu/ncr/compare/v1.44.3...v1.45.0) (2025-10-04)
 
 
