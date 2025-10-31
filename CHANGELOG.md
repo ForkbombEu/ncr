@@ -1,3 +1,10 @@
+## [1.46.4](https://github.com/forkbombeu/ncr/compare/v1.46.3...v1.46.4) (2025-10-31)
+
+
+### Bug Fixes
+
+* **cors:** allow DPoP header in preflight response ([#512](https://github.com/forkbombeu/ncr/issues/512)) ([79f7ed1](https://github.com/forkbombeu/ncr/commit/79f7ed10cfcae9022ac1bb24b1576ccf0f43b0fb))
+
 ## [1.46.3](https://github.com/forkbombeu/ncr/compare/v1.46.2...v1.46.3) (2025-10-31)
 
 
