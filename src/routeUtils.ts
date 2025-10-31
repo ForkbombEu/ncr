@@ -98,7 +98,7 @@ const setCorsHeaders = (res: HttpResponse) => {
 	res
 		.writeHeader('Access-Control-Allow-Origin', '*')
 		.writeHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
-		.writeHeader('Access-Control-Allow-Headers', 'content-type, authorization');
+		.writeHeader('Access-Control-Allow-Headers', 'content-type, authorization, dpop');
 };
 
 export const runPrecondition = async (preconditionPath: string, data: JSONObject) => {
@@ -382,7 +382,7 @@ export const generateRoute = async (app: TemplatedApp, endpoint: Endpoints, acti
 				.writeStatus('500')
 				.writeHeader('Access-Control-Allow-Origin', '*')
 				.writeHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
-				.writeHeader('Access-Control-Allow-Headers', 'content-type, dpop')
+				.writeHeader('Access-Control-Allow-Headers', 'content-type')
 				.end('Aborted');
 		});
 
