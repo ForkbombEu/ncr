@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@dyne/slangroom-chain':
-    specifier: ^1.14.0
-    version: 1.14.0(@capacitor/core@6.2.1)(mariadb@3.3.2)(mysql2@3.11.3)(oracledb@6.6.0)(pg@8.13.0)(snowflake-sdk@2.0.2)(tedious@18.6.1)(typescript@5.6.3)(zenroom@5.28.1)
+    specifier: ^1.15.0
+    version: 1.15.0(@capacitor/core@6.2.1)(mariadb@3.3.2)(mysql2@3.11.3)(oracledb@6.6.0)(pg@8.13.0)(snowflake-sdk@2.0.2)(tedious@18.6.1)(typescript@5.6.3)(zenroom@5.28.1)
   '@slangroom/core':
     specifier: ^1.49.7
     version: 1.49.7(zenroom@5.28.1)
@@ -1525,8 +1525,8 @@ packages:
       undici: 6.21.2
     dev: false
 
-  /@dyne/slangroom-chain@1.14.0(@capacitor/core@6.2.1)(mariadb@3.3.2)(mysql2@3.11.3)(oracledb@6.6.0)(pg@8.13.0)(snowflake-sdk@2.0.2)(tedious@18.6.1)(typescript@5.6.3)(zenroom@5.28.1):
-    resolution: {integrity: sha512-rxQgJmicPXNkfJ12Mkn3OiOvk4BbGwu6EfsN1smef/ZI2exJZqRTu+3IH23+vCYNog9SysTD3kd5WjCLosgBMA==}
+  /@dyne/slangroom-chain@1.15.0(@capacitor/core@6.2.1)(mariadb@3.3.2)(mysql2@3.11.3)(oracledb@6.6.0)(pg@8.13.0)(snowflake-sdk@2.0.2)(tedious@18.6.1)(typescript@5.6.3)(zenroom@5.28.1):
+    resolution: {integrity: sha512-rU/jxeMvuJhTgUamduI6H86WJ38p6AwmSB3ZDOGH1Yg8uar2vVcpPoeYbyOQxThq+aN+Q/kypr6KS4wZLq3I+w==}
     engines: {node: '>=18'}
     dependencies:
       '@slangroom/core': 1.49.7(zenroom@5.28.1)
@@ -1541,6 +1541,7 @@ packages:
       '@slangroom/oauth': 1.49.7(zenroom@5.28.1)
       '@slangroom/pocketbase': 1.49.7(@capacitor/core@6.2.1)(zenroom@5.28.1)
       '@slangroom/qrcode': 1.49.7(zenroom@5.28.1)
+      '@slangroom/rdf': 1.49.7(zenroom@5.28.1)
       '@slangroom/redis': 1.49.7(zenroom@5.28.1)
       '@slangroom/shell': 1.49.7(zenroom@5.28.1)
       '@slangroom/timestamp': 1.49.7(zenroom@5.28.1)
