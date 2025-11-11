@@ -1,3 +1,10 @@
+# [1.47.0](https://github.com/forkbombeu/ncr/compare/v1.46.6...v1.47.0) (2025-11-11)
+
+
+### Features
+
+* add @slangroom/dcql ([#516](https://github.com/forkbombeu/ncr/issues/516)) ([ddaf828](https://github.com/forkbombeu/ncr/commit/ddaf828d1b49b80a5ec260a9d18829017fef6b9d))
+
 ## [1.46.6](https://github.com/forkbombeu/ncr/compare/v1.46.5...v1.46.6) (2025-11-03)
 
 ## [1.46.5](https://github.com/forkbombeu/ncr/compare/v1.46.4...v1.46.5) (2025-10-31)
