@@ -4,6 +4,7 @@
 
 import { Slangroom, type Slangroom as SlangroomType } from '@slangroom/core';
 import { db } from '@slangroom/db';
+import { dcql } from '@slangroom/dcql';
 import { did } from '@slangroom/did';
 import { ethereum } from '@slangroom/ethereum';
 import { fs } from '@slangroom/fs';
@@ -25,6 +26,7 @@ import { JSONObject } from './types.js';
 
 const SLANGROOM_PLUGINS = [
 	db,
+	dcql,
 	did,
 	ethereum,
 	fs,
