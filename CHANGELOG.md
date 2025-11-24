@@ -1,3 +1,10 @@
+## [1.47.3](https://github.com/forkbombeu/ncr/compare/v1.47.2...v1.47.3) (2025-11-24)
+
+
+### Bug Fixes
+
+* handle post with no body ([#520](https://github.com/forkbombeu/ncr/issues/520)) ([5126e31](https://github.com/forkbombeu/ncr/commit/5126e31773d17ab125ff74cc30bbd716a6e5c736))
+
 ## [1.47.2](https://github.com/forkbombeu/ncr/compare/v1.47.1...v1.47.2) (2025-11-18)
 
 ## [1.47.1](https://github.com/forkbombeu/ncr/compare/v1.47.0...v1.47.1) (2025-11-12)
