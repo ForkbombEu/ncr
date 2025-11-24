@@ -151,7 +151,7 @@ const execZencodeAndReply = async (
 	res: HttpResponse,
 	endpoint: Endpoints,
 	data: JSONObject,
-	headers: Record<string, Record<string, string>>,
+	headers: Headers,
 	schema: JSONSchema,
 	LOG: Logger<ILogObj>
 ) => {
@@ -265,6 +265,10 @@ const generatePost = (
 	app.post(path, (res, req) => {
 		const headers = checkAndGetHeaders(res, req, action, path, metadata.disablePost);
 		if (!headers) return;
+		if (headers.request?.['content-length'] === '0') {
+			execZencodeAndReply(res, endpoint, {}, headers, schema, LOG);
+			return;
+		}
 		if (headers.request?.['content-type'] !== metadata.contentType) {
 			unsupportedMediaType(res, new Error(`Unsupported media type on ${path}`));
 			return;
