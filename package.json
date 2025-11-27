@@ -42,7 +42,7 @@
 		"outputPath": "./"
 	},
 	"dependencies": {
-		"@dyne/slangroom-chain": "^1.16.1",
+		"@dyne/slangroom-chain": "^1.16.2",
 		"@slangroom/core": "^1.50.3",
 		"@slangroom/db": "^1.50.3",
 		"@slangroom/dcql": "^1.50.3",

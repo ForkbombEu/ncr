@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@dyne/slangroom-chain':
-    specifier: ^1.16.1
-    version: 1.16.1(@capacitor/core@6.2.1)(mariadb@3.3.2)(mysql2@3.11.3)(oracledb@6.6.0)(pg@8.13.0)(snowflake-sdk@2.0.2)(tedious@18.6.1)(typescript@5.6.3)(zenroom@5.28.5)
+    specifier: ^1.16.2
+    version: 1.16.2(@capacitor/core@6.2.1)(mariadb@3.3.2)(mysql2@3.11.3)(oracledb@6.6.0)(pg@8.13.0)(snowflake-sdk@2.0.2)(tedious@18.6.1)(typescript@5.6.3)(zenroom@5.28.5)
   '@slangroom/core':
     specifier: ^1.50.3
     version: 1.50.3(zenroom@5.28.5)
@@ -1524,12 +1524,12 @@ packages:
     resolution: {integrity: sha512-OGju/GYp0V72qlZ/Pd4jGEwqBwT/Za/tw+Z3AC7lgMheGqsbhTZrtc5iLz9z59G/Q53QyE2fnjHV8N9wjBpiWA==}
     engines: {node: '>=18.0'}
     dependencies:
-      ky: 1.12.0
-      undici: 6.21.2
+      ky: 1.14.0
+      undici: 6.22.0
     dev: false
 
-  /@dyne/slangroom-chain@1.16.1(@capacitor/core@6.2.1)(mariadb@3.3.2)(mysql2@3.11.3)(oracledb@6.6.0)(pg@8.13.0)(snowflake-sdk@2.0.2)(tedious@18.6.1)(typescript@5.6.3)(zenroom@5.28.5):
-    resolution: {integrity: sha512-znZIZWo8r4HnpCj47G9PgR/CoTXI78XXKbT7ZYIEo0sGXaMP+eEqJv0KsAiCQqxJQ2VAWIa2A/ctVhPk0RzViA==}
+  /@dyne/slangroom-chain@1.16.2(@capacitor/core@6.2.1)(mariadb@3.3.2)(mysql2@3.11.3)(oracledb@6.6.0)(pg@8.13.0)(snowflake-sdk@2.0.2)(tedious@18.6.1)(typescript@5.6.3)(zenroom@5.28.5):
+    resolution: {integrity: sha512-N3F4syIQ3UJkz2Tcan3ggfZlHzmi33VDfGwji7mCwhJTcPke8b75YVgCE+p+Tk04GN8ePtG8uG4nURSA1DLygg==}
     engines: {node: '>=18'}
     dependencies:
       '@slangroom/core': 1.50.3(zenroom@5.28.5)
@@ -7797,8 +7797,8 @@ packages:
   /kuler@2.0.0:
     resolution: {integrity: sha512-Xq9nH7KlWZmXAtodXDDRE7vs6DU1gTU8zYDHDiWLSip45Egwq3plLHzPn27NgvzL2r1LMPC1vdqh98sQxtqj4A==}
 
-  /ky@1.12.0:
-    resolution: {integrity: sha512-YRLmSUHCwOJRBMArtqMRLOmO7fewn3yOoui6aB8ERkRVXupa0UiaQaKbIXteMt4jUElhbdqTMsLFHs8APxxUoQ==}
+  /ky@1.14.0:
+    resolution: {integrity: sha512-Rczb6FMM6JT0lvrOlP5WUOCB7s9XKxzwgErzhKlKde1bEV90FXplV1o87fpt4PU/asJFiqjYJxAJyzJhcrxOsQ==}
     engines: {node: '>=18'}
     dev: false
 
@@ -10712,6 +10712,12 @@ packages:
   /undici@6.21.2:
     resolution: {integrity: sha512-uROZWze0R0itiAKVPsYhFov9LxrPMHLMEQFszeI2gCN6bnIIZ8twzBCJcN2LJrBBLfrP0t1FW0g+JmKVl8Vk1g==}
     engines: {node: '>=18.17'}
+    dev: true
+
+  /undici@6.22.0:
+    resolution: {integrity: sha512-hU/10obOIu62MGYjdskASR3CUAiYaFTtC9Pa6vHyf//mAipSvSQg6od2CnJswq7fvzNS3zJhxoRkgNVaHurWKw==}
+    engines: {node: '>=18.17'}
+    dev: false
 
   /unicode-emoji-modifier-base@1.0.0:
     resolution: {integrity: sha512-yLSH4py7oFH3oG/9K+XWrz1pSi3dfUrWEnInbxMfArOfc1+33BlGPQtLsOYwvdMy11AwUBetYuaRxSPqgkq+8g==}
